@@ -81,10 +81,10 @@
 	        var url="404.html";
 	    };
 	    if (w == null || w == '') {
-	        var w=($(window).width()*0.9);
+	        var w=$(window).width();
 	    };
 	    if (h == null || h == '') {
-	        var h=($(window).height() - 50);
+	        var h=$(window).height();
 	    };
 	    var index = layer.open({
 	        type: 2,
@@ -100,7 +100,7 @@
             }
 	    });
 	    if(full){
-	       layer.full(index); 
+	       layer.full(index);
 	    }
 	}
 	/**

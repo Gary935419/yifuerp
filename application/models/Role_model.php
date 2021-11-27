@@ -239,6 +239,12 @@ class Role_model extends CI_Model
 		$sql = "DELETE FROM erp_yuanfuliaoguige WHERE kid = $id";
 		return $this->db->query($sql);
 	}
+	public function goodsimg_delete4($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_yuanfuliaopinghengbian WHERE kid = $id";
+		return $this->db->query($sql);
+	}
 	public function goods_delete($id)
 	{
 		$id = $this->db->escape($id);
@@ -278,7 +284,7 @@ class Role_model extends CI_Model
 		$start = ($pg - 1) * 10;
 		$stop = 10;
 
-		$sql = "SELECT u.*,r.bianhao,r.qianding FROM `erp_xiangmukuanhao` u left join `erp_xiangmuhetong` r on u.xid=r.id " . $sqlw . " order by u.addtime desc LIMIT $start, $stop";
+		$sql = "SELECT u.*,r.bianhao,r.qianding FROM `erp_xiangmukuanhao` u left join `erp_xiangmuhetong` r on u.xid=r.id " . $sqlw . " LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
 	public function getgoodsByIdkuanhao($id)

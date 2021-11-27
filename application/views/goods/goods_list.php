@@ -61,11 +61,11 @@
 									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit?id=' ?>'+'<?= $once['id'] ?>')">
-                                            <i class="layui-icon">&#xe642;</i>编辑
+                                                onclick="xadmin.open('项目编辑','<?= RUN . '/goods/goods_edit_new?id=' ?>'+'<?= $once['id'] ?>')">
+                                            <i class="layui-icon">&#xe642;</i>项目编辑
                                         </button>
                                         <button class="layui-btn layui-btn-danger"
-                                                onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
+                                                onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>项目删除
                                         </button>
                                     </td>
                                 </tr>

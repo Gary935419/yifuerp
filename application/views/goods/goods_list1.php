@@ -55,22 +55,22 @@
 									<td><?= date('Y-m-d', $once['qianding']) ?></td>
 									<td class="td-manage">
 										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('规格添加','<?= RUN . '/goods/goods_add1?id=' ?>'+'<?= $once['id'] ?>')">
+												onclick="xadmin.open('规格添加','<?= RUN . '/goods/goods_add_new1?id=' ?>'+'<?= $once['id'] ?>')">
 											<i class="iconfont">&#xe69e;</i>  规格添加
 										</button>
 										<?php if ($once['openflg']>=1){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('规格修改','<?= RUN . '/goods/goods_edit1?id=' ?>'+'<?= $once['id'] ?>')">
+													onclick="xadmin.open('规格编辑','<?= RUN . '/goods/goods_edit_new1?id=' ?>'+'<?= $once['id'] ?>')">
 												<i class="iconfont">&#xe69e;</i>  规格修改
 											</button>
 										<?php } ?>
 										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('平衡表添加','<?= RUN . '/goods/goods_add2?id=' ?>'+'<?= $once['id'] ?>')">
+												onclick="xadmin.open('平衡表添加','<?= RUN . '/goods/goods_add_new22?id=' ?>'+'<?= $once['id'] ?>')">
 											<i class="layui-icon">&#xe642;</i>平衡表添加
 										</button>
 										<?php if ($once['openflg1']>=1){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('平衡表修改','<?= RUN . '/goods/goods_edit2?id=' ?>'+'<?= $once['id'] ?>')">
+													onclick="xadmin.open('平衡表编辑','<?= RUN . '/goods/goods_edit_new22?id=' ?>'+'<?= $once['id'] ?>')">
 												<i class="layui-icon">&#xe642;</i>平衡表修改
 											</button>
 										<?php } ?>

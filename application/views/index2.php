@@ -94,15 +94,107 @@
 					<i class="iconfont nav_right">&#xe697;</i></a>
 				<ul class="sub-menu">
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_add_new' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>项目添加</cite>
+							<cite>项目列表</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="预算管理">&#xe6b5;</i>
+					<cite>预算管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>预算表列表</cite>
 						</a>
 					</li>
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_list' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/member/driver_uplist2' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>项目列表</cite>
+							<cite>预算表审核</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>决算表列表</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/member/driver_uplist2' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>决算表审核</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/member/member_list1' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>预算决算表对比</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="样品制作管理">&#xe6b5;</i>
+					<cite>样品制作管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list?id=1' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>样品列表</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>子公司列表</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="裁断报告书管理">&#xe6b5;</i>
+					<cite>裁断报告书管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_listc' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>预算裁断书列表</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_listc' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>决算裁断书列表</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/member/member_list1' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>预算决算裁断书对比</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="生产计划管理">&#xe6b5;</i>
+					<cite>生成计划管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list1' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>生产计划列表</cite>
 						</a>
 					</li>
 				</ul>
@@ -114,9 +206,23 @@
 					<i class="iconfont nav_right">&#xe697;</i></a>
 				<ul class="sub-menu">
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_list1' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list2' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
 							<cite>原辅料信息列表</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="设定管理">&#xe6b5;</i>
+					<cite>设定管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/set/set_edit_new' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>系统设定</cite>
 						</a>
 					</li>
 				</ul>
