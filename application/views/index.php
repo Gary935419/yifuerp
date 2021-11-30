@@ -114,7 +114,7 @@
 					<i class="iconfont nav_right">&#xe697;</i></a>
 				<ul class="sub-menu">
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_list1' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_yuan' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
 							<cite>原辅料信息列表</cite>
 						</a>

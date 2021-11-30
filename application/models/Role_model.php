@@ -264,9 +264,9 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_xiangmukuanhao` where kuanhao=$kuanhao and xid!=$id ";
 		return $this->db->query($sql)->row_array();
 	}
-	public function getgoodsAllPage1($gname)
+	public function getgoodsAllPage1($gname,$id)
 	{
-		$sqlw = " where 1=1 ";
+		$sqlw = " where 1=1 and xid=$id ";
 		if (!empty($gname)) {
 			$sqlw .= " and ( u.kuanhao like '%" . $gname . "%' ) ";
 		}
@@ -275,9 +275,9 @@ class Role_model extends CI_Model
 		$number = $this->db->query($sql)->row()->number;
 		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
 	}
-	public function getgoodsAllNew1($pg,$gname)
+	public function getgoodsAllNew1($pg,$gname,$id)
 	{
-		$sqlw = " where 1=1 ";
+		$sqlw = " where 1=1 and xid=$id ";
 		if (!empty($gname)) {
 			$sqlw .= " and ( u.kuanhao like '%" . $gname . "%' ) ";
 		}
@@ -292,5 +292,23 @@ class Role_model extends CI_Model
 		$id = $this->db->escape($id);
 		$sql = "SELECT * FROM `erp_xiangmukuanhao` where id=$id ";
 		return $this->db->query($sql)->row_array();
+	}
+	public function getgoodsAllNewid($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT u.*,r.bianhao,r.qianding FROM `erp_xiangmukuanhao` u left join `erp_xiangmuhetong` r on u.xid=r.id where u.id=$id";
+		return $this->db->query($sql)->row_array();
+	}
+	public function gettidlistguige($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_yuanfuliaoguige` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function gettidlistpinming($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_yuanfuliaopinghengbian` where kid = $id ";
+		return $this->db->query($sql)->result_array();
 	}
 }

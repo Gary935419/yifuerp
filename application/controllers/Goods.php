@@ -19,6 +19,8 @@ class Goods extends CI_Controller
 		$this->load->model('Role_model', 'role');
 		$this->load->model('Task_model', 'task');
 		$this->load->model('Taskclass_model', 'taskclass');
+		$this->load->library('PHPExcel');
+		$this->load->library('IOFactory');
 		header("Content-type:text/html;charset=utf-8");
 	}
 
@@ -380,7 +382,6 @@ class Goods extends CI_Controller
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 
 	}
-
 	public function goods_list()
 	{
 
@@ -490,14 +491,16 @@ class Goods extends CI_Controller
 	}
 	public function goods_list1()
 	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
 		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-		$allpage = $this->role->getgoodsAllPage1($gname);
+		$allpage = $this->role->getgoodsAllPage1($gname,$id);
 		$page = $allpage > $page ? $page : $allpage;
-		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["pagehtml"] = $this->getpage($page,$allpage,$_GET);
 		$data["page"] = $page;
+		$data["id"] = $id;
 		$data["allpage"] = $allpage;
-		$list = $this->role->getgoodsAllNew1($page, $gname);
+		$list = $this->role->getgoodsAllNew1($page,$gname,$id);
 		$data["gname"] = $gname;
 		foreach ($list as $k => $v) {
 			$guiges = $this->task->gettidlistguige($v['id']);
@@ -1431,6 +1434,9 @@ class Goods extends CI_Controller
 		$data['jianshu1'] = '';
 		$data['sunhaoyongliang1'] = '';
 		$data['daoliaori1'] = '';
+		$data['zhishiyongliang1'] = '';
+		$data['shijiyongliang1'] = '';
+		$data['shengyu1'] = '';
 
 		$data['pinming2'] = '';
 		$data['pinfan2'] = '';
@@ -1445,6 +1451,9 @@ class Goods extends CI_Controller
 		$data['jianshu2'] = '';
 		$data['sunhaoyongliang2'] = '';
 		$data['daoliaori2'] = '';
+		$data['zhishiyongliang2'] = '';
+		$data['shijiyongliang2'] = '';
+		$data['shengyu2'] = '';
 
 		$data['pinming3'] = '';
 		$data['pinfan3'] = '';
@@ -1459,6 +1468,9 @@ class Goods extends CI_Controller
 		$data['jianshu3'] = '';
 		$data['sunhaoyongliang3'] = '';
 		$data['daoliaori3'] = '';
+		$data['zhishiyongliang3'] = '';
+		$data['shijiyongliang3'] = '';
+		$data['shengyu3'] = '';
 
 		$data['pinming4'] = '';
 		$data['pinfan4'] = '';
@@ -1473,6 +1485,9 @@ class Goods extends CI_Controller
 		$data['jianshu4'] = '';
 		$data['sunhaoyongliang4'] = '';
 		$data['daoliaori4'] = '';
+		$data['zhishiyongliang4'] = '';
+		$data['shijiyongliang4'] = '';
+		$data['shengyu4'] = '';
 
 		$data['pinming5'] = '';
 		$data['pinfan5'] = '';
@@ -1487,6 +1502,9 @@ class Goods extends CI_Controller
 		$data['jianshu5'] = '';
 		$data['sunhaoyongliang5'] = '';
 		$data['daoliaori5'] = '';
+		$data['zhishiyongliang5'] = '';
+		$data['shijiyongliang5'] = '';
+		$data['shengyu5'] = '';
 
 		$data['pinming6'] = '';
 		$data['pinfan6'] = '';
@@ -1501,6 +1519,9 @@ class Goods extends CI_Controller
 		$data['jianshu6'] = '';
 		$data['sunhaoyongliang6'] = '';
 		$data['daoliaori6'] = '';
+		$data['zhishiyongliang6'] = '';
+		$data['shijiyongliang6'] = '';
+		$data['shengyu6'] = '';
 
 		$data['pinming7'] = '';
 		$data['pinfan7'] = '';
@@ -1515,6 +1536,9 @@ class Goods extends CI_Controller
 		$data['jianshu7'] = '';
 		$data['sunhaoyongliang7'] = '';
 		$data['daoliaori7'] = '';
+		$data['zhishiyongliang7'] = '';
+		$data['shijiyongliang7'] = '';
+		$data['shengyu7'] = '';
 
 		$data['pinming8'] = '';
 		$data['pinfan8'] = '';
@@ -1529,6 +1553,9 @@ class Goods extends CI_Controller
 		$data['jianshu8'] = '';
 		$data['sunhaoyongliang8'] = '';
 		$data['daoliaori8'] = '';
+		$data['zhishiyongliang8'] = '';
+		$data['shijiyongliang8'] = '';
+		$data['shengyu8'] = '';
 
 		$data['pinming9'] = '';
 		$data['pinfan9'] = '';
@@ -1543,6 +1570,9 @@ class Goods extends CI_Controller
 		$data['jianshu9'] = '';
 		$data['sunhaoyongliang9'] = '';
 		$data['daoliaori9'] = '';
+		$data['zhishiyongliang9'] = '';
+		$data['shijiyongliang9'] = '';
+		$data['shengyu9'] = '';
 
 		$data['pinming10'] = '';
 		$data['pinfan10'] = '';
@@ -1557,6 +1587,9 @@ class Goods extends CI_Controller
 		$data['jianshu10'] = '';
 		$data['sunhaoyongliang10'] = '';
 		$data['daoliaori10'] = '';
+		$data['zhishiyongliang10'] = '';
+		$data['shijiyongliang10'] = '';
+		$data['shengyu10'] = '';
 
 		if (!empty($kuanhaos[0]['pinming'])) {
 			$data['pinming1'] = $kuanhaos[0]['pinming'];
@@ -1572,6 +1605,9 @@ class Goods extends CI_Controller
 			$data['jianshu1'] = $kuanhaos[0]['jianshu'];
 			$data['sunhaoyongliang1'] = $kuanhaos[0]['sunhaoyongliang'];
 			$data['daoliaori1'] = $kuanhaos[0]['daoliaori'];
+			$data['zhishiyongliang1'] = $kuanhaos[0]['zhishiyongliang'];
+			$data['shijiyongliang1'] = $kuanhaos[0]['shijiyongliang'];
+			$data['shengyu1'] = $kuanhaos[0]['shengyu'];
 		}
 		if (!empty($kuanhaos[1]['pinming'])) {
 			$data['pinming2'] = $kuanhaos[1]['pinming'];
@@ -1587,6 +1623,9 @@ class Goods extends CI_Controller
 			$data['jianshu2'] = $kuanhaos[1]['jianshu'];
 			$data['sunhaoyongliang2'] = $kuanhaos[1]['sunhaoyongliang'];
 			$data['daoliaori2'] = $kuanhaos[1]['daoliaori'];
+			$data['zhishiyongliang2'] = $kuanhaos[1]['zhishiyongliang'];
+			$data['shijiyongliang2'] = $kuanhaos[1]['shijiyongliang'];
+			$data['shengyu2'] = $kuanhaos[1]['shengyu'];
 		}
 		if (!empty($kuanhaos[2]['pinming'])) {
 			$data['pinming3'] = $kuanhaos[2]['pinming'];
@@ -1602,6 +1641,9 @@ class Goods extends CI_Controller
 			$data['jianshu3'] = $kuanhaos[2]['jianshu'];
 			$data['sunhaoyongliang3'] = $kuanhaos[2]['sunhaoyongliang'];
 			$data['daoliaori3'] = $kuanhaos[2]['daoliaori'];
+			$data['zhishiyongliang3'] = $kuanhaos[2]['zhishiyongliang'];
+			$data['shijiyongliang3'] = $kuanhaos[2]['shijiyongliang'];
+			$data['shengyu3'] = $kuanhaos[2]['shengyu'];
 		}
 		if (!empty($kuanhaos[3]['pinming'])) {
 			$data['pinming4'] = $kuanhaos[3]['pinming'];
@@ -1617,6 +1659,9 @@ class Goods extends CI_Controller
 			$data['jianshu4'] = $kuanhaos[3]['jianshu'];
 			$data['sunhaoyongliang4'] = $kuanhaos[3]['sunhaoyongliang'];
 			$data['daoliaori4'] = $kuanhaos[3]['daoliaori'];
+			$data['zhishiyongliang4'] = $kuanhaos[3]['zhishiyongliang'];
+			$data['shijiyongliang4'] = $kuanhaos[3]['shijiyongliang'];
+			$data['shengyu4'] = $kuanhaos[3]['shengyu'];
 		}
 		if (!empty($kuanhaos[4]['pinming'])) {
 			$data['pinming5'] = $kuanhaos[4]['pinming'];
@@ -1632,6 +1677,9 @@ class Goods extends CI_Controller
 			$data['jianshu5'] = $kuanhaos[4]['jianshu'];
 			$data['sunhaoyongliang5'] = $kuanhaos[4]['sunhaoyongliang'];
 			$data['daoliaori5'] = $kuanhaos[4]['daoliaori'];
+			$data['zhishiyongliang5'] = $kuanhaos[4]['zhishiyongliang'];
+			$data['shijiyongliang5'] = $kuanhaos[4]['shijiyongliang'];
+			$data['shengyu5'] = $kuanhaos[4]['shengyu'];
 		}
 		if (!empty($kuanhaos[5]['pinming'])) {
 			$data['pinming6'] = $kuanhaos[5]['pinming'];
@@ -1647,6 +1695,9 @@ class Goods extends CI_Controller
 			$data['jianshu6'] = $kuanhaos[5]['jianshu'];
 			$data['sunhaoyongliang6'] = $kuanhaos[5]['sunhaoyongliang'];
 			$data['daoliaori6'] = $kuanhaos[5]['daoliaori'];
+			$data['zhishiyongliang6'] = $kuanhaos[5]['zhishiyongliang'];
+			$data['shijiyongliang6'] = $kuanhaos[5]['shijiyongliang'];
+			$data['shengyu6'] = $kuanhaos[5]['shengyu'];
 		}
 		if (!empty($kuanhaos[6]['pinming'])) {
 			$data['pinming7'] = $kuanhaos[6]['pinming'];
@@ -1662,6 +1713,9 @@ class Goods extends CI_Controller
 			$data['jianshu7'] = $kuanhaos[6]['jianshu'];
 			$data['sunhaoyongliang7'] = $kuanhaos[6]['sunhaoyongliang'];
 			$data['daoliaori7'] = $kuanhaos[6]['daoliaori'];
+			$data['zhishiyongliang7'] = $kuanhaos[6]['zhishiyongliang'];
+			$data['shijiyongliang7'] = $kuanhaos[6]['shijiyongliang'];
+			$data['shengyu7'] = $kuanhaos[6]['shengyu'];
 		}
 		if (!empty($kuanhaos[7]['pinming'])) {
 			$data['pinming8'] = $kuanhaos[7]['pinming'];
@@ -1677,6 +1731,9 @@ class Goods extends CI_Controller
 			$data['jianshu8'] = $kuanhaos[7]['jianshu'];
 			$data['sunhaoyongliang8'] = $kuanhaos[7]['sunhaoyongliang'];
 			$data['daoliaori8'] = $kuanhaos[7]['daoliaori'];
+			$data['zhishiyongliang8'] = $kuanhaos[7]['zhishiyongliang'];
+			$data['shijiyongliang8'] = $kuanhaos[7]['shijiyongliang'];
+			$data['shengyu8'] = $kuanhaos[7]['shengyu'];
 		}
 		if (!empty($kuanhaos[8]['pinming'])) {
 			$data['pinming9'] = $kuanhaos[8]['pinming'];
@@ -1692,6 +1749,9 @@ class Goods extends CI_Controller
 			$data['jianshu9'] = $kuanhaos[8]['jianshu'];
 			$data['sunhaoyongliang9'] = $kuanhaos[8]['sunhaoyongliang'];
 			$data['daoliaori9'] = $kuanhaos[8]['daoliaori'];
+			$data['zhishiyongliang9'] = $kuanhaos[8]['zhishiyongliang'];
+			$data['shijiyongliang9'] = $kuanhaos[8]['shijiyongliang'];
+			$data['shengyu9'] = $kuanhaos[8]['shengyu'];
 		}
 		if (!empty($kuanhaos[9]['pinming'])) {
 			$data['pinming10'] = $kuanhaos[9]['pinming'];
@@ -1707,7 +1767,153 @@ class Goods extends CI_Controller
 			$data['jianshu10'] = $kuanhaos[9]['jianshu'];
 			$data['sunhaoyongliang10'] = $kuanhaos[9]['sunhaoyongliang'];
 			$data['daoliaori10'] = $kuanhaos[9]['daoliaori'];
+			$data['zhishiyongliang10'] = $kuanhaos[9]['zhishiyongliang'];
+			$data['shijiyongliang10'] = $kuanhaos[9]['shijiyongliang'];
+			$data['shengyu10'] = $kuanhaos[9]['shengyu'];
 		}
 		$this->display("goods/goods_edit_new22", $data);
+	}
+	public function goods_list_yuan()
+	{
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPage($gname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNew($page, $gname);
+		$data["gname"] = $gname;
+		$data["list"] = $list;
+		$this->display("goods/goods_list_yuan", $data);
+	}
+
+	/**
+	 * 原辅料平衡表导出
+	 */
+	public function goods_csv()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+
+		$list = $this->role->getgoodsAllNewid($id);
+		$list1 = $this->role->gettidlistguige($id);
+		$list2 = $this->role->gettidlistpinming($id);
+
+		$inputFileName = "./static/uploads/yflphb.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		//对应的列都附上数据和编号
+		$objPHPExcel->getActiveSheet()->setCellValue( 'C13',$list['bianhao']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'G13',$list['kuanhao']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'K13',date('Y-m-d',$list['qianding']));
+
+		$GUIGE_ARR = array();
+		$SEHAO_ARR = array();
+		$SHUZHI_ARR = array();
+		foreach ($list1 as $k=>$v){
+			if (empty($v['guige']) || empty($v['sehao']) || empty($v['shuzhi'])){
+				continue;
+			}
+			$GUIGE_ARR[] = $v['guige'];
+			$SEHAO_ARR[] = $v['sehao'];
+			$SHUZHI_ARR[] = $v['shuzhi'];
+		}
+		$GUIGE_ARR = array_unique($GUIGE_ARR);
+		$SEHAO_ARR = array_unique($SEHAO_ARR);
+		$arr1 = array();
+		foreach ($SEHAO_ARR as $kk=>$vv){
+			if (empty($vv)){
+				continue;
+			}
+			$row = $kk + 3;
+			$objPHPExcel->getActiveSheet()->setCellValue( 'M'.$row,$vv);
+			foreach ($list1 as $key=>$val){
+				if (empty($val['shuzhi'])){
+					continue;
+				}
+				if ($vv == $val['sehao']){
+					$arr1[$key]['lin'] = $row;
+					$arr1[$key]['guigeold'] = $val['guige'];
+					$arr1[$key]['shuzihold'] = $val['shuzhi'];
+				}
+			}
+		}
+		$zimu = 'N';
+		foreach ($GUIGE_ARR as $kkk=>$vvv){
+			if (empty($vvv)){
+				continue;
+			}
+			if ($kkk == 0){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'N1',$vvv);
+				$zimu = 'N';
+			}
+			if ($kkk == 1){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'O1',$vvv);
+				$zimu = 'O';
+			}
+			if ($kkk == 2){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'P1',$vvv);
+				$zimu = 'P';
+			}
+			if ($kkk == 3){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'Q1',$vvv);
+				$zimu = 'Q';
+			}
+			if ($kkk == 4){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'R1',$vvv);
+				$zimu = 'R';
+			}
+			if ($kkk == 5){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'S1',$vvv);
+				$zimu = 'S';
+			}
+			if ($kkk == 6){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'T1',$vvv);
+				$zimu = 'T';
+			}
+			if ($kkk == 7){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'U1',$vvv);
+				$zimu = 'U';
+			}
+			if ($kkk == 8){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'V1',$vvv);
+				$zimu = 'V';
+			}
+			if ($kkk == 9){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'W1',$vvv);
+				$zimu = 'W';
+			}
+			foreach ($arr1 as $keyy=>$vall){
+				if (empty($vall['lin'])){
+					continue;
+				}
+				if ($vall['guigeold'] == $vvv){
+					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
+				}
+			}
+		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+		$fileName = '原辅材料' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
 	}
 }

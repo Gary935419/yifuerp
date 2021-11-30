@@ -15,12 +15,6 @@
 	<script type="text/javascript" src="<?= STA ?>/js/xadmin.js"></script>
 </head>
 <body>
-<div class="x-nav">
-          <span class="layui-breadcrumb">
-            <a>
-              <cite>原辅料信息列表</cite></a>
-          </span>
-</div>
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md12">
@@ -74,9 +68,11 @@
 												<i class="layui-icon">&#xe642;</i>平衡表修改
 											</button>
 										<?php } ?>
-										<button class="layui-btn layui-btn-normal">
-											<i class="iconfont">&#xe74a;</i>  Excel导出
-										</button>
+										<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv?id='.$once['id'] ?>">
+											<button class="layui-btn layui-btn-normal">
+												<i class="iconfont">&#xe74a;</i>  Excel导出
+											</button>
+										</a>
 									</td>
 								</tr>
 							<?php endforeach; ?>

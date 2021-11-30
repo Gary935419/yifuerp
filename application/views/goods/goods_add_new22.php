@@ -38,10 +38,10 @@
 							<th>实际</th>
 							<th>损耗</th>
 							<th>件数</th>
-							<th>损耗用</th>
+							<th>损耗用量</th>
 							<th>到料日</th>
-							<th>指示用</th>
-							<th>实际用</th>
+							<th>指示用量</th>
+							<th>实际用量</th>
 							<th>剩余</th>
 						<tr>
                         </thead>
