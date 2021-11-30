@@ -1821,9 +1821,6 @@ class Goods extends CI_Controller
 		$SEHAO_ARR = array();
 		$SHUZHI_ARR = array();
 		foreach ($list1 as $k=>$v){
-			if (empty($v['guige']) || empty($v['sehao']) || empty($v['shuzhi'])){
-				continue;
-			}
 			$GUIGE_ARR[] = $v['guige'];
 			$SEHAO_ARR[] = $v['sehao'];
 			$SHUZHI_ARR[] = $v['shuzhi'];
@@ -1831,16 +1828,12 @@ class Goods extends CI_Controller
 		$GUIGE_ARR = array_unique($GUIGE_ARR);
 		$SEHAO_ARR = array_unique($SEHAO_ARR);
 		$arr1 = array();
+		$rowold = -1;
 		foreach ($SEHAO_ARR as $kk=>$vv){
-			if (empty($vv)){
-				continue;
-			}
-			$row = $kk + 3;
+			$rowold = $rowold + 1;
+			$row = $rowold + 3;
 			$objPHPExcel->getActiveSheet()->setCellValue( 'M'.$row,$vv);
 			foreach ($list1 as $key=>$val){
-				if (empty($val['shuzhi'])){
-					continue;
-				}
 				if ($vv == $val['sehao']){
 					$arr1[$key]['lin'] = $row;
 					$arr1[$key]['guigeold'] = $val['guige'];
@@ -1849,62 +1842,81 @@ class Goods extends CI_Controller
 			}
 		}
 		$zimu = 'N';
+		$rowold1 = -1;
 		foreach ($GUIGE_ARR as $kkk=>$vvv){
-			if (empty($vvv)){
-				continue;
-			}
-			if ($kkk == 0){
+			$rowold1 = $rowold1 + 1;
+			if ($rowold1 == 0){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'N1',$vvv);
 				$zimu = 'N';
 			}
-			if ($kkk == 1){
+			if ($rowold1 == 1){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'O1',$vvv);
 				$zimu = 'O';
 			}
-			if ($kkk == 2){
+			if ($rowold1 == 2){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'P1',$vvv);
 				$zimu = 'P';
 			}
-			if ($kkk == 3){
+			if ($rowold1 == 3){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'Q1',$vvv);
 				$zimu = 'Q';
 			}
-			if ($kkk == 4){
+			if ($rowold1 == 4){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'R1',$vvv);
 				$zimu = 'R';
 			}
-			if ($kkk == 5){
+			if ($rowold1 == 5){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'S1',$vvv);
 				$zimu = 'S';
 			}
-			if ($kkk == 6){
+			if ($rowold1 == 6){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'T1',$vvv);
 				$zimu = 'T';
 			}
-			if ($kkk == 7){
+			if ($rowold1 == 7){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'U1',$vvv);
 				$zimu = 'U';
 			}
-			if ($kkk == 8){
+			if ($rowold1 == 8){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'V1',$vvv);
 				$zimu = 'V';
 			}
-			if ($kkk == 9){
+			if ($rowold1 == 9){
 				$objPHPExcel->getActiveSheet()->setCellValue( 'W1',$vvv);
 				$zimu = 'W';
 			}
 			foreach ($arr1 as $keyy=>$vall){
-				if (empty($vall['lin'])){
-					continue;
-				}
 				if ($vall['guigeold'] == $vvv){
 					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
 				}
 			}
 		}
 
+		$rownew = 16;
+		$rowoldnew1 = -1;
+		foreach ($list2 as $kp=>$vp){
+			$rowoldnew1 = $rowoldnew1 + 1;
+			$row11 = $rownew + $rowoldnew1;
+			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['pinming']);
+			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['pinfan']);
+			$objPHPExcel->getActiveSheet()->setCellValue('D'.$row11,$vp['sehao']);
+			$objPHPExcel->getActiveSheet()->setCellValue('E'.$row11,$vp['guige']);
+			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['danwei']);
+			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['tidanshu']);
+			$objPHPExcel->getActiveSheet()->setCellValue('H'.$row11,$vp['qingdianshu']);
+			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,$vp['yangzhishi']);
+			$objPHPExcel->getActiveSheet()->setCellValue('J'.$row11,$vp['shiji']);
+			$objPHPExcel->getActiveSheet()->setCellValue('K'.$row11,$vp['sunhao']);
+			$objPHPExcel->getActiveSheet()->setCellValue('L'.$row11,$vp['jianshu']);
+			$objPHPExcel->getActiveSheet()->setCellValue('M'.$row11,$vp['sunhaoyongliang']);
+			$objPHPExcel->getActiveSheet()->setCellValue('N'.$row11,$vp['zhishiyongliang']);
+			$objPHPExcel->getActiveSheet()->setCellValue('O'.$row11,$vp['shijiyongliang']);
+			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$row11,$vp['shengyu']);
+			$objPHPExcel->getActiveSheet()->setCellValue('X'.$row11,$vp['daoliaori']);
+		}
+		
 		ob_end_clean();//清除缓存区，解决乱码问题
-		$fileName = '原辅材料' . date('Ymd_His');
+		$fileName = '原辅材料平衡表' . date('Ymd_His');
 		// 生成2007excel格式的xlsx文件
 		$IOFactory = new IOFactory();
 		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
