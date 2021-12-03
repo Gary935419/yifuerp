@@ -221,7 +221,7 @@
 								<td><input name="sunhaoyongliang[]" value="<?php echo $sunhaoyongliang5 ?>" id="val555555555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="daoliaori[]" value="<?php echo $daoliaori5 ?>" id="val5555555555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="zhishiyongliang[]" value="<?php echo $zhishiyongliang5 ?>" id="val55555555555555" readonly autocomplete="off" onclick="return jisuan1('val55555555555555','val55555555','val55555555555')"  placeholder="计算" class="layui-input"></td>
-								<td><input name="shijiyongliang[]" value="<?php echo $shijiyongliang ?>" id="val555555555555555" readonly autocomplete="off" onclick="return jisuan2('val555555555555555','val555555555','val55555555555')" placeholder="计算" class="layui-input"></td>
+								<td><input name="shijiyongliang[]" value="<?php echo $shijiyongliang5 ?>" id="val555555555555555" readonly autocomplete="off" onclick="return jisuan2('val555555555555555','val555555555','val55555555555')" placeholder="计算" class="layui-input"></td>
 								<td><input name="shengyu[]" value="<?php echo $shengyu5 ?>" id="val5555555555555555" readonly autocomplete="off" onclick="return jisuan3('val5555555555555555','val555555','val55555555555555')" placeholder="计算" class="layui-input"></td>
 							</tr>
 							    <?php if (empty($pinming6)){ ?>

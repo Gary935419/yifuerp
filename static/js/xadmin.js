@@ -74,9 +74,8 @@
 	 * @return {[type]}        [description]
 	 */
 	Xadmin.prototype.open = function (title,url,w,h,full) {
-		if (title == null || title == '') {
-	        var title=false;
-	    };
+		// var index1 = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		// parent.layer.close(index1); //再执行关闭
 	    if (url == null || url == '') {
 	        var url="404.html";
 	    };

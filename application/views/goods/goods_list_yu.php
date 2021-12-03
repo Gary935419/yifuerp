@@ -50,28 +50,28 @@
 									<td class="td-manage">
 										<?php if ($once['openflg']>=1){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('规格编辑','<?= RUN . '/goods/goods_edit_new1?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="iconfont">&#xe69e;</i>  规格编辑
+													onclick="xadmin.open('报价单费用编辑','<?= RUN . '/goods/goods_edit_jichufei?id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="iconfont">&#xe69e;</i>  报价单费用编辑
 											</button>
 										<?php }else{ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('规格添加','<?= RUN . '/goods/goods_add_new1?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="iconfont">&#xe69e;</i>  规格添加
+													onclick="xadmin.open('报价单费用添加','<?= RUN . '/goods/goods_add_jichufei?id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="iconfont">&#xe69e;</i>  报价单费用添加
 											</button>
 										<?php } ?>
 										<?php if ($once['openflg1']>=1){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('平衡表编辑','<?= RUN . '/goods/goods_edit_new22?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>平衡表编辑
+													onclick="xadmin.open('报价单基础编辑','<?= RUN . '/goods/goods_edit_jichu?id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>报价单基础编辑
 											</button>
 										<?php }else{ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('平衡表添加','<?= RUN . '/goods/goods_add_new22?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>平衡表添加
+													onclick="xadmin.open('报价单基础添加','<?= RUN . '/goods/goods_add_jichu?id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>报价单基础添加
 											</button>
 										<?php } ?>
 										<?php if ($once['openflg1']>=1 && $once['openflg']>=1){ ?>
-											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv?id='.$once['id'] ?>">
+											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_yusuan?id='.$once['id'] ?>">
 												<button class="layui-btn layui-btn-normal">
 													<i class="iconfont">&#xe74a;</i>  Excel导出
 												</button>

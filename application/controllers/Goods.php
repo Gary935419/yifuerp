@@ -23,7 +23,6 @@ class Goods extends CI_Controller
 		$this->load->library('IOFactory');
 		header("Content-type:text/html;charset=utf-8");
 	}
-
 	public function goods_save()
 	{
 		if (empty($_SESSION['user_name'])) {
@@ -1787,7 +1786,184 @@ class Goods extends CI_Controller
 		$data["list"] = $list;
 		$this->display("goods/goods_list_yuan", $data);
 	}
+	public function goods_list_bao()
+	{
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPage($gname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNew($page, $gname);
+		$data["gname"] = $gname;
+		$data["list"] = $list;
+		$this->display("goods/goods_list_bao", $data);
+	}
+	public function goods_list_yu()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPage1($gname,$id);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page,$allpage,$_GET);
+		$data["page"] = $page;
+		$data["id"] = $id;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNew1($page,$gname,$id);
+		$data["gname"] = $gname;
+		foreach ($list as $k => $v) {
+			$guiges = $this->task->gettidlistjichu($v['id']);
+			if (!empty($guiges)) {
+				$list[$k]['openflg'] = 1;
+			} else {
+				$list[$k]['openflg'] = 0;
+			}
 
+			$pinmings = $this->task->gettidlistxiangmu($v['id']);
+			if (!empty($pinmings)) {
+				$list[$k]['openflg1'] = 1;
+			} else {
+				$list[$k]['openflg1'] = 0;
+			}
+		}
+		$data["list"] = $list;
+		$this->display("goods/goods_list_yu", $data);
+	}
+	public function goods_add_jichufei()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdkuanhao($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$data = array();
+		$data['id'] = $id;
+		$tidlist = $this->task->gettidlist();
+		$data['tidlist'] = $tidlist;
+		$this->display("goods/goods_add_jichufei", $data);
+	}
+	public function goods_save_jichufei()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$menu = isset($_POST["menu"]) ? $_POST["menu"] : '';
+		$add_time = time();
+		$kid = isset($_POST["id"]) ? $_POST["id"] : '';
+		$kehuming = isset($_POST["kehuming"]) ? $_POST["kehuming"] : '';
+		$riqi = isset($_POST["riqi"]) ? $_POST["riqi"] : '';
+		$riqi = strtotime($riqi);
+		$shengcanshuliang = isset($_POST["shengcanshuliang"]) ? $_POST["shengcanshuliang"] : '';
+		$sunhao = isset($_POST["sunhao"]) ? $_POST["sunhao"] : '';
+		$xiaoji = isset($_POST["xiaoji"]) ? $_POST["xiaoji"] : '';
+		$jiagongfeidanjia = isset($_POST["jiagongfeidanjia"]) ? $_POST["jiagongfeidanjia"] : '';
+		$jiagongfeiyongliang = isset($_POST["jiagongfeiyongliang"]) ? $_POST["jiagongfeiyongliang"] : '';
+		$ercijiagongfeidanjia = isset($_POST["ercijiagongfeidanjia"]) ? $_POST["ercijiagongfeidanjia"] : '';
+		$ercijiagongfeiyongliang = isset($_POST["ercijiagongfeiyongliang"]) ? $_POST["ercijiagongfeiyongliang"] : '';
+		$jianpinfeidanjia = isset($_POST["jianpinfeidanjia"]) ? $_POST["jianpinfeidanjia"] : '';
+		$jianpinfeiyongliang = isset($_POST["jianpinfeiyongliang"]) ? $_POST["jianpinfeiyongliang"] : '';
+		$tongguanfeidanjia = isset($_POST["tongguanfeidanjia"]) ? $_POST["tongguanfeidanjia"] : '';
+		$tongguanfeiyongliang = isset($_POST["tongguanfeiyongliang"]) ? $_POST["tongguanfeiyongliang"] : '';
+		$mianliaojiancedanjia = isset($_POST["mianliaojiancedanjia"]) ? $_POST["mianliaojiancedanjia"] : '';
+		$mianliaojianceyongliang = isset($_POST["mianliaojianceyongliang"]) ? $_POST["mianliaojianceyongliang"] : '';
+		$yunfeidanjia = isset($_POST["yunfeidanjia"]) ? $_POST["yunfeidanjia"] : '';
+		$yunfeiyongliang = isset($_POST["yunfeiyongliang"]) ? $_POST["yunfeiyongliang"] : '';
+		$qitadanjia = isset($_POST["qitadanjia"]) ? $_POST["qitadanjia"] : '';
+		$qitayongliang = isset($_POST["qitayongliang"]) ? $_POST["qitayongliang"] : '';
+
+		$rid = $this->role->role_save_yusuan($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
+		if ($rid) {
+			foreach ($menu as $k => $v) {
+				$this->role->rtom_save_yusuan($kid,$v,1);
+			}
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+		}
+	}
+	public function goods_edit_jichufei()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdxiaojiejei($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$tidlist = $this->task->gettidlist();
+		$data = array();
+		$data['id'] = $id;
+		$data['kehuming'] = $goods_info['kehuming'];
+		$data['riqi'] = $goods_info['riqi'];
+		$data['shengcanshuliang'] = $goods_info['shengcanshuliang'];
+		$data['sunhao'] = $goods_info['sunhao'];
+		$data['xiaoji'] = $goods_info['xiaoji'];
+		$data['jiagongfeidanjia'] = $goods_info['jiagongfeidanjia'];
+		$data['jiagongfeiyongliang'] = $goods_info['jiagongfeiyongliang'];
+		$data['ercijiagongfeidanjia'] = $goods_info['ercijiagongfeidanjia'];
+		$data['ercijiagongfeiyongliang'] = $goods_info['ercijiagongfeiyongliang'];
+		$data['jianpinfeidanjia'] = $goods_info['jianpinfeidanjia'];
+		$data['jianpinfeiyongliang'] = $goods_info['jianpinfeiyongliang'];
+		$data['tongguanfeidanjia'] = $goods_info['tongguanfeidanjia'];
+		$data['tongguanfeiyongliang'] = $goods_info['tongguanfeiyongliang'];
+		$data['mianliaojiancedanjia'] = $goods_info['mianliaojiancedanjia'];
+		$data['mianliaojianceyongliang'] = $goods_info['mianliaojianceyongliang'];
+		$data['yunfeidanjia'] = $goods_info['yunfeidanjia'];
+		$data['yunfeiyongliang'] = $goods_info['yunfeiyongliang'];
+		$data['qitadanjia'] = $goods_info['qitadanjia'];
+		$data['qitayongliang'] = $goods_info['qitayongliang'];
+
+		$data['tidlist'] = $tidlist;
+		$mefuze = $this->task->gettidlistfuzeyusuan($id);
+		foreach ($mefuze as $k => $v) {
+			$data['mefuze'][] = $v['uid'];
+		}
+		$this->display("goods/goods_edit_jichufei", $data);
+	}
+	public function goods_save_jichufei_edit()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$menu = isset($_POST["menu"]) ? $_POST["menu"] : '';
+		$add_time = time();
+		$kid = isset($_POST["id"]) ? $_POST["id"] : '';
+		$kehuming = isset($_POST["kehuming"]) ? $_POST["kehuming"] : '';
+		$riqi = isset($_POST["riqi"]) ? $_POST["riqi"] : '';
+		$riqi = strtotime($riqi);
+		$shengcanshuliang = isset($_POST["shengcanshuliang"]) ? $_POST["shengcanshuliang"] : '';
+		$sunhao = isset($_POST["sunhao"]) ? $_POST["sunhao"] : '';
+		$xiaoji = isset($_POST["xiaoji"]) ? $_POST["xiaoji"] : '';
+		$jiagongfeidanjia = isset($_POST["jiagongfeidanjia"]) ? $_POST["jiagongfeidanjia"] : '';
+		$jiagongfeiyongliang = isset($_POST["jiagongfeiyongliang"]) ? $_POST["jiagongfeiyongliang"] : '';
+		$ercijiagongfeidanjia = isset($_POST["ercijiagongfeidanjia"]) ? $_POST["ercijiagongfeidanjia"] : '';
+		$ercijiagongfeiyongliang = isset($_POST["ercijiagongfeiyongliang"]) ? $_POST["ercijiagongfeiyongliang"] : '';
+		$jianpinfeidanjia = isset($_POST["jianpinfeidanjia"]) ? $_POST["jianpinfeidanjia"] : '';
+		$jianpinfeiyongliang = isset($_POST["jianpinfeiyongliang"]) ? $_POST["jianpinfeiyongliang"] : '';
+		$tongguanfeidanjia = isset($_POST["tongguanfeidanjia"]) ? $_POST["tongguanfeidanjia"] : '';
+		$tongguanfeiyongliang = isset($_POST["tongguanfeiyongliang"]) ? $_POST["tongguanfeiyongliang"] : '';
+		$mianliaojiancedanjia = isset($_POST["mianliaojiancedanjia"]) ? $_POST["mianliaojiancedanjia"] : '';
+		$mianliaojianceyongliang = isset($_POST["mianliaojianceyongliang"]) ? $_POST["mianliaojianceyongliang"] : '';
+		$yunfeidanjia = isset($_POST["yunfeidanjia"]) ? $_POST["yunfeidanjia"] : '';
+		$yunfeiyongliang = isset($_POST["yunfeiyongliang"]) ? $_POST["yunfeiyongliang"] : '';
+		$qitadanjia = isset($_POST["qitadanjia"]) ? $_POST["qitadanjia"] : '';
+		$qitayongliang = isset($_POST["qitayongliang"]) ? $_POST["qitayongliang"] : '';
+
+		$result = $this->role->goods_save_edit_yusuan($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
+		$this->role->goodsimg_delete_yusuan($kid);
+		if ($result) {
+			foreach ($menu as $k => $v) {
+				$this->role->rtom_save_yusuan($kid,$v,1);
+			}
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+		}
+	}
 	/**
 	 * 原辅料平衡表导出
 	 */
@@ -1914,7 +2090,7 @@ class Goods extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$row11,$vp['shengyu']);
 			$objPHPExcel->getActiveSheet()->setCellValue('X'.$row11,$vp['daoliaori']);
 		}
-		
+
 		ob_end_clean();//清除缓存区，解决乱码问题
 		$fileName = '原辅材料平衡表' . date('Ymd_His');
 		// 生成2007excel格式的xlsx文件
