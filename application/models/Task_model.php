@@ -605,4 +605,10 @@ class Task_model extends CI_Model
         $number = $this->db->query($sql)->row()->number;
         return $number;
     }
+	public function gettidlistjichu1($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiaxiangmu` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
 }

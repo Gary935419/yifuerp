@@ -386,4 +386,31 @@ class Role_model extends CI_Model
 		$sql = "DELETE FROM erp_baojiafuzeren WHERE bid = $id";
 		return $this->db->query($sql);
 	}
+	public function role_save_edit_jichu($xiangmu,$mingcheng,$guige,$danwei,$danjia,$danwei1,$yongliang,$danwei2,$jine,$danwei3,$qidingliang,$beizhu,$kid,$time)
+	{
+		$xiangmu = $this->db->escape($xiangmu);
+		$mingcheng = $this->db->escape($mingcheng);
+		$guige = $this->db->escape($guige);
+		$danwei = $this->db->escape($danwei);
+		$danjia = $this->db->escape($danjia);
+		$danwei1 = $this->db->escape($danwei1);
+		$yongliang = $this->db->escape($yongliang);
+		$danwei2 = $this->db->escape($danwei2);
+		$jine = $this->db->escape($jine);
+		$danwei3 = $this->db->escape($danwei3);
+		$qidingliang = $this->db->escape($qidingliang);
+		$beizhu = $this->db->escape($beizhu);
+		$kid = $this->db->escape($kid);
+		$time = $this->db->escape($time);
+		$sql = "INSERT INTO `erp_baojiaxiangmu` (xiangmu,mingcheng,guige,danwei,danjia,danwei1,yongliang,danwei2,jine,danwei3,qidingliang,beizhu,kid,addtime) VALUES ($xiangmu,$mingcheng,$guige,$danwei,$danjia,$danwei1,$yongliang,$danwei2,$jine,$danwei3,$qidingliang,$beizhu,$kid,$time)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
+	public function goodsimg_delete_jichu($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_baojiaxiangmu WHERE kid = $id";
+		return $this->db->query($sql);
+	}
 }

@@ -1964,6 +1964,460 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => false, 'msg' => "操作失败"));
 		}
 	}
+	public function goods_add_jichu()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$data['id'] = $id;
+		$this->display("goods/goods_add_jichu", $data);
+	}
+	public function goods_save_jichu()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdkuanhao($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+
+		$xiangmu = isset($_POST["xiangmu"]) ? $_POST["xiangmu"] : '';
+		if (empty($xiangmu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加项目!"));
+			return;
+		}
+		$mingcheng = isset($_POST["mingcheng"]) ? $_POST["mingcheng"] : '';
+		if (empty($mingcheng[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加名称!"));
+			return;
+		}
+		$guige = isset($_POST["guige"]) ? $_POST["guige"] : '';
+		if (empty($guige[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加规格!"));
+			return;
+		}
+		$danweis = isset($_POST["danwei"]) ? $_POST["danwei"] : '';
+		if (empty($danweis[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单位!"));
+			return;
+		}
+		$danjia = isset($_POST["danjia"]) ? $_POST["danjia"] : '';
+		if (empty($danjia[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单价!"));
+			return;
+		}
+		$danwei1 = isset($_POST["danwei1"]) ? $_POST["danwei1"] : '';
+		if (empty($danwei1[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单位!"));
+			return;
+		}
+		$yongliang = isset($_POST["yongliang"]) ? $_POST["yongliang"] : '';
+		if (empty($yongliang[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加用量!"));
+			return;
+		}
+		$danwei2 = isset($_POST["danwei2"]) ? $_POST["danwei2"] : '';
+		if (empty($danwei2[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单位!"));
+			return;
+		}
+		$jine = isset($_POST["jine"]) ? $_POST["jine"] : '';
+		if (empty($jine[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加金额!"));
+			return;
+		}
+		$danwei3 = isset($_POST["danwei3"]) ? $_POST["danwei3"] : '';
+		if (empty($danwei3[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单位!"));
+			return;
+		}
+		$qidingliang = isset($_POST["qidingliang"]) ? $_POST["qidingliang"] : '';
+		if (empty($qidingliang[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加起订量!"));
+			return;
+		}
+		$beizhu = isset($_POST["beizhu"]) ? $_POST["beizhu"] : '';
+		if (empty($beizhu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加备注!"));
+			return;
+		}
+		foreach ($xiangmu as $k => $v) {
+			if (empty($v) || empty($mingcheng[$k]) || empty($guige[$k]) || empty($danweis[$k]) || empty($danjia[$k]) || empty($danwei1[$k]) || empty($yongliang[$k]) || empty($danwei2[$k]) || empty($jine[$k]) || empty($danwei3[$k]) || empty($qidingliang[$k]) || empty($beizhu[$k])) {
+				continue;
+			}
+			$this->role->role_save_edit_jichu($v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+		}
+		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+	}
+	public function goods_edit_jichu()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdkuanhao($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$data = array();
+		$data['id'] = $id;
+		$kuanhaos = $this->task->gettidlistjichu1($id);
+
+		$data['xiangmu1'] = '';
+		$data['mingcheng1'] = '';
+		$data['guige1'] = '';
+		$data['danwei1'] = '';
+		$data['danjia1'] = '';
+		$data['danwei1_1'] = '';
+		$data['yongliang1'] = '';
+		$data['danwei2_1'] = '';
+		$data['jine1'] = '';
+		$data['danwei3_1'] = '';
+		$data['qidingliang1'] = '';
+		$data['beizhu1'] = '';
+
+		$data['xiangmu2'] = '';
+		$data['mingcheng2'] = '';
+		$data['guige2'] = '';
+		$data['danwei2'] = '';
+		$data['danjia2'] = '';
+		$data['danwei1_2'] = '';
+		$data['yongliang2'] = '';
+		$data['danwei2_2'] = '';
+		$data['jine2'] = '';
+		$data['danwei3_2'] = '';
+		$data['qidingliang2'] = '';
+		$data['beizhu2'] = '';
+
+		$data['xiangmu3'] = '';
+		$data['mingcheng3'] = '';
+		$data['guige3'] = '';
+		$data['danwei3'] = '';
+		$data['danjia3'] = '';
+		$data['danwei1_3'] = '';
+		$data['yongliang3'] = '';
+		$data['danwei2_3'] = '';
+		$data['jine3'] = '';
+		$data['danwei3_3'] = '';
+		$data['qidingliang3'] = '';
+		$data['beizhu3'] = '';
+
+		$data['xiangmu4'] = '';
+		$data['mingcheng4'] = '';
+		$data['guige4'] = '';
+		$data['danwei4'] = '';
+		$data['danjia4'] = '';
+		$data['danwei1_4'] = '';
+		$data['yongliang4'] = '';
+		$data['danwei2_4'] = '';
+		$data['jine4'] = '';
+		$data['danwei3_4'] = '';
+		$data['qidingliang4'] = '';
+		$data['beizhu4'] = '';
+
+		$data['xiangmu5'] = '';
+		$data['mingcheng5'] = '';
+		$data['guige5'] = '';
+		$data['danwei5'] = '';
+		$data['danjia5'] = '';
+		$data['danwei1_5'] = '';
+		$data['yongliang5'] = '';
+		$data['danwei2_5'] = '';
+		$data['jine5'] = '';
+		$data['danwei3_5'] = '';
+		$data['qidingliang5'] = '';
+		$data['beizhu5'] = '';
+
+		$data['xiangmu6'] = '';
+		$data['mingcheng6'] = '';
+		$data['guige6'] = '';
+		$data['danwei6'] = '';
+		$data['danjia6'] = '';
+		$data['danwei1_6'] = '';
+		$data['yongliang6'] = '';
+		$data['danwei2_6'] = '';
+		$data['jine6'] = '';
+		$data['danwei3_6'] = '';
+		$data['qidingliang6'] = '';
+		$data['beizhu6'] = '';
+
+		$data['xiangmu7'] = '';
+		$data['mingcheng7'] = '';
+		$data['guige7'] = '';
+		$data['danwei7'] = '';
+		$data['danjia7'] = '';
+		$data['danwei1_7'] = '';
+		$data['yongliang7'] = '';
+		$data['danwei2_7'] = '';
+		$data['jine7'] = '';
+		$data['danwei3_7'] = '';
+		$data['qidingliang7'] = '';
+		$data['beizhu7'] = '';
+
+		$data['xiangmu8'] = '';
+		$data['mingcheng8'] = '';
+		$data['guige8'] = '';
+		$data['danwei8'] = '';
+		$data['danjia8'] = '';
+		$data['danwei1_8'] = '';
+		$data['yongliang8'] = '';
+		$data['danwei2_8'] = '';
+		$data['jine8'] = '';
+		$data['danwei3_8'] = '';
+		$data['qidingliang8'] = '';
+		$data['beizhu8'] = '';
+
+		$data['xiangmu9'] = '';
+		$data['mingcheng9'] = '';
+		$data['guige9'] = '';
+		$data['danwei9'] = '';
+		$data['danjia9'] = '';
+		$data['danwei1_9'] = '';
+		$data['yongliang9'] = '';
+		$data['danwei2_9'] = '';
+		$data['jine9'] = '';
+		$data['danwei3_9'] = '';
+		$data['qidingliang9'] = '';
+		$data['beizhu9'] = '';
+
+		$data['xiangmu10'] = '';
+		$data['mingcheng10'] = '';
+		$data['guige10'] = '';
+		$data['danwei10'] = '';
+		$data['danjia10'] = '';
+		$data['danwei1_10'] = '';
+		$data['yongliang10'] = '';
+		$data['danwei2_10'] = '';
+		$data['jine10'] = '';
+		$data['danwei3_10'] = '';
+		$data['qidingliang10'] = '';
+		$data['beizhu10'] = '';
+
+		if (!empty($kuanhaos[0]['xiangmu'])) {
+			$data['xiangmu1'] = $kuanhaos[0]['xiangmu'];
+			$data['mingcheng1'] = $kuanhaos[0]['mingcheng'];
+			$data['guige1'] = $kuanhaos[0]['guige'];
+			$data['danwei1'] = $kuanhaos[0]['danwei'];
+			$data['danjia1'] = $kuanhaos[0]['danjia'];
+			$data['danwei1_1'] = $kuanhaos[0]['danwei1'];
+			$data['yongliang1'] = $kuanhaos[0]['yongliang'];
+			$data['danwei2_1'] = $kuanhaos[0]['danwei2'];
+			$data['jine1'] = $kuanhaos[0]['jine'];
+			$data['danwei3_1'] = $kuanhaos[0]['danwei3'];
+			$data['qidingliang1'] = $kuanhaos[0]['qidingliang'];
+			$data['beizhu1'] = $kuanhaos[0]['beizhu'];
+		}
+		if (!empty($kuanhaos[1]['xiangmu'])) {
+			$data['xiangmu2'] = $kuanhaos[1]['xiangmu'];
+			$data['mingcheng2'] = $kuanhaos[1]['mingcheng'];
+			$data['guige2'] = $kuanhaos[1]['guige'];
+			$data['danwei2'] = $kuanhaos[1]['danwei'];
+			$data['danjia2'] = $kuanhaos[1]['danjia'];
+			$data['danwei1_2'] = $kuanhaos[1]['danwei1'];
+			$data['yongliang2'] = $kuanhaos[1]['yongliang'];
+			$data['danwei2_2'] = $kuanhaos[1]['danwei2'];
+			$data['jine2'] = $kuanhaos[1]['jine'];
+			$data['danwei3_2'] = $kuanhaos[1]['danwei3'];
+			$data['qidingliang2'] = $kuanhaos[1]['qidingliang'];
+			$data['beizhu2'] = $kuanhaos[1]['beizhu'];
+		}
+		if (!empty($kuanhaos[2]['xiangmu'])) {
+			$data['xiangmu3'] = $kuanhaos[2]['xiangmu'];
+			$data['mingcheng3'] = $kuanhaos[2]['mingcheng'];
+			$data['guige3'] = $kuanhaos[2]['guige'];
+			$data['danwei3'] = $kuanhaos[2]['danwei'];
+			$data['danjia3'] = $kuanhaos[2]['danjia'];
+			$data['danwei1_3'] = $kuanhaos[2]['danwei1'];
+			$data['yongliang3'] = $kuanhaos[2]['yongliang'];
+			$data['danwei2_3'] = $kuanhaos[2]['danwei2'];
+			$data['jine3'] = $kuanhaos[2]['jine'];
+			$data['danwei3_3'] = $kuanhaos[2]['danwei3'];
+			$data['qidingliang3'] = $kuanhaos[2]['qidingliang'];
+			$data['beizhu3'] = $kuanhaos[2]['beizhu'];
+		}
+		if (!empty($kuanhaos[3]['xiangmu'])) {
+			$data['xiangmu4'] = $kuanhaos[3]['xiangmu'];
+			$data['mingcheng4'] = $kuanhaos[3]['mingcheng'];
+			$data['guige4'] = $kuanhaos[3]['guige'];
+			$data['danwei4'] = $kuanhaos[3]['danwei'];
+			$data['danjia4'] = $kuanhaos[3]['danjia'];
+			$data['danwei1_4'] = $kuanhaos[3]['danwei1'];
+			$data['yongliang4'] = $kuanhaos[3]['yongliang'];
+			$data['danwei2_4'] = $kuanhaos[3]['danwei2'];
+			$data['jine4'] = $kuanhaos[3]['jine'];
+			$data['danwei3_4'] = $kuanhaos[3]['danwei3'];
+			$data['qidingliang4'] = $kuanhaos[3]['qidingliang'];
+			$data['beizhu4'] = $kuanhaos[3]['beizhu'];
+		}
+		if (!empty($kuanhaos[4]['xiangmu'])) {
+			$data['xiangmu5'] = $kuanhaos[4]['xiangmu'];
+			$data['mingcheng5'] = $kuanhaos[4]['mingcheng'];
+			$data['guige5'] = $kuanhaos[4]['guige'];
+			$data['danwei5'] = $kuanhaos[4]['danwei'];
+			$data['danjia5'] = $kuanhaos[4]['danjia'];
+			$data['danwei1_5'] = $kuanhaos[4]['danwei1'];
+			$data['yongliang5'] = $kuanhaos[4]['yongliang'];
+			$data['danwei2_5'] = $kuanhaos[4]['danwei2'];
+			$data['jine5'] = $kuanhaos[4]['jine'];
+			$data['danwei3_5'] = $kuanhaos[4]['danwei3'];
+			$data['qidingliang5'] = $kuanhaos[4]['qidingliang'];
+			$data['beizhu5'] = $kuanhaos[4]['beizhu'];
+		}
+		if (!empty($kuanhaos[5]['xiangmu'])) {
+			$data['xiangmu6'] = $kuanhaos[5]['xiangmu'];
+			$data['mingcheng6'] = $kuanhaos[5]['mingcheng'];
+			$data['guige6'] = $kuanhaos[5]['guige'];
+			$data['danwei6'] = $kuanhaos[5]['danwei'];
+			$data['danjia6'] = $kuanhaos[5]['danjia'];
+			$data['danwei1_6'] = $kuanhaos[5]['danwei1'];
+			$data['yongliang6'] = $kuanhaos[5]['yongliang'];
+			$data['danwei2_6'] = $kuanhaos[5]['danwei2'];
+			$data['jine6'] = $kuanhaos[5]['jine'];
+			$data['danwei3_6'] = $kuanhaos[5]['danwei3'];
+			$data['qidingliang6'] = $kuanhaos[5]['qidingliang'];
+			$data['beizhu6'] = $kuanhaos[5]['beizhu'];
+		}
+		if (!empty($kuanhaos[6]['xiangmu'])) {
+			$data['xiangmu7'] = $kuanhaos[6]['xiangmu'];
+			$data['mingcheng7'] = $kuanhaos[6]['mingcheng'];
+			$data['guige7'] = $kuanhaos[6]['guige'];
+			$data['danwei7'] = $kuanhaos[6]['danwei'];
+			$data['danjia7'] = $kuanhaos[6]['danjia'];
+			$data['danwei1_7'] = $kuanhaos[6]['danwei1'];
+			$data['yongliang7'] = $kuanhaos[6]['yongliang'];
+			$data['danwei2_7'] = $kuanhaos[6]['danwei2'];
+			$data['jine7'] = $kuanhaos[6]['jine'];
+			$data['danwei3_7'] = $kuanhaos[6]['danwei3'];
+			$data['qidingliang7'] = $kuanhaos[6]['qidingliang'];
+			$data['beizhu7'] = $kuanhaos[6]['beizhu'];
+		}
+		if (!empty($kuanhaos[7]['xiangmu'])) {
+			$data['xiangmu8'] = $kuanhaos[7]['xiangmu'];
+			$data['mingcheng8'] = $kuanhaos[7]['mingcheng'];
+			$data['guige8'] = $kuanhaos[7]['guige'];
+			$data['danwei8'] = $kuanhaos[7]['danwei'];
+			$data['danjia8'] = $kuanhaos[7]['danjia'];
+			$data['danwei1_8'] = $kuanhaos[7]['danwei1'];
+			$data['yongliang8'] = $kuanhaos[7]['yongliang'];
+			$data['danwei2_8'] = $kuanhaos[7]['danwei2'];
+			$data['jine8'] = $kuanhaos[7]['jine'];
+			$data['danwei3_8'] = $kuanhaos[7]['danwei3'];
+			$data['qidingliang8'] = $kuanhaos[7]['qidingliang'];
+			$data['beizhu8'] = $kuanhaos[7]['beizhu'];
+		}
+		if (!empty($kuanhaos[8]['xiangmu'])) {
+			$data['xiangmu9'] = $kuanhaos[8]['xiangmu'];
+			$data['mingcheng9'] = $kuanhaos[8]['mingcheng'];
+			$data['guige9'] = $kuanhaos[8]['guige'];
+			$data['danwei9'] = $kuanhaos[8]['danwei'];
+			$data['danjia9'] = $kuanhaos[8]['danjia'];
+			$data['danwei1_9'] = $kuanhaos[8]['danwei1'];
+			$data['yongliang9'] = $kuanhaos[8]['yongliang'];
+			$data['danwei2_9'] = $kuanhaos[8]['danwei2'];
+			$data['jine9'] = $kuanhaos[8]['jine'];
+			$data['danwei3_9'] = $kuanhaos[8]['danwei3'];
+			$data['qidingliang9'] = $kuanhaos[8]['qidingliang'];
+			$data['beizhu9'] = $kuanhaos[8]['beizhu'];
+		}
+		if (!empty($kuanhaos[9]['xiangmu'])) {
+			$data['xiangmu10'] = $kuanhaos[9]['xiangmu'];
+			$data['mingcheng10'] = $kuanhaos[9]['mingcheng'];
+			$data['guige10'] = $kuanhaos[9]['guige'];
+			$data['danwei10'] = $kuanhaos[9]['danwei'];
+			$data['danjia10'] = $kuanhaos[9]['danjia'];
+			$data['danwei1_10'] = $kuanhaos[9]['danwei1'];
+			$data['yongliang10'] = $kuanhaos[9]['yongliang'];
+			$data['danwei2_10'] = $kuanhaos[9]['danwei2'];
+			$data['jine10'] = $kuanhaos[9]['jine'];
+			$data['danwei3_10'] = $kuanhaos[9]['danwei3'];
+			$data['qidingliang10'] = $kuanhaos[9]['qidingliang'];
+			$data['beizhu10'] = $kuanhaos[9]['beizhu'];
+		}
+		$this->display("goods/goods_edit_jichu", $data);
+	}
+	public function goods_save_edit_jichu()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdkuanhao($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+
+		$xiangmu = isset($_POST["xiangmu"]) ? $_POST["xiangmu"] : '';
+		if (empty($xiangmu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加项目!"));
+			return;
+		}
+		$mingcheng = isset($_POST["mingcheng"]) ? $_POST["mingcheng"] : '';
+		if (empty($mingcheng[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加名称!"));
+			return;
+		}
+		$guige = isset($_POST["guige"]) ? $_POST["guige"] : '';
+		if (empty($guige[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加规格!"));
+			return;
+		}
+		$danweis = isset($_POST["danwei"]) ? $_POST["danwei"] : '';
+		if (empty($danweis[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单位!"));
+			return;
+		}
+		$danjia = isset($_POST["danjia"]) ? $_POST["danjia"] : '';
+		if (empty($danjia[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单价!"));
+			return;
+		}
+		$danwei1 = isset($_POST["danwei1"]) ? $_POST["danwei1"] : '';
+		if (empty($danwei1[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单位!"));
+			return;
+		}
+		$yongliang = isset($_POST["yongliang"]) ? $_POST["yongliang"] : '';
+		if (empty($yongliang[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加用量!"));
+			return;
+		}
+		$danwei2 = isset($_POST["danwei2"]) ? $_POST["danwei2"] : '';
+		if (empty($danwei2[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单位!"));
+			return;
+		}
+		$jine = isset($_POST["jine"]) ? $_POST["jine"] : '';
+		if (empty($jine[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加金额!"));
+			return;
+		}
+		$danwei3 = isset($_POST["danwei3"]) ? $_POST["danwei3"] : '';
+		if (empty($danwei3[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加单位!"));
+			return;
+		}
+		$qidingliang = isset($_POST["qidingliang"]) ? $_POST["qidingliang"] : '';
+		if (empty($qidingliang[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加起订量!"));
+			return;
+		}
+		$beizhu = isset($_POST["beizhu"]) ? $_POST["beizhu"] : '';
+		if (empty($beizhu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加备注!"));
+			return;
+		}
+		$this->role->goodsimg_delete_jichu($id);
+		foreach ($xiangmu as $k => $v) {
+			if (empty($v) || empty($mingcheng[$k]) || empty($guige[$k]) || empty($danweis[$k]) || empty($danjia[$k]) || empty($danwei1[$k]) || empty($yongliang[$k]) || empty($danwei2[$k]) || empty($jine[$k]) || empty($danwei3[$k]) || empty($qidingliang[$k]) || empty($beizhu[$k])) {
+				continue;
+			}
+			$this->role->role_save_edit_jichu($v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+		}
+		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+
+	}
 	/**
 	 * 原辅料平衡表导出
 	 */
