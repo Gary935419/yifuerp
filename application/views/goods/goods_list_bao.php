@@ -26,7 +26,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_yuan' ?>">
+                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_bao' ?>">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
                                    placeholder="合同编号" autocomplete="off" class="layui-input">
@@ -55,11 +55,11 @@
 									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('预算报价单录入','<?= RUN . '/goods/goods_list_yu?id=' ?>'+'<?= $once['id'] ?>')">
+                                                onclick="xadmin.open('预算报价单录入','<?= RUN . '/goods/goods_list_yu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
                                             <i class="layui-icon">&#xe642;</i>预算报价单录入
                                         </button>
 										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('决算报价单录入','<?= RUN . '/goods/goods_list_jue?id=' ?>'+'<?= $once['id'] ?>')">
+												onclick="xadmin.open('决算报价单录入','<?= RUN . '/goods/goods_list_yu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
 											<i class="layui-icon">&#xe642;</i>决算报价单录入
 										</button>
                                     </td>

@@ -371,6 +371,7 @@
 								<td><input name="beizhu[]" value="<?php echo $beizhu10 ?>" id="val101010101010101010101010" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
+							<input type="hidden" id="btype" name="btype" value="<?php echo $btype ?>">
                         </tbody>
                     </table>
 					<div class="layui-form-item" style="margin-top: 15px;">

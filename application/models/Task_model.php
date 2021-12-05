@@ -46,12 +46,6 @@ class Task_model extends CI_Model
 		$sql = "SELECT uid FROM `erp_xiangmufuzeren` where xid = $id ";
 		return $this->db->query($sql)->result_array();
 	}
-	public function gettidlistfuzeyusuan($id)
-	{
-		$id = $this->db->escape($id);
-		$sql = "SELECT uid FROM `erp_baojiafuzeren` where bid = $id ";
-		return $this->db->query($sql)->result_array();
-	}
 	public function gettidlistguige($id)
 	{
 		$id = $this->db->escape($id);
@@ -77,6 +71,21 @@ class Task_model extends CI_Model
 		$sql = "SELECT * FROM `erp_baojiaxiangmu` where kid = $id ";
 		return $this->db->query($sql)->result_array();
 	}
+
+
+	public function gettidlistjichujue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiadanfeiyongjue` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function gettidlistxiangmujue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiaxiangmujue` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+
 
 	public function gettidlistkuanhao($id)
 	{
@@ -609,6 +618,24 @@ class Task_model extends CI_Model
 	{
 		$id = $this->db->escape($id);
 		$sql = "SELECT * FROM `erp_baojiaxiangmu` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function gettidlistjichu1jue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiaxiangmujue` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function gettidlistfuzeyusuan($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT uid FROM `erp_baojiafuzeren` where bid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function gettidlistfuzeyusuanjue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT uid FROM `erp_baojiafuzerenjue` where bid = $id ";
 		return $this->db->query($sql)->result_array();
 	}
 }

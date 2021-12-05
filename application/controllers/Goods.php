@@ -1804,6 +1804,7 @@ class Goods extends CI_Controller
 	public function goods_list_yu()
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$btype = isset($_GET['btype']) ? $_GET['btype'] : 1;
 		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 		$allpage = $this->role->getgoodsAllPage1($gname,$id);
@@ -1811,18 +1812,26 @@ class Goods extends CI_Controller
 		$data["pagehtml"] = $this->getpage($page,$allpage,$_GET);
 		$data["page"] = $page;
 		$data["id"] = $id;
+		$data["btype"] = $btype;
 		$data["allpage"] = $allpage;
 		$list = $this->role->getgoodsAllNew1($page,$gname,$id);
 		$data["gname"] = $gname;
 		foreach ($list as $k => $v) {
-			$guiges = $this->task->gettidlistjichu($v['id']);
+			if ($btype == 1){
+				$guiges = $this->task->gettidlistjichu($v['id']);
+			}else{
+				$guiges = $this->task->gettidlistjichujue($v['id']);
+			}
 			if (!empty($guiges)) {
 				$list[$k]['openflg'] = 1;
 			} else {
 				$list[$k]['openflg'] = 0;
 			}
-
-			$pinmings = $this->task->gettidlistxiangmu($v['id']);
+			if ($btype == 1){
+				$pinmings = $this->task->gettidlistxiangmu($v['id']);
+			}else{
+				$pinmings = $this->task->gettidlistxiangmujue($v['id']);
+			}
 			if (!empty($pinmings)) {
 				$list[$k]['openflg1'] = 1;
 			} else {
@@ -1835,6 +1844,7 @@ class Goods extends CI_Controller
 	public function goods_add_jichufei()
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$btype = isset($_GET['btype']) ? $_GET['btype'] : 1;
 		$goods_info = $this->role->getgoodsByIdkuanhao($id);
 		if (empty($goods_info)) {
 			echo json_encode(array('error' => true, 'msg' => "数据错误"));
@@ -1842,6 +1852,7 @@ class Goods extends CI_Controller
 		}
 		$data = array();
 		$data['id'] = $id;
+		$data['btype'] = $btype;
 		$tidlist = $this->task->gettidlist();
 		$data['tidlist'] = $tidlist;
 		$this->display("goods/goods_add_jichufei", $data);
@@ -1855,6 +1866,7 @@ class Goods extends CI_Controller
 		$menu = isset($_POST["menu"]) ? $_POST["menu"] : '';
 		$add_time = time();
 		$kid = isset($_POST["id"]) ? $_POST["id"] : '';
+		$btype = isset($_POST["btype"]) ? $_POST["btype"] : '';
 		$kehuming = isset($_POST["kehuming"]) ? $_POST["kehuming"] : '';
 		$riqi = isset($_POST["riqi"]) ? $_POST["riqi"] : '';
 		$riqi = strtotime($riqi);
@@ -1876,10 +1888,19 @@ class Goods extends CI_Controller
 		$qitadanjia = isset($_POST["qitadanjia"]) ? $_POST["qitadanjia"] : '';
 		$qitayongliang = isset($_POST["qitayongliang"]) ? $_POST["qitayongliang"] : '';
 
-		$rid = $this->role->role_save_yusuan($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
+		if ($btype == 1){
+			$rid = $this->role->role_save_yusuan($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
+		}else{
+			$rid = $this->role->role_save_yusuanjue($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
+		}
+
 		if ($rid) {
 			foreach ($menu as $k => $v) {
-				$this->role->rtom_save_yusuan($kid,$v);
+				if ($btype == 1){
+					$this->role->rtom_save_yusuan($kid,$v);
+				}else{
+					$this->role->rtom_save_yusuanjue($kid,$v);
+				}
 			}
 			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		} else {
@@ -1889,7 +1910,13 @@ class Goods extends CI_Controller
 	public function goods_edit_jichufei()
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		$goods_info = $this->role->getgoodsByIdxiaojiejei($id);
+		$btype = isset($_GET['btype']) ? $_GET['btype'] : 1;
+		if ($btype == 1){
+			$goods_info = $this->role->getgoodsByIdxiaojiejei($id);
+		}else{
+			$goods_info = $this->role->getgoodsByIdxiaojiejeijue($id);
+		}
+
 		if (empty($goods_info)) {
 			echo json_encode(array('error' => true, 'msg' => "数据错误"));
 			return;
@@ -1897,6 +1924,7 @@ class Goods extends CI_Controller
 		$tidlist = $this->task->gettidlist();
 		$data = array();
 		$data['id'] = $id;
+		$data['btype'] = $btype;
 		$data['kehuming'] = $goods_info['kehuming'];
 		$data['riqi'] = $goods_info['riqi'];
 		$data['shengcanshuliang'] = $goods_info['shengcanshuliang'];
@@ -1918,7 +1946,11 @@ class Goods extends CI_Controller
 		$data['qitayongliang'] = $goods_info['qitayongliang'];
 
 		$data['tidlist'] = $tidlist;
-		$mefuze = $this->task->gettidlistfuzeyusuan($id);
+		if ($btype == 1){
+			$mefuze = $this->task->gettidlistfuzeyusuan($id);
+		}else{
+			$mefuze = $this->task->gettidlistfuzeyusuanjue($id);
+		}
 		foreach ($mefuze as $k => $v) {
 			$data['mefuze'][] = $v['uid'];
 		}
@@ -1933,6 +1965,7 @@ class Goods extends CI_Controller
 		$menu = isset($_POST["menu"]) ? $_POST["menu"] : '';
 		$add_time = time();
 		$kid = isset($_POST["id"]) ? $_POST["id"] : '';
+		$btype = isset($_POST["btype"]) ? $_POST["btype"] : 1;
 		$kehuming = isset($_POST["kehuming"]) ? $_POST["kehuming"] : '';
 		$riqi = isset($_POST["riqi"]) ? $_POST["riqi"] : '';
 		$riqi = strtotime($riqi);
@@ -1954,11 +1987,21 @@ class Goods extends CI_Controller
 		$qitadanjia = isset($_POST["qitadanjia"]) ? $_POST["qitadanjia"] : '';
 		$qitayongliang = isset($_POST["qitayongliang"]) ? $_POST["qitayongliang"] : '';
 
-		$result = $this->role->goods_save_edit_yusuan($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
-		$this->role->goodsimg_delete_yusuan($kid);
+		if ($btype==1){
+			$result = $this->role->goods_save_edit_yusuan($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
+			$this->role->goodsimg_delete_yusuan($kid);
+		}else{
+			$result = $this->role->goods_save_edit_yusuanjue($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
+			$this->role->goodsimg_delete_yusuanjue($kid);
+		}
+
 		if ($result) {
 			foreach ($menu as $k => $v) {
-				$this->role->rtom_save_yusuan($kid,$v);
+				if ($btype==1){
+					$this->role->rtom_save_yusuan($kid,$v);
+				}else{
+					$this->role->rtom_save_yusuanjue($kid,$v);
+				}
 			}
 			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		} else {
@@ -1969,6 +2012,8 @@ class Goods extends CI_Controller
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		$data['id'] = $id;
+		$btype = isset($_GET['btype']) ? $_GET['btype'] : 1;
+		$data['btype'] = $btype;
 		$this->display("goods/goods_add_jichu", $data);
 	}
 	public function goods_save_jichu()
@@ -1978,6 +2023,7 @@ class Goods extends CI_Controller
 			return;
 		}
 		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		$btype = isset($_POST['btype']) ? $_POST['btype'] : 1;
 		$goods_info = $this->role->getgoodsByIdkuanhao($id);
 		if (empty($goods_info)) {
 			echo json_encode(array('error' => true, 'msg' => "数据错误"));
@@ -2048,13 +2094,18 @@ class Goods extends CI_Controller
 			if (empty($v) || empty($mingcheng[$k]) || empty($guige[$k]) || empty($danweis[$k]) || empty($danjia[$k]) || empty($danwei1[$k]) || empty($yongliang[$k]) || empty($danwei2[$k]) || empty($jine[$k]) || empty($danwei3[$k]) || empty($qidingliang[$k]) || empty($beizhu[$k])) {
 				continue;
 			}
-			$this->role->role_save_edit_jichu($v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+			if ($btype==1){
+				$this->role->role_save_edit_jichu($v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+			}else{
+				$this->role->role_save_edit_jichujue($v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+			}
 		}
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 	}
 	public function goods_edit_jichu()
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$btype = isset($_GET['btype']) ? $_GET['btype'] : 1;
 		$goods_info = $this->role->getgoodsByIdkuanhao($id);
 		if (empty($goods_info)) {
 			echo json_encode(array('error' => true, 'msg' => "数据错误"));
@@ -2062,7 +2113,12 @@ class Goods extends CI_Controller
 		}
 		$data = array();
 		$data['id'] = $id;
-		$kuanhaos = $this->task->gettidlistjichu1($id);
+		$data['btype'] = $btype;
+		if ($btype == 1){
+			$kuanhaos = $this->task->gettidlistjichu1($id);
+		}else{
+			$kuanhaos = $this->task->gettidlistjichu1jue($id);
+		}
 
 		$data['xiangmu1'] = '';
 		$data['mingcheng1'] = '';
@@ -2343,6 +2399,7 @@ class Goods extends CI_Controller
 			return;
 		}
 		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		$btype = isset($_POST['btype']) ? $_POST['btype'] : 1;
 		$goods_info = $this->role->getgoodsByIdkuanhao($id);
 		if (empty($goods_info)) {
 			echo json_encode(array('error' => true, 'msg' => "数据错误"));
@@ -2409,12 +2466,21 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => true, 'msg' => "请添加备注!"));
 			return;
 		}
-		$this->role->goodsimg_delete_jichu($id);
+		if ($btype==1){
+			$this->role->goodsimg_delete_jichu($id);
+		}else{
+			$this->role->goodsimg_delete_jichujue($id);
+		}
+
 		foreach ($xiangmu as $k => $v) {
 			if (empty($v) || empty($mingcheng[$k]) || empty($guige[$k]) || empty($danweis[$k]) || empty($danjia[$k]) || empty($danwei1[$k]) || empty($yongliang[$k]) || empty($danwei2[$k]) || empty($jine[$k]) || empty($danwei3[$k]) || empty($qidingliang[$k]) || empty($beizhu[$k])) {
 				continue;
 			}
-			$this->role->role_save_edit_jichu($v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+			if ($btype==1){
+				$this->role->role_save_edit_jichu($v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+			}else{
+				$this->role->role_save_edit_jichujue($v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+			}
 		}
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 

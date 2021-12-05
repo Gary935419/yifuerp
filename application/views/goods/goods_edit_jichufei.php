@@ -193,8 +193,8 @@
 											</div>
 										</div>
 
-										<input type="hidden" id="id" name="id"
-											   value="<?php echo $id ?>">
+										<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
+										<input type="hidden" id="btype" name="btype" value="<?php echo $btype ?>">
 										<div class="layui-form-item">
 											<label for="L_repass"
 												   class="layui-form-label"

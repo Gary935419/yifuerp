@@ -151,6 +151,35 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
+	public function role_save_yusuanjue($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time)
+	{
+		$kid = $this->db->escape($kid);
+		$kehuming = $this->db->escape($kehuming);
+		$riqi = $this->db->escape($riqi);
+		$shengcanshuliang = $this->db->escape($shengcanshuliang);
+		$sunhao = $this->db->escape($sunhao);
+		$xiaoji = $this->db->escape($xiaoji);
+		$jiagongfeidanjia = $this->db->escape($jiagongfeidanjia);
+		$jiagongfeiyongliang = $this->db->escape($jiagongfeiyongliang);
+		$ercijiagongfeidanjia = $this->db->escape($ercijiagongfeidanjia);
+		$ercijiagongfeiyongliang = $this->db->escape($ercijiagongfeiyongliang);
+		$jianpinfeidanjia = $this->db->escape($jianpinfeidanjia);
+		$jianpinfeiyongliang = $this->db->escape($jianpinfeiyongliang);
+		$tongguanfeidanjia = $this->db->escape($tongguanfeidanjia);
+		$tongguanfeiyongliang = $this->db->escape($tongguanfeiyongliang);
+		$mianliaojiancedanjia = $this->db->escape($mianliaojiancedanjia);
+		$mianliaojianceyongliang = $this->db->escape($mianliaojianceyongliang);
+		$yunfeidanjia = $this->db->escape($yunfeidanjia);
+		$yunfeiyongliang = $this->db->escape($yunfeiyongliang);
+		$qitadanjia = $this->db->escape($qitadanjia);
+		$qitayongliang = $this->db->escape($qitayongliang);
+		$add_time = $this->db->escape($add_time);
+
+		$sql = "INSERT INTO `erp_baojiadanfeiyongjue` (kid,kehuming,riqi,shengcanshuliang,sunhao,xiaoji,jiagongfeidanjia,jiagongfeiyongliang,ercijiagongfeidanjia,ercijiagongfeiyongliang,jianpinfeidanjia,jianpinfeiyongliang,tongguanfeidanjia,tongguanfeiyongliang,mianliaojiancedanjia,mianliaojianceyongliang,yunfeidanjia,yunfeiyongliang,qitadanjia,qitayongliang,addtime) VALUES ($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
 	public function role_save12($guige,$sehao,$shuzhi,$kid,$time)
 	{
 		$guige = $this->db->escape($guige);
@@ -200,6 +229,13 @@ class Role_model extends CI_Model
 		$bid = $this->db->escape($bid);
 		$uid = $this->db->escape($uid);
 		$sql = "INSERT INTO `erp_baojiafuzeren` (bid,uid) VALUES ($bid,$uid);";
+		return $this->db->query($sql);
+	}
+	public function rtom_save_yusuanjue($bid,$uid)
+	{
+		$bid = $this->db->escape($bid);
+		$uid = $this->db->escape($uid);
+		$sql = "INSERT INTO `erp_baojiafuzerenjue` (bid,uid) VALUES ($bid,$uid);";
 		return $this->db->query($sql);
 	}
 	public function rtom_save2($xid,$kuanhao,$add_time)
@@ -373,10 +409,41 @@ class Role_model extends CI_Model
 		$sql = "UPDATE `erp_baojiadanfeiyong` SET kehuming=$kehuming,riqi=$riqi,shengcanshuliang=$shengcanshuliang,sunhao=$sunhao,xiaoji=$xiaoji,jiagongfeidanjia=$jiagongfeidanjia,jiagongfeiyongliang=$jiagongfeiyongliang,ercijiagongfeidanjia=$ercijiagongfeidanjia,ercijiagongfeiyongliang=$ercijiagongfeiyongliang,jianpinfeidanjia=$jianpinfeidanjia,jianpinfeiyongliang=$jianpinfeiyongliang,tongguanfeidanjia=$tongguanfeidanjia,tongguanfeiyongliang=$tongguanfeiyongliang,mianliaojiancedanjia=$mianliaojiancedanjia,mianliaojianceyongliang=$mianliaojianceyongliang,yunfeidanjia=$yunfeidanjia,yunfeiyongliang=$yunfeiyongliang,qitadanjia=$qitadanjia,qitayongliang=$qitayongliang WHERE kid = $kid";
 		return $this->db->query($sql);
 	}
+	public function goods_save_edit_yusuanjue($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time)
+	{
+		$kehuming = $this->db->escape($kehuming);
+		$riqi = $this->db->escape($riqi);
+		$shengcanshuliang = $this->db->escape($shengcanshuliang);
+		$sunhao = $this->db->escape($sunhao);
+		$xiaoji = $this->db->escape($xiaoji);
+		$jiagongfeidanjia = $this->db->escape($jiagongfeidanjia);
+		$jiagongfeiyongliang = $this->db->escape($jiagongfeiyongliang);
+		$ercijiagongfeidanjia = $this->db->escape($ercijiagongfeidanjia);
+		$ercijiagongfeiyongliang = $this->db->escape($ercijiagongfeiyongliang);
+		$jianpinfeidanjia = $this->db->escape($jianpinfeidanjia);
+		$jianpinfeiyongliang = $this->db->escape($jianpinfeiyongliang);
+		$tongguanfeidanjia = $this->db->escape($tongguanfeidanjia);
+		$tongguanfeiyongliang = $this->db->escape($tongguanfeiyongliang);
+		$mianliaojiancedanjia = $this->db->escape($mianliaojiancedanjia);
+		$mianliaojianceyongliang = $this->db->escape($mianliaojianceyongliang);
+		$yunfeidanjia = $this->db->escape($yunfeidanjia);
+		$yunfeiyongliang = $this->db->escape($yunfeiyongliang);
+		$qitadanjia = $this->db->escape($qitadanjia);
+		$qitayongliang = $this->db->escape($qitayongliang);
+		$kid = $this->db->escape($kid);
+		$sql = "UPDATE `erp_baojiadanfeiyongjue` SET kehuming=$kehuming,riqi=$riqi,shengcanshuliang=$shengcanshuliang,sunhao=$sunhao,xiaoji=$xiaoji,jiagongfeidanjia=$jiagongfeidanjia,jiagongfeiyongliang=$jiagongfeiyongliang,ercijiagongfeidanjia=$ercijiagongfeidanjia,ercijiagongfeiyongliang=$ercijiagongfeiyongliang,jianpinfeidanjia=$jianpinfeidanjia,jianpinfeiyongliang=$jianpinfeiyongliang,tongguanfeidanjia=$tongguanfeidanjia,tongguanfeiyongliang=$tongguanfeiyongliang,mianliaojiancedanjia=$mianliaojiancedanjia,mianliaojianceyongliang=$mianliaojianceyongliang,yunfeidanjia=$yunfeidanjia,yunfeiyongliang=$yunfeiyongliang,qitadanjia=$qitadanjia,qitayongliang=$qitayongliang WHERE kid = $kid";
+		return $this->db->query($sql);
+	}
 	public function goodsimg_delete_yusuan($id)
 	{
 		$id = $this->db->escape($id);
 		$sql = "DELETE FROM erp_baojiafuzeren WHERE bid = $id";
+		return $this->db->query($sql);
+	}
+	public function goodsimg_delete_yusuanjue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_baojiafuzerenjue WHERE bid = $id";
 		return $this->db->query($sql);
 	}
 	public function role_save_edit_jichu($xiangmu,$mingcheng,$guige,$danwei,$danjia,$danwei1,$yongliang,$danwei2,$jine,$danwei3,$qidingliang,$beizhu,$kid,$time)
@@ -400,10 +467,37 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
+	public function role_save_edit_jichujue($xiangmu,$mingcheng,$guige,$danwei,$danjia,$danwei1,$yongliang,$danwei2,$jine,$danwei3,$qidingliang,$beizhu,$kid,$time)
+	{
+		$xiangmu = $this->db->escape($xiangmu);
+		$mingcheng = $this->db->escape($mingcheng);
+		$guige = $this->db->escape($guige);
+		$danwei = $this->db->escape($danwei);
+		$danjia = $this->db->escape($danjia);
+		$danwei1 = $this->db->escape($danwei1);
+		$yongliang = $this->db->escape($yongliang);
+		$danwei2 = $this->db->escape($danwei2);
+		$jine = $this->db->escape($jine);
+		$danwei3 = $this->db->escape($danwei3);
+		$qidingliang = $this->db->escape($qidingliang);
+		$beizhu = $this->db->escape($beizhu);
+		$kid = $this->db->escape($kid);
+		$time = $this->db->escape($time);
+		$sql = "INSERT INTO `erp_baojiaxiangmujue` (xiangmu,mingcheng,guige,danwei,danjia,danwei1,yongliang,danwei2,jine,danwei3,qidingliang,beizhu,kid,addtime) VALUES ($xiangmu,$mingcheng,$guige,$danwei,$danjia,$danwei1,$yongliang,$danwei2,$jine,$danwei3,$qidingliang,$beizhu,$kid,$time)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
 	public function goodsimg_delete_jichu($id)
 	{
 		$id = $this->db->escape($id);
 		$sql = "DELETE FROM erp_baojiaxiangmu WHERE kid = $id";
+		return $this->db->query($sql);
+	}
+	public function goodsimg_delete_jichujue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_baojiaxiangmujue WHERE kid = $id";
 		return $this->db->query($sql);
 	}
 	public function geterp_baojiaxiangmu($id)

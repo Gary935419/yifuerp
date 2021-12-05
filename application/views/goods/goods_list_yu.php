@@ -20,11 +20,13 @@
 		<div class="layui-col-md12">
 			<div class="layui-card">
 				<div class="layui-card-body ">
-					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list1' ?>">
+					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_yu' ?>">
 						<div class="layui-inline layui-show-xs-block">
 							<input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
 								   placeholder="合同款号" autocomplete="off" class="layui-input">
 						</div>
+						<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
+						<input type="hidden" id="btype" name="btype" value="<?php echo $btype ?>">
 						<div class="layui-inline layui-show-xs-block">
 							<button class="layui-btn" lay-submit="" lay-filter="sreach"><i
 										class="layui-icon">&#xe615;</i></button>
@@ -48,34 +50,66 @@
 									<td><?= $once['kuanhao'] ?></td>
 									<td><?= date('Y-m-d', $once['qianding']) ?></td>
 									<td class="td-manage">
-										<?php if ($once['openflg']>=1){ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('报价单费用编辑','<?= RUN . '/goods/goods_edit_jichufei?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="iconfont">&#xe69e;</i>  报价单费用编辑
-											</button>
-										<?php }else{ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('报价单费用添加','<?= RUN . '/goods/goods_add_jichufei?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="iconfont">&#xe69e;</i>  报价单费用添加
-											</button>
-										<?php } ?>
-										<?php if ($once['openflg1']>=1){ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('报价单基础编辑','<?= RUN . '/goods/goods_edit_jichu?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>报价单基础编辑
-											</button>
-										<?php }else{ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('报价单基础添加','<?= RUN . '/goods/goods_add_jichu?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>报价单基础添加
-											</button>
-										<?php } ?>
-										<?php if ($once['openflg1']>=1 && $once['openflg']>=1){ ?>
-											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_baojiadan?btype=1&id='.$once['id'] ?>">
-												<button class="layui-btn layui-btn-normal">
-													<i class="iconfont">&#xe74a;</i>  Excel导出
+										<?php if ($btype==1){ ?>
+											<?php if ($once['openflg']>=1){ ?>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('报价单费用编辑（预算）','<?= RUN . '/goods/goods_edit_jichufei?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+													<i class="iconfont">&#xe69e;</i>  报价单费用编辑（预算）
 												</button>
-											</a>
+											<?php }else{ ?>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('报价单费用添加（预算）','<?= RUN . '/goods/goods_add_jichufei?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+													<i class="iconfont">&#xe69e;</i>  报价单费用添加（预算）
+												</button>
+											<?php } ?>
+											<?php if ($once['openflg1']>=1){ ?>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('报价单基础编辑（预算）','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+													<i class="layui-icon">&#xe642;</i>报价单基础编辑（预算）
+												</button>
+											<?php }else{ ?>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('报价单基础添加（预算）','<?= RUN . '/goods/goods_add_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+													<i class="layui-icon">&#xe642;</i>报价单基础添加（预算）
+												</button>
+											<?php } ?>
+											<?php if ($once['openflg1']>=1 && $once['openflg']>=1){ ?>
+												<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_baojiadan?btype=1&id='.$once['id'] ?>">
+													<button class="layui-btn layui-btn-normal">
+														<i class="iconfont">&#xe74a;</i>  Excel导出（预算）
+													</button>
+												</a>
+											<?php } ?>
+										<?php }else{ ?>
+											<?php if ($once['openflg']>=1){ ?>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('报价单费用编辑（决算）','<?= RUN . '/goods/goods_edit_jichufei?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+													<i class="iconfont">&#xe69e;</i>  报价单费用编辑（决算）
+												</button>
+											<?php }else{ ?>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('报价单费用添加（决算）','<?= RUN . '/goods/goods_add_jichufei?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+													<i class="iconfont">&#xe69e;</i>  报价单费用添加（决算）
+												</button>
+											<?php } ?>
+											<?php if ($once['openflg1']>=1){ ?>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('报价单基础编辑（决算）','<?= RUN . '/goods/goods_edit_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+													<i class="layui-icon">&#xe642;</i>报价单基础编辑（决算）
+												</button>
+											<?php }else{ ?>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('报价单基础添加（决算）','<?= RUN . '/goods/goods_add_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+													<i class="layui-icon">&#xe642;</i>报价单基础添加（决算）
+												</button>
+											<?php } ?>
+											<?php if ($once['openflg1']>=1 && $once['openflg']>=1){ ?>
+												<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_baojiadan?btype=2&id='.$once['id'] ?>">
+													<button class="layui-btn layui-btn-normal">
+														<i class="iconfont">&#xe74a;</i>  Excel导出（决算）
+													</button>
+												</a>
+											<?php } ?>
 										<?php } ?>
 									</td>
 								</tr>
