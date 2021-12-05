@@ -195,12 +195,11 @@ class Role_model extends CI_Model
 		$sql = "INSERT INTO `erp_xiangmufuzeren` (xid,uid) VALUES ($xid,$uid);";
 		return $this->db->query($sql);
 	}
-	public function rtom_save_yusuan($bid,$uid,$tid)
+	public function rtom_save_yusuan($bid,$uid)
 	{
 		$bid = $this->db->escape($bid);
 		$uid = $this->db->escape($uid);
-		$tid = $this->db->escape($tid);
-		$sql = "INSERT INTO `erp_baojiafuzeren` (bid,uid,tid) VALUES ($bid,$uid,$tid);";
+		$sql = "INSERT INTO `erp_baojiafuzeren` (bid,uid) VALUES ($bid,$uid);";
 		return $this->db->query($sql);
 	}
 	public function rtom_save2($xid,$kuanhao,$add_time)
@@ -238,12 +237,6 @@ class Role_model extends CI_Model
 	{
 		$id = $this->db->escape($id);
 		$sql = "SELECT * FROM `erp_xiangmuhetong` where id=$id ";
-		return $this->db->query($sql)->row_array();
-	}
-	public function getgoodsByIdxiaojiejei($id)
-	{
-		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_baojiadanfeiyong` where kid=$id";
 		return $this->db->query($sql)->row_array();
 	}
 	public function getgoodsById22($bianhao,$id)
@@ -412,5 +405,41 @@ class Role_model extends CI_Model
 		$id = $this->db->escape($id);
 		$sql = "DELETE FROM erp_baojiaxiangmu WHERE kid = $id";
 		return $this->db->query($sql);
+	}
+	public function geterp_baojiaxiangmu($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiaxiangmu` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function geterp_baojiaxiangmujue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiaxiangmujue` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function geterp_baojiafuzeren($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT u.*,r.username FROM `erp_baojiafuzeren` u left join `admin_user` r on u.uid=r.id where u.bid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function geterp_baojiafuzerenjue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT u.*,r.username FROM `erp_baojiafuzerenjue` u left join `admin_user` r on u.uid=r.id where u.bid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getgoodsByIdxiaojiejei($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiadanfeiyong` where kid=$id";
+		return $this->db->query($sql)->row_array();
+	}
+	public function getgoodsByIdxiaojiejeijue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiadanfeiyongjue` where kid=$id";
+		return $this->db->query($sql)->row_array();
 	}
 }

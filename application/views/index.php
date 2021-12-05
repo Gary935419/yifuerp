@@ -135,6 +135,20 @@
 					</li>
 				</ul>
 			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="设定管理">&#xe6b5;</i>
+					<cite>设定管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/set/set_edit_new' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>系统设定</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
         </ul>
     </div>
 </div>

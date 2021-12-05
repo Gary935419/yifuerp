@@ -49,7 +49,7 @@ class Task_model extends CI_Model
 	public function gettidlistfuzeyusuan($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT uid FROM `erp_baojiafuzeren` where bid = $id and tid = 1 ";
+		$sql = "SELECT uid FROM `erp_baojiafuzeren` where bid = $id ";
 		return $this->db->query($sql)->result_array();
 	}
 	public function gettidlistguige($id)

@@ -55,7 +55,7 @@
 								<td><input name="danwei1[]" id="val111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val1111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val11111111" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val111111111" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val111111111" readonly autocomplete="off" onclick="return jisuan1('val111111111','val11111','val1111111')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val1111111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val11111111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val111111111111" autocomplete="off" class="layui-input"></td>
@@ -75,7 +75,7 @@
 								<td><input name="danwei1[]" id="val222222" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val2222222" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val22222222" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val222222222" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val222222222" readonly autocomplete="off" onclick="return jisuan1('val222222222','val22222','val2222222')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val2222222222" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val22222222222" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val222222222222" autocomplete="off" class="layui-input"></td>
@@ -95,7 +95,7 @@
 								<td><input name="danwei1[]" id="val333333" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val3333333" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val33333333" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val333333333" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val333333333" readonly autocomplete="off" onclick="return jisuan1('val333333333','val33333','val3333333')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val3333333333" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val33333333333" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val333333333333" autocomplete="off" class="layui-input"></td>
@@ -115,7 +115,7 @@
 								<td><input name="danwei1[]" id="val444444" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val4444444" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val44444444" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val444444444" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val444444444" readonly autocomplete="off" onclick="return jisuan1('val444444444','val44444','val4444444')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val4444444444" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val44444444444" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val444444444444" autocomplete="off" class="layui-input"></td>
@@ -135,7 +135,7 @@
 								<td><input name="danwei1[]" id="val555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val5555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val55555555" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val555555555" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val555555555" readonly autocomplete="off" onclick="return jisuan1('val555555555','val55555','val5555555')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val5555555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val55555555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val555555555555" autocomplete="off" class="layui-input"></td>
@@ -155,7 +155,7 @@
 								<td><input name="danwei1[]" id="val666666" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val6666666" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val66666666" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val666666666" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val666666666" readonly autocomplete="off" onclick="return jisuan1('val666666666','val66666','val6666666')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val6666666666" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val66666666666" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val666666666666" autocomplete="off" class="layui-input"></td>
@@ -175,7 +175,7 @@
 								<td><input name="danwei1[]" id="val777777" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val7777777" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val77777777" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val777777777" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val777777777" readonly autocomplete="off" onclick="return jisuan1('val777777777','val77777','val7777777')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val7777777777" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val77777777777" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val777777777777" autocomplete="off" class="layui-input"></td>
@@ -195,7 +195,7 @@
 								<td><input name="danwei1[]" id="val888888" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val8888888" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val88888888" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val888888888" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val888888888" readonly autocomplete="off" onclick="return jisuan1('val888888888','val88888','val8888888')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val8888888888" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val88888888888" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val888888888888" autocomplete="off" class="layui-input"></td>
@@ -215,7 +215,7 @@
 								<td><input name="danwei1[]" id="val999999" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val9999999" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val99999999" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val999999999" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val999999999" readonly autocomplete="off" onclick="return jisuan1('val999999999','val99999','val9999999')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val9999999999" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val99999999999" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val999999999999" autocomplete="off" class="layui-input"></td>
@@ -235,7 +235,7 @@
 								<td><input name="danwei1[]" id="val101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" id="val10101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" id="val1010101010101010" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" id="val101010101010101010" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" id="val101010101010101010" readonly autocomplete="off" onclick="return jisuan1('val101010101010101010','val1010101010','val10101010101010')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" id="val10101010101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" id="val1010101010101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" id="val101010101010101010101010" autocomplete="off" class="layui-input"></td>
@@ -257,6 +257,10 @@
     </div>
 </div>
 <script>
+	function jisuan1(a,b,c){
+		var num = (Number($("#"+b).val())*Number($("#"+c).val())).toFixed(2);
+		$("#"+a).val(num);
+	}
 	function addnow(id, idd) {
 		$("#div" + id).show()
 		$("#divadd" + idd).hide();

@@ -18,6 +18,7 @@ class Goods extends CI_Controller
 		$this->load->model('Goods_model', 'goods');
 		$this->load->model('Role_model', 'role');
 		$this->load->model('Task_model', 'task');
+		$this->load->model('Set_model', 'set');
 		$this->load->model('Taskclass_model', 'taskclass');
 		$this->load->library('PHPExcel');
 		$this->load->library('IOFactory');
@@ -1878,7 +1879,7 @@ class Goods extends CI_Controller
 		$rid = $this->role->role_save_yusuan($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
 		if ($rid) {
 			foreach ($menu as $k => $v) {
-				$this->role->rtom_save_yusuan($kid,$v,1);
+				$this->role->rtom_save_yusuan($kid,$v);
 			}
 			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		} else {
@@ -1957,7 +1958,7 @@ class Goods extends CI_Controller
 		$this->role->goodsimg_delete_yusuan($kid);
 		if ($result) {
 			foreach ($menu as $k => $v) {
-				$this->role->rtom_save_yusuan($kid,$v,1);
+				$this->role->rtom_save_yusuan($kid,$v);
 			}
 			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		} else {
@@ -2547,6 +2548,109 @@ class Goods extends CI_Controller
 
 		ob_end_clean();//清除缓存区，解决乱码问题
 		$fileName = '原辅材料平衡表' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
+	}
+
+	/**
+	 * 报价单导出
+	 */
+	public function goods_csv_baojiadan()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$btype = isset($_GET['btype']) ? $_GET['btype'] : 1;
+		if ($btype == 1){
+			$fileName = '预算报价单' . date('Ymd_His');
+			//预算
+			$baojiaxiangmu = $this->role->geterp_baojiaxiangmu($id);
+			$baojiafuzeren = $this->role->geterp_baojiafuzeren($id);
+			$baojiadanfeiyong = $this->role->getgoodsByIdxiaojiejei($id);
+		}else{
+			$fileName = '决算报价单' . date('Ymd_His');
+			//决算
+			$baojiaxiangmu = $this->role->geterp_baojiaxiangmujue($id);
+			$baojiafuzeren = $this->role->geterp_baojiafuzerenjue($id);
+			$baojiadanfeiyong = $this->role->getgoodsByIdxiaojiejeijue($id);
+		}
+		$list = $this->role->getgoodsAllNewid($id);
+		$set_info1 = $this->set->set_edit_new();
+		$huilv = $set_info1['price'];
+		$fuzeren = '';
+		if (!empty($baojiafuzeren)){
+			foreach ($baojiafuzeren as $k=>$v){
+				if ($k<1){
+					$fuzeren = $fuzeren.$v['username'];
+				}else{
+					$fuzeren = $fuzeren."、".$v['username'];
+				}
+			}
+		}
+		$inputFileName = "./static/uploads/fzbjd.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		//对应的列都附上数据和编号
+		$objPHPExcel->getActiveSheet()->setCellValue( 'B3',$baojiadanfeiyong['kehuming']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'F3',$list['kuanhao']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'F2',$fuzeren);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'L2',date('Y-m-d',$baojiadanfeiyong['riqi']));
+		$objPHPExcel->getActiveSheet()->setCellValue( 'L3',$baojiadanfeiyong['shengcanshuliang']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'E17',$baojiadanfeiyong['sunhao']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'G17',$baojiadanfeiyong['xiaoji']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'E18',$baojiadanfeiyong['jiagongfeidanjia']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'G18',$baojiadanfeiyong['jiagongfeiyongliang']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'E19',$baojiadanfeiyong['ercijiagongfeidanjia']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'G19',$baojiadanfeiyong['ercijiagongfeiyongliang']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'E20',$baojiadanfeiyong['jianpinfeidanjia']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'G20',$baojiadanfeiyong['jianpinfeiyongliang']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'E21',$baojiadanfeiyong['tongguanfeidanjia']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'G21',$baojiadanfeiyong['tongguanfeiyongliang']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'E22',$baojiadanfeiyong['mianliaojiancedanjia']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'G22',$baojiadanfeiyong['mianliaojianceyongliang']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'E23',$baojiadanfeiyong['yunfeidanjia']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'G23',$baojiadanfeiyong['yunfeiyongliang']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'E24',$baojiadanfeiyong['qitadanjia']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'G24',$baojiadanfeiyong['qitayongliang']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'I26',$huilv);
+
+		$rownew = 6;
+		$rowoldnew1 = -1;
+		foreach ($baojiaxiangmu as $kp=>$vp){
+			$rowoldnew1 = $rowoldnew1 + 1;
+			$row11 = $rownew + $rowoldnew1;
+			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['xiangmu']);
+			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['mingcheng']);
+			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['guige']);
+			$objPHPExcel->getActiveSheet()->setCellValue('D'.$row11,$vp['danwei']);
+			$objPHPExcel->getActiveSheet()->setCellValue('E'.$row11,$vp['danjia']);
+			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['danwei1']);
+			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['yongliang']);
+			$objPHPExcel->getActiveSheet()->setCellValue('H'.$row11,$vp['danwei2']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,$vp['jine']);
+			$objPHPExcel->getActiveSheet()->setCellValue('J'.$row11,$vp['danwei3']);
+			$objPHPExcel->getActiveSheet()->setCellValue('K'.$row11,$vp['qidingliang']);
+			$objPHPExcel->getActiveSheet()->setCellValue('L'.$row11,$vp['beizhu']);
+		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+
 		// 生成2007excel格式的xlsx文件
 		$IOFactory = new IOFactory();
 		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');

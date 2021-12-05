@@ -71,7 +71,7 @@
 											</button>
 										<?php } ?>
 										<?php if ($once['openflg1']>=1 && $once['openflg']>=1){ ?>
-											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_yusuan?id='.$once['id'] ?>">
+											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_baojiadan?btype=1&id='.$once['id'] ?>">
 												<button class="layui-btn layui-btn-normal">
 													<i class="iconfont">&#xe74a;</i>  Excel导出
 												</button>

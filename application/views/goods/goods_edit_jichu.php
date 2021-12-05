@@ -61,7 +61,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_1 ?>" id="val111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang1 ?>" id="val1111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_1 ?>" id="val11111111" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine1 ?>" id="val111111111" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine1 ?>" id="val111111111" readonly autocomplete="off" onclick="return jisuan1('val111111111','val11111','val1111111')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_1 ?>" id="val1111111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang1 ?>" id="val11111111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu1 ?>" id="val111111111111" autocomplete="off" class="layui-input"></td>
@@ -93,7 +93,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_2 ?>" id="val222222" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang2 ?>" id="val2222222" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_2 ?>" id="val22222222" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine2 ?>" id="val222222222" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine2 ?>" id="val222222222" readonly autocomplete="off" onclick="return jisuan1('val222222222','val22222','val2222222')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_2 ?>" id="val2222222222" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang2 ?>" id="val22222222222" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu2 ?>" id="val222222222222" autocomplete="off" class="layui-input"></td>
@@ -127,7 +127,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_3 ?>" id="val333333" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang3 ?>" id="val3333333" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_3 ?>" id="val33333333" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine3 ?>" id="val333333333" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine3 ?>" id="val333333333" readonly autocomplete="off" onclick="return jisuan1('val333333333','val33333','val3333333')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_3 ?>" id="val3333333333" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang3 ?>" id="val33333333333" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu3 ?>" id="val333333333333" autocomplete="off" class="layui-input"></td>
@@ -161,7 +161,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_4 ?>" id="val444444" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang4 ?>" id="val4444444" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_4 ?>" id="val44444444" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine4 ?>" id="val444444444" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine4 ?>" id="val444444444" readonly autocomplete="off" onclick="return jisuan1('val444444444','val44444','val4444444')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_4 ?>" id="val4444444444" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang4 ?>" id="val44444444444" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu4 ?>" id="val444444444444" autocomplete="off" class="layui-input"></td>
@@ -195,7 +195,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_5 ?>" id="val555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang5 ?>" id="val5555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_5 ?>" id="val55555555" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine5 ?>" id="val555555555" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine5 ?>" id="val555555555" readonly autocomplete="off" onclick="return jisuan1('val555555555','val55555','val5555555')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_5 ?>" id="val5555555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang5 ?>" id="val55555555555" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu5 ?>" id="val555555555555" autocomplete="off" class="layui-input"></td>
@@ -229,7 +229,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_6 ?>" id="val666666" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang6 ?>" id="val6666666" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_6 ?>" id="val66666666" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine6 ?>" id="val666666666" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine6 ?>" id="val666666666" readonly autocomplete="off" onclick="return jisuan1('val666666666','val66666','val6666666')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_6 ?>" id="val6666666666" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang6 ?>" id="val66666666666" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu6 ?>" id="val666666666666" autocomplete="off" class="layui-input"></td>
@@ -263,7 +263,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_7 ?>" id="val777777" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang7 ?>" id="val7777777" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_7 ?>" id="val77777777" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine7 ?>" id="val777777777" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine7 ?>" id="val777777777" readonly autocomplete="off" onclick="return jisuan1('val777777777','val77777','val7777777')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_7 ?>" id="val7777777777" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang7 ?>" id="val77777777777" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu7 ?>" id="val777777777777" autocomplete="off" class="layui-input"></td>
@@ -297,7 +297,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_8 ?>" id="val888888" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang8 ?>" id="val8888888" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_8 ?>" id="val88888888" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine8 ?>" id="val888888888" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine8 ?>" id="val888888888" readonly autocomplete="off" onclick="return jisuan1('val888888888','val88888','val8888888')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_8 ?>" id="val8888888888" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang8 ?>" id="val88888888888" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu8 ?>" id="val888888888888" autocomplete="off" class="layui-input"></td>
@@ -331,7 +331,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_9 ?>" id="val999999" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang9 ?>" id="val9999999" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_9 ?>" id="val99999999" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine9 ?>" id="val999999999" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine9 ?>" id="val999999999" readonly autocomplete="off" onclick="return jisuan1('val999999999','val99999','val9999999')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_9 ?>" id="val9999999999" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang9 ?>" id="val99999999999" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu9 ?>" id="val999999999999" autocomplete="off" class="layui-input"></td>
@@ -365,7 +365,7 @@
 								<td><input name="danwei1[]" value="<?php echo $danwei1_10 ?>" id="val101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="yongliang[]" value="<?php echo $yongliang10 ?>" id="val10101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="danwei2[]" value="<?php echo $danwei2_10 ?>" id="val1010101010101010" autocomplete="off" class="layui-input"></td>
-								<td><input name="jine[]" value="<?php echo $jine10 ?>" id="val101010101010101010" autocomplete="off" class="layui-input"></td>
+								<td><input name="jine[]" value="<?php echo $jine10 ?>" id="val101010101010101010" readonly autocomplete="off" onclick="return jisuan1('val101010101010101010','val1010101010','val10101010101010')"  placeholder="计算" class="layui-input"></td>
 								<td><input name="danwei3[]" value="<?php echo $danwei3_10 ?>" id="val10101010101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $qidingliang10 ?>" id="val1010101010101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $beizhu10 ?>" id="val101010101010101010101010" autocomplete="off" class="layui-input"></td>
@@ -387,6 +387,10 @@
     </div>
 </div>
 <script>
+	function jisuan1(a,b,c){
+		var num = (Number($("#"+b).val())*Number($("#"+c).val())).toFixed(2);
+		$("#"+a).val(num);
+	}
 	function addnow(id, idd) {
 		$("#div" + id).show();
 		$("#divadd" + idd).hide();
