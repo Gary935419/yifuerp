@@ -515,7 +515,7 @@ class Role_model extends CI_Model
 	public function geterp_baojiafuzeren($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT u.*,r.username FROM `erp_baojiafuzeren` u left join `admin_user` r on u.uid=r.id where u.bid = $id ";
+		$sql = "SELECT u.*,r.username FROM `erp_xiangmufuzeren` u left join `admin_user` r on u.uid=r.id where u.xid = $id ";
 		return $this->db->query($sql)->result_array();
 	}
 	public function geterp_baojiafuzerenjue($id)
@@ -534,6 +534,12 @@ class Role_model extends CI_Model
 	{
 		$id = $this->db->escape($id);
 		$sql = "SELECT * FROM `erp_baojiadanfeiyongjue` where kid=$id";
+		return $this->db->query($sql)->row_array();
+	}
+	public function geterp_xiangmukuanhao($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_xiangmukuanhao` where id=$id";
 		return $this->db->query($sql)->row_array();
 	}
 }

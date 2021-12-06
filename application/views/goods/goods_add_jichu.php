@@ -245,8 +245,11 @@
                         </tbody>
                     </table>
 					<div class="layui-form-item" style="margin-top: 15px;">
-						<label for="L_repass" class="layui-form-label" style="width: 90%;">
+						<label for="L_repass" class="layui-form-label" style="width: 85%;">
 						</label>
+						<button class="layui-btn" lay-filter="add" lay-submit="">
+							确认保存
+						</button>
 						<button class="layui-btn" lay-filter="add" lay-submit="">
 							确认提交
 						</button>

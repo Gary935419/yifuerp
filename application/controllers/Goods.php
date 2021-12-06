@@ -1863,7 +1863,6 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
 			return;
 		}
-		$menu = isset($_POST["menu"]) ? $_POST["menu"] : '';
 		$add_time = time();
 		$kid = isset($_POST["id"]) ? $_POST["id"] : '';
 		$btype = isset($_POST["btype"]) ? $_POST["btype"] : '';
@@ -1895,13 +1894,6 @@ class Goods extends CI_Controller
 		}
 
 		if ($rid) {
-			foreach ($menu as $k => $v) {
-				if ($btype == 1){
-					$this->role->rtom_save_yusuan($kid,$v);
-				}else{
-					$this->role->rtom_save_yusuanjue($kid,$v);
-				}
-			}
 			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		} else {
 			echo json_encode(array('error' => false, 'msg' => "操作失败"));
@@ -1946,14 +1938,7 @@ class Goods extends CI_Controller
 		$data['qitayongliang'] = $goods_info['qitayongliang'];
 
 		$data['tidlist'] = $tidlist;
-		if ($btype == 1){
-			$mefuze = $this->task->gettidlistfuzeyusuan($id);
-		}else{
-			$mefuze = $this->task->gettidlistfuzeyusuanjue($id);
-		}
-		foreach ($mefuze as $k => $v) {
-			$data['mefuze'][] = $v['uid'];
-		}
+
 		$this->display("goods/goods_edit_jichufei", $data);
 	}
 	public function goods_save_jichufei_edit()
@@ -1962,7 +1947,6 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
 			return;
 		}
-		$menu = isset($_POST["menu"]) ? $_POST["menu"] : '';
 		$add_time = time();
 		$kid = isset($_POST["id"]) ? $_POST["id"] : '';
 		$btype = isset($_POST["btype"]) ? $_POST["btype"] : 1;
@@ -1989,20 +1973,11 @@ class Goods extends CI_Controller
 
 		if ($btype==1){
 			$result = $this->role->goods_save_edit_yusuan($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
-			$this->role->goodsimg_delete_yusuan($kid);
 		}else{
 			$result = $this->role->goods_save_edit_yusuanjue($kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
-			$this->role->goodsimg_delete_yusuanjue($kid);
 		}
 
 		if ($result) {
-			foreach ($menu as $k => $v) {
-				if ($btype==1){
-					$this->role->rtom_save_yusuan($kid,$v);
-				}else{
-					$this->role->rtom_save_yusuanjue($kid,$v);
-				}
-			}
 			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		} else {
 			echo json_encode(array('error' => false, 'msg' => "操作失败"));
@@ -2637,18 +2612,20 @@ class Goods extends CI_Controller
 			$fileName = '预算报价单' . date('Ymd_His');
 			//预算
 			$baojiaxiangmu = $this->role->geterp_baojiaxiangmu($id);
-			$baojiafuzeren = $this->role->geterp_baojiafuzeren($id);
 			$baojiadanfeiyong = $this->role->getgoodsByIdxiaojiejei($id);
 		}else{
 			$fileName = '决算报价单' . date('Ymd_His');
 			//决算
 			$baojiaxiangmu = $this->role->geterp_baojiaxiangmujue($id);
-			$baojiafuzeren = $this->role->geterp_baojiafuzerenjue($id);
 			$baojiadanfeiyong = $this->role->getgoodsByIdxiaojiejeijue($id);
 		}
 		$list = $this->role->getgoodsAllNewid($id);
 		$set_info1 = $this->set->set_edit_new();
 		$huilv = $set_info1['price'];
+
+		$baojiafuzerenone = $this->role->geterp_xiangmukuanhao($id);
+		$xid = $baojiafuzerenone['xid'];
+		$baojiafuzeren = $this->role->geterp_baojiafuzeren($xid);
 		$fuzeren = '';
 		if (!empty($baojiafuzeren)){
 			foreach ($baojiafuzeren as $k=>$v){

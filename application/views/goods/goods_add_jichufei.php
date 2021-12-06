@@ -22,181 +22,76 @@
 		<div class="layui-col-md12">
 			<div class="layui-card">
 				<div class="layui-card-body ">
-					<table class="layui-table layui-form">
-						<thead>
-						<tr>
-							<th>
-								<div class="layui-row">
-									<form method="post" class="layui-form" style="margin-top: 15px" action="" name="basic_validate" id="tab">
-										<div class="layui-form-item">
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>客户名
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="kehuming" name="kehuming" lay-verify="kehuming"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>生产数量
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="shengcanshuliang" name="shengcanshuliang" lay-verify="shengcanshuliang"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>报价日期
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input id="riqi" name="riqi" lay-verify="riqi"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>损耗
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="sunhao" name="sunhao" lay-verify="sunhao"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>小计
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="xiaoji" name="xiaoji" lay-verify="xiaoji"
-													   autocomplete="off" class="layui-input">
-											</div>
-										</div>
-										<div class="layui-form-item">
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>加工费单价
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="jiagongfeidanjia" name="jiagongfeidanjia" lay-verify="jiagongfeidanjia"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>加工费用量
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="jiagongfeiyongliang" name="jiagongfeiyongliang" lay-verify="jiagongfeiyongliang"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>二次加工费单价
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input id="ercijiagongfeidanjia" name="ercijiagongfeidanjia" lay-verify="ercijiagongfeidanjia"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>二次加工费用量
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="ercijiagongfeiyongliang" name="ercijiagongfeiyongliang" lay-verify="ercijiagongfeiyongliang"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>检品费单价
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="jianpinfeidanjia" name="jianpinfeidanjia" lay-verify="jianpinfeidanjia"
-													   autocomplete="off" class="layui-input">
-											</div>
-										</div>
-										<div class="layui-form-item">
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>检品费用量
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="jianpinfeiyongliang" name="jianpinfeiyongliang" lay-verify="jianpinfeiyongliang"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>通关费单价
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="tongguanfeidanjia" name="tongguanfeidanjia" lay-verify="tongguanfeidanjia"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>通关费用量
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input id="tongguanfeiyongliang" name="tongguanfeiyongliang" lay-verify="tongguanfeiyongliang"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>面料检测单价
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="mianliaojiancedanjia" name="mianliaojiancedanjia" lay-verify="mianliaojiancedanjia"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>面料检测用量
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="mianliaojianceyongliang" name="mianliaojianceyongliang" lay-verify="mianliaojianceyongliang"
-													   autocomplete="off" class="layui-input">
-											</div>
-										</div>
-										<div class="layui-form-item">
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>运费单价
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="yunfeidanjia" name="yunfeidanjia" lay-verify="yunfeidanjia"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>运费用量
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="yunfeiyongliang" name="yunfeiyongliang" lay-verify="yunfeiyongliang"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>其他单价
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input id="qitadanjia" name="qitadanjia" lay-verify="qitadanjia"
-													   autocomplete="off" class="layui-input">
-											</div>
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>其他用量
-											</label>
-											<div class="layui-input-inline" style="width: 100px;">
-												<input type="text" id="qitayongliang" name="qitayongliang" lay-verify="qitayongliang"
-													   autocomplete="off" class="layui-input">
-											</div>
-										</div>
-										<div class="layui-form-item">
-											<label for="L_pass" class="layui-form-label" style="width: 8%;">
-												<span class="x-red">*</span>项目负责人
-											</label>
-											<div class="layui-input-inline" style="width: 66%;">
-												<?php if (isset($tidlist) && !empty($tidlist)) { ?>
-													<?php foreach ($tidlist as $k => $v) : ?>
-														<input type="checkbox" name="menu[]" value="<?= $v['id'] ?>" lay-skin="primary" lay-filter="father"
-															   lay-verify="check" title="<?= $v['username'] ?>">
-													<?php endforeach; ?>
-												<?php } ?>
-											</div>
-										</div>
-										<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
-										<input type="hidden" id="btype" name="btype" value="<?php echo $btype ?>">
-										<div class="layui-form-item">
-											<label for="L_repass" class="layui-form-label" style="width: 90%;">
-											</label>
-											<button class="layui-btn" lay-filter="add" lay-submit="">
-												确认提交
-											</button>
-										</div>
-									</form>
-								</div>
-							</th>
-						</tr>
-						</thead>
-					</table>
+					<form method="post" class="layui-form" style="margin-top: 15px" action="" name="basic_validate" id="tab">
+						<table class="layui-table layui-form">
+							<thead>
+							<tr>
+								<th>客户名</th>
+								<th>生产数量</th>
+								<th>报价日期</th>
+								<th>损耗</th>
+								<th>小计</th>
+								<th>加工费单价</th>
+								<th>加工费用量</th>
+								<th>二次加工费单价</th>
+								<th>二次加工费用量</th>
+								<th>检品费单价</th>
+								<th>检品费用量</th>
+								<th>通关费单价</th>
+								<th>通关费用量</th>
+							<tr>
+							</thead>
+							<tbody>
+							<tr id="div1">
+								<td><input name="kehuming" id="kehuming" autocomplete="off" class="layui-input"></td>
+								<td><input name="shengcanshuliang" id="shengcanshuliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="riqi" id="riqi" autocomplete="off" class="layui-input"></td>
+								<td><input name="sunhao" id="sunhao" autocomplete="off" class="layui-input"></td>
+								<td><input name="xiaoji" id="xiaoji" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeidanjia" id="jiagongfeidanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeiyongliang" id="jiagongfeiyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeidanjia" id="ercijiagongfeidanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeiyongliang" id="ercijiagongfeiyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeidanjia" id="jianpinfeidanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeiyongliang" id="jianpinfeiyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeidanjia" id="tongguanfeidanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeiyongliang" id="tongguanfeiyongliang" autocomplete="off" class="layui-input"></td>
+							</tr>
+							</tbody>
+							<thead>
+							<tr>
+								<th>面料检测单价</th>
+								<th>面料检测用量</th>
+								<th>运费单价</th>
+								<th>运费用量</th>
+								<th>其他单价</th>
+								<th>其他用量</th>
+							<tr>
+							</thead>
+							<tbody>
+							<tr id="div1">
+								<td><input name="mianliaojiancedanjia" id="mianliaojiancedanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="mianliaojianceyongliang" id="mianliaojianceyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeidanjia" id="yunfeidanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeiyongliang" id="yunfeiyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitadanjia" id="qitadanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitayongliang" id="qitayongliang" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
+							<input type="hidden" id="btype" name="btype" value="<?php echo $btype ?>">
+							</tbody>
+						</table>
+						<div class="layui-form-item" style="margin-top: 15px;">
+							<label for="L_repass" class="layui-form-label" style="width: 85%;">
+							</label>
+							<button class="layui-btn" lay-filter="add" lay-submit="">
+								确认保存
+							</button>
+							<button class="layui-btn" lay-filter="add" lay-submit="">
+								确认提交
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -320,12 +215,6 @@
 							return '请输入其他用量。';
 						}
 					},
-					check: function () {
-						var checked = $("input[type='checkbox']:checked").length;
-						if (checked < 1) {
-							return '请勾选负责人。';
-						}
-					}
 				});
 
 				$("#tab").validate({

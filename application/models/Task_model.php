@@ -638,4 +638,10 @@ class Task_model extends CI_Model
 		$sql = "SELECT uid FROM `erp_baojiafuzerenjue` where bid = $id ";
 		return $this->db->query($sql)->result_array();
 	}
+	public function gettidlistfuzeall($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_xiangmufuzeren` where xid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
 }
