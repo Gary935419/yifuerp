@@ -558,4 +558,52 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_xiangmukuanhao` where id=$id";
 		return $this->db->query($sql)->row_array();
 	}
+
+	public function getgoodsAllPage1duibi($gname)
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($gname)) {
+			$sqlw .= " and ( u.kuanhao like '%" . $gname . "%' ) ";
+		}
+		$sql = "SELECT count(1) as number FROM `erp_xiangmukuanhao` u left join `erp_xiangmuhetong` r on u.xid=r.id " . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	public function getgoodsAllNew1duibi($pg,$gname)
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($gname)) {
+			$sqlw .= " and ( u.kuanhao like '%" . $gname . "%' ) ";
+		}
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+
+		$sql = "SELECT u.*,r.bianhao,r.qianding FROM `erp_xiangmukuanhao` u left join `erp_xiangmuhetong` r on u.xid=r.id " . $sqlw . " LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getgoodsByIdxiaojiejeiduibi($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiadanfeiyong` where kid=$id and state=2";
+		return $this->db->query($sql)->row_array();
+	}
+	public function getgoodsByIdxiaojiejeiduibi1($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiaxiangmu` where kid=$id and state=2";
+		return $this->db->query($sql)->row_array();
+	}
+	public function getgoodsByIdxiaojiejeiduibi11($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiadanfeiyongjue` where kid=$id and state=2";
+		return $this->db->query($sql)->row_array();
+	}
+	public function getgoodsByIdxiaojiejeiduibi22($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_baojiaxiangmujue` where kid=$id and state=2";
+		return $this->db->query($sql)->row_array();
+	}
 }

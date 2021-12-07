@@ -133,6 +133,12 @@
 							<cite>报价单信息列表</cite>
 						</a>
 					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao_duibi' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>预算和决算报价单对比列表</cite>
+						</a>
+					</li>
 				</ul>
 			</li>
 			<li>

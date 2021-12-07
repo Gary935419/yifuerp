@@ -2487,6 +2487,42 @@ class Goods extends CI_Controller
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 
 	}
+	public function goods_list_bao_duibi()
+	{
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPage1duibi($gname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNew1duibi($page, $gname);
+		$data["gname"] = $gname;
+		foreach ($list as $k=>$v){
+			$flg1 = 0;
+			$flg2 = 0;
+			$kid = $v['id'];
+			//预算表数据获取
+			$listone1 = $this->role->getgoodsByIdxiaojiejeiduibi($kid);
+			$listone2 = $this->role->getgoodsByIdxiaojiejeiduibi1($kid);
+			if (!empty($listone1) || !empty($listone2)){
+				$flg1 = 1;
+			}
+			//决算表数据获取
+			$listone11 = $this->role->getgoodsByIdxiaojiejeiduibi11($kid);
+			$listone22 = $this->role->getgoodsByIdxiaojiejeiduibi22($kid);
+			if (!empty($listone11) || !empty($listone22)){
+				$flg2 = 1;
+			}
+			if ($flg1 == 1 && $flg2 == 1){
+				$list[$k]['duibiflg'] = 1;
+			}else{
+				$list[$k]['duibiflg'] = 0;
+			}
+		}
+		$data["list"] = $list;
+		$this->display("goods/goods_list_bao_duibi", $data);
+	}
 	/**
 	 * 原辅料平衡表导出
 	 */
