@@ -79,16 +79,18 @@
 							</tr>
 							<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
 							<input type="hidden" id="btype" name="btype" value="<?php echo $btype ?>">
+							<input type="hidden" id="status" name="status">
+							<input type="hidden" id="state" name="state">
 							</tbody>
 						</table>
 						<div class="layui-form-item" style="margin-top: 15px;">
-							<label for="L_repass" class="layui-form-label" style="width: 85%;">
+							<label for="L_repass" class="layui-form-label" style="width: 80%;">
 							</label>
-							<button class="layui-btn" lay-filter="add" lay-submit="">
-								确认保存
+							<button class="layui-btn layui-btn-normal" lay-filter="add" type="submit" onclick="return submitgo('1')">
+								提交保存
 							</button>
-							<button class="layui-btn" lay-filter="add" lay-submit="">
-								确认提交
+							<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('2')">
+								提交审核
 							</button>
 						</div>
 					</form>
@@ -97,6 +99,19 @@
 		</div>
 	</div>
 </div>
+<script>
+	function submitgo(type){
+		if(type < 2){
+			//保存
+			$("#status").val(1);
+			$("#state").val(4);
+		}else{
+			//提交
+			$("#status").val(2);
+			$("#state").val(1);
+		}
+	}
+</script>
 <script>layui.use(['laydate', 'form'],
 			function() {
 				var laydate = layui.laydate;

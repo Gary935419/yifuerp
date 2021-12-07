@@ -372,14 +372,51 @@
 							</tr>
 							<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
 							<input type="hidden" id="btype" name="btype" value="<?php echo $btype ?>">
+							<input type="hidden" id="status" name="status">
+							<input type="hidden" id="state" name="state">
                         </tbody>
                     </table>
 					<div class="layui-form-item" style="margin-top: 15px;">
-						<label for="L_repass" class="layui-form-label" style="width: 90%;">
+						<?php if ($btype==3){ ?>
+							<div class="layui-form-item layui-form-text">
+								<label for="desc" class="layui-form-label">
+									驳回原因
+								</label>
+								<div class="layui-input-block">
+									<textarea placeholder="审核通过不需要写!" id="infomation" style="width: 40%;" name="infomation" class="layui-textarea"
+											  lay-verify="reject"></textarea>
+								</div>
+							</div>
+						<?php }else{ ?>
+						   <?php if (!empty($infomation)){ ?>
+							   <div class="layui-form-item layui-form-text">
+									<label for="desc" class="layui-form-label">
+										驳回原因
+									</label>
+									<div class="layui-input-block">
+										<textarea placeholder="审核通过不需要写!" readonly="readonly" id="infomation" style="width: 40%;" name="infomation" class="layui-textarea"
+												  lay-verify="reject"><?php echo $infomation ?></textarea>
+									</div>
+							   </div>
+						   <?php } ?>
+						<?php } ?>
+						<label for="L_repass" class="layui-form-label" style="width: 80%;">
 						</label>
-						<button class="layui-btn" lay-filter="add" lay-submit="">
-							确认提交
-						</button>
+						<?php if ($btype==3){ ?>
+							<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('3')">
+								审核通过
+							</button>
+							<button class="layui-btn layui-btn-danger" lay-filter="add" type="submit" onclick="return submitgo('4')">
+								审核驳回
+							</button>
+						<?php }else{ ?>
+							<button class="layui-btn layui-btn-normal" lay-filter="add" type="submit" onclick="return submitgo('1')">
+								提交保存
+							</button>
+							<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('2')">
+								提交审核
+							</button>
+						<?php } ?>
 					</div>
 					</form>
 				</div>
@@ -387,6 +424,30 @@
         </div>
     </div>
 </div>
+<script>
+	function submitgo(type){
+		if(type == 1){
+			//保存
+			$("#status").val(1);
+			$("#state").val(4);
+		}
+		if(type == 2){
+			//提交
+			$("#status").val(2);
+			$("#state").val(1);
+		}
+		if(type == 3){
+			//通过
+			$("#status").val(2);
+			$("#state").val(2);
+		}
+		if(type == 4){
+			//驳回
+			$("#status").val(2);
+			$("#state").val(3);
+		}
+	}
+</script>
 <script>
 	function jisuan1(a,b,c){
 		var num = (Number($("#"+b).val())*Number($("#"+c).val())).toFixed(2);
