@@ -58,7 +58,7 @@
                                     <td class="td-manage">
 										<?php if ($once['duibiflg'] == 1){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('预算和决算报价单对比','<?= RUN . '/goods/goods_list_yu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+													onclick="xadmin.open('预算和决算报价单对比','<?= RUN . '/goods/goods_list_bao_duibi_details?id=' ?>'+'<?= $once['id'] ?>')">
 												<i class="layui-icon">&#xe642;</i>预算和决算报价单对比
 											</button>
 										<?php }else{ ?>
