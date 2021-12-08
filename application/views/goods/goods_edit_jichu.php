@@ -377,7 +377,7 @@
                         </tbody>
                     </table>
 					<div class="layui-form-item" style="margin-top: 15px;">
-						<?php if ($btype==3){ ?>
+						<?php if ($btype==3 || $btype==4){ ?>
 							<div class="layui-form-item layui-form-text">
 								<label for="desc" class="layui-form-label">
 									驳回原因
@@ -402,7 +402,7 @@
 						<?php } ?>
 						<label for="L_repass" class="layui-form-label" style="width: 80%;">
 						</label>
-						<?php if ($btype==3){ ?>
+						<?php if ($btype==3 || $btype==4){ ?>
 							<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('3')">
 								审核通过
 							</button>

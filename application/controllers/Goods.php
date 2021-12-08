@@ -2083,16 +2083,20 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => true, 'msg' => "请添加备注!"));
 			return;
 		}
+		$infomation = isset($_POST["infomation"]) ? $_POST["infomation"] : '';
 		$status = isset($_POST["status"]) ? $_POST["status"] : 1;
 		$state = isset($_POST["state"]) ? $_POST["state"] : 4;
+		if($state == 1 || $state == 4){
+			$infomation = "";
+		}
 		foreach ($xiangmu as $k => $v) {
 			if (empty($v) || empty($mingcheng[$k]) || empty($guige[$k]) || empty($danweis[$k]) || empty($danjia[$k]) || empty($danwei1[$k]) || empty($yongliang[$k]) || empty($danwei2[$k]) || empty($jine[$k]) || empty($danwei3[$k]) || empty($qidingliang[$k]) || empty($beizhu[$k])) {
 				continue;
 			}
 			if ($btype==1){
-				$this->role->role_save_edit_jichu($status,$state,$v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+				$this->role->role_save_edit_jichu($infomation,$status,$state,$v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
 			}else{
-				$this->role->role_save_edit_jichujue($status,$state,$v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
+				$this->role->role_save_edit_jichujue($infomation,$status,$state,$v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
 			}
 		}
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
