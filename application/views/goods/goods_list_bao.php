@@ -15,12 +15,12 @@
     <script type="text/javascript" src="<?= STA ?>/js/xadmin.js"></script>
 </head>
 <body>
-<div class="x-nav">
-          <span class="layui-breadcrumb">
-            <a>
-              <cite>报价单信息列表</cite></a>
-          </span>
-</div>
+<!--<div class="x-nav">-->
+<!--          <span class="layui-breadcrumb">-->
+<!--            <a>-->
+<!--              <cite>报价单信息列表</cite></a>-->
+<!--          </span>-->
+<!--</div>-->
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -35,6 +35,7 @@
                             <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
                                         class="layui-icon">&#xe615;</i></button>
                         </div>
+						<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
                     </form>
                 </div>
                 <div class="layui-card-body ">
@@ -42,7 +43,10 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>合同编号</th>
+							<th>合同编号</th>
+							<th>甲方名称</th>
+							<th>签订时间</th>
+							<th>交货时间</th>
 							<th>创建时间</th>
                             <th>操作</th>
                         </thead>
@@ -51,17 +55,31 @@
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
                                     <td><?= $num + 1 ?></td>
-                                    <td><?= $once['bianhao'] ?></td>
+									<td><?= $once['bianhao'] ?></td>
+									<td><?= $once['mingcheng'] ?></td>
+									<td><?= date('Y-m-d', $once['qianding']) ?></td>
+									<td><?= date('Y-m-d', $once['jiaohuoqi']) ?></td>
 									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
-                                        <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('预算报价单录入','<?= RUN . '/goods/goods_list_yu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
-                                            <i class="layui-icon">&#xe642;</i>预算报价单录入
-                                        </button>
-										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('决算报价单录入','<?= RUN . '/goods/goods_list_yu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
-											<i class="layui-icon">&#xe642;</i>决算报价单录入
-										</button>
+										<?php if ($id==999){ ?>
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('查看预算表','<?= RUN . '/goods/goods_list_shenhe?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>查看预算表
+											</button>
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('查看决算表','<?= RUN . '/goods/goods_list_shenhe?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>查看决算表
+											</button>
+										<?php }else{ ?>
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('查看预算表','<?= RUN . '/goods/goods_list_yu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>查看预算表
+											</button>
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('查看决算表','<?= RUN . '/goods/goods_list_yu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>查看决算表
+											</button>
+										<?php } ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

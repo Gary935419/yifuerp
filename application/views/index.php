@@ -130,13 +130,13 @@
 					<li>
 						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>报价单信息列表</cite>
+							<cite>报价单添加</cite>
 						</a>
 					</li>
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao_duibi' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=999' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>预算和决算报价单对比列表</cite>
+							<cite>报价单审核</cite>
 						</a>
 					</li>
 				</ul>

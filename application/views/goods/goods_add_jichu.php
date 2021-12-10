@@ -43,7 +43,7 @@
                         </thead>
                         <tbody>
 							<tr id="div1">
-								<td>
+								<td style="min-width: 80px;">
 									<i class="layui-icon" id="divadd1" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
 									   onclick="return addnow(2,1)"></i>
 								</td>
@@ -246,6 +246,139 @@
 							<input type="hidden" id="state" name="state">
                         </tbody>
                     </table>
+                      <br><br><br>
+						<table class="layui-table layui-form">
+							<thead>
+							<tr>
+								<th>项目</th>
+								<th>名称</th>
+								<th>规格</th>
+								<th>单位</th>
+								<th>单价</th>
+								<th>单位</th>
+								<th>用量</th>
+								<th>单位</th>
+								<th>金额</th>
+								<th>单位</th>
+								<th>起订量</th>
+								<th>备注</th>
+							<tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td style="min-width: 80px;">
+									加工费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeidanjia" id="jiagongfeidanjia" autocomplete="off" value="1" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeiyongliang" id="jiagongfeiyongliang" autocomplete="off" value="100" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeijine" id="jiagongfeijine" autocomplete="off" value="100" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									二次加工费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeidanjia" id="ercijiagongfeidanjia" value="1" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeiyongliang" id="ercijiagongfeiyongliang" value="90" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeijine" id="ercijiagongfeijine" value="90" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									检品费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeidanjia" id="jianpinfeidanjia" autocomplete="off" value="1" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeiyongliang" id="jianpinfeiyongliang" autocomplete="off" value="80" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeijine" id="jianpinfeijine" autocomplete="off" value="70" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									通关费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeidanjia" id="tongguanfeidanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeiyongliang" id="tongguanfeiyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeijine" id="tongguanfeijine" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									面料检测费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="mianliaojiancedanjia" id="mianliaojiancedanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="mianliaojianceyongliang" id="mianliaojianceyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="mianliaojiancejine" id="mianliaojiancejine" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									运费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeidanjia" id="yunfeidanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeiyongliang" id="yunfeiyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeijine" id="yunfeijine" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									其他
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitadanjia" id="qitadanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitayongliang" id="qitayongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitajine" id="qitajine" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							</tbody>
+						</table>
 					<div class="layui-form-item" style="margin-top: 15px;">
 						<label for="L_repass" class="layui-form-label" style="width: 80%;">
 						</label>
