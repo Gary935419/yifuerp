@@ -79,13 +79,12 @@
 															<?php } ?>
 														<?php } ?>
 													<?php } ?>
-
+														<?php if ($once['state2']==2 || $once['state2']==3){ ?>
 														<button class="layui-btn layui-btn-normal"
 																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
 															<i class="layui-icon">&#xe642;</i>报价单查看详情
 														</button>
-
-
+													    <?php } ?>
 												<?php }else{ ?>
 
 													<?php if ($once['openflg1']>=1){ ?>
@@ -99,12 +98,12 @@
 															<?php } ?>
 														<?php } ?>
 													<?php } ?>
-
+													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
 														<button class="layui-btn layui-btn-normal"
 																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
 															<i class="layui-icon">&#xe642;</i>报价单查看详情
 														</button>
-
+													<?php } ?>
 												<?php } ?>
 											</td>
 										</tr>
@@ -143,11 +142,13 @@
 														<?php } ?>
 													<?php } ?>
 
+
+													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
 														<button class="layui-btn layui-btn-normal"
 																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
 															<i class="layui-icon">&#xe642;</i>报价单查看详情
 														</button>
-
+													<?php } ?>
 
 												<?php }else{ ?>
 
@@ -163,11 +164,13 @@
 														<?php } ?>
 													<?php } ?>
 
+
+													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
 														<button class="layui-btn layui-btn-normal"
 																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
 															<i class="layui-icon">&#xe642;</i>报价单查看详情
 														</button>
-
+													<?php } ?>
 												<?php } ?>
 											</td>
 										</tr>
@@ -206,11 +209,13 @@
 														<?php } ?>
 													<?php } ?>
 
+
+													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
 														<button class="layui-btn layui-btn-normal"
 																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
 															<i class="layui-icon">&#xe642;</i>报价单查看详情
 														</button>
-
+													<?php } ?>
 												<?php }else{ ?>
 
 													<?php if ($once['openflg1']>=1){ ?>
@@ -225,11 +230,13 @@
 														<?php } ?>
 													<?php } ?>
 
+
+													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
 														<button class="layui-btn layui-btn-normal"
 																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
 															<i class="layui-icon">&#xe642;</i>报价单查看详情
 														</button>
-
+													<?php } ?>
 												<?php } ?>
 											</td>
 										</tr>

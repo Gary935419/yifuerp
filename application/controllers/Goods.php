@@ -2703,11 +2703,11 @@ class Goods extends CI_Controller
 		$goods_info_juesuan = $this->role->getgoodsByIdxiaojiejeijue($id);
 
 		$data = array();
-		$data['kehumingy'] = $goods_info_yusuan['kehuming'];
-		$data['riqiy'] = $goods_info_yusuan['riqi'];
-		$data['shengcanshuliangy'] = $goods_info_yusuan['shengcanshuliang'];
-		$data['sunhaoy'] = $goods_info_yusuan['sunhao'];
-		$data['xiaojiy'] = $goods_info_yusuan['xiaoji'];
+//		$data['kehumingy'] = $goods_info_yusuan['kehuming'];
+//		$data['riqiy'] = $goods_info_yusuan['riqi'];
+//		$data['shengcanshuliangy'] = $goods_info_yusuan['shengcanshuliang'];
+//		$data['sunhaoy'] = $goods_info_yusuan['sunhao'];
+//		$data['xiaojiy'] = $goods_info_yusuan['xiaoji'];
 		$data['jiagongfeidanjiay'] = $goods_info_yusuan['jiagongfeidanjia'];
 		$data['jiagongfeiyongliangy'] = $goods_info_yusuan['jiagongfeiyongliang'];
 		$data['ercijiagongfeidanjiay'] = $goods_info_yusuan['ercijiagongfeidanjia'];
@@ -2723,11 +2723,11 @@ class Goods extends CI_Controller
 		$data['qitadanjiay'] = $goods_info_yusuan['qitadanjia'];
 		$data['qitayongliangy'] = $goods_info_yusuan['qitayongliang'];
 
-		$data['kehumingj'] = $goods_info_juesuan['kehuming'];
-		$data['riqij'] = $goods_info_juesuan['riqi'];
-		$data['shengcanshuliangj'] = $goods_info_juesuan['shengcanshuliang'];
-		$data['sunhaoj'] = $goods_info_juesuan['sunhao'];
-		$data['xiaojij'] = $goods_info_juesuan['xiaoji'];
+//		$data['kehumingj'] = $goods_info_juesuan['kehuming'];
+//		$data['riqij'] = $goods_info_juesuan['riqi'];
+//		$data['shengcanshuliangj'] = $goods_info_juesuan['shengcanshuliang'];
+//		$data['sunhaoj'] = $goods_info_juesuan['sunhao'];
+//		$data['xiaojij'] = $goods_info_juesuan['xiaoji'];
 		$data['jiagongfeidanjiaj'] = $goods_info_juesuan['jiagongfeidanjia'];
 		$data['jiagongfeiyongliangj'] = $goods_info_juesuan['jiagongfeiyongliang'];
 		$data['ercijiagongfeidanjiaj'] = $goods_info_juesuan['ercijiagongfeidanjia'];
@@ -2743,6 +2743,63 @@ class Goods extends CI_Controller
 		$data['qitadanjiaj'] = $goods_info_juesuan['qitadanjia'];
 		$data['qitayongliangj'] = $goods_info_juesuan['qitayongliang'];
 
+
+		$data['jiagongfeidanjia_flg'] = 0;
+		if ($data['jiagongfeidanjiay'] != $data['jiagongfeidanjiaj']){
+			$data['jiagongfeidanjia_flg'] = 1;
+		}
+		$data['jiagongfeiyongliang_flg'] = 0;
+		if ($data['jiagongfeiyongliangy'] != $data['jiagongfeiyongliangj']){
+			$data['jiagongfeiyongliang_flg'] = 1;
+		}
+		$data['ercijiagongfeidanjia_flg'] = 0;
+		if ($data['ercijiagongfeidanjiaj'] != $data['ercijiagongfeidanjiay']){
+			$data['ercijiagongfeidanjia_flg'] = 1;
+		}
+		$data['ercijiagongfeiyongliang_flg'] = 0;
+		if ($data['ercijiagongfeiyongliangj'] != $data['ercijiagongfeiyongliangy']){
+			$data['ercijiagongfeiyongliang_flg'] = 1;
+		}
+		$data['jianpinfeidanjia_flg'] = 0;
+		if ($data['jianpinfeidanjiaj'] != $data['jianpinfeidanjiay']){
+			$data['jianpinfeidanjia_flg'] = 1;
+		}
+		$data['jianpinfeiyongliang_flg'] = 0;
+		if ($data['jianpinfeiyongliangj'] != $data['jianpinfeiyongliangy']){
+			$data['jianpinfeiyongliang_flg'] = 1;
+		}
+		$data['tongguanfeidanjia_flg'] = 0;
+		if ($data['tongguanfeidanjiaj'] != $data['tongguanfeidanjiay']){
+			$data['tongguanfeidanjia_flg'] = 1;
+		}
+		$data['tongguanfeiyongliang_flg'] = 0;
+		if ($data['tongguanfeiyongliangj'] != $data['tongguanfeiyongliangy']){
+			$data['tongguanfeiyongliang_flg'] = 1;
+		}
+		$data['mianliaojiancedanjia_flg'] = 0;
+		if ($data['mianliaojiancedanjiaj'] != $data['mianliaojiancedanjiay']){
+			$data['mianliaojiancedanjia_flg'] = 1;
+		}
+		$data['mianliaojianceyongliang_flg'] = 0;
+		if ($data['mianliaojianceyongliangj'] != $data['mianliaojianceyongliangy']){
+			$data['mianliaojianceyongliang_flg'] = 1;
+		}
+		$data['yunfeidanjia_flg'] = 0;
+		if ($data['yunfeidanjiaj'] != $data['yunfeidanjiay']){
+			$data['yunfeidanjia_flg'] = 1;
+		}
+		$data['yunfeiyongliang_flg'] = 0;
+		if ($data['yunfeiyongliangj'] != $data['yunfeiyongliangy']){
+			$data['yunfeiyongliang_flg'] = 1;
+		}
+		$data['qitadanjia_flg'] = 0;
+		if ($data['qitadanjiaj'] != $data['qitadanjiay']){
+			$data['qitadanjia_flg'] = 1;
+		}
+		$data['qitayongliang_flg'] = 0;
+		if ($data['qitayongliangj'] != $data['qitayongliangy']){
+			$data['qitayongliang_flg'] = 1;
+		}
 
 		$kuanhaosyusuan = $this->task->gettidlistjichu1($id);
 		$kuanhaosjuesuan = $this->task->gettidlistjichu1jue($id);
@@ -2877,6 +2934,7 @@ class Goods extends CI_Controller
 		$data['yqidingliang10'] = '';
 		$data['ybeizhu10'] = '';
 
+		$data['yi_flg'] = 0;
 		if (!empty($kuanhaosyusuan[0]['xiangmu'])) {
 			$data['yxiangmu1'] = $kuanhaosyusuan[0]['xiangmu'];
 			$data['ymingcheng1'] = $kuanhaosyusuan[0]['mingcheng'];
@@ -2890,7 +2948,13 @@ class Goods extends CI_Controller
 			$data['ydanwei3_1'] = $kuanhaosyusuan[0]['danwei3'];
 			$data['yqidingliang1'] = $kuanhaosyusuan[0]['qidingliang'];
 			$data['ybeizhu1'] = $kuanhaosyusuan[0]['beizhu'];
+			$yi_result = $this->task->getqubieduibiresult($id,$data['yxiangmu1'],$data['ymingcheng1'],$data['yguige1'],$data['ydanwei1'],$data['ydanjia1'],$data['ydanwei1_1'],$data['yyongliang1'],$data['ydanwei2_1'],$data['yjine1'],$data['ydanwei3_1'],$data['yqidingliang1'],$data['ybeizhu1']);
+			if(empty($yi_result)){
+				$data['yi_flg'] = 1;
+			}
 		}
+
+		$data['er_flg'] = 0;
 		if (!empty($kuanhaosyusuan[1]['xiangmu'])) {
 			$data['yxiangmu2'] = $kuanhaosyusuan[1]['xiangmu'];
 			$data['ymingcheng2'] = $kuanhaosyusuan[1]['mingcheng'];
@@ -2904,7 +2968,13 @@ class Goods extends CI_Controller
 			$data['ydanwei3_2'] = $kuanhaosyusuan[1]['danwei3'];
 			$data['yqidingliang2'] = $kuanhaosyusuan[1]['qidingliang'];
 			$data['ybeizhu2'] = $kuanhaosyusuan[1]['beizhu'];
+			$er_result = $this->task->getqubieduibiresult($id,$data['yxiangmu2'],$data['ymingcheng2'],$data['yguige2'],$data['ydanwei2'],$data['ydanjia2'],$data['ydanwei1_2'],$data['yyongliang2'],$data['ydanwei2_2'],$data['yjine2'],$data['ydanwei3_2'],$data['yqidingliang2'],$data['ybeizhu2']);
+			if(empty($er_result)){
+				$data['er_flg'] = 1;
+			}
 		}
+
+		$data['san_flg'] = 0;
 		if (!empty($kuanhaosyusuan[2]['xiangmu'])) {
 			$data['yxiangmu3'] = $kuanhaosyusuan[2]['xiangmu'];
 			$data['ymingcheng3'] = $kuanhaosyusuan[2]['mingcheng'];
@@ -2918,7 +2988,13 @@ class Goods extends CI_Controller
 			$data['ydanwei3_3'] = $kuanhaosyusuan[2]['danwei3'];
 			$data['yqidingliang3'] = $kuanhaosyusuan[2]['qidingliang'];
 			$data['ybeizhu3'] = $kuanhaosyusuan[2]['beizhu'];
+			$san_result = $this->task->getqubieduibiresult($id,$data['yxiangmu3'],$data['ymingcheng3'],$data['yguige3'],$data['ydanwei3'],$data['ydanjia3'],$data['ydanwei1_3'],$data['yyongliang3'],$data['ydanwei2_3'],$data['yjine3'],$data['ydanwei3_3'],$data['yqidingliang3'],$data['ybeizhu3']);
+			if(empty($san_result)){
+				$data['san_flg'] = 1;
+			}
 		}
+
+		$data['si_flg'] = 0;
 		if (!empty($kuanhaosyusuan[3]['xiangmu'])) {
 			$data['yxiangmu4'] = $kuanhaosyusuan[3]['xiangmu'];
 			$data['ymingcheng4'] = $kuanhaosyusuan[3]['mingcheng'];
@@ -2932,7 +3008,13 @@ class Goods extends CI_Controller
 			$data['ydanwei3_4'] = $kuanhaosyusuan[3]['danwei3'];
 			$data['yqidingliang4'] = $kuanhaosyusuan[3]['qidingliang'];
 			$data['ybeizhu4'] = $kuanhaosyusuan[3]['beizhu'];
+			$si_result = $this->task->getqubieduibiresult($id,$data['yxiangmu4'],$data['ymingcheng4'],$data['yguige4'],$data['ydanwei4'],$data['ydanjia4'],$data['ydanwei1_4'],$data['yyongliang4'],$data['ydanwei2_4'],$data['yjine4'],$data['ydanwei3_4'],$data['yqidingliang4'],$data['ybeizhu4']);
+			if(empty($si_result)){
+				$data['si_flg'] = 1;
+			}
 		}
+
+		$data['wu_flg'] = 0;
 		if (!empty($kuanhaosyusuan[4]['xiangmu'])) {
 			$data['yxiangmu5'] = $kuanhaosyusuan[4]['xiangmu'];
 			$data['ymingcheng5'] = $kuanhaosyusuan[4]['mingcheng'];
@@ -2946,7 +3028,13 @@ class Goods extends CI_Controller
 			$data['ydanwei3_5'] = $kuanhaosyusuan[4]['danwei3'];
 			$data['yqidingliang5'] = $kuanhaosyusuan[4]['qidingliang'];
 			$data['ybeizhu5'] = $kuanhaosyusuan[4]['beizhu'];
+			$wu_result = $this->task->getqubieduibiresult($id,$data['yxiangmu5'],$data['ymingcheng5'],$data['yguige5'],$data['ydanwei5'],$data['ydanjia5'],$data['ydanwei1_5'],$data['yyongliang5'],$data['ydanwei2_5'],$data['yjine5'],$data['ydanwei3_5'],$data['yqidingliang5'],$data['ybeizhu5']);
+			if(empty($wu_result)){
+				$data['wu_flg'] = 1;
+			}
 		}
+
+		$data['liu_flg'] = 0;
 		if (!empty($kuanhaosyusuan[5]['xiangmu'])) {
 			$data['yxiangmu6'] = $kuanhaosyusuan[5]['xiangmu'];
 			$data['ymingcheng6'] = $kuanhaosyusuan[5]['mingcheng'];
@@ -2960,7 +3048,13 @@ class Goods extends CI_Controller
 			$data['ydanwei3_6'] = $kuanhaosyusuan[5]['danwei3'];
 			$data['yqidingliang6'] = $kuanhaosyusuan[5]['qidingliang'];
 			$data['ybeizhu6'] = $kuanhaosyusuan[5]['beizhu'];
+			$liu_result = $this->task->getqubieduibiresult($id,$data['yxiangmu6'],$data['ymingcheng6'],$data['yguige6'],$data['ydanwei6'],$data['ydanjia6'],$data['ydanwei1_6'],$data['yyongliang6'],$data['ydanwei2_6'],$data['yjine6'],$data['ydanwei3_6'],$data['yqidingliang6'],$data['ybeizhu6']);
+			if(empty($liu_result)){
+				$data['liu_flg'] = 1;
+			}
 		}
+
+		$data['qi_flg'] = 0;
 		if (!empty($kuanhaosyusuan[6]['xiangmu'])) {
 			$data['yxiangmu7'] = $kuanhaosyusuan[6]['xiangmu'];
 			$data['ymingcheng7'] = $kuanhaosyusuan[6]['mingcheng'];
@@ -2974,7 +3068,13 @@ class Goods extends CI_Controller
 			$data['ydanwei3_7'] = $kuanhaosyusuan[6]['danwei3'];
 			$data['yqidingliang7'] = $kuanhaosyusuan[6]['qidingliang'];
 			$data['ybeizhu7'] = $kuanhaosyusuan[6]['beizhu'];
+			$qi_result = $this->task->getqubieduibiresult($id,$data['yxiangmu7'],$data['ymingcheng7'],$data['yguige7'],$data['ydanwei7'],$data['ydanjia7'],$data['ydanwei1_7'],$data['yyongliang7'],$data['ydanwei2_7'],$data['yjine7'],$data['ydanwei3_7'],$data['yqidingliang7'],$data['ybeizhu7']);
+			if(empty($qi_result)){
+				$data['qi_flg'] = 1;
+			}
 		}
+
+		$data['ba_flg'] = 0;
 		if (!empty($kuanhaosyusuan[7]['xiangmu'])) {
 			$data['yxiangmu8'] = $kuanhaosyusuan[7]['xiangmu'];
 			$data['ymingcheng8'] = $kuanhaosyusuan[7]['mingcheng'];
@@ -2988,7 +3088,13 @@ class Goods extends CI_Controller
 			$data['ydanwei3_8'] = $kuanhaosyusuan[7]['danwei3'];
 			$data['yqidingliang8'] = $kuanhaosyusuan[7]['qidingliang'];
 			$data['ybeizhu8'] = $kuanhaosyusuan[7]['beizhu'];
+			$ba_result = $this->task->getqubieduibiresult($id,$data['yxiangmu8'],$data['ymingcheng8'],$data['yguige8'],$data['ydanwei8'],$data['ydanjia8'],$data['ydanwei1_8'],$data['yyongliang8'],$data['ydanwei2_8'],$data['yjine8'],$data['ydanwei3_8'],$data['yqidingliang8'],$data['ybeizhu8']);
+			if(empty($ba_result)){
+				$data['ba_flg'] = 1;
+			}
 		}
+
+		$data['jiu_flg'] = 0;
 		if (!empty($kuanhaosyusuan[8]['xiangmu'])) {
 			$data['yxiangmu9'] = $kuanhaosyusuan[8]['xiangmu'];
 			$data['ymingcheng9'] = $kuanhaosyusuan[8]['mingcheng'];
@@ -3002,7 +3108,13 @@ class Goods extends CI_Controller
 			$data['ydanwei3_9'] = $kuanhaosyusuan[8]['danwei3'];
 			$data['yqidingliang9'] = $kuanhaosyusuan[8]['qidingliang'];
 			$data['ybeizhu9'] = $kuanhaosyusuan[8]['beizhu'];
+			$jiu_result = $this->task->getqubieduibiresult($id,$data['yxiangmu9'],$data['ymingcheng9'],$data['yguige9'],$data['ydanwei9'],$data['ydanjia9'],$data['ydanwei1_9'],$data['yyongliang9'],$data['ydanwei2_9'],$data['yjine9'],$data['ydanwei3_9'],$data['yqidingliang9'],$data['ybeizhu9']);
+			if(empty($jiu_result)){
+				$data['jiu_flg'] = 1;
+			}
 		}
+
+		$data['shi_flg'] = 0;
 		if (!empty($kuanhaosyusuan[9]['xiangmu'])) {
 			$data['yxiangmu10'] = $kuanhaosyusuan[9]['xiangmu'];
 			$data['ymingcheng10'] = $kuanhaosyusuan[9]['mingcheng'];
@@ -3016,6 +3128,10 @@ class Goods extends CI_Controller
 			$data['ydanwei3_10'] = $kuanhaosyusuan[9]['danwei3'];
 			$data['yqidingliang10'] = $kuanhaosyusuan[9]['qidingliang'];
 			$data['ybeizhu10'] = $kuanhaosyusuan[9]['beizhu'];
+			$shi_result = $this->task->getqubieduibiresult($id,$data['yxiangmu10'],$data['ymingcheng10'],$data['yguige10'],$data['ydanwei10'],$data['ydanjia10'],$data['ydanwei1_10'],$data['yyongliang10'],$data['ydanwei2_10'],$data['yjine10'],$data['ydanwei3_10'],$data['yqidingliang10'],$data['ybeizhu10']);
+			if(empty($shi_result)){
+				$data['shi_flg'] = 1;
+			}
 		}
 
 
@@ -3162,6 +3278,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_1'] = $kuanhaosjuesuan[0]['danwei3'];
 			$data['jqidingliang1'] = $kuanhaosjuesuan[0]['qidingliang'];
 			$data['jbeizhu1'] = $kuanhaosjuesuan[0]['beizhu'];
+			if (empty($kuanhaosyusuan[0]['xiangmu'])){
+				$data['yi_flg'] = 1;
+			}
 		}
 		if (!empty($kuanhaosjuesuan[1]['xiangmu'])) {
 			$data['jxiangmu2'] = $kuanhaosjuesuan[1]['xiangmu'];
@@ -3176,6 +3295,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_2'] = $kuanhaosjuesuan[1]['danwei3'];
 			$data['jqidingliang2'] = $kuanhaosjuesuan[1]['qidingliang'];
 			$data['jbeizhu2'] = $kuanhaosjuesuan[1]['beizhu'];
+			if (empty($kuanhaosyusuan[1]['xiangmu'])){
+				$data['er_flg'] = 1;
+			}
 		}
 		if (!empty($kuanhaosjuesuan[2]['xiangmu'])) {
 			$data['jxiangmu3'] = $kuanhaosjuesuan[2]['xiangmu'];
@@ -3190,6 +3312,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_3'] = $kuanhaosjuesuan[2]['danwei3'];
 			$data['jqidingliang3'] = $kuanhaosjuesuan[2]['qidingliang'];
 			$data['jbeizhu3'] = $kuanhaosjuesuan[2]['beizhu'];
+			if (empty($kuanhaosyusuan[2]['xiangmu'])){
+				$data['san_flg'] = 1;
+			}
 		}
 		if (!empty($kuanhaosjuesuan[3]['xiangmu'])) {
 			$data['jxiangmu4'] = $kuanhaosjuesuan[3]['xiangmu'];
@@ -3204,6 +3329,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_4'] = $kuanhaosjuesuan[3]['danwei3'];
 			$data['jqidingliang4'] = $kuanhaosjuesuan[3]['qidingliang'];
 			$data['jbeizhu4'] = $kuanhaosjuesuan[3]['beizhu'];
+			if (empty($kuanhaosyusuan[3]['xiangmu'])){
+				$data['si_flg'] = 1;
+			}
 		}
 		if (!empty($kuanhaosjuesuan[4]['xiangmu'])) {
 			$data['jxiangmu5'] = $kuanhaosjuesuan[4]['xiangmu'];
@@ -3218,6 +3346,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_5'] = $kuanhaosjuesuan[4]['danwei3'];
 			$data['jqidingliang5'] = $kuanhaosjuesuan[4]['qidingliang'];
 			$data['jbeizhu5'] = $kuanhaosjuesuan[4]['beizhu'];
+			if (empty($kuanhaosyusuan[4]['xiangmu'])){
+				$data['wu_flg'] = 1;
+			}
 		}
 		if (!empty($kuanhaosjuesuan[5]['xiangmu'])) {
 			$data['jxiangmu6'] = $kuanhaosjuesuan[5]['xiangmu'];
@@ -3232,6 +3363,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_6'] = $kuanhaosjuesuan[5]['danwei3'];
 			$data['jqidingliang6'] = $kuanhaosjuesuan[5]['qidingliang'];
 			$data['jbeizhu6'] = $kuanhaosjuesuan[5]['beizhu'];
+			if (empty($kuanhaosyusuan[5]['xiangmu'])){
+				$data['liu_flg'] = 1;
+			}
 		}
 		if (!empty($kuanhaosjuesuan[6]['xiangmu'])) {
 			$data['jxiangmu7'] = $kuanhaosjuesuan[6]['xiangmu'];
@@ -3246,6 +3380,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_7'] = $kuanhaosjuesuan[6]['danwei3'];
 			$data['jqidingliang7'] = $kuanhaosjuesuan[6]['qidingliang'];
 			$data['jbeizhu7'] = $kuanhaosjuesuan[6]['beizhu'];
+			if (empty($kuanhaosyusuan[6]['xiangmu'])){
+				$data['qi_flg'] = 1;
+			}
 		}
 		if (!empty($kuanhaosjuesuan[7]['xiangmu'])) {
 			$data['jxiangmu8'] = $kuanhaosjuesuan[7]['xiangmu'];
@@ -3260,6 +3397,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_8'] = $kuanhaosjuesuan[7]['danwei3'];
 			$data['jqidingliang8'] = $kuanhaosjuesuan[7]['qidingliang'];
 			$data['jbeizhu8'] = $kuanhaosjuesuan[7]['beizhu'];
+			if (empty($kuanhaosyusuan[7]['xiangmu'])){
+				$data['ba_flg'] = 1;
+			}
 		}
 		if (!empty($kuanhaosjuesuan[8]['xiangmu'])) {
 			$data['jxiangmu9'] = $kuanhaosjuesuan[8]['xiangmu'];
@@ -3274,6 +3414,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_9'] = $kuanhaosjuesuan[8]['danwei3'];
 			$data['jqidingliang9'] = $kuanhaosjuesuan[8]['qidingliang'];
 			$data['jbeizhu9'] = $kuanhaosjuesuan[8]['beizhu'];
+			if (empty($kuanhaosyusuan[8]['xiangmu'])){
+				$data['jiu_flg'] = 1;
+			}
 		}
 		if (!empty($kuanhaosjuesuan[9]['xiangmu'])) {
 			$data['jxiangmu10'] = $kuanhaosjuesuan[9]['xiangmu'];
@@ -3288,6 +3431,9 @@ class Goods extends CI_Controller
 			$data['jdanwei3_10'] = $kuanhaosjuesuan[9]['danwei3'];
 			$data['jqidingliang10'] = $kuanhaosjuesuan[9]['qidingliang'];
 			$data['jbeizhu10'] = $kuanhaosjuesuan[9]['beizhu'];
+			if (empty($kuanhaosyusuan[9]['xiangmu'])){
+				$data['shi_flg'] = 1;
+			}
 		}
 
 		$this->display("goods/goods_list_bao_duibi_details", $data);

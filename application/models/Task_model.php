@@ -644,4 +644,22 @@ class Task_model extends CI_Model
 		$sql = "SELECT * FROM `erp_xiangmufuzeren` where xid = $id ";
 		return $this->db->query($sql)->result_array();
 	}
+	public function getqubieduibiresult($kid,$a,$a1,$a2,$a3,$a4,$a5,$a6,$a7,$a8,$a9,$a10,$a11)
+	{
+		$kid = $this->db->escape($kid);
+		$a = $this->db->escape($a);
+		$a1 = $this->db->escape($a1);
+		$a2 = $this->db->escape($a2);
+		$a3 = $this->db->escape($a3);
+		$a4 = $this->db->escape($a4);
+		$a5 = $this->db->escape($a5);
+		$a6 = $this->db->escape($a6);
+		$a7 = $this->db->escape($a7);
+		$a8 = $this->db->escape($a8);
+		$a9 = $this->db->escape($a9);
+		$a10 = $this->db->escape($a10);
+		$a11 = $this->db->escape($a11);
+		$sql = "SELECT * FROM `erp_baojiaxiangmujue` where kid=$kid and xiangmu=$a and mingcheng=$a1 and guige=$a2 and danwei=$a3 and danjia=$a4 and danwei1=$a5 and yongliang=$a6 and danwei2=$a7 and jine=$a8 and danwei3=$a9 and qidingliang=$a10 and beizhu=$a11";
+		return $this->db->query($sql)->row_array();
+	}
 }
