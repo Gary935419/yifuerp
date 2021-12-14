@@ -18,7 +18,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>项目列表</cite></a>
+              <cite>样品制作收发明细</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -26,53 +26,69 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list' ?>">
-                        <div class="layui-inline layui-show-xs-block">
-                            <input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
-                                   placeholder="合同编号或者甲方名称" autocomplete="off" class="layui-input">
-                        </div>
-                        <div class="layui-inline layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
-                                        class="layui-icon">&#xe615;</i></button>
-                        </div>
-                    </form>
+					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/label/yangpin_list' ?>">
+						<div class="layui-inline layui-show-xs-block">
+							<input type="text" name="kuhumingcheng" id="kuhumingcheng" value="<?php echo $kuhumingcheng ?>"
+								   placeholder="款号" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-input-inline layui-show-xs-block">
+							<input class="layui-input" placeholder="开始日期" value="<?php echo $start ?>" name="start" id="start"></div>
+						<div class="layui-input-inline layui-show-xs-block">
+							<input class="layui-input" placeholder="截止日期" value="<?php echo $end ?>" name="end" id="end"></div>
+						<div class="layui-input-inline layui-show-xs-block">
+							<button class="layui-btn" lay-submit="" lay-filter="sreach">
+								<i class="layui-icon">&#xe615;</i></button>
+						</div>
+						<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
+					</form>
                 </div>
+                <button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
+                        onclick="xadmin.open('样品添加','<?= RUN . '/label/yangpin_add?zid=' ?>'+<?= $id ?>)"><i
+                            class="layui-icon"></i>样品添加
+                </button>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>序号</th>
-                            <th>合同编号</th>
-                            <th>甲方名称</th>
-                            <th>签订时间</th>
-                            <th>交货时间</th>
-							<th>创建时间</th>
+                            <th>客户名称</th>
+                            <th>担当者</th>
+							<th>款号</th>
+							<th>样品性质</th>
+							<th>数量</th>
+							<th>样品单价</th>
+							<th>收到日期</th>
+							<th>发出日期</th>
+							<th>制作者</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-                                    <td><?= $num + 1 ?></td>
-                                    <td><?= $once['bianhao'] ?></td>
-                                    <td><?= $once['mingcheng'] ?></td>
-									<td><?= date('Y-m-d', $once['qianding']) ?></td>
-                                    <td><?= date('Y-m-d', $once['jiaohuoqi']) ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
+                                    <td><?= $once['kuhumingcheng'] ?></td>
+									<td><?= $once['dandangzhe'] ?></td>
+									<td><?= $once['kuanhao'] ?></td>
+									<td><?= $once['kuanshi'] ?></td>
+									<td><?= $once['yangpinxingzhi'] ?></td>
+									<td><?= $once['shuliang'] ?></td>
+									<td><?= $once['yangpindanjia'] ?></td>
+									<td><?= date('Y-m-d H:i:s', $once['shoudaoriqi']) ?></td>
+									<td><?= date('Y-m-d H:i:s', $once['fachuriqi']) ?></td>
+									<td><?= $once['zhizuozhe'] ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('项目编辑','<?= RUN . '/goods/goods_edit_new?id=' ?>'+'<?= $once['id'] ?>')">
-                                            <i class="layui-icon">&#xe642;</i>项目编辑
+                                                onclick="xadmin.open('样品编辑','<?= RUN . '/label/yangpin_edit?id=' ?>'+<?= $once['id'] ?>)">
+                                            <i class="layui-icon">&#xe642;</i>样品编辑
                                         </button>
                                         <button class="layui-btn layui-btn-danger"
-                                                onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>项目删除
+                                                onclick="label_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>样品删除
                                         </button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="7" style="text-align: center;">暂无数据</td>
+                                <td colspan="10" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>
@@ -89,8 +105,21 @@
     </div>
 </div>
 </body>
+<script>layui.use(['laydate', 'form'],
+			function() {
+				var laydate = layui.laydate;
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#start' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#end' //指定元素
+				});
+			});
+</script>
 <script>
-    function goods_delete(id) {
+    function label_delete(id) {
         layer.confirm('您是否确认删除？', {
                 title: '温馨提示',
                 btn: ['确认', '取消']
@@ -101,7 +130,7 @@
                     type: "post",
                     data: {"id": id},
                     dataType: "json",
-                    url: "<?= RUN . '/goods/goods_delete' ?>",
+                    url: "<?= RUN . '/label/yangpin_delete' ?>",
                     success: function (data) {
                         if (data.success) {
                             $("#p" + id).remove();

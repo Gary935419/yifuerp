@@ -3438,6 +3438,89 @@ class Goods extends CI_Controller
 
 		$this->display("goods/goods_list_bao_duibi_details", $data);
 	}
+	public function goods_yangpin_xiangmu()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPage($gname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["id"] = $id;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNew($page, $gname);
+		$data["gname"] = $gname;
+		$data["list"] = $list;
+		$this->display("goods/goods_yangpin_xiangmu", $data);
+	}
+	public function yangpin_save()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$zid = isset($_POST['id']) ? $_POST['id'] : 0;
+
+		$kuhumingcheng = isset($_POST["kuhumingcheng"]) ? $_POST["kuhumingcheng"] : '';
+		if (empty($kuhumingcheng[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加客户姓名!"));
+			return;
+		}
+		$dandangzhe = isset($_POST["dandangzhe"]) ? $_POST["dandangzhe"] : '';
+		if (empty($dandangzhe[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加担当者!"));
+			return;
+		}
+		$kuanhao = isset($_POST["kuanhao"]) ? $_POST["kuanhao"] : '';
+		if (empty($kuanhao[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加款号!"));
+			return;
+		}
+		$kuanshi = isset($_POST["kuanshi"]) ? $_POST["kuanshi"] : '';
+		if (empty($kuanshi[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加款式!"));
+			return;
+		}
+		$yangpinxingzhi = isset($_POST["yangpinxingzhi"]) ? $_POST["yangpinxingzhi"] : '';
+		if (empty($yangpinxingzhi[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加样品性质!"));
+			return;
+		}
+		$shuliang = isset($_POST["shuliang"]) ? $_POST["shuliang"] : '';
+		if (empty($shuliang[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加数量!"));
+			return;
+		}
+		$yangpindanjia = isset($_POST["yangpindanjia"]) ? $_POST["yangpindanjia"] : '';
+		if (empty($yangpindanjia[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加样品单价!"));
+			return;
+		}
+		$shoudaoriqi = isset($_POST["shoudaoriqi"]) ? $_POST["shoudaoriqi"] : '';
+		if (empty($shoudaoriqi[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加收到日期!"));
+			return;
+		}
+		$fachuriqi = isset($_POST["fachuriqi"]) ? $_POST["fachuriqi"] : '';
+		if (empty($fachuriqi[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加发出日期!"));
+			return;
+		}
+		$zhizuozhe = isset($_POST["zhizuozhe"]) ? $_POST["zhizuozhe"] : '';
+		if (empty($zhizuozhe[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加制作者!"));
+			return;
+		}
+		foreach ($kuhumingcheng as $k => $v) {
+			if (empty($v) || empty($dandangzhe[$k]) || empty($kuanhao[$k]) || empty($kuanshi[$k]) || empty($yangpinxingzhi[$k]) || empty($shuliang[$k]) || empty($yangpindanjia[$k]) || empty($shoudaoriqi[$k]) || empty($fachuriqi[$k]) || empty($zhizuozhe[$k])) {
+				continue;
+			}
+			$this->role->role_save_yangpin($zid,$v,$kuanhao[$k],$kuanshi[$k],$yangpinxingzhi[$k],$shuliang[$k],$yangpindanjia[$k],$shoudaoriqi[$k],$fachuriqi[$k],$zhizuozhe[$k],time());
+		}
+
+		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+	}
 	/**
 	 * 原辅料平衡表导出
 	 */

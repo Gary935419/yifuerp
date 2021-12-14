@@ -480,6 +480,24 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
+	public function role_save_yangpin($zid,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)
+	{
+		$zid = $this->db->escape($zid);
+		$kuhumingcheng = $this->db->escape($kuhumingcheng);
+		$kuanhao = $this->db->escape($kuanhao);
+		$kuanshi = $this->db->escape($kuanshi);
+		$yangpinxingzhi = $this->db->escape($yangpinxingzhi);
+		$shuliang = $this->db->escape($shuliang);
+		$yangpindanjia = $this->db->escape($yangpindanjia);
+		$shoudaoriqi = $this->db->escape($shoudaoriqi);
+		$fachuriqi = $this->db->escape($fachuriqi);
+		$zhizuozhe = $this->db->escape($zhizuozhe);
+		$time = $this->db->escape($time);
+		$sql = "INSERT INTO `erp_yangmingmingxi` (zid,kuhumingcheng,kuanhao,kuanshi,yangpinxingzhi,shuliang,yangpindanjia,shoudaoriqi,fachuriqi,zhizuozhe,addtime) VALUES ($zid,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
 	public function role_save_edit_jichujue($infomation,$status,$state,$xiangmu,$mingcheng,$guige,$danwei,$danjia,$danwei1,$yongliang,$danwei2,$jine,$danwei3,$qidingliang,$beizhu,$kid,$time)
 	{
 		$infomation = $this->db->escape($infomation);

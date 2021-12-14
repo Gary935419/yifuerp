@@ -15,18 +15,18 @@
     <script type="text/javascript" src="<?= STA ?>/js/xadmin.js"></script>
 </head>
 <body>
-<div class="x-nav">
-          <span class="layui-breadcrumb">
-            <a>
-              <cite>预算和决算报价单可对比列表</cite></a>
-          </span>
-</div>
+<!--<div class="x-nav">-->
+<!--          <span class="layui-breadcrumb">-->
+<!--            <a>-->
+<!--              <cite>报价单信息列表</cite></a>-->
+<!--          </span>-->
+<!--</div>-->
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_bao_duibi' ?>">
+                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_yangpin_xiangmu' ?>">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
                                    placeholder="合同编号" autocomplete="off" class="layui-input">
@@ -35,6 +35,7 @@
                             <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
                                         class="layui-icon">&#xe615;</i></button>
                         </div>
+						<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
                     </form>
                 </div>
                 <div class="layui-card-body ">
@@ -42,9 +43,9 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>合同编号</th>
-							<th>合同款号</th>
-							<th>签订时间</th>
+							<th>合同编号</th>
+							<th>甲方名称</th>
+							<th>创建时间</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
@@ -52,26 +53,20 @@
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
                                     <td><?= $num + 1 ?></td>
-                                    <td><?= $once['bianhao'] ?></td>
-									<td><?= $once['kuanhao'] ?></td>
-									<td><?= date('Y-m-d', $once['qianding']) ?></td>
+									<td><?= $once['bianhao'] ?></td>
+									<td><?= $once['mingcheng'] ?></td>
+									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
-										<?php if ($once['duibiflg'] == 1){ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('预算和决算报价单对比','<?= RUN . '/goods/goods_list_bao_duibi_details?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>预算和决算报价单对比
-											</button>
-										<?php }else{ ?>
-											<button class="layui-btn layui-btn-danger">
-												目前不满足对比条件
-											</button>
-										<?php } ?>
+										<button class="layui-btn layui-btn-normal"
+												onclick="xadmin.open('查看样品制作表','<?= RUN . '/goods/goods_list_yangpin?id=' ?>'+'<?= $once['id'] ?>'+'&zid='+'<?= $id ?>')">
+											<i class="layui-icon">&#xe642;</i>查看样品制作表
+										</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="5" style="text-align: center;">暂无数据</td>
+                                <td colspan="11" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>

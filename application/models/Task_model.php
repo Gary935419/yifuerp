@@ -662,4 +662,9 @@ class Task_model extends CI_Model
 		$sql = "SELECT * FROM `erp_baojiaxiangmujue` where kid=$kid and xiangmu=$a and mingcheng=$a1 and guige=$a2 and danwei=$a3 and danjia=$a4 and danwei1=$a5 and yongliang=$a6 and danwei2=$a7 and jine=$a8 and danwei3=$a9 and qidingliang=$a10 and beizhu=$a11";
 		return $this->db->query($sql)->row_array();
 	}
+	public function getzigongsilist()
+	{
+		$sql = "SELECT * FROM `erp_zigongsi` order by id desc ";
+		return $this->db->query($sql)->result_array();
+	}
 }

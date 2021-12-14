@@ -2,8 +2,8 @@
 
 /**
  * **********************************************************************
- * サブシステム名  ： Task
- * 機能名         ：标签
+ * サブシステム名  ： ERP
+ * 機能名         ：子公司
  * 作成者        ： Gary
  * **********************************************************************
  */
@@ -18,9 +18,6 @@ class Label extends CI_Controller
         $this->load->model('Label_model', 'label');
         header("Content-type:text/html;charset=utf-8");
     }
-    /**
-     * 标签列表页
-     */
     public function label_list()
     {
         $lname = isset($_GET['lname']) ? $_GET['lname'] : '';
@@ -35,16 +32,10 @@ class Label extends CI_Controller
         $data["lname"] = $lname;
         $this->display("label/label_list", $data);
     }
-    /**
-     * 标签添加页
-     */
     public function label_add()
     {
         $this->display("label/label_add");
     }
-    /**
-     * 标签添加提交
-     */
     public function label_save()
     {
         if (empty($_SESSION['user_name'])) {
@@ -53,77 +44,94 @@ class Label extends CI_Controller
         }
 
         $lname = isset($_POST["lname"]) ? $_POST["lname"] : '';
+		$lpname = isset($_POST["lpname"]) ? $_POST["lpname"] : '';
+		$ltel = isset($_POST["ltel"]) ? $_POST["ltel"] : '';
         $add_time = time();
 
         $label_info = $this->label->getlabelByname($lname);
         if (!empty($label_info)) {
-            echo json_encode(array('error' => true, 'msg' => "该标签名称已经存在。"));
+            echo json_encode(array('error' => true, 'msg' => "该公司名称已经存在。"));
             return;
         }
-        $result = $this->label->label_save($lname, $add_time);
+        $result = $this->label->label_save($lname,$lpname,$ltel,$add_time);
         if ($result) {
             echo json_encode(array('success' => true, 'msg' => "操作成功。"));
-            return;
         } else {
             echo json_encode(array('error' => false, 'msg' => "操作失败"));
-            return;
         }
     }
-    /**
-     * 标签删除
-     */
     public function label_delete()
     {
         $id = isset($_POST['id']) ? $_POST['id'] : 0;
         if ($this->label->label_delete($id)) {
             echo json_encode(array('success' => true, 'msg' => "删除成功"));
-            return;
         } else {
             echo json_encode(array('success' => false, 'msg' => "删除失败"));
-            return;
         }
     }
-    /**
-     * 标签修改页
-     */
     public function label_edit()
     {
-        $lid = isset($_GET['lid']) ? $_GET['lid'] : 0;
-        $label_info = $this->label->getlabelById($lid);
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        $label_info = $this->label->getlabelById($id);
         if (empty($label_info)) {
             echo json_encode(array('error' => true, 'msg' => "数据错误"));
             return;
         }
         $data = array();
         $data['lname'] = $label_info['lname'];
-        $data['lid'] = $lid;
+		$data['lpname'] = $label_info['lpname'];
+		$data['ltel'] = $label_info['ltel'];
+        $data['id'] = $id;
         $this->display("label/label_edit", $data);
     }
-    /**
-     * 标签修改提交
-     */
     public function label_save_edit()
     {
         if (empty($_SESSION['user_name'])) {
             echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
             return;
         }
-        $lname = isset($_POST["lname"]) ? $_POST["lname"] : '';
-        $lid = isset($_POST["lid"]) ? $_POST["lid"] : '';
-        $label_info = $this->label->getlabelById2($lname, $lid);
+		$lname = isset($_POST["lname"]) ? $_POST["lname"] : '';
+		$lpname = isset($_POST["lpname"]) ? $_POST["lpname"] : '';
+		$ltel = isset($_POST["ltel"]) ? $_POST["ltel"] : '';
+        $id = isset($_POST["id"]) ? $_POST["id"] : '';
+        $label_info = $this->label->getlabelById2($lname,$id);
         if (!empty($label_info)){
             echo json_encode(array('error' => false, 'msg' => "该标签名称已经存在"));
             return;
         }
 
-        $result = $this->label->label_save_edit($lid, $lname);
+        $result = $this->label->label_save_edit($id,$lname,$lpname,$ltel);
         if ($result) {
             echo json_encode(array('success' => true, 'msg' => "操作成功。"));
-            return;
         } else {
             echo json_encode(array('error' => false, 'msg' => "操作失败"));
-            return;
         }
     }
+	public function yangpin_add()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$data["id"] = $id;
+		$this->display("label/yangpin_add", $data);
+	}
+	public function yangpin_list()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$kuhumingcheng = isset($_GET["kuhumingcheng"]) ? $_GET["kuhumingcheng"] : '';
+		$allpage = $this->label->getlabelAllPageyangpin($kuhumingcheng,$start,$end,$id);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page,$allpage, $_GET);
+		$data["page"] = $page;
+		$data["id"] = $id;
+		$data["start"] = $start;
+		$data["end"] = $end;
+		$data["allpage"] = $allpage;
+		$list = $this->label->getlabelAllyangpin($page,$kuhumingcheng,$start,$end,$id);
+		$data["list"] = $list;
+		$data["kuhumingcheng"] = $kuhumingcheng;
+		$this->display("label/yangpin_list", $data);
+	}
 
 }
