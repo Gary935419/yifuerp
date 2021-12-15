@@ -43,7 +43,7 @@
 					</form>
                 </div>
                 <button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
-                        onclick="xadmin.open('样品添加','<?= RUN . '/label/yangpin_add?zid=' ?>'+<?= $id ?>)"><i
+                        onclick="xadmin.open('样品添加','<?= RUN . '/label/yangpin_add?zid='.$id ?>')"><i
                             class="layui-icon"></i>样品添加
                 </button>
                 <div class="layui-card-body ">
@@ -53,6 +53,7 @@
                             <th>客户名称</th>
                             <th>担当者</th>
 							<th>款号</th>
+							<th>款式</th>
 							<th>样品性质</th>
 							<th>数量</th>
 							<th>样品单价</th>
@@ -88,7 +89,7 @@
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="10" style="text-align: center;">暂无数据</td>
+                                <td colspan="11" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>

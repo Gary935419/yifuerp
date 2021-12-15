@@ -42,17 +42,23 @@
                         </thead>
                         <tbody>
 							<tr id="div1">
-								<td style="min-width: 80px">
-									<?php if (!empty($xiangmu1) && empty($xiangmu2)) { ?>
-										<i class="layui-icon" id="divadd1"
-										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(2,1)"></i>
-									<?php } else { ?>
-										<i class="layui-icon" id="divadd1"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(2,1)"></i>
-									<?php } ?>
-								</td>
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px">
+										<?php if (!empty($xiangmu1) && empty($xiangmu2)) { ?>
+											<i class="layui-icon" id="divadd1"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(2,1)"></i>
+										<?php } else { ?>
+											<i class="layui-icon" id="divadd1"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(2,1)"></i>
+										<?php } ?>
+									</td>
+								<?php } ?>
+
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu1 ?>" id="val1" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng1 ?>" id="val11" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige1 ?>" id="val111" autocomplete="off" class="layui-input"></td>
@@ -71,20 +77,26 @@
 							<?php }else{ ?>
 							<tr id="div2">
 							<?php } ?>
-								<td style="min-width: 80px;">
-									<?php if (!empty($xiangmu2) && empty($xiangmu3)) { ?>
-										<i class="layui-icon" id="divadd2"
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px;">
+										<?php if (!empty($xiangmu2) && empty($xiangmu3)) { ?>
+											<i class="layui-icon" id="divadd2"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(3,2)"></i>
+										<?php } else { ?>
+											<i class="layui-icon" id="divadd2"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(3,2)"></i>
+										<?php } ?>
+										<i class="iconfont"
 										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(3,2)"></i>
-									<?php } else { ?>
-										<i class="layui-icon" id="divadd2"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(3,2)"></i>
-									<?php } ?>
-									<i class="iconfont"
-									   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(2,1)">&#xe6fe;</i>
-								</td>
+										   onclick="return dellete(2,1)">&#xe6fe;</i>
+									</td>
+								<?php } ?>
+
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu2 ?>" id="val2" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng2 ?>" id="val22" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige2 ?>" id="val222" autocomplete="off" class="layui-input"></td>
@@ -103,22 +115,28 @@
 							<?php }else{ ?>
 							<tr id="div3">
 							<?php } ?>
-								<td style="min-width: 80px;">
-									<?php if (!empty($xiangmu3) && empty($xiangmu4)) { ?>
-										<i class="layui-icon"
-										   id="divadd3"
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px;">
+										<?php if (!empty($xiangmu3) && empty($xiangmu4)) { ?>
+											<i class="layui-icon"
+											   id="divadd3"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(4,3)"></i>
+										<?php } else { ?>
+											<i class="layui-icon"
+											   id="divadd3"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(4,3)"></i>
+										<?php } ?>
+										<i class="iconfont"
 										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(4,3)"></i>
-									<?php } else { ?>
-										<i class="layui-icon"
-										   id="divadd3"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(4,3)"></i>
-									<?php } ?>
-									<i class="iconfont"
-									   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(3,2)">&#xe6fe;</i>
-								</td>
+										   onclick="return dellete(3,2)">&#xe6fe;</i>
+									</td>
+								<?php } ?>
+
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu3 ?>" id="val3" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng3 ?>" id="val33" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige3 ?>" id="val333" autocomplete="off" class="layui-input"></td>
@@ -137,22 +155,28 @@
 								<?php }else{ ?>
 							<tr id="div4">
 								<?php } ?>
-								<td style="min-width: 80px;">
-									<?php if (!empty($xiangmu4) && empty($xiangmu5)) { ?>
-										<i class="layui-icon"
-										   id="divadd4"
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px;">
+										<?php if (!empty($xiangmu4) && empty($xiangmu5)) { ?>
+											<i class="layui-icon"
+											   id="divadd4"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(5,4)"></i>
+										<?php } else { ?>
+											<i class="layui-icon"
+											   id="divadd4"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(5,4)"></i>
+										<?php } ?>
+										<i class="iconfont"
 										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(5,4)"></i>
-									<?php } else { ?>
-										<i class="layui-icon"
-										   id="divadd4"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(5,4)"></i>
-									<?php } ?>
-									<i class="iconfont"
-									   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(4,3)">&#xe6fe;</i>
-								</td>
+										   onclick="return dellete(4,3)">&#xe6fe;</i>
+									</td>
+								<?php } ?>
+
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu4 ?>" id="val4" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng4 ?>" id="val44" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige4 ?>" id="val444" autocomplete="off" class="layui-input"></td>
@@ -171,22 +195,28 @@
 								<?php }else{ ?>
 							<tr id="div5">
 								<?php } ?>
-								<td style="min-width: 80px;">
-									<?php if (!empty($xiangmu5) && empty($xiangmu6)) { ?>
-										<i class="layui-icon"
-										   id="divadd5"
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px;">
+										<?php if (!empty($xiangmu5) && empty($xiangmu6)) { ?>
+											<i class="layui-icon"
+											   id="divadd5"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(6,5)"></i>
+										<?php } else { ?>
+											<i class="layui-icon"
+											   id="divadd5"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(6,5)"></i>
+										<?php } ?>
+										<i class="iconfont"
 										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(6,5)"></i>
-									<?php } else { ?>
-										<i class="layui-icon"
-										   id="divadd5"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(6,5)"></i>
-									<?php } ?>
-									<i class="iconfont"
-									   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(5,4)">&#xe6fe;</i>
-								</td>
+										   onclick="return dellete(5,4)">&#xe6fe;</i>
+									</td>
+								<?php } ?>
+
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu5 ?>" id="val5" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng5 ?>" id="val55" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige5 ?>" id="val555" autocomplete="off" class="layui-input"></td>
@@ -205,22 +235,28 @@
 								<?php }else{ ?>
 							<tr id="div6">
 								<?php } ?>
-								<td style="min-width: 80px;">
-									<?php if (!empty($xiangmu6) && empty($xiangmu7)) { ?>
-										<i class="layui-icon"
-										   id="divadd6"
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px;">
+										<?php if (!empty($xiangmu6) && empty($xiangmu7)) { ?>
+											<i class="layui-icon"
+											   id="divadd6"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(7,6)"></i>
+										<?php } else { ?>
+											<i class="layui-icon"
+											   id="divadd6"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(7,6)"></i>
+										<?php } ?>
+										<i class="iconfont"
 										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(7,6)"></i>
-									<?php } else { ?>
-										<i class="layui-icon"
-										   id="divadd6"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(7,6)"></i>
-									<?php } ?>
-									<i class="iconfont"
-									   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(6,5)">&#xe6fe;</i>
-								</td>
+										   onclick="return dellete(6,5)">&#xe6fe;</i>
+									</td>
+								<?php } ?>
+
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu6 ?>" id="val6" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng6 ?>" id="val66" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige6 ?>" id="val666" autocomplete="off" class="layui-input"></td>
@@ -239,22 +275,28 @@
 								<?php }else{ ?>
 							<tr id="div7">
 								<?php } ?>
-								<td style="min-width: 80px;">
-									<?php if (!empty($xiangmu7) && empty($xiangmu8)) { ?>
-										<i class="layui-icon"
-										   id="divadd7"
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px;">
+										<?php if (!empty($xiangmu7) && empty($xiangmu8)) { ?>
+											<i class="layui-icon"
+											   id="divadd7"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(8,7)"></i>
+										<?php } else { ?>
+											<i class="layui-icon"
+											   id="divadd7"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(8,7)"></i>
+										<?php } ?>
+										<i class="iconfont"
 										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(8,7)"></i>
-									<?php } else { ?>
-										<i class="layui-icon"
-										   id="divadd7"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(8,7)"></i>
-									<?php } ?>
-									<i class="iconfont"
-									   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(7,6)">&#xe6fe;</i>
-								</td>
+										   onclick="return dellete(7,6)">&#xe6fe;</i>
+									</td>
+								<?php } ?>
+
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu7 ?>" id="val7" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng7 ?>" id="val77" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige7 ?>" id="val777" autocomplete="off" class="layui-input"></td>
@@ -273,22 +315,28 @@
 								<?php }else{ ?>
 							<tr id="div8">
 								<?php } ?>
-								<td style="min-width: 80px;">
-									<?php if (!empty($xiangmu8) && empty($xiangmu9)) { ?>
-										<i class="layui-icon"
-										   id="divadd8"
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px;">
+										<?php if (!empty($xiangmu8) && empty($xiangmu9)) { ?>
+											<i class="layui-icon"
+											   id="divadd8"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(9,8)"></i>
+										<?php } else { ?>
+											<i class="layui-icon"
+											   id="divadd8"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(9,8)"></i>
+										<?php } ?>
+										<i class="iconfont"
 										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(9,8)"></i>
-									<?php } else { ?>
-										<i class="layui-icon"
-										   id="divadd8"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(9,8)"></i>
-									<?php } ?>
-									<i class="iconfont"
-									   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(8,7)">&#xe6fe;</i>
-								</td>
+										   onclick="return dellete(8,7)">&#xe6fe;</i>
+									</td>
+								<?php } ?>
+
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu8 ?>" id="val8" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng8 ?>" id="val88" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige8 ?>" id="val888" autocomplete="off" class="layui-input"></td>
@@ -307,22 +355,28 @@
 								<?php }else{ ?>
 							<tr id="div9">
 								<?php } ?>
-								<td style="min-width: 80px;">
-									<?php if (!empty($xiangmu9) && empty($xiangmu10)) { ?>
-										<i class="layui-icon"
-										   id="divadd9"
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px;">
+										<?php if (!empty($xiangmu9) && empty($xiangmu10)) { ?>
+											<i class="layui-icon"
+											   id="divadd9"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(10,9)"></i>
+										<?php } else { ?>
+											<i class="layui-icon"
+											   id="divadd9"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(10,9)"></i>
+										<?php } ?>
+										<i class="iconfont"
 										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(10,9)"></i>
-									<?php } else { ?>
-										<i class="layui-icon"
-										   id="divadd9"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(10,9)"></i>
-									<?php } ?>
-									<i class="iconfont"
-									   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(9,8)">&#xe6fe;</i>
-								</td>
+										   onclick="return dellete(9,8)">&#xe6fe;</i>
+									</td>
+								<?php } ?>
+
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu9 ?>" id="val9" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng9 ?>" id="val99" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige9 ?>" id="val999" autocomplete="off" class="layui-input"></td>
@@ -341,22 +395,27 @@
 								<?php }else{ ?>
 							<tr id="div10">
 								<?php } ?>
-								<td style="min-width: 80px;">
-									<?php if (!empty($xiangmu10)) { ?>
-										<i class="layui-icon"
-										   id="divadd10"
+								<?php if ($state==2 && $status==2 || (($btype==3 || $btype==4))){ ?>
+									<td style="min-width: 80px">
+									</td>
+								<?php }else{ ?>
+									<td style="min-width: 80px;">
+										<?php if (!empty($xiangmu10)) { ?>
+											<i class="layui-icon"
+											   id="divadd10"
+											   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(11,10)"></i>
+										<?php } else { ?>
+											<i class="layui-icon"
+											   id="divadd10"
+											   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
+											   onclick="return addnow(11,10)"></i>
+										<?php } ?>
+										<i class="iconfont"
 										   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(11,10)"></i>
-									<?php } else { ?>
-										<i class="layui-icon"
-										   id="divadd10"
-										   style="cursor: pointer;display: none;font-size: 25px;margin-left: 10px;"
-										   onclick="return addnow(11,10)"></i>
-									<?php } ?>
-									<i class="iconfont"
-									   style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(10,9)">&#xe6fe;</i>
-								</td>
+										   onclick="return dellete(10,9)">&#xe6fe;</i>
+									</td>
+								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $xiangmu10 ?>" id="val10" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $mingcheng10 ?>" id="val1010" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $guige10 ?>" id="val101010" autocomplete="off" class="layui-input"></td>

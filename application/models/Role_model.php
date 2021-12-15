@@ -480,9 +480,10 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
-	public function role_save_yangpin($zid,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)
+	public function role_save_yangpin($zid,$dandangzhe,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)
 	{
 		$zid = $this->db->escape($zid);
+		$dandangzhe = $this->db->escape($dandangzhe);
 		$kuhumingcheng = $this->db->escape($kuhumingcheng);
 		$kuanhao = $this->db->escape($kuanhao);
 		$kuanshi = $this->db->escape($kuanshi);
@@ -493,7 +494,7 @@ class Role_model extends CI_Model
 		$fachuriqi = $this->db->escape($fachuriqi);
 		$zhizuozhe = $this->db->escape($zhizuozhe);
 		$time = $this->db->escape($time);
-		$sql = "INSERT INTO `erp_yangmingmingxi` (zid,kuhumingcheng,kuanhao,kuanshi,yangpinxingzhi,shuliang,yangpindanjia,shoudaoriqi,fachuriqi,zhizuozhe,addtime) VALUES ($zid,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)";
+		$sql = "INSERT INTO `erp_yangmingmingxi` (zid,dandangzhe,kuhumingcheng,kuanhao,kuanshi,yangpinxingzhi,shuliang,yangpindanjia,shoudaoriqi,fachuriqi,zhizuozhe,addtime) VALUES ($zid,$dandangzhe,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;

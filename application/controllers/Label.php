@@ -109,7 +109,7 @@ class Label extends CI_Controller
     }
 	public function yangpin_add()
 	{
-		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$id = isset($_GET['zid']) ? $_GET['zid'] : '';
 		$data["id"] = $id;
 		$this->display("label/yangpin_add", $data);
 	}
@@ -133,5 +133,35 @@ class Label extends CI_Controller
 		$data["kuhumingcheng"] = $kuhumingcheng;
 		$this->display("label/yangpin_list", $data);
 	}
-
+	public function yangpin_delete()
+	{
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		if ($this->label->yangpin_delete($id)) {
+			echo json_encode(array('success' => true, 'msg' => "删除成功"));
+		} else {
+			echo json_encode(array('success' => false, 'msg' => "删除失败"));
+		}
+	}
+	public function yangpin_edit()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$label_info = $this->label->getlabelByIdyang($id);
+		if (empty($label_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$data = array();
+		$data['kuhumingcheng'] = $label_info['kuhumingcheng'];
+		$data['dandangzhe'] = $label_info['dandangzhe'];
+		$data['kuanhao'] = $label_info['kuanhao'];
+		$data['kuanshi'] = $label_info['kuanshi'];
+		$data['yangpinxingzhi'] = $label_info['yangpinxingzhi'];
+		$data['shuliang'] = $label_info['shuliang'];
+		$data['yangpindanjia'] = $label_info['yangpindanjia'];
+		$data['shoudaoriqi'] = $label_info['shoudaoriqi'];
+		$data['fachuriqi'] = $label_info['fachuriqi'];
+		$data['zhizuozhe'] = $label_info['zhizuozhe'];
+		$data['id'] = $id;
+		$this->display("label/yangpin_edit", $data);
+	}
 }

@@ -131,4 +131,16 @@ class Label_model extends CI_Model
 		$sql = "SELECT * FROM `erp_yangmingmingxi` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
+	public function yangpin_delete($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_yangmingmingxi WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	public function getlabelByIdyang($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_yangmingmingxi` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
 }

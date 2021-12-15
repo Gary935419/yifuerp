@@ -239,11 +239,74 @@
 				var laydate = layui.laydate;
 				//执行一个laydate实例
 				laydate.render({
-					elem: '#shoudaoriqi' //指定元素
+					elem: '#val11111111' //指定元素
+				});
+				laydate.render({
+					elem: '#val111111111' //指定元素
+				});
+				laydate.render({
+					elem: '#val22222222' //指定元素
+				});
+				laydate.render({
+					elem: '#val222222222' //指定元素
+				});
+				laydate.render({
+					elem: '#val33333333' //指定元素
+				});
+				laydate.render({
+					elem: '#val333333333' //指定元素
+				});
+				laydate.render({
+					elem: '#val44444444' //指定元素
+				});
+				laydate.render({
+					elem: '#val444444444' //指定元素
+				});
+				laydate.render({
+					elem: '#val55555555' //指定元素
+				});
+				laydate.render({
+					elem: '#val555555555' //指定元素
 				});
 				//执行一个laydate实例
 				laydate.render({
-					elem: '#fachuriqi' //指定元素
+					elem: '#val66666666' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#val666666666' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#val77777777' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#val777777777' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#val88888888' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#val888888888' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#val99999999' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#val999999999' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#val1010101010101010' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#val101010101010101010' //指定元素
 				});
 			});
 </script>

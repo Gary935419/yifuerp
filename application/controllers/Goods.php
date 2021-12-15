@@ -3512,11 +3512,12 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => true, 'msg' => "请添加制作者!"));
 			return;
 		}
+
 		foreach ($kuhumingcheng as $k => $v) {
 			if (empty($v) || empty($dandangzhe[$k]) || empty($kuanhao[$k]) || empty($kuanshi[$k]) || empty($yangpinxingzhi[$k]) || empty($shuliang[$k]) || empty($yangpindanjia[$k]) || empty($shoudaoriqi[$k]) || empty($fachuriqi[$k]) || empty($zhizuozhe[$k])) {
 				continue;
 			}
-			$this->role->role_save_yangpin($zid,$v,$kuanhao[$k],$kuanshi[$k],$yangpinxingzhi[$k],$shuliang[$k],$yangpindanjia[$k],$shoudaoriqi[$k],$fachuriqi[$k],$zhizuozhe[$k],time());
+			$this->role->role_save_yangpin($zid,$v,$dandangzhe[$k],$kuanhao[$k],$kuanshi[$k],$yangpinxingzhi[$k],$shuliang[$k],$yangpindanjia[$k],$shoudaoriqi[$k],$fachuriqi[$k],$zhizuozhe[$k],time());
 		}
 
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
