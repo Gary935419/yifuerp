@@ -84,11 +84,11 @@ class Label_model extends CI_Model
         return $this->db->query($sql);
     }
 
-	public function getlabelAllPageyangpin($kuhumingcheng,$starttime,$end,$zid)
+	public function getlabelAllPageyangpin($kuanhao,$starttime,$end,$zid)
 	{
 		$sqlw = " where 1=1 and zid=$zid ";
-		if (!empty($kuhumingcheng)) {
-			$sqlw .= " and ( kuhumingcheng like '%" . $kuhumingcheng . "%' ) ";
+		if (!empty($kuanhao)) {
+			$sqlw .= " and ( kuanhao like '%" . $kuanhao . "%' ) ";
 		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
@@ -101,18 +101,18 @@ class Label_model extends CI_Model
 			$end = strtotime($end)+86400;
 			$sqlw .= " and addtime <= $end ";
 		}
-		$sql = "SELECT count(1) as number FROM `erp_yangmingmingxi` " . " order by addtime desc";
+		$sql = "SELECT count(1) as number FROM `erp_yangmingmingxi` " . $sqlw . " order by addtime desc";
 
 		$number = $this->db->query($sql)->row()->number;
 		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
 
 	}
 
-	public function getlabelAllyangpin($pg,$kuhumingcheng,$starttime,$end,$zid)
+	public function getlabelAllyangpin($pg,$kuanhao,$starttime,$end,$zid)
 	{
 		$sqlw = " where 1=1 and zid=$zid ";
-		if (!empty($kuhumingcheng)) {
-			$sqlw .= " and ( kuhumingcheng like '%" . $kuhumingcheng . "%' ) ";
+		if (!empty($kuanhao)) {
+			$sqlw .= " and ( kuanhao like '%" . $kuanhao . "%' ) ";
 		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);

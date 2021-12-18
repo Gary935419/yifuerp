@@ -119,8 +119,8 @@ class Label extends CI_Controller
 		$start = isset($_GET['start']) ? $_GET['start'] : '';
 		$end = isset($_GET['end']) ? $_GET['end'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-		$kuhumingcheng = isset($_GET["kuhumingcheng"]) ? $_GET["kuhumingcheng"] : '';
-		$allpage = $this->label->getlabelAllPageyangpin($kuhumingcheng,$start,$end,$id);
+		$kuanhao = isset($_GET["kuanhao"]) ? $_GET["kuanhao"] : '';
+		$allpage = $this->label->getlabelAllPageyangpin($kuanhao,$start,$end,$id);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page,$allpage, $_GET);
 		$data["page"] = $page;
@@ -128,9 +128,9 @@ class Label extends CI_Controller
 		$data["start"] = $start;
 		$data["end"] = $end;
 		$data["allpage"] = $allpage;
-		$list = $this->label->getlabelAllyangpin($page,$kuhumingcheng,$start,$end,$id);
+		$list = $this->label->getlabelAllyangpin($page,$kuanhao,$start,$end,$id);
 		$data["list"] = $list;
-		$data["kuhumingcheng"] = $kuhumingcheng;
+		$data["kuanhao"] = $kuanhao;
 		$this->display("label/yangpin_list", $data);
 	}
 	public function yangpin_delete()

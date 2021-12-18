@@ -28,7 +28,7 @@
                 <div class="layui-card-body ">
 					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/label/yangpin_list' ?>">
 						<div class="layui-inline layui-show-xs-block">
-							<input type="text" name="kuhumingcheng" id="kuhumingcheng" value="<?php echo $kuhumingcheng ?>"
+							<input type="text" name="kuanhao" id="kuanhao" value="<?php echo $kuanhao ?>"
 								   placeholder="款号" autocomplete="off" class="layui-input">
 						</div>
 						<div class="layui-input-inline layui-show-xs-block">
