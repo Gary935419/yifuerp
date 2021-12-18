@@ -625,4 +625,20 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_baojiaxiangmujue` where kid=$id and state=2";
 		return $this->db->query($sql)->row_array();
 	}
+	public function yangpin_save_edit($id,$kuhumingcheng,$dandangzhe,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe)
+	{
+		$id = $this->db->escape($id);
+		$kuhumingcheng = $this->db->escape($kuhumingcheng);
+		$dandangzhe = $this->db->escape($dandangzhe);
+		$kuanhao = $this->db->escape($kuanhao);
+		$kuanshi = $this->db->escape($kuanshi);
+		$yangpinxingzhi = $this->db->escape($yangpinxingzhi);
+		$shuliang = $this->db->escape($shuliang);
+		$yangpindanjia = $this->db->escape($yangpindanjia);
+		$shoudaoriqi = $this->db->escape($shoudaoriqi);
+		$fachuriqi = $this->db->escape($fachuriqi);
+		$zhizuozhe = $this->db->escape($zhizuozhe);
+		$sql = "UPDATE `erp_yangmingmingxi` SET kuhumingcheng=$kuhumingcheng,dandangzhe=$dandangzhe,kuanhao=$kuanhao,kuanshi=$kuanshi,yangpinxingzhi=$yangpinxingzhi,shuliang=$shuliang,yangpindanjia=$yangpindanjia,shoudaoriqi=$shoudaoriqi,fachuriqi=$fachuriqi,zhizuozhe=$zhizuozhe WHERE id = $id";
+		return $this->db->query($sql);
+	}
 }

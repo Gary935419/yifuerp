@@ -60,6 +60,7 @@
 							<th>收到日期</th>
 							<th>发出日期</th>
 							<th>制作者</th>
+							<th>创建日期</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
@@ -73,9 +74,10 @@
 									<td><?= $once['yangpinxingzhi'] ?></td>
 									<td><?= $once['shuliang'] ?></td>
 									<td><?= $once['yangpindanjia'] ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['shoudaoriqi']) ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['fachuriqi']) ?></td>
+									<td><?= date('Y-m-d', $once['shoudaoriqi']) ?></td>
+									<td><?= date('Y-m-d', $once['fachuriqi']) ?></td>
 									<td><?= $once['zhizuozhe'] ?></td>
+									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
                                                 onclick="xadmin.open('样品编辑','<?= RUN . '/label/yangpin_edit?id=' ?>'+<?= $once['id'] ?>)">

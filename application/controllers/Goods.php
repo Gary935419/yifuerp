@@ -3517,10 +3517,40 @@ class Goods extends CI_Controller
 			if (empty($v) || empty($dandangzhe[$k]) || empty($kuanhao[$k]) || empty($kuanshi[$k]) || empty($yangpinxingzhi[$k]) || empty($shuliang[$k]) || empty($yangpindanjia[$k]) || empty($shoudaoriqi[$k]) || empty($fachuriqi[$k]) || empty($zhizuozhe[$k])) {
 				continue;
 			}
-			$this->role->role_save_yangpin($zid,$v,$dandangzhe[$k],$kuanhao[$k],$kuanshi[$k],$yangpinxingzhi[$k],$shuliang[$k],$yangpindanjia[$k],$shoudaoriqi[$k],$fachuriqi[$k],$zhizuozhe[$k],time());
+			$this->role->role_save_yangpin($zid,$v,$dandangzhe[$k],$kuanhao[$k],$kuanshi[$k],$yangpinxingzhi[$k],$shuliang[$k],$yangpindanjia[$k],strtotime($shoudaoriqi[$k]),strtotime($fachuriqi[$k]),$zhizuozhe[$k],time());
 		}
 
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+	}
+	public function yangpin_save_edit()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
+			return;
+		}
+		$kuhumingcheng = isset($_POST["kuhumingcheng"]) ? $_POST["kuhumingcheng"] : '';
+		$dandangzhe = isset($_POST["dandangzhe"]) ? $_POST["dandangzhe"] : '';
+		$kuanhao = isset($_POST["kuanhao"]) ? $_POST["kuanhao"] : '';
+		$kuanshi = isset($_POST["kuanshi"]) ? $_POST["kuanshi"] : '';
+		$yangpinxingzhi = isset($_POST["yangpinxingzhi"]) ? $_POST["yangpinxingzhi"] : '';
+		$shuliang = isset($_POST["shuliang"]) ? $_POST["shuliang"] : '';
+		$yangpindanjia = isset($_POST["yangpindanjia"]) ? $_POST["yangpindanjia"] : '';
+		$shoudaoriqi = isset($_POST["shoudaoriqi"]) ? $_POST["shoudaoriqi"] : '';
+		$fachuriqi = isset($_POST["fachuriqi"]) ? $_POST["fachuriqi"] : '';
+		$zhizuozhe = isset($_POST["zhizuozhe"]) ? $_POST["zhizuozhe"] : '';
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+//		$label_info = $this->label->getlabelById2($lname,$id);
+//		if (!empty($label_info)){
+//			echo json_encode(array('error' => false, 'msg' => "该标签名称已经存在"));
+//			return;
+//		}
+
+		$result = $this->role->yangpin_save_edit($id,$kuhumingcheng,$dandangzhe,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,strtotime($shoudaoriqi),strtotime($fachuriqi),$zhizuozhe);
+		if ($result) {
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+		}
 	}
 	/**
 	 * 原辅料平衡表导出
