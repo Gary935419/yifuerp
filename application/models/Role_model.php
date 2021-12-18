@@ -641,4 +641,52 @@ class Role_model extends CI_Model
 		$sql = "UPDATE `erp_yangmingmingxi` SET kuhumingcheng=$kuhumingcheng,dandangzhe=$dandangzhe,kuanhao=$kuanhao,kuanshi=$kuanshi,yangpinxingzhi=$yangpinxingzhi,shuliang=$shuliang,yangpindanjia=$yangpindanjia,shoudaoriqi=$shoudaoriqi,fachuriqi=$fachuriqi,zhizuozhe=$zhizuozhe WHERE id = $id";
 		return $this->db->query($sql);
 	}
+
+	public function getyangpinlist($zid,$starttime,$end,$kuanhao,$pg)
+	{
+		$sqlw = " where 1=1 and zid=$zid ";
+		if (!empty($kuanhao)) {
+			$sqlw .= " and ( kuanhao like '%" . $kuanhao . "%' ) ";
+		}
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and addtime >= $starttime and addtime <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and addtime >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and addtime <= $end ";
+		}
+
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+
+		$sql = "SELECT * FROM `erp_yangmingmingxi` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getyangpinlistpage($zid,$starttime,$end,$kuanhao)
+	{
+		$sqlw = " where 1=1 and zid=$zid ";
+		if (!empty($kuanhao)) {
+			$sqlw .= " and ( kuanhao like '%" . $kuanhao . "%' ) ";
+		}
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and addtime >= $starttime and addtime <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and addtime >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and addtime <= $end ";
+		}
+		$sql = "SELECT count(1) as number FROM `erp_yangmingmingxi` " . $sqlw . " order by addtime desc";
+
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+
+	}
 }

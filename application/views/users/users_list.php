@@ -40,9 +40,14 @@
                         </div>
                     </form>
                 </div>
+				<a href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+					<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 120px;">
+						<i class="iconfont">&#xe74a;</i>  数据导出
+					</button>
+				</a>
                 <button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
-                        onclick="xadmin.open('添加','<?= RUN . '/users/users_add' ?>',900,500)"><i
-                            class="layui-icon"></i>添加
+                        onclick="xadmin.open('员工添加','<?= RUN . '/users/users_add' ?>',900,500)"><i
+                            class="layui-icon"></i>员工添加
                 </button>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">

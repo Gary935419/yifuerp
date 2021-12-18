@@ -3797,4 +3797,63 @@ class Goods extends CI_Controller
 		$PHPWriter->save("php://output");
 		exit;
 	}
+
+	/**
+	 * 样品制作收发明细导出
+	 */
+	public function goods_yangpin_csv()
+	{
+		$zid = isset($_GET['zid']) ? $_GET['zid'] : '';
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$kuanhao = isset($_GET['kuanhao']) ? $_GET['kuanhao'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getyangpinlistpage($zid,$start,$end,$kuanhao);
+		$page = $allpage > $page ? $page : $allpage;
+		$list = $this->role->getyangpinlist($zid,$start,$end,$kuanhao,$page);
+
+		$inputFileName = "./static/uploads/yangpin.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		$rownew = 3;
+		$rowoldnew1 = -1;
+		foreach ($list as $kp=>$vp){
+			$rowoldnew1 = $rowoldnew1 + 1;
+			$row11 = $rownew + $rowoldnew1;
+			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$kp+1);
+			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['kuhumingcheng']);
+			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['dandangzhe']);
+			$objPHPExcel->getActiveSheet()->setCellValue('D'.$row11,$vp['kuanhao']);
+			$objPHPExcel->getActiveSheet()->setCellValue('E'.$row11,$vp['kuanshi']);
+			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['yangpinxingzhi']);
+			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['shuliang']);
+			$objPHPExcel->getActiveSheet()->setCellValue('H'.$row11,$vp['yangpindanjia']);
+			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,date('Y-m-d',$vp['shoudaoriqi']));
+			$objPHPExcel->getActiveSheet()->setCellValue('J'.$row11,date('Y-m-d',$vp['fachuriqi']));
+			$objPHPExcel->getActiveSheet()->setCellValue('K'.$row11,$vp['zhizuozhe']);
+		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+		$fileName = '样品制作收发明细' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
+	}
 }

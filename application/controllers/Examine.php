@@ -138,17 +138,15 @@ class Examine extends CI_Controller
 		$this->display("examine/withdrawal_list3", $data);
 	}
 	/**
-	 * 账单导出1
+	 * 员工数据导出
 	 */
 	public function examine_csv1()
 	{
 		$start = isset($_GET['start']) ? $_GET['start'] : '';
 		$end = isset($_GET['end']) ? $_GET['end'] : '';
-
-		$list = $this->order->gettaskorderAllcsv1($start,$end);
-		$excel_filename = '跑腿账单' . date('Ymd_His');
-		$headlist = array('账单时间', '账单类型', '账单状态', '账单总金额', '账单司机费', '账单小费', '账单保价费', '账单抽成费');
-		$this->csv_export($list,$headlist,$excel_filename);
+		$user_name = isset($_GET['user_name']) ? $_GET['user_name'] : '';
+		$list = $this->order->getmemberinfoAllcsv1($start,$end,$user_name);
+		$this->csv_export($list);
 	}
 	/**
 	 * 账单导出2
@@ -270,7 +268,7 @@ class Examine extends CI_Controller
 				$IOFactory = new IOFactory();
 				$PHPWriter = $IOFactory->createWriter($PHPExcel, 'Excel5'); //按照指定格式生成Excel文件，‘Excel2007’表示生成2007版本的xlsx
 				header('Content-Type: text/html;charset=utf-8');
-				header('Content-Type: xlsx');
+				header('Content-Type: xls');
 				header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 				header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
 				header('Cache-Control: max-age=0');
@@ -278,80 +276,53 @@ class Examine extends CI_Controller
 				break;
 		}
 	}
-	public function csv_export ($data = array(), $headlist = array(), $fileName)
+	public function csv_export ($list = array())
 	{
-		$PHPExcel = new PHPExcel(); //实例化PHPExcel类，类似于在桌面上新建一个Excel表格
-		$PHPSheet = $PHPExcel->getActiveSheet(); //获得当前活动sheet的操作对象
-		$PHPSheet->setTitle('跑腿账单'); //给当前活动sheet设置名称
-		$PHPSheet->setCellValue('A1', '账单时间')
-			->setCellValue('B1', '账单类型')
-			->setCellValue('C1', '账单状态')
-			->setCellValue('D1', '账单总金额（单位：元）')
-			->setCellValue('E1', '账单司机费（单位：元）')
-			->setCellValue('F1', '账单小费（单位：元）')
-			->setCellValue('G1', '账单保价费（单位：元）')
-			->setCellValue('H1', '账单抽成费（单位：元）');
-		foreach ($data as $k1 => $v1) {
-			$cell = $k1 + 2;
-			if ($v1['order_type'] == 1) {
-				$v1['order_type'] = '专车送';
-			} elseif ($v1['order_type'] == 2) {
-				$v1['order_type'] = "顺路送";
-			} elseif ($v1['order_type'] == 3) {
-				$v1['order_type'] = "代买";
-			} elseif ($v1['order_type'] == 4) {
-				$v1['order_type'] = "代驾";
-			} else {
-				$v1['order_type'] = "数组错误";
-			}
-			if ($v1['status']==7){
-				$v1['order_status'] = "已取消";
-			}elseif ($v1['order_status']==1){
-				$v1['order_status'] = "未付款";
-			}elseif ($v1['order_status']==2){
-				$v1['order_status'] = "待接单";
-			}elseif ($v1['order_status']==3){
-				$v1['order_status'] = "已接单";
-			}elseif ($v1['order_status']==4){
-				$v1['order_status'] = "前往出发地";
-			}elseif ($v1['order_status']==5){
-				$v1['order_status'] = "到达出发地";
-			}elseif ($v1['order_status']==6){
-				$v1['order_status'] = "待验证提货码";
-			}elseif ($v1['order_status']==7){
-				$v1['order_status'] = "前往目的地";
-			}elseif ($v1['order_status']==8){
-				$v1['order_status'] = "已完成";
+		$inputFileName = "./static/uploads/yuangongxinxi.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		$rownew = 3;
+		$rowoldnew1 = -1;
+		foreach ($list as $kp=>$vp){
+			if ($vp['user_state']==2){
+				$vp['user_state'] = "锁定";
+			}elseif ($vp['user_state']==1){
+				$vp['user_state'] = "正常";
 			}else{
-				$v1['order_status'] = "数据错误";
+				$vp['user_state'] = "数据错误";
 			}
-			$PHPSheet->setCellValue('A' . $cell, date('Y-m-d H:i:s', $v1['add_time']))
-				->setCellValue('B' . $cell, $v1['order_type'])
-				->setCellValue('C' . $cell, $v1['order_status'])
-				->setCellValue('D' . $cell, empty($v1['price'])?0.00:$v1['price'])
-				->setCellValue('E' . $cell, empty($v1['order_driver_price'])?0.00:$v1['order_driver_price'])
-				->setCellValue('F' . $cell, empty($v1['tip_price'])?0.00:$v1['tip_price'])
-				->setCellValue('G' . $cell, empty($v1['protect_price'])?0.00:$v1['protect_price'])
-				->setCellValue('H' . $cell, empty($v1['cost_price'])?0.00:$v1['cost_price'])
-			;
+			$rowoldnew1 = $rowoldnew1 + 1;
+			$row11 = $rownew + $rowoldnew1;
+			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$kp+1);
+			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['username']);
+			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['pwd']);
+			$objPHPExcel->getActiveSheet()->setCellValue('D'.$row11,$vp['user_state']);
+			$objPHPExcel->getActiveSheet()->setCellValue('E'.$row11,$vp['rname']);
+			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,date('Y-m-d H:i:s', $vp['add_time']));
 		}
-		switch (2) {
-			case '1':
-				$PHPWriter = \PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel2007'); //按照指定格式生成Excel文件，‘Excel2007’表示生成2007版本的xlsx，
-				$PHPWriter->save('handle.xlsx'); //表示在$path路径下面生成demo.xlsx文件
-				break;
-			case '2':
-				// 生成2007excel格式的xlsx文件
-				$IOFactory = new IOFactory();
-				$PHPWriter = $IOFactory->createWriter($PHPExcel, 'Excel5'); //按照指定格式生成Excel文件，‘Excel2007’表示生成2007版本的xlsx
-				header('Content-Type: text/html;charset=utf-8');
-				header('Content-Type: xlsx');
-				header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-				header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
-				header('Cache-Control: max-age=0');
-				$PHPWriter->save("php://output");
-				break;
-		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+		$fileName = '员工信息' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
 	}
 	public function csv_export1 ($data = array(), $headlist = array(), $fileName)
 	{

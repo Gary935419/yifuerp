@@ -42,6 +42,11 @@
 						<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
 					</form>
                 </div>
+				<a href="<?= RUN. '/goods/goods_yangpin_csv?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&kuanhao=".(isset($kuanhao)?$kuanhao:"")."&zid=".(isset($id)?$id:"") ?>">
+					<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 120px;">
+						<i class="iconfont">&#xe74a;</i>  数据导出
+					</button>
+				</a>
                 <button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
                         onclick="xadmin.open('样品添加','<?= RUN . '/label/yangpin_add?zid='.$id ?>')"><i
                             class="layui-icon"></i>样品添加
