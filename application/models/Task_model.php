@@ -58,7 +58,12 @@ class Task_model extends CI_Model
 		$sql = "SELECT * FROM `erp_yuanfuliaopinghengbian` where kid = $id ";
 		return $this->db->query($sql)->result_array();
 	}
-
+	public function gettidlistpinming_cai($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
 	public function gettidlistjichu($id)
 	{
 		$id = $this->db->escape($id);

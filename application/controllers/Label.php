@@ -16,6 +16,7 @@ class Label extends CI_Controller
             header("Location:" . RUN . '/login/logout');
         }
         $this->load->model('Label_model', 'label');
+		$this->load->model('Task_model', 'task');
         header("Content-type:text/html;charset=utf-8");
     }
     public function label_list()
@@ -163,5 +164,39 @@ class Label extends CI_Controller
 		$data['zhizuozhe'] = $label_info['zhizuozhe'];
 		$data['id'] = $id;
 		$this->display("label/yangpin_edit", $data);
+	}
+	public function label_edit_cai()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$data['id'] = $id;
+		$this->display("label/label_edit_cai", $data);
+	}
+	public function label_save_edit_cai()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
+			return;
+		}
+		$sumnumber = isset($_POST["sumnumber"]) ? $_POST["sumnumber"] : '';
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$gettidlistpinming_caiinfo = $this->task->gettidlistpinming_cai($id);
+		$caiduanzong = 0;
+		$str = "";
+		$str1 = "";
+		foreach ($gettidlistpinming_caiinfo as $k=>$v){
+			$a = ceil(floatval($v['caiduanshu'])/$sumnumber);
+			$b = $a * $sumnumber;
+			$c = $b-$v['caiduanshu'];
+			if (empty($c)){
+				$str = $str.$v['sehao']."自身装".$a."箱,每箱裁断数量为:".$sumnumber;
+			}else{
+				$str = $str.$v['sehao']."自身装".$a."箱,每箱裁断数量为:".$sumnumber."其中有一箱裁断数量为:".$c;
+			}
+			$caiduanzong = floatval($caiduanzong) + $v['caiduanshu'];
+		}
+		$xiangshu = ceil(floatval($caiduanzong)/$sumnumber);
+
+		echo json_encode(array('success' => true, 'msg' => "装箱成功!总共装箱:".$xiangshu."箱!".$str,));
+
 	}
 }

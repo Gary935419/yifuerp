@@ -123,6 +123,20 @@
 			</li>
 			<li>
 				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="裁断报告书管理">&#xe6b5;</i>
+					<cite>裁断报告书管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_cai' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>裁断报告书列表</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
 					<i class="iconfont left-nav-li" lay-tips="报价单管理">&#xe6b5;</i>
 					<cite>报价单管理</cite>
 					<i class="iconfont nav_right">&#xe697;</i></a>
