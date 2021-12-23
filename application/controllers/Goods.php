@@ -3586,6 +3586,12 @@ class Goods extends CI_Controller
 			} else {
 				$list[$k]['openflg1'] = 0;
 			}
+			$gettidlistpinming_caiinfo = $this->task->gettidlistpinming_cai($v['id']);
+			if (!empty($gettidlistpinming_caiinfo[0]['zhuangxiangxinxi'])) {
+				$list[$k]['openflg'] = 1;
+			} else {
+				$list[$k]['openflg'] = 0;
+			}
 		}
 		$data["list"] = $list;
 		$this->display("goods/goods_list1_cai", $data);

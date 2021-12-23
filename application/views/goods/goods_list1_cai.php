@@ -38,6 +38,7 @@
 							<th>合同编号</th>
 							<th>合同款号</th>
 							<th>签订日期</th>
+							<th>装箱状态</th>
 							<th>操作</th>
 						</thead>
 						<tbody>
@@ -47,6 +48,11 @@
 									<td><?= $once['bianhao'] ?></td>
 									<td><?= $once['kuanhao'] ?></td>
 									<td><?= date('Y-m-d', $once['qianding']) ?></td>
+									<?php if (empty($once['openflg'])){ ?>
+										<td style="color: red;">未装箱</td>
+									<?php }else{ ?>
+										<td style="color: green;">已装箱</td>
+									<?php } ?>
 									<td class="td-manage">
 										<?php if ($once['openflg1']>=1){ ?>
 											<button class="layui-btn layui-btn-normal"

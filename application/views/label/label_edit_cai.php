@@ -41,10 +41,18 @@
                 <label for="L_repass" class="layui-form-label" style="width: 30%;">
                 </label>
                 <button class="layui-btn" lay-filter="add" lay-submit="">
-                    确认提交
+                    确认提交装箱信息
                 </button>
             </div>
         </form>
+		<div class="layui-form-item">
+			<label for="L_pass" class="layui-form-label" style="width: 10%;">
+				<span class="x-red"></span>
+			</label>
+			<div class="layui-input-inline" style="width: 620px;">
+				<textarea style="height: 250px;color: red;font-size: 18px;" id="requirement" name="requirement" readonly placeholder="暂无进行装箱设定处理。" class="layui-textarea"><?php echo $infomation ?></textarea>
+			</div>
+		</div>
     </div>
 </div>
 <script>

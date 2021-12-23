@@ -169,6 +169,8 @@ class Label extends CI_Controller
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		$data['id'] = $id;
+		$gettidlistpinming_caiinfo = $this->task->gettidlistpinming_cai($id);
+		$data['infomation'] = str_replace("<br>","\n",$gettidlistpinming_caiinfo[0]['zhuangxiangxinxi']);
 		$this->display("label/label_edit_cai", $data);
 	}
 	public function label_save_edit_cai()
@@ -182,21 +184,58 @@ class Label extends CI_Controller
 		$gettidlistpinming_caiinfo = $this->task->gettidlistpinming_cai($id);
 		$caiduanzong = 0;
 		$str = "";
-		$str1 = "";
+		$sehaoarr = array();
+		$newkey = 0;
 		foreach ($gettidlistpinming_caiinfo as $k=>$v){
-			$a = ceil(floatval($v['caiduanshu'])/$sumnumber);
-			$b = $a * $sumnumber;
-			$c = $b-$v['caiduanshu'];
-			if (empty($c)){
-				$str = $str.$v['sehao']."自身装".$a."箱,每箱裁断数量为:".$sumnumber;
-			}else{
-				$str = $str.$v['sehao']."自身装".$a."箱,每箱裁断数量为:".$sumnumber."其中有一箱裁断数量为:".$c;
+			$caiduanzongnow = 0;
+			$caiduanzongnow = $caiduanzongnow + $v['caiduanshu'];
+			if ($caiduanzongnow > $sumnumber){
+				$a = floor($caiduanzongnow/$sumnumber);
+				$b = $caiduanzongnow % $sumnumber;
+				$str = $str.$v['sehao']."自身装".$a."箱,每箱裁断数量为:".$sumnumber."个!<br>";
+				if (!empty($b)){
+					$newkey = $newkey + 1;
+					$sehaoarr[$newkey]['sehao'] = $v['sehao'];
+					$sehaoarr[$newkey]['shuliang'] = $b;
+				}
+			}elseif ($caiduanzongnow == $sumnumber){
+				$a = floor($caiduanzongnow/$sumnumber);
+				$str = $str.$v['sehao']."自身装".$a."箱,每箱裁断数量为:".$sumnumber."个!<br>";
+			}else {
+				if (!empty($caiduanzongnow)){
+					$newkey = $newkey + 1;
+					$sehaoarr[$newkey]['sehao'] = $v['sehao'];
+					$sehaoarr[$newkey]['shuliang'] = $caiduanzongnow;
+				}
 			}
 			$caiduanzong = floatval($caiduanzong) + $v['caiduanshu'];
 		}
+
+		$shuliang = 0;
+		foreach ($sehaoarr as $kk=>$vv){
+			if (empty($vv['shuliang'])){
+				break;
+			}
+			$shuliang = $shuliang + $vv['shuliang'];
+			if ($shuliang > $sumnumber){
+				$aaa = $shuliang - $vv['shuliang'];
+				$bbb = $sumnumber - $aaa;
+				$shuliang = $shuliang - $sumnumber;
+				$str = $str.$vv['sehao']."裁断数量为:".$bbb."个组成1箱。剩余裁断数量:".$shuliang."个!与";
+			}elseif ($shuliang < $sumnumber){
+				if (empty($sehaoarr[$kk+1]['shuliang'])){
+					$str = $str.$vv['sehao']."剩余裁断数量:".$vv['shuliang']."个组成1箱。<br>";
+				}else{
+					$str = $str.$vv['sehao']."裁断数量为:".$vv['shuliang']."个!与";
+				}
+			}else{
+				$str = $str.$vv['sehao']."裁断数量:". $vv['shuliang']."个组成1箱。<br>";
+				$shuliang = $shuliang - $sumnumber;
+			}
+		}
 		$xiangshu = ceil(floatval($caiduanzong)/$sumnumber);
-
-		echo json_encode(array('success' => true, 'msg' => "装箱成功!总共装箱:".$xiangshu."箱!".$str,));
-
+		$msg = "装箱成功!总共装箱:".$xiangshu."箱!<br>".$str;
+		$this->task->gettidlistpinming_cai_zhuangxiang($id,$msg);
+		echo json_encode(array('success' => true, 'msg' => $msg));
 	}
 }
