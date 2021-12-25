@@ -238,4 +238,94 @@ class Label extends CI_Controller
 		$this->task->gettidlistpinming_cai_zhuangxiang($id,$msg);
 		echo json_encode(array('success' => true, 'msg' => $msg));
 	}
+
+	public function group_list()
+	{
+		$lname = isset($_GET['lname']) ? $_GET['lname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->label->getlabelAllPageg($lname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->label->getlabelAllg($page, $lname);
+		$data["list"] = $list;
+		$data["lname"] = $lname;
+		$this->display("label/group_list", $data);
+	}
+	public function group_add()
+	{
+		$this->display("label/group_add");
+	}
+	public function group_save()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+
+		$lname = isset($_POST["lname"]) ? $_POST["lname"] : '';
+		$lpname = isset($_POST["lpname"]) ? $_POST["lpname"] : '';
+		$ltel = isset($_POST["ltel"]) ? $_POST["ltel"] : '';
+		$add_time = time();
+
+		$label_info = $this->label->getlabelBynameg($lname);
+		if (!empty($label_info)) {
+			echo json_encode(array('error' => true, 'msg' => "该组名称已经存在。"));
+			return;
+		}
+		$result = $this->label->label_saveg($lname,$lpname,$ltel,$add_time);
+		if ($result) {
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+		}
+	}
+	public function group_delete()
+	{
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		if ($this->label->label_deleteg($id)) {
+			echo json_encode(array('success' => true, 'msg' => "删除成功"));
+		} else {
+			echo json_encode(array('success' => false, 'msg' => "删除失败"));
+		}
+	}
+	public function group_edit()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$label_info = $this->label->getlabelByIdg($id);
+		if (empty($label_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$data = array();
+		$data['lname'] = $label_info['lname'];
+		$data['lpname'] = $label_info['lpname'];
+		$data['ltel'] = $label_info['ltel'];
+		$data['id'] = $id;
+		$this->display("label/group_edit", $data);
+	}
+	public function group_save_edit()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
+			return;
+		}
+		$lname = isset($_POST["lname"]) ? $_POST["lname"] : '';
+		$lpname = isset($_POST["lpname"]) ? $_POST["lpname"] : '';
+		$ltel = isset($_POST["ltel"]) ? $_POST["ltel"] : '';
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$label_info = $this->label->getlabelById2g($lname,$id);
+		if (!empty($label_info)){
+			echo json_encode(array('error' => false, 'msg' => "该组名称已经存在"));
+			return;
+		}
+
+		$result = $this->label->label_save_editg($id,$lname,$lpname,$ltel);
+		if ($result) {
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+		}
+	}
 }

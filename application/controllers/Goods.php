@@ -4430,6 +4430,114 @@ class Goods extends CI_Controller
 
 		$this->display("goods/goods_list_bao_duibi_details_jue", $data);
 	}
+
+	public function goods_add_new_shengchan()
+	{
+		$tidlist = $this->task->gettidlistjihua();
+		$data['tidlist'] = $tidlist;
+		$this->display("goods/goods_add_new_shengchan", $data);
+	}
+	public function goods_save_jihua()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$zuname = isset($_POST["zuname"]) ? $_POST["zuname"] : '';
+		$zhipinfanhao = isset($_POST["zhipinfanhao"]) ? $_POST["zhipinfanhao"] : '';
+		$pinming = isset($_POST["pinming"]) ? $_POST["pinming"] : '';
+		$qihuashu = isset($_POST["qihuashu"]) ? $_POST["qihuashu"] : '';
+		$naqi = isset($_POST["naqi"]) ? $_POST["naqi"] : '';
+		$jihuariqi = isset($_POST["jihuariqi"]) ? $_POST["jihuariqi"] : '';
+		$add_time = time();
+		$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao);
+		if (!empty($role_info)) {
+			echo json_encode(array('error' => true, 'msg' => "该制品番号已经存在!"));
+			return;
+		}
+		$naqi = strtotime($naqi);
+		$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time);
+		if ($rid) {
+			$this->role->role_saveerp_shengcanjihuadate($rid,$add_time);
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+		}
+	}
+	public function goods_list_shengchan()
+	{
+
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPageshengchan($gname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNewshengchan($page, $gname);
+		$data["gname"] = $gname;
+		$data["list"] = $list;
+		$this->display("goods/goods_list_shengchan", $data);
+	}
+	public function goods_edit_new_shengchan()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdshengchan($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$tidlist = $this->task->gettidlistjihua();
+		$data = array();
+		$data['zuname'] = $goods_info['zuname'];
+		$data['zhipinfanhao'] = $goods_info['zhipinfanhao'];
+		$data['pinming'] = $goods_info['pinming'];
+		$data['qihuashu'] = $goods_info['qihuashu'];
+		$data['naqi'] = $goods_info['naqi'];
+		$data['jihuariqi'] = $goods_info['jihuariqi'];
+		$data['id'] = $id;
+		$data['tidlist'] = $tidlist;
+
+		$this->display("goods/goods_edit_new_shengchan", $data);
+	}
+	public function goods_save_edit_shengchan()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
+			return;
+		}
+
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$zuname = isset($_POST["zuname"]) ? $_POST["zuname"] : '';
+		$zhipinfanhao = isset($_POST["zhipinfanhao"]) ? $_POST["zhipinfanhao"] : '';
+		$pinming = isset($_POST["pinming"]) ? $_POST["pinming"] : '';
+		$qihuashu = isset($_POST["qihuashu"]) ? $_POST["qihuashu"] : '';
+		$naqi = isset($_POST["naqi"]) ? $_POST["naqi"] : '';
+		$jihuariqi = isset($_POST["jihuariqi"]) ? $_POST["jihuariqi"] : '';
+		$add_time = time();
+
+		$role_info = $this->role->getgoodsById22shengchan($zhipinfanhao, $id);
+		if (!empty($role_info)) {
+			echo json_encode(array('error' => true, 'msg' => "该制品番号已经存在!"));
+			return;
+		}
+		$naqi = strtotime($naqi);
+		$result = $this->role->goods_save_edit_shengchan($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time, $id);
+		if ($result) {
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+		}
+	}
+	public function goods_delete_shengchan()
+	{
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		if ($this->role->goods_delete_shengchan($id)) {
+			echo json_encode(array('success' => true, 'msg' => "删除成功"));
+		} else {
+			echo json_encode(array('success' => false, 'msg' => "删除失败"));
+		}
+	}
 	/**
 	 * 原辅料平衡表导出
 	 */

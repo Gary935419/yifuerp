@@ -143,4 +143,79 @@ class Label_model extends CI_Model
 		$sql = "SELECT * FROM `erp_yangmingmingxi` where id=$id ";
 		return $this->db->query($sql)->row_array();
 	}
+
+
+	public function getlabelAllPageg($lname)
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($lname)) {
+			$sqlw .= " and ( lname like '%" . $lname . "%' ) ";
+		}
+		$sql = "SELECT count(1) as number FROM `erp_zubie` " . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+
+	public function getlabelAllg($pg,$lname)
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($lname)) {
+			$sqlw .= " and ( lname like '%" . $lname . "%' ) ";
+		}
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+
+		$sql = "SELECT * FROM `erp_zubie` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+
+	public function label_saveg($lname,$lpname,$ltel,$addtime)
+	{
+		$lname = $this->db->escape($lname);
+		$lpname = $this->db->escape($lpname);
+		$ltel = $this->db->escape($ltel);
+		$addtime = $this->db->escape($addtime);
+		$sql = "INSERT INTO `erp_zubie` (lname,lpname,ltel,addtime) VALUES ($lname,$lpname,$ltel,$addtime)";
+		return $this->db->query($sql);
+	}
+
+	public function label_deleteg($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_zubie WHERE id = $id";
+		return $this->db->query($sql);
+	}
+
+	public function getlabelByIdg($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_zubie` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+
+	public function getlabelBynameg($lname)
+	{
+		$lname = $this->db->escape($lname);
+		$sql = "SELECT * FROM `erp_zubie` where lname=$lname ";
+		return $this->db->query($sql)->row_array();
+	}
+
+	public function getlabelById2g($lname, $id)
+	{
+		$lname = $this->db->escape($lname);
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_zubie` where lname=$lname and id != $id";
+		return $this->db->query($sql)->row_array();
+	}
+
+	public function label_save_editg($id,$lname,$lpname,$ltel)
+	{
+		$id = $this->db->escape($id);
+		$lname = $this->db->escape($lname);
+		$lpname = $this->db->escape($lpname);
+		$ltel = $this->db->escape($ltel);
+		$sql = "UPDATE `erp_zubie` SET lname=$lname,lpname=$lpname,ltel=$ltel WHERE id = $id";
+		return $this->db->query($sql);
+	}
 }

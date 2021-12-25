@@ -163,6 +163,26 @@
 			</li>
 			<li>
 				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="生产计划管理">&#xe6b5;</i>
+					<cite>生产计划管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_add_new_shengchan' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>生产计划添加</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_shengchan' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>生产计划列表</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
 					<i class="iconfont left-nav-li" lay-tips="样品制作管理">&#xe6b5;</i>
 					<cite>样品制作管理</cite>
 					<i class="iconfont nav_right">&#xe697;</i></a>
@@ -195,6 +215,12 @@
 						<a onclick="changeSrc('<?= RUN . '/label/label_list' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
 							<cite>子公司管理</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/label/group_list' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>组管理</cite>
 						</a>
 					</li>
 				</ul>

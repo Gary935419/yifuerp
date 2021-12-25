@@ -753,4 +753,89 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_caiduanbaogaoshujue` where kid=$id ";
 		return $this->db->query($sql)->row_array();
 	}
+	public function getroleByname1_zhipinfanhao($zhipinfanhao)
+	{
+		$zhipinfanhao = $this->db->escape($zhipinfanhao);
+		$sql = "SELECT * FROM `erp_shengcanjihua` where zhipinfanhao=$zhipinfanhao ";
+		return $this->db->query($sql)->row_array();
+	}
+	public function role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time)
+	{
+		$zuname = $this->db->escape($zuname);
+		$zhipinfanhao = $this->db->escape($zhipinfanhao);
+		$pinming = $this->db->escape($pinming);
+		$qihuashu = $this->db->escape($qihuashu);
+		$naqi = $this->db->escape($naqi);
+		$jihuariqi = $this->db->escape($jihuariqi);
+		$add_time = $this->db->escape($add_time);
+
+		$sql = "INSERT INTO `erp_shengcanjihua` (zuname, zhipinfanhao, pinming, qihuashu, naqi, jihuariqi, addtime) VALUES ($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
+	public function getgoodsAllPageshengchan($gname)
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($gname)) {
+			$sqlw .= " and ( zhipinfanhao like '%" . $gname . "%' ) or ( pinming like '%" . $gname . "%' ) ";
+		}
+		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua`" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	public function getgoodsAllNewshengchan($pg,$gname)
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($gname)) {
+			$sqlw .= " and ( zhipinfanhao like '%" . $gname . "%' ) or ( pinming like '%" . $gname . "%' ) ";
+		}
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+
+		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getgoodsByIdshengchan($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_shengcanjihua` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+	public function getgoodsById22shengchan($zhipinfanhao,$id)
+	{
+		$zhipinfanhao = $this->db->escape($zhipinfanhao);
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_shengcanjihua` where zhipinfanhao=$zhipinfanhao and id!=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+	public function goods_save_edit_shengchan($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time, $id)
+	{
+		$zuname = $this->db->escape($zuname);
+		$zhipinfanhao = $this->db->escape($zhipinfanhao);
+		$pinming = $this->db->escape($pinming);
+		$qihuashu = $this->db->escape($qihuashu);
+		$naqi = $this->db->escape($naqi);
+		$jihuariqi = $this->db->escape($jihuariqi);
+		$add_time = $this->db->escape($add_time);
+		$id = $this->db->escape($id);
+		$sql = "UPDATE `erp_shengcanjihua` SET zuname=$zuname,zhipinfanhao=$zhipinfanhao,pinming=$pinming,qihuashu=$qihuashu,jihuariqi=$jihuariqi,naqi=$naqi,addtime=$add_time WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	public function goods_delete_shengchan($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_shengcanjihua WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	public function role_saveerp_shengcanjihuadate($sid,$add_time)
+	{
+		$sid = $this->db->escape($sid);
+		$add_time = $this->db->escape($add_time);
+		$sql = "INSERT INTO `erp_shengcanjihuadate` (sid,addtime) VALUES ($sid,$add_time)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
 }
