@@ -3552,6 +3552,7 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => false, 'msg' => "操作失败"));
 		}
 	}
+
 	public function goods_list_cai()
 	{
 		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
@@ -3821,6 +3822,271 @@ class Goods extends CI_Controller
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 
 	}
+
+	public function goods_list_caij()
+	{
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPage($gname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNew($page, $gname);
+		$data["gname"] = $gname;
+		$data["list"] = $list;
+		$this->display("goods/goods_list_caij", $data);
+	}
+	public function goods_list1_caij()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPage1($gname,$id);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page,$allpage,$_GET);
+		$data["page"] = $page;
+		$data["id"] = $id;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNew1($page,$gname,$id);
+		$data["gname"] = $gname;
+		foreach ($list as $k => $v) {
+			$pinmings = $this->task->gettidlistpinming_caij($v['id']);
+			if (!empty($pinmings)) {
+				$list[$k]['openflg1'] = 1;
+			} else {
+				$list[$k]['openflg1'] = 0;
+			}
+		}
+		$data["list"] = $list;
+		$this->display("goods/goods_list1_caij", $data);
+	}
+	public function goods_add_new22_caij()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$data['id'] = $id;
+		$this->display("goods/goods_add_new22_caij", $data);
+	}
+	public function goods_save2_caij()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdkuanhao($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+
+		$sehaos = isset($_POST["sehao"]) ? $_POST["sehao"] : '';
+		if (empty($sehaos[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加色号!"));
+			return;
+		}
+		$pinfan = isset($_POST["pinfan"]) ? $_POST["pinfan"] : '';
+		if (empty($pinfan[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加品番!"));
+			return;
+		}
+		$caiduanshu = isset($_POST["caiduanshu"]) ? $_POST["caiduanshu"] : '';
+		if (empty($caiduanshu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加裁断数量!"));
+			return;
+		}
+		$zhishishu = isset($_POST["zhishishu"]) ? $_POST["zhishishu"] : '';
+		if (empty($zhishishu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加指示数量!"));
+			return;
+		}
+
+		foreach ($sehaos as $k => $v) {
+			if (empty($v) || empty($pinfan[$k]) || empty($caiduanshu[$k]) || empty($zhishishu[$k])) {
+				continue;
+			}
+			$this->role->role_save123_caij($v,$pinfan[$k],$caiduanshu[$k],$zhishishu[$k],$id,time());
+		}
+		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+	}
+	public function goods_edit_new22_caij()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdkuanhao($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$data = array();
+		$data['id'] = $id;
+		$kuanhaos = $this->task->gettidlistpinming_caij($id);
+
+		$data['caiduanshu1'] = '';
+		$data['pinfan1'] = '';
+		$data['sehao1'] = '';
+		$data['zhishishu1'] = '';
+
+		$data['caiduanshu2'] = '';
+		$data['pinfan2'] = '';
+		$data['sehao2'] = '';
+		$data['zhishishu2'] = '';
+
+		$data['caiduanshu3'] = '';
+		$data['pinfan3'] = '';
+		$data['sehao3'] = '';
+		$data['zhishishu3'] = '';
+
+		$data['caiduanshu4'] = '';
+		$data['pinfan4'] = '';
+		$data['sehao4'] = '';
+		$data['zhishishu4'] = '';
+
+		$data['caiduanshu5'] = '';
+		$data['pinfan5'] = '';
+		$data['sehao5'] = '';
+		$data['zhishishu5'] = '';
+
+		$data['caiduanshu6'] = '';
+		$data['pinfan6'] = '';
+		$data['sehao6'] = '';
+		$data['zhishishu6'] = '';
+
+		$data['caiduanshu7'] = '';
+		$data['pinfan7'] = '';
+		$data['sehao7'] = '';
+		$data['zhishishu7'] = '';
+
+		$data['caiduanshu8'] = '';
+		$data['pinfan8'] = '';
+		$data['sehao8'] = '';
+		$data['zhishishu8'] = '';
+
+		$data['caiduanshu9'] = '';
+		$data['pinfan9'] = '';
+		$data['sehao9'] = '';
+		$data['zhishishu9'] = '';
+
+		$data['caiduanshu10'] = '';
+		$data['pinfan10'] = '';
+		$data['sehao10'] = '';
+		$data['zhishishu10'] = '';
+
+		if (!empty($kuanhaos[0]['sehao'])) {
+			$data['sehao1'] = $kuanhaos[0]['sehao'];
+			$data['pinfan1'] = $kuanhaos[0]['pinfan'];
+			$data['caiduanshu1'] = $kuanhaos[0]['caiduanshu'];
+			$data['zhishishu1'] = $kuanhaos[0]['zhishishu'];
+		}
+
+		if (!empty($kuanhaos[1]['sehao'])) {
+			$data['sehao2'] = $kuanhaos[1]['sehao'];
+			$data['pinfan2'] = $kuanhaos[1]['pinfan'];
+			$data['caiduanshu2'] = $kuanhaos[1]['caiduanshu'];
+			$data['zhishishu2'] = $kuanhaos[1]['zhishishu'];
+		}
+
+		if (!empty($kuanhaos[2]['sehao'])) {
+			$data['sehao3'] = $kuanhaos[2]['sehao'];
+			$data['pinfan3'] = $kuanhaos[2]['pinfan'];
+			$data['caiduanshu3'] = $kuanhaos[2]['caiduanshu'];
+			$data['zhishishu3'] = $kuanhaos[2]['zhishishu'];
+		}
+
+		if (!empty($kuanhaos[3]['sehao'])) {
+			$data['sehao4'] = $kuanhaos[3]['sehao'];
+			$data['pinfan4'] = $kuanhaos[3]['pinfan'];
+			$data['caiduanshu4'] = $kuanhaos[3]['caiduanshu'];
+			$data['zhishishu4'] = $kuanhaos[3]['zhishishu'];
+		}
+
+		if (!empty($kuanhaos[4]['sehao'])) {
+			$data['sehao5'] = $kuanhaos[4]['sehao'];
+			$data['pinfan5'] = $kuanhaos[4]['pinfan'];
+			$data['caiduanshu5'] = $kuanhaos[4]['caiduanshu'];
+			$data['zhishishu5'] = $kuanhaos[4]['zhishishu'];
+		}
+
+		if (!empty($kuanhaos[5]['sehao'])) {
+			$data['sehao6'] = $kuanhaos[5]['sehao'];
+			$data['pinfan6'] = $kuanhaos[5]['pinfan'];
+			$data['caiduanshu6'] = $kuanhaos[5]['caiduanshu'];
+			$data['zhishishu6'] = $kuanhaos[5]['zhishishu'];
+		}
+
+		if (!empty($kuanhaos[6]['sehao'])) {
+			$data['sehao7'] = $kuanhaos[6]['sehao'];
+			$data['pinfan7'] = $kuanhaos[6]['pinfan'];
+			$data['caiduanshu7'] = $kuanhaos[6]['caiduanshu'];
+			$data['zhishishu7'] = $kuanhaos[6]['zhishishu'];
+		}
+
+		if (!empty($kuanhaos[7]['sehao'])) {
+			$data['sehao8'] = $kuanhaos[7]['sehao'];
+			$data['pinfan8'] = $kuanhaos[7]['pinfan'];
+			$data['caiduanshu8'] = $kuanhaos[7]['caiduanshu'];
+			$data['zhishishu8'] = $kuanhaos[7]['zhishishu'];
+		}
+
+		if (!empty($kuanhaos[8]['sehao'])) {
+			$data['sehao9'] = $kuanhaos[8]['sehao'];
+			$data['pinfan9'] = $kuanhaos[8]['pinfan'];
+			$data['caiduanshu9'] = $kuanhaos[8]['caiduanshu'];
+			$data['zhishishu9'] = $kuanhaos[8]['zhishishu'];
+		}
+
+		if (!empty($kuanhaos[9]['sehao'])) {
+			$data['sehao10'] = $kuanhaos[9]['sehao'];
+			$data['pinfan10'] = $kuanhaos[9]['pinfan'];
+			$data['caiduanshu10'] = $kuanhaos[9]['caiduanshu'];
+			$data['zhishishu10'] = $kuanhaos[9]['zhishishu'];
+		}
+		$this->display("goods/goods_edit_new22_caij", $data);
+	}
+	public function goods_save_edit2_caij()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
+			return;
+		}
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdkuanhao($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+
+		$sehaos = isset($_POST["sehao"]) ? $_POST["sehao"] : '';
+		if (empty($sehaos[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加色号!"));
+			return;
+		}
+		$pinfan = isset($_POST["pinfan"]) ? $_POST["pinfan"] : '';
+		if (empty($pinfan[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加品番!"));
+			return;
+		}
+		$caiduanshu = isset($_POST["caiduanshu"]) ? $_POST["caiduanshu"] : '';
+		if (empty($caiduanshu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加裁断数量!"));
+			return;
+		}
+		$zhishishu = isset($_POST["zhishishu"]) ? $_POST["zhishishu"] : '';
+		if (empty($zhishishu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加指示数量!"));
+			return;
+		}
+		$this->role->goodsimg_delete4_caij($id);
+		foreach ($sehaos as $k => $v) {
+			if (empty($v) || empty($pinfan[$k]) || empty($caiduanshu[$k]) || empty($zhishishu[$k])) {
+				continue;
+			}
+			$this->role->role_save123_caij($v,$pinfan[$k],$caiduanshu[$k],$zhishishu[$k],$id,time());
+		}
+
+		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+
+	}
+
 	/**
 	 * 原辅料平衡表导出
 	 */
@@ -4114,6 +4380,236 @@ class Goods extends CI_Controller
 
 		ob_end_clean();//清除缓存区，解决乱码问题
 		$fileName = '样品制作收发明细' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
+	}
+
+	/**
+	 * 预算裁断书导出
+	 */
+	public function goods_csv_cai()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+
+		$list1 = $this->role->gettidlistguige_cai($id);
+		$inputFileName = "./static/uploads/cdbgs.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		$GUIGE_ARR = array();
+		$SEHAO_ARR = array();
+		$SHUZHI_ARR = array();
+		$SHUZHIZHI_ARR = array();
+		foreach ($list1 as $k=>$v){
+			$GUIGE_ARR[] = $v['pinfan'];
+			$SEHAO_ARR[] = $v['sehao'];
+			$SHUZHI_ARR[] = $v['caiduanshu'];
+			$SHUZHIZHI_ARR[] = $v['zhishishu'];
+		}
+		$GUIGE_ARR = array_unique($GUIGE_ARR);
+		$SEHAO_ARR = array_unique($SEHAO_ARR);
+
+		$arr1 = array();
+		$rowold = -2;
+		foreach ($SEHAO_ARR as $kk=>$vv){
+			$rowold = $rowold + 2;
+			$row = $rowold + 8;
+			$objPHPExcel->getActiveSheet()->setCellValue( 'B'.$row,$vv);
+			foreach ($list1 as $key=>$val){
+				if ($vv == $val['sehao']){
+					$arr1[$key]['lin'] = $row;
+					$arr1[$key]['pinfanold'] = $val['pinfan'];
+					$arr1[$key]['zhishishuold'] = $val['zhishishu'];
+					$arr1[$key]['caiduanshuold'] = $val['caiduanshu'];
+				}
+			}
+		}
+		$zimu = 'C';
+		$rowold1 = -1;
+
+		foreach ($GUIGE_ARR as $kkk=>$vvv){
+			$rowold1 = $rowold1 + 1;
+			if ($rowold1 == 0){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'C7',$vvv);
+				$zimu = 'C';
+			}
+			if ($rowold1 == 1){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'D7',$vvv);
+				$zimu = 'D';
+			}
+			if ($rowold1 == 2){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'E7',$vvv);
+				$zimu = 'E';
+			}
+			if ($rowold1 == 3){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'F7',$vvv);
+				$zimu = 'F';
+			}
+			if ($rowold1 == 4){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'G7',$vvv);
+				$zimu = 'G';
+			}
+			if ($rowold1 == 5){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'H7',$vvv);
+				$zimu = 'H';
+			}
+			if ($rowold1 == 6){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'I7',$vvv);
+				$zimu = 'I';
+			}
+			if ($rowold1 == 7){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'J7',$vvv);
+				$zimu = 'J';
+			}
+			if ($rowold1 == 8){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'K7',$vvv);
+				$zimu = 'K';
+			}
+			if ($rowold1 == 9){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'L7',$vvv);
+				$zimu = 'L';
+			}
+			foreach ($arr1 as $keyy=>$vall){
+				if ($vall['pinfanold'] == $vvv){
+					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['caiduanshuold']);
+					$objPHPExcel->getActiveSheet()->setCellValue($zimu.($vall['lin']+1),$vall['zhishishuold']);
+				}
+			}
+		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+		$fileName = '预算裁断报告书' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
+	}
+
+	/**
+	 * 决算裁断书导出
+	 */
+	public function goods_csv_caij()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+
+		$list1 = $this->role->gettidlistguige_caij($id);
+		$inputFileName = "./static/uploads/cdbgs.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		$GUIGE_ARR = array();
+		$SEHAO_ARR = array();
+		$SHUZHI_ARR = array();
+		$SHUZHIZHI_ARR = array();
+		foreach ($list1 as $k=>$v){
+			$GUIGE_ARR[] = $v['pinfan'];
+			$SEHAO_ARR[] = $v['sehao'];
+			$SHUZHI_ARR[] = $v['caiduanshu'];
+			$SHUZHIZHI_ARR[] = $v['zhishishu'];
+		}
+		$GUIGE_ARR = array_unique($GUIGE_ARR);
+		$SEHAO_ARR = array_unique($SEHAO_ARR);
+
+		$arr1 = array();
+		$rowold = -2;
+		foreach ($SEHAO_ARR as $kk=>$vv){
+			$rowold = $rowold + 2;
+			$row = $rowold + 8;
+			$objPHPExcel->getActiveSheet()->setCellValue( 'B'.$row,$vv);
+			foreach ($list1 as $key=>$val){
+				if ($vv == $val['sehao']){
+					$arr1[$key]['lin'] = $row;
+					$arr1[$key]['pinfanold'] = $val['pinfan'];
+					$arr1[$key]['zhishishuold'] = $val['zhishishu'];
+					$arr1[$key]['caiduanshuold'] = $val['caiduanshu'];
+				}
+			}
+		}
+		$zimu = 'C';
+		$rowold1 = -1;
+
+		foreach ($GUIGE_ARR as $kkk=>$vvv){
+			$rowold1 = $rowold1 + 1;
+			if ($rowold1 == 0){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'C7',$vvv);
+				$zimu = 'C';
+			}
+			if ($rowold1 == 1){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'D7',$vvv);
+				$zimu = 'D';
+			}
+			if ($rowold1 == 2){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'E7',$vvv);
+				$zimu = 'E';
+			}
+			if ($rowold1 == 3){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'F7',$vvv);
+				$zimu = 'F';
+			}
+			if ($rowold1 == 4){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'G7',$vvv);
+				$zimu = 'G';
+			}
+			if ($rowold1 == 5){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'H7',$vvv);
+				$zimu = 'H';
+			}
+			if ($rowold1 == 6){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'I7',$vvv);
+				$zimu = 'I';
+			}
+			if ($rowold1 == 7){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'J7',$vvv);
+				$zimu = 'J';
+			}
+			if ($rowold1 == 8){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'K7',$vvv);
+				$zimu = 'K';
+			}
+			if ($rowold1 == 9){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'L7',$vvv);
+				$zimu = 'L';
+			}
+			foreach ($arr1 as $keyy=>$vall){
+				if ($vall['pinfanold'] == $vvv){
+					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['caiduanshuold']);
+					$objPHPExcel->getActiveSheet()->setCellValue($zimu.($vall['lin']+1),$vall['zhishishuold']);
+				}
+			}
+		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+		$fileName = '决算裁断报告书' . date('Ymd_His');
 		// 生成2007excel格式的xlsx文件
 		$IOFactory = new IOFactory();
 		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');

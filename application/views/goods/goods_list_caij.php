@@ -18,7 +18,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>预算裁断书管理</cite></a>
+              <cite>决算裁断书管理</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -26,7 +26,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_cai' ?>">
+                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_caij' ?>">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
                                    placeholder="合同编号" autocomplete="off" class="layui-input">
@@ -55,7 +55,7 @@
 									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('查看详情','<?= RUN . '/goods/goods_list1_cai?id=' ?>'+'<?= $once['id'] ?>')">
+                                                onclick="xadmin.open('查看详情','<?= RUN . '/goods/goods_list1_caij?id=' ?>'+'<?= $once['id'] ?>')">
                                             <i class="layui-icon">&#xe642;</i>查看详情
                                         </button>
                                     </td>

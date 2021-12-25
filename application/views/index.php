@@ -130,7 +130,13 @@
 					<li>
 						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_cai' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>裁断报告书列表</cite>
+							<cite>预算裁断书管理</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_caij' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>决算裁断书管理</cite>
 						</a>
 					</li>
 				</ul>

@@ -25,63 +25,6 @@
 					<form method="post" class="layui-form" style="margin-top: 15px" action="" name="basic_validate" id="tab">
 						<p style="font-size: 25px;font-weight: bold;margin-bottom: 15px;margin-top: 15px;">预算报价单信息</p>
 						<table class="layui-table layui-form">
-<!--							<thead>-->
-<!--							<tr>-->
-<!--								<th>客户名</th>-->
-<!--								<th>生产数量</th>-->
-<!--								<th>报价日期</th>-->
-<!--								<th>损耗</th>-->
-<!--								<th>小计</th>-->
-<!--							<tr>-->
-<!--							</thead>-->
-<!--							<tbody>-->
-<!--							<tr id="div1">-->
-<!--								<td><input name="kehuming" id="kehuming" value="--><?php //echo $kehumingy ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--								<td><input name="shengcanshuliang" id="shengcanshuliang" value="--><?php //echo $shengcanshuliangy ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--								<td><input name="riqi" id="riqi" value="--><?php //echo date('Y-m-d',$riqiy) ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--								<td><input name="sunhao" id="sunhao" value="--><?php //echo $sunhaoy ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--								<td><input name="xiaoji" id="xiaoji" value="--><?php //echo $xiaojiy ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--							</tr>-->
-<!--							</tbody>-->
-							<thead>
-							<tr>
-								<th>加工费单价</th>
-								<th>加工费用量</th>
-								<th>二次加工费单价</th>
-								<th>二次加工费用量</th>
-								<th>检品费单价</th>
-								<th>检品费用量</th>
-								<th>通关费单价</th>
-								<th>通关费用量</th>
-								<th>面料检测单价</th>
-								<th>面料检测用量</th>
-								<th>运费单价</th>
-								<th>运费用量</th>
-								<th>其他单价</th>
-								<th>其他用量</th>
-							<tr>
-							</thead>
-							<tbody>
-							<tr id="div1">
-								<td <?php echo empty($jiagongfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jiagongfeidanjia" id="jiagongfeidanjia" value="<?php echo $jiagongfeidanjiay ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($jiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jiagongfeiyongliang" id="jiagongfeiyongliang" value="<?php echo $jiagongfeiyongliangy ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($ercijiagongfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="ercijiagongfeidanjia" id="ercijiagongfeidanjia" value="<?php echo $ercijiagongfeidanjiay ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($ercijiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="ercijiagongfeiyongliang" id="ercijiagongfeiyongliang" value="<?php echo $ercijiagongfeiyongliangy ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($jianpinfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jianpinfeidanjia" id="jianpinfeidanjia" value="<?php echo $jianpinfeidanjiay ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($jianpinfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jianpinfeiyongliang" id="jianpinfeiyongliang" value="<?php echo $jianpinfeiyongliangy ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($tongguanfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="tongguanfeidanjia" id="tongguanfeidanjia" value="<?php echo $tongguanfeidanjiay ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($tongguanfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="tongguanfeiyongliang" id="tongguanfeiyongliang"  value="<?php echo $tongguanfeiyongliangy ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($mianliaojiancedanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="mianliaojiancedanjia" id="mianliaojiancedanjia" value="<?php echo $mianliaojiancedanjiay ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($mianliaojianceyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="mianliaojianceyongliang" id="mianliaojianceyongliang" value="<?php echo $mianliaojianceyongliangy ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($yunfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="yunfeidanjia" id="yunfeidanjia" value="<?php echo $yunfeidanjiay ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($yunfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="yunfeiyongliang" id="yunfeiyongliang" value="<?php echo $yunfeiyongliangy ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($qitadanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="qitadanjia" id="qitadanjia" value="<?php echo $qitadanjiay ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($qitayongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="qitayongliang" id="qitayongliang" value="<?php echo $qitayongliangy ?>" autocomplete="off" class="layui-input"></td>
-							</tr>
-							</tbody>
-						</table>
-						<br>
-						<table class="layui-table layui-form">
 							<thead>
 							<tr>
 								<th>项目</th>
@@ -98,7 +41,7 @@
 								<th>备注</th>
 							</thead>
 							<tbody>
-							<tr id="div1" <?php echo empty($yi_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div1" <?php echo empty($yi_flg)?:'' ?>>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu1 ?>" id="val1" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng1 ?>" id="val11" autocomplete="off" class="layui-input"></td>
 								<td><input name="guige[]" value="<?php echo $yguige1 ?>" id="val111" autocomplete="off" class="layui-input"></td>
@@ -115,7 +58,7 @@
 							<?php if (empty($yxiangmu2)){ ?>
 							<tr id="div2" style="display: none;">
 							<?php }else{ ?>
-							<tr id="div2" <?php echo empty($er_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div2" <?php echo empty($er_flg)?:'' ?>>
 								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu2 ?>" id="val2" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng2 ?>" id="val22" autocomplete="off" class="layui-input"></td>
@@ -133,7 +76,7 @@
 							<?php if (empty($yxiangmu3)){ ?>
 							<tr id="div3" style="display: none;">
 							<?php }else{ ?>
-							<tr id="div3" <?php echo empty($san_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div3" <?php echo empty($san_flg)?:'' ?>>
 								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu3 ?>" id="val3" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng3 ?>" id="val33" autocomplete="off" class="layui-input"></td>
@@ -151,7 +94,7 @@
 							<?php if (empty($yxiangmu4)){ ?>
 							<tr id="div4" style="display: none;">
 							<?php }else{ ?>
-							<tr id="div4" <?php echo empty($si_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div4" <?php echo empty($si_flg)?:'' ?>>
 								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu4 ?>" id="val4" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng4 ?>" id="val44" autocomplete="off" class="layui-input"></td>
@@ -169,7 +112,7 @@
 							<?php if (empty($yxiangmu5)){ ?>
 							<tr id="div5" style="display: none;">
 							<?php }else{ ?>
-							<tr id="div5" <?php echo empty($wu_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div5" <?php echo empty($wu_flg)?:'' ?>>
 								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu5 ?>" id="val5" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng5 ?>" id="val55" autocomplete="off" class="layui-input"></td>
@@ -187,7 +130,7 @@
 							<?php if (empty($yxiangmu6)){ ?>
 							<tr id="div6" style="display: none;">
 							<?php }else{ ?>
-							<tr id="div6" <?php echo empty($liu_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div6" <?php echo empty($liu_flg)?:'' ?>>
 								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu6 ?>" id="val6" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng6 ?>" id="val66" autocomplete="off" class="layui-input"></td>
@@ -205,7 +148,7 @@
 							<?php if (empty($yxiangmu7)){ ?>
 							<tr id="div7" style="display: none;">
 							<?php }else{ ?>
-							<tr id="div7" <?php echo empty($qi_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div7" <?php echo empty($qi_flg)?:'' ?>>
 								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu7 ?>" id="val7" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng7 ?>" id="val77" autocomplete="off" class="layui-input"></td>
@@ -223,7 +166,7 @@
 							<?php if (empty($yxiangmu8)){ ?>
 							<tr id="div8" style="display: none;">
 							<?php }else{ ?>
-							<tr id="div8" <?php echo empty($ba_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div8" <?php echo empty($ba_flg)?:'' ?>>
 								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu8 ?>" id="val8" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng8 ?>" id="val88" autocomplete="off" class="layui-input"></td>
@@ -241,7 +184,7 @@
 							<?php if (empty($yxiangmu9)){ ?>
 							<tr id="div9" style="display: none;">
 							<?php }else{ ?>
-							<tr id="div9" <?php echo empty($jiu_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div9" <?php echo empty($jiu_flg)?:'' ?>>
 								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu9 ?>" id="val9" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng9 ?>" id="val99" autocomplete="off" class="layui-input"></td>
@@ -259,7 +202,7 @@
 							<?php if (empty($yxiangmu10)){ ?>
 							<tr id="div10" style="display: none;">
 								<?php }else{ ?>
-							<tr id="div10" <?php echo empty($shi_flg)?:'style="border: 5px solid #F00;"' ?>>
+							<tr id="div10" <?php echo empty($shi_flg)?:'' ?>>
 								<?php } ?>
 								<td><input name="xiangmu[]" value="<?php echo $yxiangmu10 ?>" id="val10" autocomplete="off" class="layui-input"></td>
 								<td><input name="mingcheng[]" value="<?php echo $ymingcheng10 ?>" id="val1010" autocomplete="off" class="layui-input"></td>
@@ -273,6 +216,139 @@
 								<td><input name="danwei3[]" value="<?php echo $ydanwei3_10 ?>" id="val10101010101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $yqidingliang10 ?>" id="val1010101010101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $ybeizhu10 ?>" id="val101010101010101010101010" autocomplete="off" class="layui-input"></td>
+							</tr>
+							</tbody>
+						</table>
+						<br><br>
+						<table class="layui-table layui-form">
+							<thead>
+							<tr>
+								<th>项目</th>
+								<th>名称</th>
+								<th>规格</th>
+								<th>单位</th>
+								<th>单价</th>
+								<th>单位</th>
+								<th>用量</th>
+								<th>单位</th>
+								<th>金额</th>
+								<th>单位</th>
+								<th>起订量</th>
+								<th>备注</th>
+							<tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td style="min-width: 80px;">
+									加工费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeidanjia" value="<?php echo $jiagongfeidanjiay ?>" id="jiagongfeidanjia" autocomplete="off" value="1" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeiyongliang" value="<?php echo $jiagongfeiyongliangy ?>" id="jiagongfeiyongliang" autocomplete="off" value="100" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeijine" value="<?php echo empty($jiagongfeidanjiay) || empty($jiagongfeiyongliangy)?'':$jiagongfeidanjiay * $jiagongfeiyongliangy ?>" id="jiagongfeijine" autocomplete="off" value="100" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									二次加工费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeidanjia" value="<?php echo $ercijiagongfeidanjiay ?>" id="ercijiagongfeidanjia" value="1" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeiyongliang" value="<?php echo $ercijiagongfeiyongliangy ?>" id="ercijiagongfeiyongliang" value="90" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeijine" value="<?php echo empty($ercijiagongfeidanjiay) || empty($ercijiagongfeiyongliangy)?'':$ercijiagongfeidanjiay * $ercijiagongfeiyongliangy ?>" id="ercijiagongfeijine" value="90" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									检品费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeidanjia" value="<?php echo $jianpinfeidanjiay ?>" id="jianpinfeidanjia" autocomplete="off" value="1" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeiyongliang" value="<?php echo $jianpinfeiyongliangy ?>" id="jianpinfeiyongliang" autocomplete="off" value="80" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeijine" value="<?php echo empty($jianpinfeidanjiay) || empty($jianpinfeiyongliangy)?'':$jianpinfeidanjiay * $jianpinfeiyongliangy ?>" id="jianpinfeijine" autocomplete="off" value="70" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									通关费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeidanjia" value="<?php echo $tongguanfeidanjiay ?>" id="tongguanfeidanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeiyongliang" value="<?php echo $tongguanfeiyongliangy ?>" id="tongguanfeiyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeijine" value="<?php echo empty($tongguanfeidanjiay) || empty($tongguanfeiyongliangy)?'':$tongguanfeiyongliangy * $tongguanfeidanjiay ?>" id="tongguanfeijine" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									面料检测费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="mianliaojiancedanjia" value="<?php echo $mianliaojiancedanjiay ?>" id="mianliaojiancedanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off"  class="layui-input"></td>
+								<td><input name="mianliaojianceyongliang" value="<?php echo $mianliaojianceyongliangy ?>" id="mianliaojianceyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="mianliaojiancejine" value="<?php echo empty($mianliaojiancedanjiay) || empty($mianliaojianceyongliangy)?'':$mianliaojiancedanjiay * $mianliaojianceyongliangy ?>" id="mianliaojiancejine" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									运费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeidanjia" id="yunfeidanjia" value="<?php echo $yunfeidanjiay ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeiyongliang" id="yunfeiyongliang" value="<?php echo $yunfeiyongliangy ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeijine" id="yunfeijine" value="<?php echo empty($yunfeidanjiay) || empty($yunfeiyongliangy)?'':$yunfeiyongliangy * $yunfeidanjiay ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									其他
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitadanjia" id="qitadanjia" value="<?php echo $qitadanjiay ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitayongliang" id="qitayongliang" value="<?php echo $qitayongliangy ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitajine" id="qitajine" value="<?php echo empty($qitayongliangy) || empty($qitadanjiay)?'':$qitayongliangy * $qitadanjiay ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
 							</tr>
 							</tbody>
 						</table>
@@ -298,63 +374,6 @@
 				<div class="layui-card-body ">
 					<form method="post" class="layui-form" style="margin-top: 15px" action="" name="basic_validate" id="tab">
 						<p style="font-size: 25px;font-weight: bold;margin-bottom: 15px;margin-top: 15px;">决算报价单信息</p>
-						<table class="layui-table layui-form">
-<!--							<thead>-->
-<!--							<tr>-->
-<!--								<th>客户名</th>-->
-<!--								<th>生产数量</th>-->
-<!--								<th>报价日期</th>-->
-<!--								<th>损耗</th>-->
-<!--								<th>小计</th>-->
-<!--							<tr>-->
-<!--							</thead>-->
-<!--							<tbody>-->
-<!--							<tr id="div1">-->
-<!--								<td><input name="kehuming" id="kehuming" value="--><?php //echo $kehumingj ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--								<td><input name="shengcanshuliang" id="shengcanshuliang" value="--><?php //echo $shengcanshuliangj ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--								<td><input name="riqi" id="riqi" value="--><?php //echo date('Y-m-d',$riqij) ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--								<td><input name="sunhao" id="sunhao" value="--><?php //echo $sunhaoj ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--								<td><input name="xiaoji" id="xiaoji" value="--><?php //echo $xiaojij ?><!--" autocomplete="off" class="layui-input"></td>-->
-<!--							</tr>-->
-<!--							</tbody>-->
-							<thead>
-							<tr>
-								<th>加工费单价</th>
-								<th>加工费用量</th>
-								<th>二次加工费单价</th>
-								<th>二次加工费用量</th>
-								<th>检品费单价</th>
-								<th>检品费用量</th>
-								<th>通关费单价</th>
-								<th>通关费用量</th>
-								<th>面料检测单价</th>
-								<th>面料检测用量</th>
-								<th>运费单价</th>
-								<th>运费用量</th>
-								<th>其他单价</th>
-								<th>其他用量</th>
-							<tr>
-							</thead>
-							<tbody>
-							<tr id="div1">
-								<td <?php echo empty($jiagongfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jiagongfeidanjia" id="jiagongfeidanjia" value="<?php echo $jiagongfeidanjiaj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($jiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jiagongfeiyongliang" id="jiagongfeiyongliang" value="<?php echo $jiagongfeiyongliangj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($ercijiagongfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="ercijiagongfeidanjia" id="ercijiagongfeidanjia" value="<?php echo $ercijiagongfeidanjiaj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($ercijiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="ercijiagongfeiyongliang" id="ercijiagongfeiyongliang" value="<?php echo $ercijiagongfeiyongliangj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($jianpinfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jianpinfeidanjia" id="jianpinfeidanjia" value="<?php echo $jianpinfeidanjiaj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($jianpinfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jianpinfeiyongliang" id="jianpinfeiyongliang" value="<?php echo $jianpinfeiyongliangj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($tongguanfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="tongguanfeidanjia" id="tongguanfeidanjia" value="<?php echo $tongguanfeidanjiaj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($tongguanfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="tongguanfeiyongliang" id="tongguanfeiyongliang"  value="<?php echo $tongguanfeiyongliangj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($mianliaojiancedanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="mianliaojiancedanjia" id="mianliaojiancedanjia" value="<?php echo $mianliaojiancedanjiaj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($mianliaojianceyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="mianliaojianceyongliang" id="mianliaojianceyongliang" value="<?php echo $mianliaojianceyongliangj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($yunfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="yunfeidanjia" id="yunfeidanjia" value="<?php echo $yunfeidanjiaj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($yunfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="yunfeiyongliang" id="yunfeiyongliang" value="<?php echo $yunfeiyongliangj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($qitadanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="qitadanjia" id="qitadanjia" value="<?php echo $qitadanjiaj ?>" autocomplete="off" class="layui-input"></td>
-								<td <?php echo empty($qitayongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="qitayongliang" id="qitayongliang" value="<?php echo $qitayongliangj ?>" autocomplete="off" class="layui-input"></td>
-							</tr>
-							</tbody>
-						</table>
-						<br>
 						<table class="layui-table layui-form">
 							<thead>
 							<tr>
@@ -547,6 +566,139 @@
 								<td><input name="danwei3[]" value="<?php echo $jdanwei3_10 ?>" id="val10101010101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="qidingliang[]" value="<?php echo $jqidingliang10 ?>" id="val1010101010101010101010" autocomplete="off" class="layui-input"></td>
 								<td><input name="beizhu[]" value="<?php echo $jbeizhu10 ?>" id="val101010101010101010101010" autocomplete="off" class="layui-input"></td>
+							</tr>
+							</tbody>
+						</table>
+						<br><br>
+						<table class="layui-table layui-form">
+							<thead>
+							<tr>
+								<th>项目</th>
+								<th>名称</th>
+								<th>规格</th>
+								<th>单位</th>
+								<th>单价</th>
+								<th>单位</th>
+								<th>用量</th>
+								<th>单位</th>
+								<th>金额</th>
+								<th>单位</th>
+								<th>起订量</th>
+								<th>备注</th>
+							<tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td style="min-width: 80px;">
+									加工费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($jiagongfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jiagongfeidanjia" value="<?php echo $jiagongfeidanjiaj ?>" id="jiagongfeidanjia" autocomplete="off" value="1" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($jiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jiagongfeiyongliang" value="<?php echo $jiagongfeiyongliangj ?>" id="jiagongfeiyongliang" autocomplete="off" value="100" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($jiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jiagongfeijine" value="<?php echo empty($jiagongfeidanjiaj) || empty($jiagongfeiyongliangj)?'':$jiagongfeidanjiaj * $jiagongfeiyongliangj ?>" id="jiagongfeijine" autocomplete="off" value="100" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									二次加工费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($ercijiagongfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="ercijiagongfeidanjia" value="<?php echo $ercijiagongfeidanjiaj ?>" id="ercijiagongfeidanjia" value="1" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($ercijiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="ercijiagongfeiyongliang" value="<?php echo $ercijiagongfeiyongliangj ?>" id="ercijiagongfeiyongliang" value="90" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($ercijiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="ercijiagongfeijine" value="<?php echo empty($ercijiagongfeidanjiaj) || empty($ercijiagongfeiyongliangj)?'':$ercijiagongfeidanjiaj * $ercijiagongfeiyongliangj ?>" id="ercijiagongfeijine" value="90" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									检品费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($jianpinfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jianpinfeidanjia" value="<?php echo $jianpinfeidanjiaj ?>" id="jianpinfeidanjia" autocomplete="off" value="1" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($jianpinfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jianpinfeiyongliang" value="<?php echo $jianpinfeiyongliangj ?>" id="jianpinfeiyongliang" autocomplete="off" value="80" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($jianpinfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="jianpinfeijine" value="<?php echo empty($jianpinfeidanjiaj) || empty($jianpinfeiyongliangj)?'':$jianpinfeidanjiaj * $jianpinfeiyongliangj ?>" id="jianpinfeijine" autocomplete="off" value="70" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									通关费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($tongguanfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="tongguanfeidanjia" value="<?php echo $tongguanfeidanjiaj ?>" id="tongguanfeidanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($tongguanfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="tongguanfeiyongliang" value="<?php echo $tongguanfeiyongliangj ?>" id="tongguanfeiyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($tongguanfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="tongguanfeijine" value="<?php echo empty($tongguanfeidanjiaj) || empty($tongguanfeiyongliangj)?'':$tongguanfeiyongliangj * $tongguanfeidanjiaj ?>" id="tongguanfeijine" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									面料检测费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($mianliaojiancedanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="mianliaojiancedanjia" value="<?php echo $mianliaojiancedanjiaj ?>" id="mianliaojiancedanjia" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off"  class="layui-input"></td>
+								<td <?php echo empty($mianliaojianceyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="mianliaojianceyongliang" value="<?php echo $mianliaojianceyongliangj ?>" id="mianliaojianceyongliang" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($mianliaojianceyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="mianliaojiancejine" value="<?php echo empty($mianliaojiancedanjiaj) || empty($mianliaojianceyongliangj)?'':$mianliaojiancedanjiaj * $mianliaojianceyongliangj ?>" id="mianliaojiancejine" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									运费
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($yunfeidanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="yunfeidanjia" id="yunfeidanjia" value="<?php echo $yunfeidanjiaj ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($yunfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="yunfeiyongliang" id="yunfeiyongliang" value="<?php echo $yunfeiyongliangj ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($yunfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="yunfeijine" id="yunfeijine" value="<?php echo empty($yunfeidanjiaj) || empty($yunfeiyongliangj)?'':$yunfeiyongliangj * $yunfeidanjiaj ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+							</tr>
+							<tr>
+								<td style="min-width: 80px;">
+									其他
+								</td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($qitadanjia_flg)?:'style="border: 5px solid #F00;"' ?>><input name="qitadanjia" id="qitadanjia" value="<?php echo $qitadanjiaj ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($qitayongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="qitayongliang" id="qitayongliang" value="<?php echo $qitayongliangj ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td <?php echo empty($qitayongliang_flg)?:'style="border: 5px solid #F00;"' ?>><input name="qitajine" id="qitajine" value="<?php echo empty($qitayongliangj) || empty($qitadanjiaj)?'':$qitayongliangj * $qitadanjiaj ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
 							</tr>
 							</tbody>
 						</table>

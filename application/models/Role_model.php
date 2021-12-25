@@ -234,6 +234,19 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
+	public function role_save123_caij($sehao,$pinfan,$caiduanshu,$zhishishu,$kid,$time)
+	{
+		$caiduanshu = $this->db->escape($caiduanshu);
+		$pinfan = $this->db->escape($pinfan);
+		$sehao = $this->db->escape($sehao);
+		$zhishishu = $this->db->escape($zhishishu);
+		$kid = $this->db->escape($kid);
+		$time = $this->db->escape($time);
+		$sql = "INSERT INTO `erp_caiduanbaogaoshujue` (sehao,pinfan,caiduanshu,zhishishu,kid,addtime) VALUES ($sehao,$pinfan,$caiduanshu,$zhishishu,$kid,$time)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
 	public function rtom_save1($xid,$uid)
 	{
 		$xid = $this->db->escape($xid);
@@ -340,6 +353,12 @@ class Role_model extends CI_Model
 		$sql = "DELETE FROM erp_caiduanbaogaoshu WHERE kid = $id";
 		return $this->db->query($sql);
 	}
+	public function goodsimg_delete4_caij($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_caiduanbaogaoshujue WHERE kid = $id";
+		return $this->db->query($sql);
+	}
 	public function goods_delete($id)
 	{
 		$id = $this->db->escape($id);
@@ -398,6 +417,18 @@ class Role_model extends CI_Model
 	{
 		$id = $this->db->escape($id);
 		$sql = "SELECT * FROM `erp_yuanfuliaoguige` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function gettidlistguige_cai($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function gettidlistguige_caij($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshujue` where kid = $id ";
 		return $this->db->query($sql)->result_array();
 	}
 	public function gettidlistpinming($id)
