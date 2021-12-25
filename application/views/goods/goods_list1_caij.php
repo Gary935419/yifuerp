@@ -59,6 +59,12 @@
 												<i class="layui-icon">&#xe642;</i>裁断信息添加
 											</button>
 										<?php } ?>
+										<?php if ($once['duibiflg'] == 1){ ?>
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('数据对比','<?= RUN . '/goods/goods_list_bao_duibi_details_jue?id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="iconfont">&#xe74a;</i>数据对比
+											</button>
+										<?php } ?>
 										<?php if ($once['openflg1']>=1){ ?>
 											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_caij?id='.$once['id'] ?>">
 												<button class="layui-btn layui-btn-normal">

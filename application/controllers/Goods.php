@@ -3858,6 +3858,28 @@ class Goods extends CI_Controller
 				$list[$k]['openflg1'] = 0;
 			}
 		}
+		foreach ($list as $kk=>$vv){
+			$flg1 = 0;
+			$flg2 = 0;
+			$kid = $vv['id'];
+			//预算表数据获取
+			$listone1 = $this->role->getgoodsByIdxiaojiejeiduibiyu($kid);
+//			$listone2 = $this->role->getgoodsByIdxiaojiejeiduibi1($kid);
+			if (!empty($listone1) || !empty($listone2)){
+				$flg1 = 1;
+			}
+			//决算表数据获取
+			$listone11 = $this->role->getgoodsByIdxiaojiejeiduibijue($kid);
+//			$listone22 = $this->role->getgoodsByIdxiaojiejeiduibi22($kid);
+			if (!empty($listone11) || !empty($listone22)){
+				$flg2 = 1;
+			}
+			if ($flg1 == 1 && $flg2 == 1){
+				$list[$kk]['duibiflg'] = 1;
+			}else{
+				$list[$kk]['duibiflg'] = 0;
+			}
+		}
 		$data["list"] = $list;
 		$this->display("goods/goods_list1_caij", $data);
 	}
@@ -4086,7 +4108,328 @@ class Goods extends CI_Controller
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 
 	}
+	public function goods_list_bao_duibi_details_jue()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$data = array();
 
+		$kuanhaosyusuan = $this->task->gettidlistjichu1cai($id);
+		$kuanhaosjuesuan = $this->task->gettidlistjichu1juecai($id);
+
+		$data['sehao1'] = '';
+		$data['pinfan1'] = '';
+		$data['caiduanshu1'] = '';
+		$data['zhishishu1'] = '';
+
+		$data['sehao2'] = '';
+		$data['pinfan2'] = '';
+		$data['caiduanshu2'] = '';
+		$data['zhishishu2'] = '';
+
+		$data['sehao3'] = '';
+		$data['pinfan3'] = '';
+		$data['caiduanshu3'] = '';
+		$data['zhishishu3'] = '';
+
+		$data['sehao4'] = '';
+		$data['pinfan4'] = '';
+		$data['caiduanshu4'] = '';
+		$data['zhishishu4'] = '';
+
+		$data['sehao5'] = '';
+		$data['pinfan5'] = '';
+		$data['caiduanshu5'] = '';
+		$data['zhishishu5'] = '';
+
+		$data['sehao6'] = '';
+		$data['pinfan6'] = '';
+		$data['caiduanshu6'] = '';
+		$data['zhishishu6'] = '';
+
+		$data['sehao7'] = '';
+		$data['pinfan7'] = '';
+		$data['caiduanshu7'] = '';
+		$data['zhishishu7'] = '';
+
+		$data['sehao8'] = '';
+		$data['pinfan8'] = '';
+		$data['caiduanshu8'] = '';
+		$data['zhishishu8'] = '';
+
+		$data['sehao9'] = '';
+		$data['pinfan9'] = '';
+		$data['caiduanshu9'] = '';
+		$data['zhishishu9'] = '';
+
+		$data['sehao10'] = '';
+		$data['pinfan10'] = '';
+		$data['caiduanshu10'] = '';
+		$data['zhishishu10'] = '';
+
+		$data['yi_flg'] = 0;
+		if (!empty($kuanhaosyusuan[0]['sehao'])) {
+			$data['sehao1'] = $kuanhaosyusuan[0]['sehao'];
+			$data['pinfan1'] = $kuanhaosyusuan[0]['pinfan'];
+			$data['caiduanshu1'] = $kuanhaosyusuan[0]['caiduanshu'];
+			$data['zhishishu1'] = $kuanhaosyusuan[0]['zhishishu'];
+			$yi_result = $this->task->getqubieduibiresultcai($id,$data['sehao1'],$data['pinfan1'],$data['caiduanshu1'],$data['zhishishu1']);
+			if(empty($yi_result)){
+				$data['yi_flg'] = 1;
+			}
+		}
+
+		$data['er_flg'] = 0;
+		if (!empty($kuanhaosyusuan[1]['sehao'])) {
+			$data['sehao2'] = $kuanhaosyusuan[1]['sehao'];
+			$data['pinfan2'] = $kuanhaosyusuan[1]['pinfan'];
+			$data['caiduanshu2'] = $kuanhaosyusuan[1]['caiduanshu'];
+			$data['zhishishu2'] = $kuanhaosyusuan[1]['zhishishu'];
+			$er_result = $this->task->getqubieduibiresultcai($id,$data['sehao2'],$data['pinfan2'],$data['caiduanshu2'],$data['zhishishu2']);
+			if(empty($er_result)){
+				$data['er_flg'] = 1;
+			}
+		}
+
+		$data['san_flg'] = 0;
+		if (!empty($kuanhaosyusuan[2]['sehao'])) {
+			$data['sehao3'] = $kuanhaosyusuan[2]['sehao'];
+			$data['pinfan3'] = $kuanhaosyusuan[2]['pinfan'];
+			$data['caiduanshu3'] = $kuanhaosyusuan[2]['caiduanshu'];
+			$data['zhishishu3'] = $kuanhaosyusuan[2]['zhishishu'];
+			$san_result = $this->task->getqubieduibiresultcai($id,$data['sehao3'],$data['pinfan3'],$data['caiduanshu3'],$data['zhishishu3']);
+			if(empty($san_result)){
+				$data['san_flg'] = 1;
+			}
+		}
+
+		$data['si_flg'] = 0;
+		if (!empty($kuanhaosyusuan[3]['sehao'])) {
+			$data['sehao4'] = $kuanhaosyusuan[3]['sehao'];
+			$data['pinfan4'] = $kuanhaosyusuan[3]['pinfan'];
+			$data['caiduanshu4'] = $kuanhaosyusuan[3]['caiduanshu'];
+			$data['zhishishu4'] = $kuanhaosyusuan[3]['zhishishu'];
+			$si_result = $this->task->getqubieduibiresultcai($id,$data['sehao4'],$data['pinfan4'],$data['caiduanshu4'],$data['zhishishu4']);
+			if(empty($si_result)){
+				$data['si_flg'] = 1;
+			}
+		}
+
+		$data['wu_flg'] = 0;
+		if (!empty($kuanhaosyusuan[4]['sehao'])) {
+			$data['sehao5'] = $kuanhaosyusuan[4]['sehao'];
+			$data['pinfan5'] = $kuanhaosyusuan[4]['pinfan'];
+			$data['caiduanshu5'] = $kuanhaosyusuan[4]['caiduanshu'];
+			$data['zhishishu5'] = $kuanhaosyusuan[4]['zhishishu'];
+			$wu_result = $this->task->getqubieduibiresultcai($id,$data['sehao5'],$data['pinfan5'],$data['caiduanshu5'],$data['zhishishu5']);
+			if(empty($wu_result)){
+				$data['wu_flg'] = 1;
+			}
+		}
+
+		$data['liu_flg'] = 0;
+		if (!empty($kuanhaosyusuan[5]['sehao'])) {
+			$data['sehao6'] = $kuanhaosyusuan[5]['sehao'];
+			$data['pinfan6'] = $kuanhaosyusuan[5]['pinfan'];
+			$data['caiduanshu6'] = $kuanhaosyusuan[5]['caiduanshu'];
+			$data['zhishishu6'] = $kuanhaosyusuan[5]['zhishishu'];
+			$liu_result = $this->task->getqubieduibiresultcai($id,$data['sehao6'],$data['pinfan6'],$data['caiduanshu6'],$data['zhishishu6']);
+			if(empty($liu_result)){
+				$data['liu_flg'] = 1;
+			}
+		}
+
+		$data['qi_flg'] = 0;
+		if (!empty($kuanhaosyusuan[6]['sehao'])) {
+			$data['sehao7'] = $kuanhaosyusuan[6]['sehao'];
+			$data['pinfan7'] = $kuanhaosyusuan[6]['pinfan'];
+			$data['caiduanshu7'] = $kuanhaosyusuan[6]['caiduanshu'];
+			$data['zhishishu7'] = $kuanhaosyusuan[6]['zhishishu'];
+			$qi_result = $this->task->getqubieduibiresultcai($id,$data['sehao7'],$data['pinfan7'],$data['caiduanshu7'],$data['zhishishu7']);
+			if(empty($qi_result)){
+				$data['qi_flg'] = 1;
+			}
+		}
+
+		$data['ba_flg'] = 0;
+		if (!empty($kuanhaosyusuan[7]['sehao'])) {
+			$data['sehao8'] = $kuanhaosyusuan[7]['sehao'];
+			$data['pinfan8'] = $kuanhaosyusuan[7]['pinfan'];
+			$data['caiduanshu8'] = $kuanhaosyusuan[7]['caiduanshu'];
+			$data['zhishishu8'] = $kuanhaosyusuan[7]['zhishishu'];
+			$ba_result = $this->task->getqubieduibiresultcai($id,$data['sehao8'],$data['pinfan8'],$data['caiduanshu8'],$data['zhishishu8']);
+			if(empty($ba_result)){
+				$data['ba_flg'] = 1;
+			}
+		}
+
+		$data['jiu_flg'] = 0;
+		if (!empty($kuanhaosyusuan[8]['sehao'])) {
+			$data['sehao9'] = $kuanhaosyusuan[8]['sehao'];
+			$data['pinfan9'] = $kuanhaosyusuan[8]['pinfan'];
+			$data['caiduanshu9'] = $kuanhaosyusuan[8]['caiduanshu'];
+			$data['zhishishu9'] = $kuanhaosyusuan[8]['zhishishu'];
+			$jiu_result = $this->task->getqubieduibiresultcai($id,$data['sehao9'],$data['pinfan9'],$data['caiduanshu9'],$data['zhishishu9']);
+			if(empty($jiu_result)){
+				$data['jiu_flg'] = 1;
+			}
+		}
+
+		$data['shi_flg'] = 0;
+		if (!empty($kuanhaosyusuan[9]['sehao'])) {
+			$data['sehao10'] = $kuanhaosyusuan[9]['sehao'];
+			$data['pinfan10'] = $kuanhaosyusuan[9]['pinfan'];
+			$data['caiduanshu10'] = $kuanhaosyusuan[9]['caiduanshu'];
+			$data['zhishishu10'] = $kuanhaosyusuan[9]['zhishishu'];
+			$shi_result = $this->task->getqubieduibiresultcai($id,$data['sehao10'],$data['pinfan10'],$data['caiduanshu10'],$data['zhishishu10']);
+			if(empty($shi_result)){
+				$data['shi_flg'] = 1;
+			}
+		}
+
+
+		$data['jsehao1'] = '';
+		$data['jpinfan1'] = '';
+		$data['jcaiduanshu1'] = '';
+		$data['jzhishishu1'] = '';
+
+		$data['jsehao2'] = '';
+		$data['jpinfan2'] = '';
+		$data['jcaiduanshu2'] = '';
+		$data['jzhishishu2'] = '';
+
+		$data['jsehao3'] = '';
+		$data['jpinfan3'] = '';
+		$data['jcaiduanshu3'] = '';
+		$data['jzhishishu3'] = '';
+
+		$data['jsehao4'] = '';
+		$data['jpinfan4'] = '';
+		$data['jcaiduanshu4'] = '';
+		$data['jzhishishu4'] = '';
+
+		$data['jsehao5'] = '';
+		$data['jpinfan5'] = '';
+		$data['jcaiduanshu5'] = '';
+		$data['jzhishishu5'] = '';
+
+		$data['jsehao6'] = '';
+		$data['jpinfan6'] = '';
+		$data['jcaiduanshu6'] = '';
+		$data['jzhishishu6'] = '';
+
+		$data['jsehao7'] = '';
+		$data['jpinfan7'] = '';
+		$data['jcaiduanshu7'] = '';
+		$data['jzhishishu7'] = '';
+
+		$data['jsehao8'] = '';
+		$data['jpinfan8'] = '';
+		$data['jcaiduanshu8'] = '';
+		$data['jzhishishu8'] = '';
+
+		$data['jsehao9'] = '';
+		$data['jpinfan9'] = '';
+		$data['jcaiduanshu9'] = '';
+		$data['jzhishishu9'] = '';
+
+		$data['jsehao10'] = '';
+		$data['jpinfan10'] = '';
+		$data['jcaiduanshu10'] = '';
+		$data['jzhishishu10'] = '';
+
+		if (!empty($kuanhaosjuesuan[0]['sehao'])) {
+			$data['jsehao1'] = $kuanhaosjuesuan[0]['sehao'];
+			$data['jpinfan1'] = $kuanhaosjuesuan[0]['pinfan'];
+			$data['jcaiduanshu1'] = $kuanhaosjuesuan[0]['caiduanshu'];
+			$data['jzhishishu1'] = $kuanhaosjuesuan[0]['zhishishu'];
+			if (empty($kuanhaosyusuan[0]['sehao'])){
+				$data['yi_flg'] = 1;
+			}
+		}
+		if (!empty($kuanhaosjuesuan[1]['sehao'])) {
+			$data['jsehao2'] = $kuanhaosjuesuan[1]['sehao'];
+			$data['jpinfan2'] = $kuanhaosjuesuan[1]['pinfan'];
+			$data['jcaiduanshu2'] = $kuanhaosjuesuan[1]['caiduanshu'];
+			$data['jzhishishu2'] = $kuanhaosjuesuan[1]['zhishishu'];
+			if (empty($kuanhaosyusuan[1]['sehao'])){
+				$data['er_flg'] = 1;
+			}
+		}
+		if (!empty($kuanhaosjuesuan[2]['sehao'])) {
+			$data['jsehao3'] = $kuanhaosjuesuan[2]['sehao'];
+			$data['jpinfan3'] = $kuanhaosjuesuan[2]['pinfan'];
+			$data['jcaiduanshu3'] = $kuanhaosjuesuan[2]['caiduanshu'];
+			$data['jzhishishu3'] = $kuanhaosjuesuan[2]['zhishishu'];
+			if (empty($kuanhaosyusuan[2]['sehao'])){
+				$data['san_flg'] = 1;
+			}
+		}
+		if (!empty($kuanhaosjuesuan[3]['sehao'])) {
+			$data['jsehao4'] = $kuanhaosjuesuan[3]['sehao'];
+			$data['jpinfan4'] = $kuanhaosjuesuan[3]['pinfan'];
+			$data['jcaiduanshu4'] = $kuanhaosjuesuan[3]['caiduanshu'];
+			$data['jzhishishu4'] = $kuanhaosjuesuan[3]['zhishishu'];
+			if (empty($kuanhaosyusuan[3]['sehao'])){
+				$data['si_flg'] = 1;
+			}
+		}
+		if (!empty($kuanhaosjuesuan[4]['sehao'])) {
+			$data['jsehao5'] = $kuanhaosjuesuan[4]['sehao'];
+			$data['jpinfan5'] = $kuanhaosjuesuan[4]['pinfan'];
+			$data['jcaiduanshu5'] = $kuanhaosjuesuan[4]['caiduanshu'];
+			$data['jzhishishu5'] = $kuanhaosjuesuan[4]['zhishishu'];
+			if (empty($kuanhaosyusuan[4]['sehao'])){
+				$data['wu_flg'] = 1;
+			}
+		}
+		if (!empty($kuanhaosjuesuan[5]['sehao'])) {
+			$data['jsehao6'] = $kuanhaosjuesuan[5]['sehao'];
+			$data['jpinfan6'] = $kuanhaosjuesuan[5]['pinfan'];
+			$data['jcaiduanshu6'] = $kuanhaosjuesuan[5]['caiduanshu'];
+			$data['jzhishishu6'] = $kuanhaosjuesuan[5]['zhishishu'];
+			if (empty($kuanhaosyusuan[5]['sehao'])){
+				$data['liu_flg'] = 1;
+			}
+		}
+		if (!empty($kuanhaosjuesuan[6]['sehao'])) {
+			$data['jsehao7'] = $kuanhaosjuesuan[6]['sehao'];
+			$data['jpinfan7'] = $kuanhaosjuesuan[6]['pinfan'];
+			$data['jcaiduanshu7'] = $kuanhaosjuesuan[6]['caiduanshu'];
+			$data['jzhishishu7'] = $kuanhaosjuesuan[6]['zhishishu'];
+			if (empty($kuanhaosyusuan[6]['sehao'])){
+				$data['qi_flg'] = 1;
+			}
+		}
+		if (!empty($kuanhaosjuesuan[7]['sehao'])) {
+			$data['jsehao8'] = $kuanhaosjuesuan[7]['sehao'];
+			$data['jpinfan8'] = $kuanhaosjuesuan[7]['pinfan'];
+			$data['jcaiduanshu8'] = $kuanhaosjuesuan[7]['caiduanshu'];
+			$data['jzhishishu8'] = $kuanhaosjuesuan[7]['zhishishu'];
+			if (empty($kuanhaosyusuan[7]['sehao'])){
+				$data['ba_flg'] = 1;
+			}
+		}
+		if (!empty($kuanhaosjuesuan[8]['sehao'])) {
+			$data['jsehao9'] = $kuanhaosjuesuan[8]['sehao'];
+			$data['jpinfan9'] = $kuanhaosjuesuan[8]['pinfan'];
+			$data['jcaiduanshu9'] = $kuanhaosjuesuan[8]['caiduanshu'];
+			$data['jzhishishu9'] = $kuanhaosjuesuan[8]['zhishishu'];
+			if (empty($kuanhaosyusuan[8]['sehao'])){
+				$data['jiu_flg'] = 1;
+			}
+		}
+		if (!empty($kuanhaosjuesuan[9]['sehao'])) {
+			$data['jsehao10'] = $kuanhaosjuesuan[9]['sehao'];
+			$data['jpinfan10'] = $kuanhaosjuesuan[9]['pinfan'];
+			$data['jcaiduanshu10'] = $kuanhaosjuesuan[9]['caiduanshu'];
+			$data['jzhishishu10'] = $kuanhaosjuesuan[9]['zhishishu'];
+			if (empty($kuanhaosyusuan[9]['sehao'])){
+				$data['shi_flg'] = 1;
+			}
+		}
+
+		$this->display("goods/goods_list_bao_duibi_details_jue", $data);
+	}
 	/**
 	 * 原辅料平衡表导出
 	 */

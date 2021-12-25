@@ -685,4 +685,28 @@ class Task_model extends CI_Model
 		$sql = "UPDATE `erp_caiduanbaogaoshu` SET zhuangxiangxinxi=$msg WHERE kid = $id";
 		return $this->db->query($sql);
 	}
+
+	public function gettidlistjichu1cai($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function gettidlistjichu1juecai($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshujue` where kid = $id ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getqubieduibiresultcai($kid,$a,$a1,$a2,$a3)
+	{
+		$kid = $this->db->escape($kid);
+		$a = $this->db->escape($a);
+		$a1 = $this->db->escape($a1);
+		$a2 = $this->db->escape($a2);
+		$a3 = $this->db->escape($a3);
+
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshujue` where kid=$kid and sehao=$a and pinfan=$a1 and caiduanshu=$a2 and zhishishu=$a3";
+		return $this->db->query($sql)->row_array();
+	}
 }

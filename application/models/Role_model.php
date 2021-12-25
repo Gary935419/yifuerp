@@ -739,4 +739,18 @@ class Role_model extends CI_Model
 		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
 
 	}
+
+	public function getgoodsByIdxiaojiejeiduibiyu($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+
+	public function getgoodsByIdxiaojiejeiduibijue($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshujue` where kid=$id ";
+		return $this->db->query($sql)->row_array();
+	}
 }
