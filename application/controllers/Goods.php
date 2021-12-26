@@ -4455,6 +4455,13 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => true, 'msg' => "该制品番号已经存在!"));
 			return;
 		}
+
+		$role_info1 = $this->role->getroleByname1_jihuariqi($jihuariqi);
+		if (!empty($role_info1)) {
+			echo json_encode(array('error' => true, 'msg' => "该计划日期已经存在!"));
+			return;
+		}
+
 		$naqi = strtotime($naqi);
 		$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time);
 		if ($rid) {
@@ -4521,6 +4528,13 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => true, 'msg' => "该制品番号已经存在!"));
 			return;
 		}
+
+		$role_info1 = $this->role->getgoodsById22shengchan_jihuariqi($jihuariqi, $id);
+		if (!empty($role_info1)) {
+			echo json_encode(array('error' => true, 'msg' => "该计划日期已经存在!"));
+			return;
+		}
+
 		$naqi = strtotime($naqi);
 		$result = $this->role->goods_save_edit_shengchan($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time, $id);
 		if ($result) {
@@ -4537,6 +4551,240 @@ class Goods extends CI_Controller
 		} else {
 			echo json_encode(array('success' => false, 'msg' => "删除失败"));
 		}
+	}
+	public function goods_edit_jichu_shengchan()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$label_info = $this->role->getlabelByIdyang_shengchan($id);
+		if (empty($label_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$data = array();
+		$data['id'] = $id;
+		$data['y1'] = empty($label_info['y1'])?'0':$label_info['y1'];
+		$data['y2'] = empty($label_info['y2'])?'0':$label_info['y2'];
+		$data['y3'] = empty($label_info['y3'])?'0':$label_info['y3'];
+		$data['y4'] = empty($label_info['y4'])?'0':$label_info['y4'];
+		$data['y5'] = empty($label_info['y5'])?'0':$label_info['y5'];
+		$data['y6'] = empty($label_info['y6'])?'0':$label_info['y6'];
+		$data['y7'] = empty($label_info['y7'])?'0':$label_info['y7'];
+		$data['y8'] = empty($label_info['y8'])?'0':$label_info['y8'];
+		$data['y9'] = empty($label_info['y9'])?'0':$label_info['y9'];
+		$data['y10'] = empty($label_info['y10'])?'0':$label_info['y10'];
+		$data['y11'] = empty($label_info['y11'])?'0':$label_info['y11'];
+		$data['y12'] = empty($label_info['y12'])?'0':$label_info['y12'];
+		$data['y13'] = empty($label_info['y13'])?'0':$label_info['y13'];
+		$data['y14'] = empty($label_info['y14'])?'0':$label_info['y14'];
+		$data['y15'] = empty($label_info['y15'])?'0':$label_info['y15'];
+		$data['y16'] = empty($label_info['y16'])?'0':$label_info['y16'];
+		$data['y17'] = empty($label_info['y17'])?'0':$label_info['y17'];
+		$data['y18'] = empty($label_info['y18'])?'0':$label_info['y18'];
+		$data['y19'] = empty($label_info['y19'])?'0':$label_info['y19'];
+		$data['y20'] = empty($label_info['y20'])?'0':$label_info['y20'];
+		$data['y21'] = empty($label_info['y21'])?'0':$label_info['y21'];
+		$data['y22'] = empty($label_info['y22'])?'0':$label_info['y22'];
+		$data['y23'] = empty($label_info['y23'])?'0':$label_info['y23'];
+		$data['y24'] = empty($label_info['y24'])?'0':$label_info['y24'];
+		$data['y25'] = empty($label_info['y25'])?'0':$label_info['y25'];
+		$data['y26'] = empty($label_info['y26'])?'0':$label_info['y26'];
+		$data['y27'] = empty($label_info['y27'])?'0':$label_info['y27'];
+		$data['y28'] = empty($label_info['y28'])?'0':$label_info['y28'];
+		$data['y29'] = empty($label_info['y29'])?'0':$label_info['y29'];
+		$data['y30'] = empty($label_info['y30'])?'0':$label_info['y30'];
+		$data['y31'] = empty($label_info['y31'])?'0':$label_info['y31'];
+
+		$data['j1'] = empty($label_info['j1'])?'0':$label_info['j1'];
+		$data['j2'] = empty($label_info['j2'])?'0':$label_info['j2'];
+		$data['j3'] = empty($label_info['j3'])?'0':$label_info['j3'];
+		$data['j4'] = empty($label_info['j4'])?'0':$label_info['j4'];
+		$data['j5'] = empty($label_info['j5'])?'0':$label_info['j5'];
+		$data['j6'] = empty($label_info['j6'])?'0':$label_info['j6'];
+		$data['j7'] = empty($label_info['j7'])?'0':$label_info['j7'];
+		$data['j8'] = empty($label_info['j8'])?'0':$label_info['j8'];
+		$data['j9'] = empty($label_info['j9'])?'0':$label_info['j9'];
+		$data['j10'] = empty($label_info['j10'])?'0':$label_info['j10'];
+		$data['j11'] = empty($label_info['j11'])?'0':$label_info['j11'];
+		$data['j12'] = empty($label_info['j12'])?'0':$label_info['j12'];
+		$data['j13'] = empty($label_info['j13'])?'0':$label_info['j13'];
+		$data['j14'] = empty($label_info['j14'])?'0':$label_info['j14'];
+		$data['j15'] = empty($label_info['j15'])?'0':$label_info['j15'];
+		$data['j16'] = empty($label_info['j16'])?'0':$label_info['j16'];
+		$data['j17'] = empty($label_info['j17'])?'0':$label_info['j17'];
+		$data['j18'] = empty($label_info['j18'])?'0':$label_info['j18'];
+		$data['j19'] = empty($label_info['j19'])?'0':$label_info['j19'];
+		$data['j20'] = empty($label_info['j20'])?'0':$label_info['j20'];
+		$data['j21'] = empty($label_info['j21'])?'0':$label_info['j21'];
+		$data['j22'] = empty($label_info['j22'])?'0':$label_info['j22'];
+		$data['j23'] = empty($label_info['j23'])?'0':$label_info['j23'];
+		$data['j24'] = empty($label_info['j24'])?'0':$label_info['j24'];
+		$data['j25'] = empty($label_info['j25'])?'0':$label_info['j25'];
+		$data['j26'] = empty($label_info['j26'])?'0':$label_info['j26'];
+		$data['j27'] = empty($label_info['j27'])?'0':$label_info['j27'];
+		$data['j28'] = empty($label_info['j28'])?'0':$label_info['j28'];
+		$data['j29'] = empty($label_info['j29'])?'0':$label_info['j29'];
+		$data['j30'] = empty($label_info['j30'])?'0':$label_info['j30'];
+		$data['j31'] = empty($label_info['j31'])?'0':$label_info['j31'];
+		$this->display("goods/goods_edit_jichu_shengchan", $data);
+	}
+	public function goods_edit_jichu_shengchan_detail()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$label_info = $this->role->getlabelByIdyang_shengchan($id);
+		if (empty($label_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$data = array();
+		$data['id'] = $id;
+		$data['y1'] = empty($label_info['y1'])?0:$label_info['y1'];
+		$data['y2'] = empty($label_info['y2'])?0:$label_info['y2'];
+		$data['y3'] = empty($label_info['y3'])?0:$label_info['y3'];
+		$data['y4'] = empty($label_info['y4'])?0:$label_info['y4'];
+		$data['y5'] = empty($label_info['y5'])?0:$label_info['y5'];
+		$data['y6'] = empty($label_info['y6'])?0:$label_info['y6'];
+		$data['y7'] = empty($label_info['y7'])?0:$label_info['y7'];
+		$data['y8'] = empty($label_info['y8'])?0:$label_info['y8'];
+		$data['y9'] = empty($label_info['y9'])?0:$label_info['y9'];
+		$data['y10'] = empty($label_info['y10'])?0:$label_info['y10'];
+		$data['y11'] = empty($label_info['y11'])?0:$label_info['y11'];
+		$data['y12'] = empty($label_info['y12'])?0:$label_info['y12'];
+		$data['y13'] = empty($label_info['y13'])?0:$label_info['y13'];
+		$data['y14'] = empty($label_info['y14'])?0:$label_info['y14'];
+		$data['y15'] = empty($label_info['y15'])?0:$label_info['y15'];
+		$data['y16'] = empty($label_info['y16'])?0:$label_info['y16'];
+		$data['y17'] = empty($label_info['y17'])?0:$label_info['y17'];
+		$data['y18'] = empty($label_info['y18'])?0:$label_info['y18'];
+		$data['y19'] = empty($label_info['y19'])?0:$label_info['y19'];
+		$data['y20'] = empty($label_info['y20'])?0:$label_info['y20'];
+		$data['y21'] = empty($label_info['y21'])?0:$label_info['y21'];
+		$data['y22'] = empty($label_info['y22'])?0:$label_info['y22'];
+		$data['y23'] = empty($label_info['y23'])?0:$label_info['y23'];
+		$data['y24'] = empty($label_info['y24'])?0:$label_info['y24'];
+		$data['y25'] = empty($label_info['y25'])?0:$label_info['y25'];
+		$data['y26'] = empty($label_info['y26'])?0:$label_info['y26'];
+		$data['y27'] = empty($label_info['y27'])?0:$label_info['y27'];
+		$data['y28'] = empty($label_info['y28'])?0:$label_info['y28'];
+		$data['y29'] = empty($label_info['y29'])?0:$label_info['y29'];
+		$data['y30'] = empty($label_info['y30'])?0:$label_info['y30'];
+		$data['y31'] = empty($label_info['y31'])?0:$label_info['y31'];
+
+		$data['j1'] = empty($label_info['j1'])?0:$label_info['j1'];
+		$data['j2'] = empty($label_info['j2'])?0:$label_info['j2'];
+		$data['j3'] = empty($label_info['j3'])?0:$label_info['j3'];
+		$data['j4'] = empty($label_info['j4'])?0:$label_info['j4'];
+		$data['j5'] = empty($label_info['j5'])?0:$label_info['j5'];
+		$data['j6'] = empty($label_info['j6'])?0:$label_info['j6'];
+		$data['j7'] = empty($label_info['j7'])?0:$label_info['j7'];
+		$data['j8'] = empty($label_info['j8'])?0:$label_info['j8'];
+		$data['j9'] = empty($label_info['j9'])?0:$label_info['j9'];
+		$data['j10'] = empty($label_info['j10'])?0:$label_info['j10'];
+		$data['j11'] = empty($label_info['j11'])?0:$label_info['j11'];
+		$data['j12'] = empty($label_info['j12'])?0:$label_info['j12'];
+		$data['j13'] = empty($label_info['j13'])?0:$label_info['j13'];
+		$data['j14'] = empty($label_info['j14'])?0:$label_info['j14'];
+		$data['j15'] = empty($label_info['j15'])?0:$label_info['j15'];
+		$data['j16'] = empty($label_info['j16'])?0:$label_info['j16'];
+		$data['j17'] = empty($label_info['j17'])?0:$label_info['j17'];
+		$data['j18'] = empty($label_info['j18'])?0:$label_info['j18'];
+		$data['j19'] = empty($label_info['j19'])?0:$label_info['j19'];
+		$data['j20'] = empty($label_info['j20'])?0:$label_info['j20'];
+		$data['j21'] = empty($label_info['j21'])?0:$label_info['j21'];
+		$data['j22'] = empty($label_info['j22'])?0:$label_info['j22'];
+		$data['j23'] = empty($label_info['j23'])?0:$label_info['j23'];
+		$data['j24'] = empty($label_info['j24'])?0:$label_info['j24'];
+		$data['j25'] = empty($label_info['j25'])?0:$label_info['j25'];
+		$data['j26'] = empty($label_info['j26'])?0:$label_info['j26'];
+		$data['j27'] = empty($label_info['j27'])?0:$label_info['j27'];
+		$data['j28'] = empty($label_info['j28'])?0:$label_info['j28'];
+		$data['j29'] = empty($label_info['j29'])?0:$label_info['j29'];
+		$data['j30'] = empty($label_info['j30'])?0:$label_info['j30'];
+		$data['j31'] = empty($label_info['j31'])?0:$label_info['j31'];
+		$this->display("goods/goods_edit_jichu_shengchan_detail", $data);
+	}
+	public function goods_save_edit_jichu_shengchan()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$sid = isset($_POST['id']) ? $_POST['id'] : 0;
+		$add_time = time();
+		$y1 = !empty($_POST["y1"]) ? $_POST["y1"] : '0';
+		$y2 = !empty($_POST["y2"]) ? $_POST["y2"] : '0';
+		$y3 = !empty($_POST["y3"]) ? $_POST["y3"] : '0';
+		$y4 = !empty($_POST["y4"]) ? $_POST["y4"] : '0';
+		$y5 = !empty($_POST["y5"]) ? $_POST["y5"] : '0';
+		$y6 = !empty($_POST["y6"]) ? $_POST["y6"] : '0';
+		$y7 = !empty($_POST["y7"]) ? $_POST["y7"] : '0';
+		$y8 = !empty($_POST["y8"]) ? $_POST["y8"] : '0';
+		$y9 = !empty($_POST["y9"]) ? $_POST["y9"] : '0';
+		$y10 = !empty($_POST["y10"]) ? $_POST["y10"] : '0';
+		$y11 = !empty($_POST["y11"]) ? $_POST["y11"] : '0';
+		$y12 = !empty($_POST["y12"]) ? $_POST["y12"] : '0';
+		$y13 = !empty($_POST["y13"]) ? $_POST["y13"] : '0';
+		$y14 = !empty($_POST["y14"]) ? $_POST["y14"] : '0';
+		$y15 = !empty($_POST["y15"]) ? $_POST["y15"] : '0';
+		$y16 = !empty($_POST["y16"]) ? $_POST["y16"] : '0';
+		$y17 = !empty($_POST["y17"]) ? $_POST["y17"] : '0';
+		$y18 = !empty($_POST["y18"]) ? $_POST["y18"] : '0';
+		$y19 = !empty($_POST["y19"]) ? $_POST["y19"] : '0';
+		$y20 = !empty($_POST["y20"]) ? $_POST["y20"] : '0';
+		$y21 = !empty($_POST["y21"]) ? $_POST["y21"] : '0';
+		$y22 = !empty($_POST["y22"]) ? $_POST["y22"] : '0';
+		$y23 = !empty($_POST["y23"]) ? $_POST["y23"] : '0';
+		$y24 = !empty($_POST["y24"]) ? $_POST["y24"] : '0';
+		$y25 = !empty($_POST["y25"]) ? $_POST["y25"] : '0';
+		$y26 = !empty($_POST["y26"]) ? $_POST["y26"] : '0';
+		$y27 = !empty($_POST["y27"]) ? $_POST["y27"] : '0';
+		$y28 = !empty($_POST["y28"]) ? $_POST["y28"] : '0';
+		$y29 = !empty($_POST["y29"]) ? $_POST["y29"] : '0';
+		$y30 = !empty($_POST["y30"]) ? $_POST["y30"] : '0';
+		$y31 = !empty($_POST["y31"]) ? $_POST["y31"] : '0';
+
+		$j1 = !empty($_POST["j1"]) ? $_POST["j1"] : '0';
+		$j2 = !empty($_POST["j2"]) ? $_POST["j2"] : '0';
+		$j3 = !empty($_POST["j3"]) ? $_POST["j3"] : '0';
+		$j4 = !empty($_POST["j4"]) ? $_POST["j4"] : '0';
+		$j5 = !empty($_POST["j5"]) ? $_POST["j5"] : '0';
+		$j6 = !empty($_POST["j6"]) ? $_POST["j6"] : '0';
+		$j7 = !empty($_POST["j7"]) ? $_POST["j7"] : '0';
+		$j8 = !empty($_POST["j8"]) ? $_POST["j8"] : '0';
+		$j9 = !empty($_POST["j9"]) ? $_POST["j9"] : '0';
+		$j10 = !empty($_POST["j10"]) ? $_POST["j10"] : '0';
+		$j11 = !empty($_POST["j11"]) ? $_POST["j11"] : '0';
+		$j12 = !empty($_POST["j12"]) ? $_POST["j12"] : '0';
+		$j13 = !empty($_POST["j13"]) ? $_POST["j13"] : '0';
+		$j14 = !empty($_POST["j14"]) ? $_POST["j14"] : '0';
+		$j15 = !empty($_POST["j15"]) ? $_POST["j15"] : '0';
+		$j16 = !empty($_POST["j16"]) ? $_POST["j16"] : '0';
+		$j17 = !empty($_POST["j17"]) ? $_POST["j17"] : '0';
+		$j18 = !empty($_POST["j18"]) ? $_POST["j18"] : '0';
+		$j19 = !empty($_POST["j19"]) ? $_POST["j19"] : '0';
+		$j20 = !empty($_POST["j20"]) ? $_POST["j20"] : '0';
+		$j21 = !empty($_POST["j21"]) ? $_POST["j21"] : '0';
+		$j22 = !empty($_POST["j22"]) ? $_POST["j22"] : '0';
+		$j23 = !empty($_POST["j23"]) ? $_POST["j23"] : '0';
+		$j24 = !empty($_POST["j24"]) ? $_POST["j24"] : '0';
+		$j25 = !empty($_POST["j25"]) ? $_POST["j25"] : '0';
+		$j26 = !empty($_POST["j26"]) ? $_POST["j26"] : '0';
+		$j27 = !empty($_POST["j27"]) ? $_POST["j27"] : '0';
+		$j28 = !empty($_POST["j28"]) ? $_POST["j28"] : '0';
+		$j29 = !empty($_POST["j29"]) ? $_POST["j29"] : '0';
+		$j30 = !empty($_POST["j30"]) ? $_POST["j30"] : '0';
+		$j31 = !empty($_POST["j31"]) ? $_POST["j31"] : '0';
+
+		$this->role->goods_edit_jichu_shengchan($sid);
+		$this->role->role_saveerp_shengcanjihuadate_insert($sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31,$j1,$j2,$j3,$j4,$j5,$j6,$j7,$j8,$j9,$j10,$j11,$j12,$j13,$j14,$j15,$j16,$j17,$j18,$j19,$j20,$j21,$j22,$j23,$j24,$j25,$j26,$j27,$j28,$j29,$j30,$j31);
+		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+
+	}
+
+	public function shengchan_excel()
+	{
+		$tidlist = $this->task->gettidlist();
+		$data['tidlist'] = $tidlist;
+		$this->display("goods/shengchan_excel", $data);
 	}
 	/**
 	 * 原辅料平衡表导出

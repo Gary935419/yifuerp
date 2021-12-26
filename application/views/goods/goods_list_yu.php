@@ -76,7 +76,7 @@
 												<?php if ($once['duibiflg'] == 1){ ?>
 													<button class="layui-btn layui-btn-normal"
 															onclick="xadmin.open('数据对比','<?= RUN . '/goods/goods_list_bao_duibi_details?id=' ?>'+'<?= $once['id'] ?>')">
-														<i class="iconfont">&#xe74a;</i>数据对比
+														<i class="iconfont">&#xe74a;</i> 数据对比
 													</button>
 												<?php } ?>
 												<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_baojiadan?btype=1&id='.$once['id'] ?>">
@@ -115,7 +115,7 @@
 												<?php if ($once['duibiflg'] == 1){ ?>
 													<button class="layui-btn layui-btn-normal"
 															onclick="xadmin.open('数据对比','<?= RUN . '/goods/goods_list_bao_duibi_details?id=' ?>'+'<?= $once['id'] ?>')">
-														<i class="iconfont">&#xe74a;</i>数据对比
+														<i class="iconfont">&#xe74a;</i> 数据对比
 													</button>
 												<?php } ?>
 												<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_baojiadan?btype=2&id='.$once['id'] ?>">

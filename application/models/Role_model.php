@@ -759,6 +759,12 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_shengcanjihua` where zhipinfanhao=$zhipinfanhao ";
 		return $this->db->query($sql)->row_array();
 	}
+	public function getroleByname1_jihuariqi($jihuariqi)
+	{
+		$jihuariqi = $this->db->escape($jihuariqi);
+		$sql = "SELECT * FROM `erp_shengcanjihua` where jihuariqi=$jihuariqi ";
+		return $this->db->query($sql)->row_array();
+	}
 	public function role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time)
 	{
 		$zuname = $this->db->escape($zuname);
@@ -810,6 +816,13 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_shengcanjihua` where zhipinfanhao=$zhipinfanhao and id!=$id ";
 		return $this->db->query($sql)->row_array();
 	}
+	public function getgoodsById22shengchan_jihuariqi($jihuariqi, $id)
+	{
+		$jihuariqi = $this->db->escape($jihuariqi);
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_shengcanjihua` where jihuariqi=$jihuariqi and id!=$id ";
+		return $this->db->query($sql)->row_array();
+	}
 	public function goods_save_edit_shengchan($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time, $id)
 	{
 		$zuname = $this->db->escape($zuname);
@@ -834,6 +847,27 @@ class Role_model extends CI_Model
 		$sid = $this->db->escape($sid);
 		$add_time = $this->db->escape($add_time);
 		$sql = "INSERT INTO `erp_shengcanjihuadate` (sid,addtime) VALUES ($sid,$add_time)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
+	public function getlabelByIdyang_shengchan($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_shengcanjihuadate` where sid=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+	public function goods_edit_jichu_shengchan($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_shengcanjihuadate WHERE sid = $id";
+		return $this->db->query($sql);
+	}
+	public function role_saveerp_shengcanjihuadate_insert($sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31,$j1,$j2,$j3,$j4,$j5,$j6,$j7,$j8,$j9,$j10,$j11,$j12,$j13,$j14,$j15,$j16,$j17,$j18,$j19,$j20,$j21,$j22,$j23,$j24,$j25,$j26,$j27,$j28,$j29,$j30,$j31)
+	{
+		$sid = $this->db->escape($sid);
+		$add_time = $this->db->escape($add_time);
+		$sql = "INSERT INTO `erp_shengcanjihuadate` (sid,addtime,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y16,y17,y18,y19,y20,y21,y22,y23,y24,y25,y26,y27,y28,y29,y30,y31,j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11,j12,j13,j14,j15,j16,j17,j18,j19,j20,j21,j22,j23,j24,j25,j26,j27,j28,j29,j30,j31) VALUES ($sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31,$j1,$j2,$j3,$j4,$j5,$j6,$j7,$j8,$j9,$j10,$j11,$j12,$j13,$j14,$j15,$j16,$j17,$j18,$j19,$j20,$j21,$j22,$j23,$j24,$j25,$j26,$j27,$j28,$j29,$j30,$j31)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;

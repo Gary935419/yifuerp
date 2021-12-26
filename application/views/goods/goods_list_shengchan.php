@@ -37,6 +37,10 @@
                         </div>
                     </form>
                 </div>
+				<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
+						onclick="xadmin.open('数据导出','<?= RUN . '/goods/shengchan_excel' ?>',900,500)">
+					<i class="iconfont">&#xe74a;</i> 数据导出
+				</button>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
@@ -65,12 +69,20 @@
 									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('生产计划编辑','<?= RUN . '/goods/goods_edit_new_shengchan?id=' ?>'+'<?= $once['id'] ?>')">
-                                            <i class="layui-icon">&#xe642;</i>生产计划编辑
+                                                onclick="xadmin.open('生产编辑','<?= RUN . '/goods/goods_edit_new_shengchan?id=' ?>'+'<?= $once['id'] ?>')">
+                                            <i class="layui-icon">&#xe642;</i>生产编辑
                                         </button>
                                         <button class="layui-btn layui-btn-danger"
-                                                onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>生产计划删除
+                                                onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>生产删除
                                         </button>
+										<button class="layui-btn layui-btn-normal"
+												onclick="xadmin.open('工作量设定','<?= RUN . '/goods/goods_edit_jichu_shengchan?id=' ?>'+'<?= $once['id'] ?>')">
+											<i class="layui-icon">&#xe642;</i>工作量设定
+										</button>
+										<button class="layui-btn layui-btn-normal"
+												onclick="xadmin.open('工作量详情','<?= RUN . '/goods/goods_edit_jichu_shengchan_detail?id=' ?>'+'<?= $once['id'] ?>')">
+											<i class="layui-icon">&#xe642;</i>工作量详情
+										</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
