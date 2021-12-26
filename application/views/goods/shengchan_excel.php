@@ -40,7 +40,7 @@
                 <label for="L_repass" class="layui-form-label" style="width: 30%;">
                 </label>
                 <button class="layui-btn" lay-filter="add" lay-submit="">
-                    确认导出数据信息
+                    确认选中月份是否有可导出生产计划
                 </button>
             </div>
         </form>
@@ -72,27 +72,27 @@
 
             $("#tab").validate({
                 submitHandler: function (form) {
-                    //$.ajax({
-                    //    cache: true,
-                    //    type: "POST",
-                    //    url: "<?//= RUN . '/label/label_save_edit_cai' ?>//",
-                    //    data: $('#tab').serialize(),
-                    //    async: false,
-                    //    error: function (request) {
-                    //        alert("error");
-                    //    },
-                    //    success: function (data) {
-                    //        var data = eval("(" + data + ")");
-                    //        if (data.success) {
-                    //            layer.msg(data.msg);
-                    //            setTimeout(function () {
-                    //                cancel();
-                    //            }, 2000);
-                    //        } else {
-                    //            layer.msg(data.msg);
-                    //        }
-                    //    }
-                    //});
+                    $.ajax({
+                        cache: true,
+                        type: "POST",
+                        url: "<?= RUN . '/goods/goods_csv_shengchan_confirm' ?>",
+                        data: $('#tab').serialize(),
+                        async: false,
+                        error: function (request) {
+                            alert("error");
+                        },
+                        success: function (data) {
+                            var data = eval("(" + data + ")");
+                            if (data.success) {
+								xadmin.open('数据正在导出~~~~~~请稍后~~~~~~','<?= RUN . '/goods/goods_csv_shengchan?jihuariqi=' ?>'+$("#jihuariqi").val());
+								setTimeout(function () {
+									cancel();
+								}, 2000);
+                            } else {
+                                layer.msg(data.msg);
+                            }
+                        }
+                    });
                 }
             });
         });

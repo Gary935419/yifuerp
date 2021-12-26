@@ -753,10 +753,12 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_caiduanbaogaoshujue` where kid=$id ";
 		return $this->db->query($sql)->row_array();
 	}
-	public function getroleByname1_zhipinfanhao($zhipinfanhao)
+	public function getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi)
 	{
 		$zhipinfanhao = $this->db->escape($zhipinfanhao);
-		$sql = "SELECT * FROM `erp_shengcanjihua` where zhipinfanhao=$zhipinfanhao ";
+		$zuname = $this->db->escape($zuname);
+		$jihuariqi = $this->db->escape($jihuariqi);
+		$sql = "SELECT * FROM `erp_shengcanjihua` where zhipinfanhao=$zhipinfanhao and zuname=$zuname and jihuariqi=$jihuariqi ";
 		return $this->db->query($sql)->row_array();
 	}
 	public function getroleByname1_jihuariqi($jihuariqi)
@@ -809,11 +811,13 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_shengcanjihua` where id=$id ";
 		return $this->db->query($sql)->row_array();
 	}
-	public function getgoodsById22shengchan($zhipinfanhao,$id)
+	public function getgoodsById22shengchan($zhipinfanhao,$zuname,$jihuariqi,$id)
 	{
 		$zhipinfanhao = $this->db->escape($zhipinfanhao);
+		$zuname = $this->db->escape($zuname);
+		$jihuariqi = $this->db->escape($jihuariqi);
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_shengcanjihua` where zhipinfanhao=$zhipinfanhao and id!=$id ";
+		$sql = "SELECT * FROM `erp_shengcanjihua` where zhipinfanhao=$zhipinfanhao and zuname=$zuname and jihuariqi=$jihuariqi and id!=$id ";
 		return $this->db->query($sql)->row_array();
 	}
 	public function getgoodsById22shengchan_jihuariqi($jihuariqi, $id)
@@ -871,5 +875,17 @@ class Role_model extends CI_Model
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;
+	}
+	public function gettidlistguige_shengchanjihua($jihuariqi)
+	{
+		$jihuariqi = $this->db->escape($jihuariqi);
+		$sql = "SELECT * FROM `erp_shengcanjihua` where jihuariqi = $jihuariqi ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getlabelByIdyang_shengchan_date($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_shengcanjihuadate` where sid=$id ";
+		return $this->db->query($sql)->row_array();
 	}
 }

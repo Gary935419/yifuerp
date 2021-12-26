@@ -4450,17 +4450,17 @@ class Goods extends CI_Controller
 		$naqi = isset($_POST["naqi"]) ? $_POST["naqi"] : '';
 		$jihuariqi = isset($_POST["jihuariqi"]) ? $_POST["jihuariqi"] : '';
 		$add_time = time();
-		$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao);
+		$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
 		if (!empty($role_info)) {
-			echo json_encode(array('error' => true, 'msg' => "该制品番号已经存在!"));
+			echo json_encode(array('error' => true, 'msg' => "该制品番号:".$zhipinfanhao."在当前".$zuname.$jihuariqi."月份已经存在!"));
 			return;
 		}
 
-		$role_info1 = $this->role->getroleByname1_jihuariqi($jihuariqi);
-		if (!empty($role_info1)) {
-			echo json_encode(array('error' => true, 'msg' => "该计划日期已经存在!"));
-			return;
-		}
+//		$role_info1 = $this->role->getroleByname1_jihuariqi($jihuariqi);
+//		if (!empty($role_info1)) {
+//			echo json_encode(array('error' => true, 'msg' => "该计划日期已经存在!"));
+//			return;
+//		}
 
 		$naqi = strtotime($naqi);
 		$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time);
@@ -4523,17 +4523,17 @@ class Goods extends CI_Controller
 		$jihuariqi = isset($_POST["jihuariqi"]) ? $_POST["jihuariqi"] : '';
 		$add_time = time();
 
-		$role_info = $this->role->getgoodsById22shengchan($zhipinfanhao, $id);
+		$role_info = $this->role->getgoodsById22shengchan($zhipinfanhao,$zuname,$jihuariqi,$id);
 		if (!empty($role_info)) {
-			echo json_encode(array('error' => true, 'msg' => "该制品番号已经存在!"));
+			echo json_encode(array('error' => true, 'msg' => "该制品番号:".$zhipinfanhao."在当前".$zuname.$jihuariqi."月份已经存在!"));
 			return;
 		}
 
-		$role_info1 = $this->role->getgoodsById22shengchan_jihuariqi($jihuariqi, $id);
-		if (!empty($role_info1)) {
-			echo json_encode(array('error' => true, 'msg' => "该计划日期已经存在!"));
-			return;
-		}
+//		$role_info1 = $this->role->getgoodsById22shengchan_jihuariqi($jihuariqi, $id);
+//		if (!empty($role_info1)) {
+//			echo json_encode(array('error' => true, 'msg' => "该计划日期已经存在!"));
+//			return;
+//		}
 
 		$naqi = strtotime($naqi);
 		$result = $this->role->goods_save_edit_shengchan($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time, $id);
@@ -5309,6 +5309,156 @@ class Goods extends CI_Controller
 
 		ob_end_clean();//清除缓存区，解决乱码问题
 		$fileName = '决算裁断报告书' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
+	}
+
+	/**
+	 * 生产计划表导出 确认
+	 */
+	public function goods_csv_shengchan_confirm()
+	{
+		$jihuariqi = isset($_POST['jihuariqi']) ? $_POST['jihuariqi'] : '';
+		$list = $this->role->gettidlistguige_shengchanjihua($jihuariqi);
+		if (empty($list)) {
+			echo json_encode(array('error' => true, 'msg' => "当前月份没有生产计划!"));
+		}else{
+			echo json_encode(array('success' => true, 'msg' => "当前月份有生产计划!请点击导出按钮!"));
+		}
+	}
+
+	/**
+	 * 生产计划表导出
+	 */
+	public function goods_csv_shengchan()
+	{
+		$jihuariqi = isset($_GET['jihuariqi']) ? $_GET['jihuariqi'] : '';
+		$list = $this->role->gettidlistguige_shengchanjihua($jihuariqi);
+		if (empty($list)) {
+			echo json_encode(array('error' => true, 'msg' => "当前月份没有生产计划!"));
+			return;
+		}
+
+		$inputFileName = "./static/uploads/scydb.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		//对应的列都附上数据和编号
+		$objPHPExcel->getActiveSheet()->setCellValue( 'A1',$jihuariqi."月 生产预定表");
+
+		$ZU_ARR = array();
+		foreach ($list as $k=>$v){
+			$ZU_ARR[] = $v['zuname'];
+		}
+		$ZU_ARR = array_unique($ZU_ARR);
+		$row = -1;
+		foreach ($ZU_ARR as $kk=>$vv){
+			if ($kk<1){
+				$row = 3;
+				$rownew = -1;
+			}elseif ($kk==1){
+				$row = 39;
+				$rownew = 35;
+			}else{
+				$row = $row + 40;
+				$rownew = $row - 4;
+			}
+			$objPHPExcel->getActiveSheet()->setCellValue( 'A'.$row,$vv);
+			foreach ($list as $key=>$val){
+				if ($vv == $val['zuname']){
+					$shengchandate = $this->role->getlabelByIdyang_shengchan_date($val['id']);
+					$rownew = $rownew + 4;
+					$objPHPExcel->getActiveSheet()->setCellValue( 'B'.$rownew,$val['zhipinfanhao']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'C'.$rownew,$val['pinming']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'D'.$rownew,$val['qihuashu']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'E'.$rownew,date('Y-m-d',$val['naqi']));
+					$rownewy = $rownew + 1;
+					$rownewj = $rownew + 3;
+					$objPHPExcel->getActiveSheet()->setCellValue( 'F'.$rownewy,$shengchandate['y1']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'F'.$rownewj,$shengchandate['j1']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'G'.$rownewy,$shengchandate['y2']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'G'.$rownewj,$shengchandate['j2']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'H'.$rownewy,$shengchandate['y3']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'H'.$rownewj,$shengchandate['j3']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'I'.$rownewy,$shengchandate['y4']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'I'.$rownewj,$shengchandate['j4']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'J'.$rownewy,$shengchandate['y5']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'J'.$rownewj,$shengchandate['j5']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'K'.$rownewy,$shengchandate['y6']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'K'.$rownewj,$shengchandate['j6']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'L'.$rownewy,$shengchandate['y7']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'L'.$rownewj,$shengchandate['j7']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'M'.$rownewy,$shengchandate['y8']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'M'.$rownewj,$shengchandate['j8']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'N'.$rownewy,$shengchandate['y9']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'N'.$rownewj,$shengchandate['j9']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'O'.$rownewy,$shengchandate['y10']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'O'.$rownewj,$shengchandate['j10']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'P'.$rownewy,$shengchandate['y11']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'P'.$rownewj,$shengchandate['j11']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'Q'.$rownewy,$shengchandate['y12']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'Q'.$rownewj,$shengchandate['j12']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'R'.$rownewy,$shengchandate['y13']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'R'.$rownewj,$shengchandate['j13']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'S'.$rownewy,$shengchandate['y14']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'S'.$rownewj,$shengchandate['j14']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'T'.$rownewy,$shengchandate['y15']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'T'.$rownewj,$shengchandate['j15']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'U'.$rownewy,$shengchandate['y16']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'U'.$rownewj,$shengchandate['j16']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'V'.$rownewy,$shengchandate['y17']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'V'.$rownewj,$shengchandate['j17']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'W'.$rownewy,$shengchandate['y18']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'W'.$rownewj,$shengchandate['j18']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'X'.$rownewy,$shengchandate['y19']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'X'.$rownewj,$shengchandate['j19']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'Y'.$rownewy,$shengchandate['y20']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'Y'.$rownewj,$shengchandate['j20']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'Z'.$rownewy,$shengchandate['y21']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'Z'.$rownewj,$shengchandate['j21']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AA'.$rownewy,$shengchandate['y22']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AA'.$rownewj,$shengchandate['j22']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AB'.$rownewy,$shengchandate['y23']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AB'.$rownewj,$shengchandate['j23']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AC'.$rownewy,$shengchandate['y24']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AC'.$rownewj,$shengchandate['j24']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AD'.$rownewy,$shengchandate['y25']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AD'.$rownewj,$shengchandate['j25']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AE'.$rownewy,$shengchandate['y26']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AE'.$rownewj,$shengchandate['j26']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AF'.$rownewy,$shengchandate['y27']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AF'.$rownewj,$shengchandate['j27']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AG'.$rownewy,$shengchandate['y28']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AG'.$rownewj,$shengchandate['j28']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AH'.$rownewy,$shengchandate['y29']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AH'.$rownewj,$shengchandate['j29']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AI'.$rownewy,$shengchandate['y30']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AI'.$rownewj,$shengchandate['j30']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AJ'.$rownewy,$shengchandate['y31']);
+					$objPHPExcel->getActiveSheet()->setCellValue( 'AJ'.$rownewj,$shengchandate['j31']);
+				}
+			}
+		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+		$fileName = '生产计划预定表' . date('Ymd_His');
 		// 生成2007excel格式的xlsx文件
 		$IOFactory = new IOFactory();
 		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
