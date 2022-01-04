@@ -654,25 +654,25 @@ class Role_model extends CI_Model
 	public function getgoodsByIdxiaojiejeiduibi($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_baojiadanfeiyong` where kid=$id and state=2";
+		$sql = "SELECT * FROM `erp_baojiadanfeiyong` where kid=$id and state=2 or state=5";
 		return $this->db->query($sql)->row_array();
 	}
 	public function getgoodsByIdxiaojiejeiduibi1($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_baojiaxiangmu` where kid=$id and state=2";
+		$sql = "SELECT * FROM `erp_baojiaxiangmu` where kid=$id and state=2 or state=5";
 		return $this->db->query($sql)->row_array();
 	}
 	public function getgoodsByIdxiaojiejeiduibi11($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_baojiadanfeiyongjue` where kid=$id and state=2";
+		$sql = "SELECT * FROM `erp_baojiadanfeiyongjue` where kid=$id and state=2 or state=5";
 		return $this->db->query($sql)->row_array();
 	}
 	public function getgoodsByIdxiaojiejeiduibi22($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_baojiaxiangmujue` where kid=$id and state=2";
+		$sql = "SELECT * FROM `erp_baojiaxiangmujue` where kid=$id and state=2 or state=5";
 		return $this->db->query($sql)->row_array();
 	}
 	public function yangpin_save_edit($id,$kuhumingcheng,$dandangzhe,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe)

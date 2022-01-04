@@ -2219,10 +2219,10 @@ class Goods extends CI_Controller
 		$data = array();
 		$data['id'] = $id;
 		$data['btype'] = $btype;
-        if ($btype == 1 || $btype == 3){
+        if ($btype == 1 || $btype == 3 || $btype == 888){
 			$kuanhaos = $this->task->gettidlistjichu1($id);
 		}
-        if ($btype == 2 || $btype == 4){
+        if ($btype == 2 || $btype == 4 || $btype == 999){
 			$kuanhaos = $this->task->gettidlistjichu1jue($id);
 		}
 		$data['infomation'] = empty($kuanhaos[0]['infomation'])?'':$kuanhaos[0]['infomation'];
@@ -2499,10 +2499,10 @@ class Goods extends CI_Controller
 			$data['beizhu10'] = $kuanhaos[9]['beizhu'];
 		}
 
-		if ($btype == 1 || $btype == 3){
+		if ($btype == 1 || $btype == 3 || $btype == 888){
 			$goods_info = $this->role->getgoodsByIdxiaojiejei($id);
 		}
-		if ($btype == 2 || $btype == 4){
+		if ($btype == 2 || $btype == 4 || $btype == 999){
 			$goods_info = $this->role->getgoodsByIdxiaojiejeijue($id);
 		}
 		if (empty($goods_info)) {
@@ -2612,7 +2612,7 @@ class Goods extends CI_Controller
 		if($state == 1 || $state == 4){
 			$infomation = "";
 		}
-		if ($btype==1 || $btype==3){
+		if ($btype==1 || $btype==3 || $btype==888){
 			$this->role->goodsimg_delete_jichu($id);
 		}else{
 			$this->role->goodsimg_delete_jichujue($id);
@@ -2622,7 +2622,7 @@ class Goods extends CI_Controller
 			if (empty($v) || empty($mingcheng[$k]) || empty($guige[$k]) || empty($danweis[$k]) || empty($danjia[$k]) || empty($danwei1[$k]) || empty($yongliang[$k]) || empty($danwei2[$k]) || empty($jine[$k]) || empty($danwei3[$k]) || empty($qidingliang[$k]) || empty($beizhu[$k])) {
 				continue;
 			}
-			if ($btype==1 || $btype==3){
+			if ($btype==1 || $btype==3 || $btype==888){
 				$this->role->role_save_edit_jichu($infomation,$status,$state,$v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
 			}else{
 				$this->role->role_save_edit_jichujue($infomation,$status,$state,$v,$mingcheng[$k],$guige[$k],$danweis[$k],$danjia[$k],$danwei1[$k],$yongliang[$k],$danwei2[$k],$jine[$k],$danwei3[$k],$qidingliang[$k],$beizhu[$k],$id,time());
@@ -2651,7 +2651,7 @@ class Goods extends CI_Controller
 		$yunfeiyongliang = isset($_POST["yunfeiyongliang"]) ? $_POST["yunfeiyongliang"] : '';
 		$qitadanjia = isset($_POST["qitadanjia"]) ? $_POST["qitadanjia"] : '';
 		$qitayongliang = isset($_POST["qitayongliang"]) ? $_POST["qitayongliang"] : '';
-		if ($btype==1 || $btype==3){
+		if ($btype==1 || $btype==3 || $btype==888){
 			$this->role->goods_save_edit_yusuan($infomation,$status,$state,$kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);
 		}else{
 			$this->role->goods_save_edit_yusuanjue($infomation,$status,$state,$kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time);

@@ -46,201 +46,85 @@
 						<?php if (isset($list) && !empty($list)) { ?>
 							<?php foreach ($list as $num => $once): ?>
 								<?php if ($once['openflg']>=1){ ?>
-									<?php if ($once['state1']==3){ ?>
-										<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-											<td><?= $once['bianhao'] ?></td>
-											<td><?= $once['kuanhao'] ?></td>
-											<?php if ($once['openflg']>=1){ ?>
-												<?php if ($once['state1']==3){ ?>
-													<td style="color: red;">审核驳回</td>
-												<?php } ?>
-												<?php if ($once['state1']==2){ ?>
-													<td style="color: green;">审核通过</td>
-												<?php } ?>
-												<?php if ($once['state1']==1){ ?>
-													<td style="color: #FFB800;">正在审核</td>
-												<?php } ?>
-												<?php if ($once['state1']==4){ ?>
-													<td style="color: #0000FF;">暂无提交审核</td>
-												<?php } ?>
-											<?php }else{ ?>
-												<td style="color: #0000FF;">暂无提交审核</td>
-											<?php } ?>
-											<td class="td-manage">
-												<?php if ($btype==1){ ?>
-													<?php if ($once['openflg1']>=1){ ?>
-														<?php if ($once['status2']==1 || $once['state2']==3){ ?>
-														<?php }else{ ?>
-															<?php if ($once['status2']==2 && $once['state2']==1 && $shenheflg==1){ ?>
+                                     <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+                                     	<td><?= $once['bianhao'] ?></td>
+                                     	<td><?= $once['kuanhao'] ?></td>
+                                     	<?php if ($once['openflg']>=1){ ?>
+                                     		<?php if ($once['state1']==3){ ?>
+                                     			<td style="color: red;">审核驳回</td>
+                                     		<?php } ?>
+                                     		<?php if ($once['state1']==2){ ?>
+                                     			<td style="color: green;">审核通过</td>
+                                     		<?php } ?>
+                                     		<?php if ($once['state1']==1){ ?>
+                                     			<td style="color: #FFB800;">正在审核</td>
+                                     		<?php } ?>
+                                     		<?php if ($once['state1']==4){ ?>
+                                     			<td style="color: purple;">已填写</td>
+                                     		<?php } ?>
+                                     		<?php if ($once['state1']==5){ ?>
+                                     			<td style="color: green;">审核完成</td>
+                                     		<?php } ?>
+                                     	<?php }else{ ?>
+                                     		<td style="color: #0000FF;">未填写</td>
+                                     	<?php } ?>
+                                     	<td class="td-manage">
+                                     		<?php if ($btype==1){ ?>
+                                     			<?php if ($once['openflg1']>=1){ ?>
+                                     				<?php if ($once['status2']==1 || $once['state2']==3){ ?>
+                                     				<?php }else{ ?>
+                                     					<?php if ($once['status2']==2 && $once['state2']==1 && $shenheflg==1){ ?>
+															<?php if ($_SESSION['rid']==1){ ?>
+																<button class="layui-btn layui-btn-warm"
+																		onclick="xadmin.open('预算报价单审核(管理员)','<?= RUN . '/goods/goods_edit_jichu?btype=888&id=' ?>'+'<?= $once['id'] ?>')">
+																	<i class="layui-icon">&#xe642;</i>预算报价单审核(管理员)
+																</button>
+															<?php }else{ ?>
 																<button class="layui-btn layui-btn-warm"
 																		onclick="xadmin.open('预算报价单审核','<?= RUN . '/goods/goods_edit_jichu?btype=3&id=' ?>'+'<?= $once['id'] ?>')">
 																	<i class="layui-icon">&#xe642;</i>预算报价单审核
 																</button>
 															<?php } ?>
-														<?php } ?>
-													<?php } ?>
-														<?php if ($once['state2']==2 || $once['state2']==3){ ?>
-														<button class="layui-btn layui-btn-normal"
-																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
-															<i class="layui-icon">&#xe642;</i>报价单查看详情
-														</button>
-													    <?php } ?>
-												<?php }else{ ?>
-
-													<?php if ($once['openflg1']>=1){ ?>
-														<?php if ($once['status2']==1 || $once['state2']==3){ ?>
-														<?php }else{ ?>
-															<?php if ($once['status2']==2 && $once['state2']==1 && $shenheflg==1){ ?>
+                                     					<?php } ?>
+                                     					
+                                     				<?php } ?>
+                                     			<?php } ?>
+                                     				<?php if ($once['state2']==2 || $once['state2']==3 || $once['state2']==5){ ?>
+                                     				<button class="layui-btn layui-btn-normal"
+                                     						onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+                                     					<i class="layui-icon">&#xe642;</i>报价单查看详情
+                                     				</button>
+                                     			    <?php } ?>
+                                     		<?php }else{ ?>
+                                     
+                                     			<?php if ($once['openflg1']>=1){ ?>
+                                     				<?php if ($once['status2']==1 || $once['state2']==3){ ?>
+                                     				<?php }else{ ?>
+                                     					<?php if ($once['status2']==2 && $once['state2']==1 && $shenheflg==1){ ?>
+															<?php if ($_SESSION['rid']==1){ ?>
+																<button class="layui-btn layui-btn-warm"
+																		onclick="xadmin.open('决算报价单审核(管理员)','<?= RUN . '/goods/goods_edit_jichu?btype=999&id=' ?>'+'<?= $once['id'] ?>')">
+																	<i class="layui-icon">&#xe642;</i>决算报价单审核(管理员)
+																</button>
+															<?php }else{ ?>
 																<button class="layui-btn layui-btn-warm"
 																		onclick="xadmin.open('决算报价单审核','<?= RUN . '/goods/goods_edit_jichu?btype=4&id=' ?>'+'<?= $once['id'] ?>')">
 																	<i class="layui-icon">&#xe642;</i>决算报价单审核
 																</button>
 															<?php } ?>
-														<?php } ?>
-													<?php } ?>
-													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
-														<button class="layui-btn layui-btn-normal"
-																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
-															<i class="layui-icon">&#xe642;</i>报价单查看详情
-														</button>
-													<?php } ?>
-												<?php } ?>
-											</td>
-										</tr>
-									<?php } ?>
-									<?php if ($once['state1']==2){ ?>
-										<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-											<td><?= $once['bianhao'] ?></td>
-											<td><?= $once['kuanhao'] ?></td>
-											<?php if ($once['openflg']>=1){ ?>
-												<?php if ($once['state1']==3){ ?>
-													<td style="color: red;">审核驳回</td>
-												<?php } ?>
-												<?php if ($once['state1']==2){ ?>
-													<td style="color: green;">审核通过</td>
-												<?php } ?>
-												<?php if ($once['state1']==1){ ?>
-													<td style="color: #FFB800;">正在审核</td>
-												<?php } ?>
-												<?php if ($once['state1']==4){ ?>
-													<td style="color: #0000FF;">暂无提交审核</td>
-												<?php } ?>
-											<?php }else{ ?>
-												<td style="color: #0000FF;">暂无提交审核</td>
-											<?php } ?>
-											<td class="td-manage">
-												<?php if ($btype==1){ ?>
-													<?php if ($once['openflg1']>=1){ ?>
-														<?php if ($once['status2']==1 || $once['state2']==3){ ?>
-														<?php }else{ ?>
-															<?php if ($once['status2']==2 && $once['state2']==1 && $shenheflg==1){ ?>
-																<button class="layui-btn layui-btn-warm"
-																		onclick="xadmin.open('预算报价单审核','<?= RUN . '/goods/goods_edit_jichu?btype=3&id=' ?>'+'<?= $once['id'] ?>')">
-																	<i class="layui-icon">&#xe642;</i>预算报价单审核
-																</button>
-															<?php } ?>
-														<?php } ?>
-													<?php } ?>
-
-
-													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
-														<button class="layui-btn layui-btn-normal"
-																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
-															<i class="layui-icon">&#xe642;</i>报价单查看详情
-														</button>
-													<?php } ?>
-
-												<?php }else{ ?>
-
-													<?php if ($once['openflg1']>=1){ ?>
-														<?php if ($once['status2']==1 || $once['state2']==3){ ?>
-														<?php }else{ ?>
-															<?php if ($once['status2']==2 && $once['state2']==1 && $shenheflg==1){ ?>
-																<button class="layui-btn layui-btn-warm"
-																		onclick="xadmin.open('决算报价单审核','<?= RUN . '/goods/goods_edit_jichu?btype=4&id=' ?>'+'<?= $once['id'] ?>')">
-																	<i class="layui-icon">&#xe642;</i>决算报价单审核
-																</button>
-															<?php } ?>
-														<?php } ?>
-													<?php } ?>
-
-
-													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
-														<button class="layui-btn layui-btn-normal"
-																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
-															<i class="layui-icon">&#xe642;</i>报价单查看详情
-														</button>
-													<?php } ?>
-												<?php } ?>
-											</td>
-										</tr>
-									<?php } ?>
-									<?php if ($once['state1']==1){ ?>
-										<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-											<td><?= $once['bianhao'] ?></td>
-											<td><?= $once['kuanhao'] ?></td>
-											<?php if ($once['openflg']>=1){ ?>
-												<?php if ($once['state1']==3){ ?>
-													<td style="color: red;">审核驳回</td>
-												<?php } ?>
-												<?php if ($once['state1']==2){ ?>
-													<td style="color: green;">审核通过</td>
-												<?php } ?>
-												<?php if ($once['state1']==1){ ?>
-													<td style="color: #FFB800;">正在审核</td>
-												<?php } ?>
-												<?php if ($once['state1']==4){ ?>
-													<td style="color: #0000FF;">暂无提交审核</td>
-												<?php } ?>
-											<?php }else{ ?>
-												<td style="color: #0000FF;">暂无提交审核</td>
-											<?php } ?>
-											<td class="td-manage">
-												<?php if ($btype==1){ ?>
-													<?php if ($once['openflg1']>=1){ ?>
-														<?php if ($once['status2']==1 || $once['state2']==3){ ?>
-														<?php }else{ ?>
-															<?php if ($once['status2']==2 && $once['state2']==1 && $shenheflg==1){ ?>
-																<button class="layui-btn layui-btn-warm"
-																		onclick="xadmin.open('预算报价单审核','<?= RUN . '/goods/goods_edit_jichu?btype=3&id=' ?>'+'<?= $once['id'] ?>')">
-																	<i class="layui-icon">&#xe642;</i>预算报价单审核
-																</button>
-															<?php } ?>
-														<?php } ?>
-													<?php } ?>
-
-
-													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
-														<button class="layui-btn layui-btn-normal"
-																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
-															<i class="layui-icon">&#xe642;</i>报价单查看详情
-														</button>
-													<?php } ?>
-												<?php }else{ ?>
-
-													<?php if ($once['openflg1']>=1){ ?>
-														<?php if ($once['status2']==1 || $once['state2']==3){ ?>
-														<?php }else{ ?>
-															<?php if ($once['status2']==2 && $once['state2']==1 && $shenheflg==1){ ?>
-																<button class="layui-btn layui-btn-warm"
-																		onclick="xadmin.open('决算报价单审核','<?= RUN . '/goods/goods_edit_jichu?btype=4&id=' ?>'+'<?= $once['id'] ?>')">
-																	<i class="layui-icon">&#xe642;</i>决算报价单审核
-																</button>
-															<?php } ?>
-														<?php } ?>
-													<?php } ?>
-
-
-													<?php if ($once['state2']==2 || $once['state2']==3){ ?>
-														<button class="layui-btn layui-btn-normal"
-																onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
-															<i class="layui-icon">&#xe642;</i>报价单查看详情
-														</button>
-													<?php } ?>
-												<?php } ?>
-											</td>
-										</tr>
-									<?php } ?>
+                                     					<?php } ?>
+                                     					
+                                     				<?php } ?>
+                                     			<?php } ?>
+                                     			<?php if ($once['state2']==2 || $once['state2']==3 || $once['state2']==5){ ?>
+                                     				<button class="layui-btn layui-btn-normal"
+                                     						onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+                                     					<i class="layui-icon">&#xe642;</i>报价单查看详情
+                                     				</button>
+                                     			<?php } ?>
+                                     		<?php } ?>
+                                     	</td>
+                                     </tr>
 								<?php } ?>
 							<?php endforeach; ?>
 						<?php } else { ?>

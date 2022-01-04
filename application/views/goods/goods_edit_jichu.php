@@ -569,7 +569,7 @@
 							</tbody>
 						</table>
 					<div class="layui-form-item" style="margin-top: 15px;">
-						<?php if ($btype==3 || $btype==4){ ?>
+						<?php if ($btype==3 || $btype==4 || $btype==999 || $btype==888){ ?>
 							<div class="layui-form-item layui-form-text">
 								<label for="desc" class="layui-form-label">
 									驳回原因
@@ -594,15 +594,49 @@
 						<?php } ?>
 						<label for="L_repass" class="layui-form-label" style="width: 80%;">
 						</label>
-						<?php if ($state==2 && $status==2){ ?>
-							<button class="layui-btn" lay-filter="add" type="button" onclick="return submitgo1()">
-								返回上一页
-							</button>
-						<?php }else{ ?>
-							<?php if ($btype==3 || $btype==4){ ?>
-								<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('3')">
-									审核通过
+						<?php if ($state==2 && $status==2 || $state==5){ ?>
+						    <?php if ($_SESSION['rid']==1 && $state==5){ ?>
+								<button class="layui-btn" lay-filter="add" type="button" onclick="return submitgo1()">
+									返回上一页
 								</button>
+							<?php }elseif($_SESSION['rid']!=1 && $state==2){ ?>
+								 <button class="layui-btn" lay-filter="add" type="button" onclick="return submitgo1()">
+									返回上一页
+								 </button>
+							<?php }else{ ?>
+								<?php if ($btype==3 || $btype==4 || $btype==999 || $btype==888){ ?>
+								<?php if ($_SESSION['rid']==1){ ?>
+									<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('5')">
+										审核通过
+									</button>
+								<?php }else{ ?>
+									<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('3')">
+										审核通过
+									</button>
+								<?php } ?>
+									<button class="layui-btn layui-btn-danger" lay-filter="add" type="submit" onclick="return submitgo('4')">
+										审核驳回
+									</button>
+								<?php }else{ ?>
+									<button class="layui-btn layui-btn-normal" lay-filter="add" type="submit" onclick="return submitgo('1')">
+										提交保存
+									</button>
+									<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('2')">
+										提交审核
+									</button>
+								<?php } ?>
+							<?php } ?>
+						<?php }else{ ?>
+							<?php if ($btype==3 || $btype==4 || $btype==999 || $btype==888){ ?>
+								<?php if ($_SESSION['rid']==1){ ?>
+									<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('5')">
+										审核通过
+									</button>
+								<?php }else{ ?>
+									<button class="layui-btn" lay-filter="add" type="submit" onclick="return submitgo('3')">
+										审核通过
+									</button>
+								<?php } ?>
 								<button class="layui-btn layui-btn-danger" lay-filter="add" type="submit" onclick="return submitgo('4')">
 									审核驳回
 								</button>
@@ -647,6 +681,11 @@
 			//驳回
 			$("#status").val(2);
 			$("#state").val(3);
+		}
+		if(type == 5){
+			//通过admin
+			$("#status").val(2);
+			$("#state").val(5);
 		}
 	}
 </script>

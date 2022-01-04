@@ -148,15 +148,27 @@
 					<i class="iconfont nav_right">&#xe697;</i></a>
 				<ul class="sub-menu">
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=111' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>报价单添加</cite>
+							<cite>预算报价单管理</cite>
 						</a>
 					</li>
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=999' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=222' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>报价单审核</cite>
+							<cite>预算报价单审核</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=333' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>决算报价单管理</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=444' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>决算报价单审核</cite>
 						</a>
 					</li>
 				</ul>

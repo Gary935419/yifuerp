@@ -61,23 +61,28 @@
 									<td><?= date('Y-m-d', $once['jiaohuoqi']) ?></td>
 									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
-										<?php if ($id==999){ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('查看预算表','<?= RUN . '/goods/goods_list_shenhe?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>查看预算表
-											</button>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('查看决算表','<?= RUN . '/goods/goods_list_shenhe?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>查看决算表
-											</button>
-										<?php }else{ ?>
+										<?php if ($id==111){ ?>
 											<button class="layui-btn layui-btn-normal"
 													onclick="xadmin.open('查看预算表','<?= RUN . '/goods/goods_list_yu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
 												<i class="layui-icon">&#xe642;</i>查看预算表
 											</button>
+										<?php } ?>
+										<?php if ($id==222){ ?>
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('查看预算表','<?= RUN . '/goods/goods_list_shenhe?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>预算表审核
+											</button>
+										<?php } ?>
+										<?php if ($id==333){ ?>
 											<button class="layui-btn layui-btn-normal"
 													onclick="xadmin.open('查看决算表','<?= RUN . '/goods/goods_list_yu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
 												<i class="layui-icon">&#xe642;</i>查看决算表
+											</button>
+										<?php } ?>
+										<?php if ($id==444){ ?>
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('查看决算表','<?= RUN . '/goods/goods_list_shenhe?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>决算表审核
 											</button>
 										<?php } ?>
                                     </td>

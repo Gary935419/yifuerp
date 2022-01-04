@@ -20,13 +20,13 @@
 		<div class="layui-col-md12">
 			<div class="layui-card">
 				<div class="layui-card-body ">
-					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_yu' ?>">
+					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_yangpin' ?>">
 						<div class="layui-inline layui-show-xs-block">
 							<input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
 								   placeholder="合同款号" autocomplete="off" class="layui-input">
 						</div>
 						<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
-						<input type="hidden" id="btype" name="btype" value="<?php echo $btype ?>">
+						<input type="hidden" id="zid" name="zid" value="<?php echo $zid ?>">
 						<div class="layui-inline layui-show-xs-block">
 							<button class="layui-btn" lay-submit="" lay-filter="sreach"><i
 										class="layui-icon">&#xe615;</i></button>
@@ -48,13 +48,18 @@
 									<td><?= $once['bianhao'] ?></td>
 									<td><?= $once['kuanhao'] ?></td>
 									<td class="td-manage">
+										<button class="layui-btn"
+												onclick="xadmin.open('预算报价单添加','<?= RUN . '/goods/goods_add_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+											<i class="layui-icon">&#xe642;</i>预算报价单添加
+										</button>
+										<button class="layui-btn layui-btn-normal"
+												onclick="xadmin.open('预算报价单编辑','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+											<i class="layui-icon">&#xe642;</i>预算报价单编辑
+										</button>
 										<?php if ($btype==1){ ?>
 											<?php if ($once['openflg1']>=1){ ?>
 												<?php if ($once['status2']==1 || $once['state2']==3){ ?>
-													<button class="layui-btn layui-btn-normal"
-															onclick="xadmin.open('预算报价单编辑','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
-														<i class="layui-icon">&#xe642;</i>预算报价单编辑
-													</button>
+
 												<?php }else{ ?>
 												    <?php if ($once['status2']==2 && $once['state2']==1){ ?>
 														<button class="layui-btn layui-btn-danger">
@@ -63,24 +68,21 @@
 													<?php } ?>
 												<?php } ?>
 											<?php }else{ ?>
-												<button class="layui-btn"
-														onclick="xadmin.open('预算报价单添加','<?= RUN . '/goods/goods_add_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
-													<i class="layui-icon">&#xe642;</i>预算报价单添加
-												</button>
+
 											<?php } ?>
-											<?php if ($once['openflg1']>=1 && $once['openflg']>=1 && $once['status2']==2 && $once['state2']==2 || $once['state2']==5){ ?>
+											<?php if ($once['openflg1']>=1 && $once['openflg']>=1 && $once['status2']==2 && $once['state2']==2){ ?>
 												<button class="layui-btn layui-btn-normal"
 														onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
 													<i class="layui-icon">&#xe642;</i>报价单查看详情
 												</button>
+												<?php if ($once['duibiflg'] == 1){ ?>
+													<button class="layui-btn layui-btn-normal"
+															onclick="xadmin.open('数据对比','<?= RUN . '/goods/goods_list_bao_duibi_details?id=' ?>'+'<?= $once['id'] ?>')">
+														<i class="iconfont">&#xe74a;</i>数据对比
+													</button>
+												<?php } ?>
 												<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_baojiadan?btype=1&id='.$once['id'] ?>">
 													<button class="layui-btn layui-btn-normal">
-														<i class="iconfont">&#xe74a;</i>  数据导出
-													</button>
-												</a>
-											<?php }else{ ?>
-												<a style="margin-left: 10px;" href="#">
-													<button class="layui-btn layui-btn-normal" style="background-color: #C2C2C2;">
 														<i class="iconfont">&#xe74a;</i>  数据导出
 													</button>
 												</a>
@@ -107,7 +109,7 @@
 													<i class="layui-icon">&#xe642;</i>决算报价单添加
 												</button>
 											<?php } ?>
-											<?php if ($once['openflg1']>=1 && $once['openflg']>=1 && $once['status2']==2 && $once['state2']==2 || $once['state2']==5){ ?>
+											<?php if ($once['openflg1']>=1 && $once['openflg']>=1 && $once['status2']==2 && $once['state2']==2){ ?>
 												<button class="layui-btn layui-btn-normal"
 														onclick="xadmin.open('报价单查看详情','<?= RUN . '/goods/goods_edit_jichu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
 													<i class="layui-icon">&#xe642;</i>报价单查看详情
@@ -115,17 +117,11 @@
 												<?php if ($once['duibiflg'] == 1){ ?>
 													<button class="layui-btn layui-btn-normal"
 															onclick="xadmin.open('数据对比','<?= RUN . '/goods/goods_list_bao_duibi_details?id=' ?>'+'<?= $once['id'] ?>')">
-														<i class="iconfont">&#xe74a;</i> 数据对比
+														<i class="iconfont">&#xe74a;</i>数据对比
 													</button>
 												<?php } ?>
 												<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_baojiadan?btype=2&id='.$once['id'] ?>">
 													<button class="layui-btn layui-btn-normal">
-														<i class="iconfont">&#xe74a;</i>  数据导出
-													</button>
-												</a>
-											<?php }else{ ?>
-												<a style="margin-left: 10px;" href="#">
-													<button class="layui-btn layui-btn-normal" style="background-color: #C2C2C2;">
 														<i class="iconfont">&#xe74a;</i>  数据导出
 													</button>
 												</a>
@@ -136,7 +132,7 @@
 							<?php endforeach; ?>
 						<?php } else { ?>
 							<tr>
-								<td colspan="3" style="text-align: center;">暂无数据</td>
+								<td colspan="11" style="text-align: center;">暂无数据</td>
 							</tr>
 						<?php } ?>
 						</tbody>
