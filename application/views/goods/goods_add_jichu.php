@@ -250,132 +250,95 @@
 						<table class="layui-table layui-form">
 							<thead>
 							<tr>
-								<th>项目</th>
+								<th>操作</th>
 								<th>名称</th>
-								<th>规格</th>
-								<th>单位</th>
 								<th>单价</th>
-								<th>单位</th>
 								<th>用量</th>
-								<th>单位</th>
 								<th>金额</th>
-								<th>单位</th>
-								<th>起订量</th>
-								<th>备注</th>
 							<tr>
 							</thead>
 							<tbody>
-							<tr>
+							<tr id="tr1">
 								<td style="min-width: 80px;">
-									加工费
+									<i class="layui-icon" id="tradd1" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return traddnow(2,1)"></i>
 								</td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="jiagongfeidanjia" id="jiagongfeidanjia" autocomplete="off" value="1" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="jiagongfeiyongliang" id="jiagongfeiyongliang" autocomplete="off" value="100" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="jiagongfeijine" id="jiagongfeijine" autocomplete="off" value="100" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="name1" id="trval1" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeidanjia" id="trval11" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeiyongliang" id="trval111" autocomplete="off" class="layui-input"></td>
+								<td><input name="jiagongfeijine" id="trval1111" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<tr>
+							<tr id="tr2" style="display: none;">
 								<td style="min-width: 80px;">
-									二次加工费
+									<i class="layui-icon" id="tradd2" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return traddnow(3,2)"></i>
+									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return trdellete(2,1)">&#xe6fe;</i>
 								</td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="ercijiagongfeidanjia" id="ercijiagongfeidanjia" value="1" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="ercijiagongfeiyongliang" id="ercijiagongfeiyongliang" value="90" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="ercijiagongfeijine" id="ercijiagongfeijine" value="90" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="name2" id="trval2" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeidanjia" id="trval22" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeiyongliang" id="trval222" autocomplete="off" class="layui-input"></td>
+								<td><input name="ercijiagongfeijine" id="trval2222" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<tr>
+							<tr id="tr3" style="display: none;">
 								<td style="min-width: 80px;">
-									检品费
+									<i class="layui-icon" id="tradd3" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return traddnow(4,3)"></i>
+									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return trdellete(3,2)">&#xe6fe;</i>
 								</td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="jianpinfeidanjia" id="jianpinfeidanjia" autocomplete="off" value="1" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="jianpinfeiyongliang" id="jianpinfeiyongliang" autocomplete="off" value="80" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="jianpinfeijine" id="jianpinfeijine" autocomplete="off" value="70" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="name3" id="trval3" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeidanjia" id="trval33" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeiyongliang" id="trval333" autocomplete="off" class="layui-input"></td>
+								<td><input name="jianpinfeijine" id="trval3333" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<tr>
+							<tr id="tr4" style="display: none;">
 								<td style="min-width: 80px;">
-									通关费
+									<i class="layui-icon" id="tradd4" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return traddnow(5,4)"></i>
+									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return trdellete(4,3)">&#xe6fe;</i>
 								</td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="tongguanfeidanjia" id="tongguanfeidanjia" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="tongguanfeiyongliang" id="tongguanfeiyongliang" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="tongguanfeijine" id="tongguanfeijine" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="name4" id="trval4" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeidanjia" id="trval44" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeiyongliang" id="trval444" autocomplete="off" class="layui-input"></td>
+								<td><input name="tongguanfeijine" id="trval4444" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<tr>
+							<tr id="tr5" style="display: none;">
 								<td style="min-width: 80px;">
-									面料检测费
+									<i class="layui-icon" id="tradd5" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return traddnow(6,5)"></i>
+									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return trdellete(5,4)">&#xe6fe;</i>
 								</td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="mianliaojiancedanjia" id="mianliaojiancedanjia" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="mianliaojianceyongliang" id="mianliaojianceyongliang" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="mianliaojiancejine" id="mianliaojiancejine" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="name5" id="trval5" autocomplete="off" class="layui-input"></td>
+								<td><input name="mianliaojiancedanjia" id="trval55" autocomplete="off" class="layui-input"></td>
+								<td><input name="mianliaojianceyongliang" id="trval555" autocomplete="off" class="layui-input"></td>
+								<td><input name="mianliaojiancejine" id="trval5555" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<tr>
+							<tr id="tr6" style="display: none;">
 								<td style="min-width: 80px;">
-									运费
+									<i class="layui-icon" id="tradd6" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return traddnow(7,6)"></i>
+									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return trdellete(6,5)">&#xe6fe;</i>
 								</td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="yunfeidanjia" id="yunfeidanjia" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="yunfeiyongliang" id="yunfeiyongliang" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="yunfeijine" id="yunfeijine" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="name6" id="trval6" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeidanjia" id="trval66" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeiyongliang" id="trval666" autocomplete="off" class="layui-input"></td>
+								<td><input name="yunfeijine" id="trval6666" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<tr>
+							<tr id="tr7" style="display: none;">
 								<td style="min-width: 80px;">
-									其他
+									<i class="layui-icon" id="tradd7" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return traddnow(8,7)"></i>
+									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
+									   onclick="return trdellete(7,6)">&#xe6fe;</i>
 								</td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="qitadanjia" id="qitadanjia" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="qitayongliang" id="qitayongliang" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="qitajine" id="qitajine" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
-								<td><input name="daiding[]" autocomplete="off" class="layui-input"></td>
+								<td><input name="name7" id="trval7" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitadanjia" id="trval77" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitayongliang" id="trval777" autocomplete="off" class="layui-input"></td>
+								<td><input name="qitajine" id="trval7777" autocomplete="off" class="layui-input"></td>
 							</tr>
 							</tbody>
 						</table>
@@ -435,6 +398,32 @@
 		$("#val" + id + id + id + id + id + id + id + id + id + id + id + id + id + id + id).val("");
 		$("#val" + id + id + id + id + id + id + id + id + id + id + id + id + id + id + id + id).val("");
 		$("#divadd" + idd).show();
+	}
+
+	function traddnow(id, idd) {
+		$("#tr" + id).show()
+		$("#tradd" + idd).hide();
+	}
+
+	function trdellete(id, idd) {
+		$("#trdiv" + id).hide();
+		$("#trval" + id).val("");
+		$("#trval" + id + id).val("");
+		$("#trval" + id + id + id).val("");
+		$("#trval" + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id + id + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id + id + id + id + id + id + id + id + id).val("");
+		$("#trval" + id + id + id + id + id + id + id + id + id + id + id + id + id + id + id + id).val("");
+		$("#tradd" + idd).show();
 	}
 </script>
 <script>
