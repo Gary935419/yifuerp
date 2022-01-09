@@ -61,7 +61,7 @@ class Task_model extends CI_Model
 	public function gettidlistpinming_cai($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id ";
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id order by sehao";
 		return $this->db->query($sql)->result_array();
 	}
 	public function gettidlistpinming_caij($id)
@@ -678,18 +678,19 @@ class Task_model extends CI_Model
 		$sql = "SELECT * FROM `erp_zigongsi` order by id desc ";
 		return $this->db->query($sql)->result_array();
 	}
-	public function gettidlistpinming_cai_zhuangxiang($id,$msg)
+	public function gettidlistpinming_cai_zhuangxiang($id,$msg,$xiangshu)
 	{
 		$id = $this->db->escape($id);
 		$msg = $this->db->escape($msg);
-		$sql = "UPDATE `erp_caiduanbaogaoshu` SET zhuangxiangxinxi=$msg WHERE kid = $id";
+		$xiangshu = $this->db->escape($xiangshu);
+		$sql = "UPDATE `erp_caiduanbaogaoshu` SET zhuangxiangxinxi=$msg,zhuangxiangshuliang=$xiangshu WHERE kid = $id";
 		return $this->db->query($sql);
 	}
 
 	public function gettidlistjichu1cai($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id ";
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id order by sehao";
 		return $this->db->query($sql)->result_array();
 	}
 	public function gettidlistjichu1juecai($id)
@@ -713,5 +714,22 @@ class Task_model extends CI_Model
 	{
 		$sql = "SELECT * FROM `erp_zubie` order by id desc ";
 		return $this->db->query($sql)->result_array();
+	}
+	public function erp_caiduanbaogaoshuzhuang($kid,$sehao,$pinfan,$caiduanshu,$addtime,$shuliang)
+	{
+		$kid = $this->db->escape($kid);
+		$sehao = $this->db->escape($sehao);
+		$pinfan = $this->db->escape($pinfan);
+		$caiduanshu = $this->db->escape($caiduanshu);
+		$addtime = $this->db->escape($addtime);
+		$shuliang = $this->db->escape($shuliang);
+		$sql = "INSERT INTO `erp_caiduanbaogaoshuzhuang` (kid,sehao,pinfan,caiduanshu,addtime,shuliang) VALUES ($kid,$sehao,$pinfan,$caiduanshu,$addtime,$shuliang)";
+		return $this->db->query($sql);
+	}
+	public function erp_caiduanbaogaoshuzhuangde($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_caiduanbaogaoshuzhuang WHERE kid = $id";
+		return $this->db->query($sql);
 	}
 }

@@ -118,7 +118,7 @@
                                      					<?php } ?>
 														<?php if ($_SESSION['rid']==1 && $once['state2']!=5){ ?>
 															<button class="layui-btn layui-btn-warm"
-																	onclick="xadmin.open('审核(管理员)','<?= RUN . '/goods/goods_edit_jichu?btype=888&id=' ?>'+'<?= $once['id'] ?>')">
+																	onclick="xadmin.open('审核(管理员)','<?= RUN . '/goods/goods_edit_jichu?btype=999&id=' ?>'+'<?= $once['id'] ?>')">
 																<i class="layui-icon">&#xe642;</i>审核(管理员)
 															</button>
 														<?php } ?>

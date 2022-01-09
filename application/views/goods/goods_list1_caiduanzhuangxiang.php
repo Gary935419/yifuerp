@@ -20,7 +20,7 @@
 		<div class="layui-col-md12">
 			<div class="layui-card">
 				<div class="layui-card-body ">
-					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list1_cai' ?>">
+					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list1_caiduanzhuangxiang' ?>">
 						<div class="layui-inline layui-show-xs-block">
 							<input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
 								   placeholder="合同款号" autocomplete="off" class="layui-input">
@@ -41,46 +41,52 @@
 							<th>日期</th>
 							<th>品类</th>
 							<th>合计数量</th>
+							<th>装箱数量</th>
 							<th>状态</th>
 							<th>操作</th>
 						</thead>
 						<tbody>
 						<?php if (isset($list) && !empty($list)) { ?>
 							<?php foreach ($list as $num => $once): ?>
-								<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-									<td><?= $once['bianhao'] ?></td>
-									<td><?= $once['kuanhao'] ?></td>
-									<td><?= $once['mingcheng'] ?></td>
-									<td><?= date('Y-m-d', $once['qianding']) ?></td>
-									<td><?= $once['pinlei'] ?></td>
-									<td><?= $once['heji'] ?></td>
-									<?php if (empty($once['openflg1'])){ ?>
-										<td style="color: red;">未添加</td>
-									<?php }else{ ?>
-										<td style="color: green;">已添加</td>
-									<?php } ?>
-									<td class="td-manage">
-										<?php if ($once['openflg1']>=1){ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new22_cai?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>编辑
-											</button>
-											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_cai?id='.$once['id'] ?>">
-												<button class="layui-btn layui-btn-normal">
-													<i class="iconfont">&#xe74a;</i>  导出
-												</button>
-											</a>
+						        <?php if ($once['openflg2']>=1){ ?>
+									<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+										<td><?= $once['bianhao'] ?></td>
+										<td><?= $once['kuanhao'] ?></td>
+										<td><?= $once['mingcheng'] ?></td>
+										<td><?= date('Y-m-d', $once['qianding']) ?></td>
+										<td><?= $once['pinlei'] ?></td>
+										<td><?= $once['heji'] ?></td>
+										<td><?= $once['zhuangxiangshuliang'] ?></td>
+										<?php if (empty($once['openflg'])){ ?>
+											<td style="color: red;">未完成</td>
 										<?php }else{ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('添加','<?= RUN . '/goods/goods_add_new22_cai?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>添加
-											</button>
-											<button class="layui-btn layui-btn-normal" style="background-color: #C2C2C2;">
-												<i class="iconfont">&#xe74a;</i>  导出
-											</button>
+											<td style="color: green;">已完成</td>
 										<?php } ?>
-									</td>
-								</tr>
+										<td class="td-manage">
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('生成','<?= RUN . '/label/label_edit_cai?ltype=1&id=' ?>'+<?= $once['id'] ?>,900,500)">
+												<i class="layui-icon">&#xe642;</i>生成
+											</button>
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('查看','<?= RUN . '/label/label_edit_cai?ltype=2&id=' ?>'+<?= $once['id'] ?>,900,500)">
+												<i class="layui-icon">&#xe642;</i>查看
+											</button>
+											<?php if (empty($once['openflg'])){ ?>
+											    <a style="margin-left: 10px;" href="#">
+													<button class="layui-btn layui-btn-normal" style="background-color: #C2C2C2;">
+														<i class="iconfont">&#xe74a;</i>  导出
+													</button>
+												</a>
+									        <?php }else{ ?>
+												<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_caizhuangxiang?id='.$once['id'] ?>">
+													<button class="layui-btn layui-btn-normal">
+														<i class="iconfont">&#xe74a;</i>  导出
+													</button>
+												</a>
+									        <?php } ?>
+										</td>
+									</tr>
+								<?php } ?>
 							<?php endforeach; ?>
 						<?php } else { ?>
 							<tr>

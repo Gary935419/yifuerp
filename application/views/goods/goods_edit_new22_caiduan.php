@@ -29,7 +29,7 @@
 							<th>操作</th>
 							<th>色号</th>
 							<th>品番</th>
-							<th style="display: none">裁断数量</th>
+							<th>裁断数量</th>
 							<th>指示数量</th>
                         </thead>
                         <tbody>
@@ -47,8 +47,8 @@
 								</td>
 								<td><input name="sehao[]" id="val1" value="<?php echo $sehao1 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val11" value="<?php echo $pinfan1 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val111" value="<?php echo $caiduanshu1 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val1111" value="<?php echo $zhishishu1 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val111" value="<?php echo $caiduanshu1 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val1111" value="<?php echo $zhishishu1 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<?php if (empty($sehao2)){ ?>
 							<tr id="div2" style="display: none;">
@@ -71,8 +71,8 @@
 								</td>
 								<td><input name="sehao[]" id="val2" value="<?php echo $sehao2 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val22" value="<?php echo $pinfan2 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val222" value="<?php echo $caiduanshu2 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val2222" value="<?php echo $zhishishu2 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val222" value="<?php echo $caiduanshu2 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val2222" value="<?php echo $zhishishu2 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<?php if (empty($sehao3)){ ?>
 							<tr id="div3" style="display: none;">
@@ -97,8 +97,8 @@
 								</td>
 								<td><input name="sehao[]" id="val3" value="<?php echo $sehao3 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val33" value="<?php echo $pinfan3 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val333" value="<?php echo $caiduanshu3 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val3333" value="<?php echo $zhishishu3 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val333" value="<?php echo $caiduanshu3 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val3333" value="<?php echo $zhishishu3 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							    <?php if (empty($sehao4)){ ?>
 							<tr id="div4" style="display: none;">
@@ -123,8 +123,8 @@
 								</td>
 								<td><input name="sehao[]" id="val4" value="<?php echo $sehao4 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val44" value="<?php echo $pinfan4 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val444" value="<?php echo $caiduanshu4 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val4444" value="<?php echo $zhishishu4 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val444" value="<?php echo $caiduanshu4 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val4444" value="<?php echo $zhishishu4 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							    <?php if (empty($sehao5)){ ?>
 							<tr id="div5" style="display: none;">
@@ -149,8 +149,8 @@
 								</td>
 								<td><input name="sehao[]" id="val5" value="<?php echo $sehao5 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val55" value="<?php echo $pinfan5 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val555" value="<?php echo $caiduanshu5 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val5555" value="<?php echo $zhishishu5 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val555" value="<?php echo $caiduanshu5 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val5555" value="<?php echo $zhishishu5 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							    <?php if (empty($sehao6)){ ?>
 							<tr id="div6" style="display: none;">
@@ -175,8 +175,8 @@
 								</td>
 								<td><input name="sehao[]" id="val6" value="<?php echo $sehao6 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val66" value="<?php echo $pinfan6 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val666" value="<?php echo $caiduanshu6 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val6666" value="<?php echo $zhishishu6 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val666" value="<?php echo $caiduanshu6 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val6666" value="<?php echo $zhishishu6 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							    <?php if (empty($sehao7)){ ?>
 							<tr id="div7" style="display: none;">
@@ -201,8 +201,8 @@
 								</td>
 								<td><input name="sehao[]" id="val7" value="<?php echo $sehao7 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val77" value="<?php echo $pinfan7 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val777" value="<?php echo $caiduanshu7 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val7777" value="<?php echo $zhishishu7 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val777" value="<?php echo $caiduanshu7 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val7777" value="<?php echo $zhishishu7 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							    <?php if (empty($sehao8)){ ?>
 							<tr id="div8" style="display: none;">
@@ -227,8 +227,8 @@
 								</td>
 								<td><input name="sehao[]" id="val8" value="<?php echo $sehao8 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val88" value="<?php echo $pinfan8 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val888" value="<?php echo $caiduanshu8 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val8888" value="<?php echo $zhishishu8 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val888" value="<?php echo $caiduanshu8 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val8888" value="<?php echo $zhishishu8 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							    <?php if (empty($sehao9)){ ?>
 							<tr id="div9" style="display: none;">
@@ -253,8 +253,8 @@
 								</td>
 								<td><input name="sehao[]" id="val9" value="<?php echo $sehao9 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val99" value="<?php echo $pinfan9 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val999" value="<?php echo $caiduanshu9 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val9999" value="<?php echo $zhishishu9 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val999" value="<?php echo $caiduanshu9 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val9999" value="<?php echo $zhishishu9 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							    <?php if (empty($sehao10)){ ?>
 							<tr id="div10" style="display: none;">
@@ -279,8 +279,8 @@
 								</td>
 								<td><input name="sehao[]" id="val10" value="<?php echo $sehao10 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val1010" value="<?php echo $pinfan10 ?>" autocomplete="off" class="layui-input"></td>
-								<td style="display: none"><input name="caiduanshu[]" readonly id="val101010" value="<?php echo $caiduanshu10 ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishishu[]" id="val10101010" value="<?php echo $zhishishu10 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" id="val101010" value="<?php echo $caiduanshu10 ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly id="val10101010" value="<?php echo $zhishishu10 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
                         </tbody>

@@ -20,7 +20,7 @@
 		<div class="layui-col-md12">
 			<div class="layui-card">
 				<div class="layui-card-body ">
-					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list1_cai' ?>">
+					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list1_caiduan' ?>">
 						<div class="layui-inline layui-show-xs-block">
 							<input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
 								   placeholder="合同款号" autocomplete="off" class="layui-input">
@@ -47,22 +47,22 @@
 						<tbody>
 						<?php if (isset($list) && !empty($list)) { ?>
 							<?php foreach ($list as $num => $once): ?>
-								<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-									<td><?= $once['bianhao'] ?></td>
-									<td><?= $once['kuanhao'] ?></td>
-									<td><?= $once['mingcheng'] ?></td>
-									<td><?= date('Y-m-d', $once['qianding']) ?></td>
-									<td><?= $once['pinlei'] ?></td>
-									<td><?= $once['heji'] ?></td>
-									<?php if (empty($once['openflg1'])){ ?>
-										<td style="color: red;">未添加</td>
-									<?php }else{ ?>
-										<td style="color: green;">已添加</td>
-									<?php } ?>
-									<td class="td-manage">
-										<?php if ($once['openflg1']>=1){ ?>
+						        <?php if ($once['openflg1']>=1){ ?>
+									<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+										<td><?= $once['bianhao'] ?></td>
+										<td><?= $once['kuanhao'] ?></td>
+										<td><?= $once['mingcheng'] ?></td>
+										<td><?= date('Y-m-d', $once['qianding']) ?></td>
+										<td><?= $once['pinlei'] ?></td>
+										<td><?= $once['heji'] ?></td>
+										<?php if (empty($once['openflg1'])){ ?>
+											<td style="color: red;">未添加</td>
+										<?php }else{ ?>
+											<td style="color: green;">已添加</td>
+										<?php } ?>
+										<td class="td-manage">
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new22_cai?id=' ?>'+'<?= $once['id'] ?>')">
+													onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new22_caiduan?id=' ?>'+'<?= $once['id'] ?>')">
 												<i class="layui-icon">&#xe642;</i>编辑
 											</button>
 											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_cai?id='.$once['id'] ?>">
@@ -70,17 +70,9 @@
 													<i class="iconfont">&#xe74a;</i>  导出
 												</button>
 											</a>
-										<?php }else{ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('添加','<?= RUN . '/goods/goods_add_new22_cai?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>添加
-											</button>
-											<button class="layui-btn layui-btn-normal" style="background-color: #C2C2C2;">
-												<i class="iconfont">&#xe74a;</i>  导出
-											</button>
-										<?php } ?>
-									</td>
-								</tr>
+										</td>
+									</tr>
+								<?php } ?>
 							<?php endforeach; ?>
 						<?php } else { ?>
 							<tr>

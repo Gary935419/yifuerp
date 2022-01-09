@@ -19,40 +19,43 @@
 <body>
 <div class="layui-fluid" style="padding-top: 66px;">
     <div class="layui-row">
-        <form method="post" class="layui-form" action="" name="basic_validate" id="tab">
+		<?php if ($ltype==1){ ?>
+			<form method="post" class="layui-form" action="" name="basic_validate" id="tab">
+				<div class="layui-form-item">
+					<label for="L_pass" class="layui-form-label" style="width: 30%;">
+						<span class="x-red">*</span>装箱数量
+					</label>
+					<div class="layui-input-inline" style="width: 300px;">
+						<input type="number" id="sumnumber" name="sumnumber" lay-verify="sumnumber"
+							   autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
+				<div class="layui-form-item">
+					<label class="layui-form-label" style="width: 30%;">
+					</label>
+					<div class="layui-input-inline" style="width: 300px;">
+						<span class="x-red">※</span>请确认输入的数据是否正确。
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label for="L_repass" class="layui-form-label" style="width: 30%;">
+					</label>
+					<button class="layui-btn" lay-filter="add" lay-submit="">
+						确认提交装箱信息
+					</button>
+				</div>
+			</form>
+		<?php }else{ ?>
 			<div class="layui-form-item">
-				<label for="L_pass" class="layui-form-label" style="width: 30%;">
-					<span class="x-red">*</span>装箱数量
+				<label for="L_pass" class="layui-form-label" style="width: 10%;">
+					<span class="x-red"></span>
 				</label>
-				<div class="layui-input-inline" style="width: 300px;">
-					<input type="number" id="sumnumber" name="sumnumber" lay-verify="sumnumber"
-						   autocomplete="off" class="layui-input">
+				<div class="layui-input-inline" style="width: 620px;">
+					<textarea style="height: 250px;color: red;font-size: 18px;" id="requirement" name="requirement" readonly placeholder="暂无进行装箱设定处理。" class="layui-textarea"><?php echo $infomation ?></textarea>
 				</div>
 			</div>
-            <input type="hidden" name="id" id="id" value="<?php echo $id ?>">
-            <div class="layui-form-item">
-                <label class="layui-form-label" style="width: 30%;">
-                </label>
-                <div class="layui-input-inline" style="width: 300px;">
-                    <span class="x-red">※</span>请确认输入的数据是否正确。
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label" style="width: 30%;">
-                </label>
-                <button class="layui-btn" lay-filter="add" lay-submit="">
-                    确认提交装箱信息
-                </button>
-            </div>
-        </form>
-		<div class="layui-form-item">
-			<label for="L_pass" class="layui-form-label" style="width: 10%;">
-				<span class="x-red"></span>
-			</label>
-			<div class="layui-input-inline" style="width: 620px;">
-				<textarea style="height: 250px;color: red;font-size: 18px;" id="requirement" name="requirement" readonly placeholder="暂无进行装箱设定处理。" class="layui-textarea"><?php echo $infomation ?></textarea>
-			</div>
-		</div>
+		<?php } ?>
     </div>
 </div>
 <script>

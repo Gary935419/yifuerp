@@ -130,13 +130,19 @@
 					<li>
 						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_cai' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>预算裁断书管理</cite>
+							<cite>指示数量管理</cite>
 						</a>
 					</li>
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_caij' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_caiduan' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>决算裁断书管理</cite>
+							<cite>裁断数量管理</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_caiduanzhuangxiang' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>装箱管理</cite>
 						</a>
 					</li>
 				</ul>

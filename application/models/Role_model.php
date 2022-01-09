@@ -412,7 +412,7 @@ class Role_model extends CI_Model
 		$start = ($pg - 1) * 10;
 		$stop = 10;
 
-		$sql = "SELECT u.*,r.bianhao,r.qianding FROM `erp_xiangmukuanhao` u left join `erp_xiangmuhetong` r on u.xid=r.id " . $sqlw . " LIMIT $start, $stop";
+		$sql = "SELECT u.*,r.bianhao,r.qianding,r.mingcheng FROM `erp_xiangmukuanhao` u left join `erp_xiangmuhetong` r on u.xid=r.id " . $sqlw . " LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
 	public function getgoodsByIdkuanhao($id)
@@ -436,7 +436,13 @@ class Role_model extends CI_Model
 	public function gettidlistguige_cai($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id ";
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id order by sehao";
+		return $this->db->query($sql)->result_array();
+	}
+	public function gettidlistguige_caizhuangxiang($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshuzhuang` where kid = $id order by sehao";
 		return $this->db->query($sql)->result_array();
 	}
 	public function gettidlistguige_caij($id)
@@ -803,7 +809,7 @@ class Role_model extends CI_Model
 	public function getgoodsByIdxiaojiejeiduibiyu($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid=$id ";
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid=$id order by sehao";
 		return $this->db->query($sql)->row_array();
 	}
 

@@ -230,43 +230,71 @@
 							<tr>
 							</thead>
 							<tbody>
+							<?php if (empty($name1y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr>
+								<?php } ?>
 								<td><input name="name1" value="<?php echo $name1y ?>" id="name1" autocomplete="off" class="layui-input"></td>
 								<td><input name="jiagongfeidanjia" value="<?php echo $jiagongfeidanjiay ?>" id="jiagongfeidanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="jiagongfeiyongliang" value="<?php echo $jiagongfeiyongliangy ?>" id="jiagongfeiyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="jiagongfeijine" value="<?php echo empty($jiagongfeidanjiay) || empty($jiagongfeiyongliangy)?'':$jiagongfeidanjiay * $jiagongfeiyongliangy ?>" id="jiagongfeijine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name2y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr>
+								<?php } ?>
 								<td><input name="name2" value="<?php echo $name2y ?>" id="name2" autocomplete="off" class="layui-input"></td>
 								<td><input name="ercijiagongfeidanjia" value="<?php echo $ercijiagongfeidanjiay ?>" id="ercijiagongfeidanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="ercijiagongfeiyongliang" value="<?php echo $ercijiagongfeiyongliangy ?>" id="ercijiagongfeiyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="ercijiagongfeijine" value="<?php echo empty($ercijiagongfeidanjiay) || empty($ercijiagongfeiyongliangy)?'':$ercijiagongfeidanjiay * $ercijiagongfeiyongliangy ?>" id="ercijiagongfeijine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name3y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr>
+								<?php } ?>
 								<td><input name="name3" value="<?php echo $name3y ?>" id="name3" autocomplete="off" class="layui-input"></td>
 								<td><input name="jianpinfeidanjia" value="<?php echo $jianpinfeidanjiay ?>" id="jianpinfeidanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="jianpinfeiyongliang" value="<?php echo $jianpinfeiyongliangy ?>" id="jianpinfeiyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="jianpinfeijine" value="<?php echo empty($jianpinfeidanjiay) || empty($jianpinfeiyongliangy)?'':$jianpinfeidanjiay * $jianpinfeiyongliangy ?>" id="jianpinfeijine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name4y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr>
+								<?php } ?>
 								<td><input name="name4" value="<?php echo $name4y ?>" id="name4" autocomplete="off" class="layui-input"></td>
 								<td><input name="tongguanfeidanjia" value="<?php echo $tongguanfeidanjiay ?>" id="tongguanfeidanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="tongguanfeiyongliang" value="<?php echo $tongguanfeiyongliangy ?>" id="tongguanfeiyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="tongguanfeijine" value="<?php echo empty($tongguanfeidanjiay) || empty($tongguanfeiyongliangy)?'':$tongguanfeiyongliangy * $tongguanfeidanjiay ?>" id="tongguanfeijine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name5y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr>
+								<?php } ?>
 								<td><input name="name5" value="<?php echo $name5y ?>" id="name5" autocomplete="off" class="layui-input"></td>
 								<td><input name="mianliaojiancedanjia" value="<?php echo $mianliaojiancedanjiay ?>" id="mianliaojiancedanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="mianliaojianceyongliang" value="<?php echo $mianliaojianceyongliangy ?>" id="mianliaojianceyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="mianliaojiancejine" value="<?php echo empty($mianliaojiancedanjiay) || empty($mianliaojianceyongliangy)?'':$mianliaojiancedanjiay * $mianliaojianceyongliangy ?>" id="mianliaojiancejine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name6y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr>
+								<?php } ?>
 								<td><input name="name6" value="<?php echo $name6y ?>" id="name6" autocomplete="off" class="layui-input"></td>
 								<td><input name="yunfeidanjia" id="yunfeidanjia" value="<?php echo $yunfeidanjiay ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="yunfeiyongliang" id="yunfeiyongliang" value="<?php echo $yunfeiyongliangy ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="yunfeijine" id="yunfeijine" value="<?php echo empty($yunfeidanjiay) || empty($yunfeiyongliangy)?'':$yunfeiyongliangy * $yunfeidanjiay ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name7y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr>
+								<?php } ?>
 								<td><input name="name7" value="<?php echo $name7y ?>" id="name7" autocomplete="off" class="layui-input"></td>
 								<td><input name="qitadanjia" id="qitadanjia" value="<?php echo $qitadanjiaj ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="qitayongliang" id="qitayongliang" value="<?php echo $qitayongliangy ?>" autocomplete="off" class="layui-input"></td>
@@ -502,43 +530,78 @@
 							<tr>
 							</thead>
 							<tbody>
+							<?php if (empty($name1j) && empty($name1y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr <?php echo empty($name1_flg) || empty($jiagongfeidanjia_flg) || empty($jiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>>
+								<?php } ?>
+
 								<td><input name="name1" value="<?php echo $name1j ?>" id="name1" autocomplete="off" class="layui-input"></td>
 								<td><input name="jiagongfeidanjia" value="<?php echo $jiagongfeidanjiaj ?>" id="jiagongfeidanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="jiagongfeiyongliang" value="<?php echo $jiagongfeiyongliangj ?>" id="jiagongfeiyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="jiagongfeijine" value="<?php echo empty($jiagongfeidanjiaj) || empty($jiagongfeiyongliangj)?'':$jiagongfeidanjiaj * $jiagongfeiyongliangj ?>" id="jiagongfeijine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name2j) && empty($name2y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr <?php echo empty($name2_flg) || empty($ercijiagongfeidanjia_flg) || empty($ercijiagongfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>>
+								<?php } ?>
+
 								<td><input name="name2" value="<?php echo $name2j ?>" id="name2" autocomplete="off" class="layui-input"></td>
 								<td><input name="ercijiagongfeidanjia" value="<?php echo $ercijiagongfeidanjiaj ?>" id="ercijiagongfeidanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="ercijiagongfeiyongliang" value="<?php echo $ercijiagongfeiyongliangj ?>" id="ercijiagongfeiyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="ercijiagongfeijine" value="<?php echo empty($ercijiagongfeidanjiaj) || empty($ercijiagongfeiyongliangj)?'':$ercijiagongfeidanjiaj * $ercijiagongfeiyongliangj ?>" id="ercijiagongfeijine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name3j) && empty($name3y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr <?php echo empty($name3_flg) || empty($jianpinfeidanjia_flg) || empty($jianpinfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>>
+								<?php } ?>
+
 								<td><input name="name3" value="<?php echo $name3j ?>" id="name3" autocomplete="off" class="layui-input"></td>
 								<td><input name="jianpinfeidanjia" value="<?php echo $jianpinfeidanjiaj ?>" id="jianpinfeidanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="jianpinfeiyongliang" value="<?php echo $jianpinfeiyongliangj ?>" id="jianpinfeiyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="jianpinfeijine" value="<?php echo empty($jianpinfeidanjiaj) || empty($jianpinfeiyongliangj)?'':$jianpinfeidanjiaj * $jianpinfeiyongliangj ?>" id="jianpinfeijine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name4j) && empty($name4y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr <?php echo empty($name4_flg) || empty($tongguanfeidanjia_flg) || empty($tongguanfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>>
+								<?php } ?>
+
 								<td><input name="name4" value="<?php echo $name4j ?>" id="name4" autocomplete="off" class="layui-input"></td>
 								<td><input name="tongguanfeidanjia" value="<?php echo $tongguanfeidanjiaj ?>" id="tongguanfeidanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="tongguanfeiyongliang" value="<?php echo $tongguanfeiyongliangj ?>" id="tongguanfeiyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="tongguanfeijine" value="<?php echo empty($tongguanfeidanjiaj) || empty($tongguanfeiyongliangj)?'':$tongguanfeiyongliangj * $tongguanfeidanjiaj ?>" id="tongguanfeijine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name5j) && empty($name5y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr <?php echo empty($name5_flg) || empty($mianliaojiancedanjia_flg) || empty($mianliaojianceyongliang_flg)?:'style="border: 5px solid #F00;"' ?>>
+								<?php } ?>
+
 								<td><input name="name5" value="<?php echo $name5j ?>" id="name5" autocomplete="off" class="layui-input"></td>
 								<td><input name="mianliaojiancedanjia" value="<?php echo $mianliaojiancedanjiaj ?>" id="mianliaojiancedanjia" autocomplete="off" class="layui-input"></td>
 								<td><input name="mianliaojianceyongliang" value="<?php echo $mianliaojianceyongliangj ?>" id="mianliaojianceyongliang" autocomplete="off" class="layui-input"></td>
 								<td><input name="mianliaojiancejine" value="<?php echo empty($mianliaojiancedanjiaj) || empty($mianliaojianceyongliangj)?'':$mianliaojiancedanjiaj * $mianliaojianceyongliangj ?>" id="mianliaojiancejine" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name6j) && empty($name6y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr <?php echo empty($name6_flg) || empty($yunfeidanjia_flg) || empty($yunfeiyongliang_flg)?:'style="border: 5px solid #F00;"' ?>>
+								<?php } ?>
+
 								<td><input name="name6" value="<?php echo $name6j ?>" id="name6" autocomplete="off" class="layui-input"></td>
 								<td><input name="yunfeidanjia" id="yunfeidanjia" value="<?php echo $yunfeidanjiaj ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="yunfeiyongliang" id="yunfeiyongliang" value="<?php echo $yunfeiyongliangj ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="yunfeijine" id="yunfeijine" value="<?php echo empty($yunfeidanjiaj) || empty($yunfeiyongliangj)?'':$yunfeiyongliangj * $yunfeidanjiaj ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
+							<?php if (empty($name7j) && empty($name7y)){ ?>
+							<tr style="display: none;">
+								<?php }else{ ?>
 							<tr <?php echo empty($name7_flg) || empty($qitadanjia_flg) || empty($qitayongliang_flg)?:'style="border: 5px solid #F00;"' ?>>
+								<?php } ?>
+
 								<td><input name="name7" value="<?php echo $name7j ?>" id="name7" autocomplete="off" class="layui-input"></td>
 								<td><input name="qitadanjia" id="qitadanjia" value="<?php echo $qitadanjiaj ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="qitayongliang" id="qitayongliang" value="<?php echo $qitayongliangj ?>" autocomplete="off" class="layui-input"></td>

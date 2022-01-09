@@ -29,7 +29,7 @@
                             <th>操作</th>
 							<th>色号</th>
                             <th>品番</th>
-                            <th>裁断数量</th>
+<!--                            <th>裁断数量</th>-->
 							<th>指示数量</th>
 						<tr>
                         </thead>
@@ -42,7 +42,7 @@
 								</td>
 								<td><input name="sehao[]" id="val1" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val11" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val111" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val111" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val1111" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<tr id="div2" style="display: none;">
@@ -54,7 +54,7 @@
 								</td>
 								<td><input name="sehao[]" id="val2" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val22" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val222" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val222" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val2222" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<tr id="div3" style="display: none;">
@@ -66,7 +66,7 @@
 								</td>
 								<td><input name="sehao[]" id="val3" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val33" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val333" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val333" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val3333" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<tr id="div4" style="display: none;">
@@ -78,7 +78,7 @@
 								</td>
 								<td><input name="sehao[]" id="val4" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val44" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val444" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val444" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val4444" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<tr id="div5" style="display: none;">
@@ -90,7 +90,7 @@
 								</td>
 								<td><input name="sehao[]" id="val5" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val55" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val555" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val555" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val5555" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<tr id="div6" style="display: none;">
@@ -102,7 +102,7 @@
 								</td>
 								<td><input name="sehao[]" id="val6" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val66" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val666" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val666" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val6666" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<tr id="div7" style="display: none;">
@@ -114,7 +114,7 @@
 								</td>
 								<td><input name="sehao[]" id="val7" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val77" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val777" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val777" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val7777" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<tr id="div8" style="display: none;">
@@ -126,7 +126,7 @@
 								</td>
 								<td><input name="sehao[]" id="val8" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val88" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val888" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val888" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val8888" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<tr id="div9" style="display: none;">
@@ -138,7 +138,7 @@
 								</td>
 								<td><input name="sehao[]" id="val9" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val99" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val999" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val999" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val9999" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<tr id="div10" style="display: none;">
@@ -150,7 +150,7 @@
 								</td>
 								<td><input name="sehao[]" id="val10" autocomplete="off" class="layui-input"></td>
 								<td><input name="pinfan[]" id="val1010" autocomplete="off" class="layui-input"></td>
-								<td><input name="caiduanshu[]" id="val101010" autocomplete="off" class="layui-input"></td>
+<!--								<td><input name="caiduanshu[]" id="val101010" autocomplete="off" class="layui-input"></td>-->
 								<td><input name="zhishishu[]" id="val10101010" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
