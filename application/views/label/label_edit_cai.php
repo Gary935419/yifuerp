@@ -52,7 +52,7 @@
 					<span class="x-red"></span>
 				</label>
 				<div class="layui-input-inline" style="width: 620px;">
-					<textarea style="height: 250px;color: red;font-size: 18px;" id="requirement" name="requirement" readonly placeholder="暂无进行装箱设定处理。" class="layui-textarea"><?php echo $infomation ?></textarea>
+					<textarea style="height: 250px;color: red;font-size: 18px;" id="requirement" name="requirement" readonly placeholder="暂无进行装箱设定处理。" class="layui-textarea"><?php echo empty($infomation)?'暂无进行装箱设定处理':$infomation ?></textarea>
 				</div>
 			</div>
 		<?php } ?>

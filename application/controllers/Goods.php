@@ -4764,15 +4764,8 @@ class Goods extends CI_Controller
 			return;
 		}
 		$zhuangxiangxinxi = isset($_POST["zhuangxiangxinxi"]) ? $_POST["zhuangxiangxinxi"] : '';
-		if (empty($zhuangxiangxinxi[0])) {
-			echo json_encode(array('error' => true, 'msg' => "请添加装箱信息!"));
-			return;
-		}
 		$zhuangxiangshuliang = isset($_POST["zhuangxiangshuliang"]) ? $_POST["zhuangxiangshuliang"] : '';
-		if (empty($zhuangxiangshuliang[0])) {
-			echo json_encode(array('error' => true, 'msg' => "请添加装箱数量!"));
-			return;
-		}
+
 		$biaoji = isset($_POST["biaoji"]) ? $_POST["biaoji"] : '';
 		if (empty($biaoji[0])) {
 			echo json_encode(array('error' => true, 'msg' => "请添加标记!"));
@@ -4785,8 +4778,14 @@ class Goods extends CI_Controller
 		}
 		$this->role->goodsimg_delete4_cai($id);
 		foreach ($sehaos as $k => $v) {
-			if (empty($v) || empty($pinfan[$k]) || empty($caiduanshu[$k]) || empty($zhishishu[$k]) || empty($zhuangxiangxinxi[$k]) || empty($zhuangxiangshuliang[$k]) || empty($biaoji[$k]) || empty($beizhu[$k])) {
+			if (empty($v) || empty($pinfan[$k]) || empty($caiduanshu[$k]) || empty($zhishishu[$k]) || empty($biaoji[$k]) || empty($beizhu[$k])) {
 				continue;
+			}
+			if (empty($zhuangxiangxinxi[$k])){
+				$zhuangxiangxinxi[$k] = 0;
+			}
+			if (empty($zhuangxiangshuliang[$k])){
+				$zhuangxiangshuliang[$k] = 0;
 			}
 			$this->role->role_save123_caitongji($v,$pinfan[$k],$caiduanshu[$k],$zhishishu[$k],$id,time(),$zhuangxiangxinxi[$k],$zhuangxiangshuliang[$k],$biaoji[$k],$beizhu[$k]);
 		}
