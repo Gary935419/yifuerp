@@ -145,6 +145,12 @@
 							<cite>装箱管理</cite>
 						</a>
 					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_caiduanshutongji' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>裁断书统计管理</cite>
+						</a>
+					</li>
 				</ul>
 			</li>
 			<li>

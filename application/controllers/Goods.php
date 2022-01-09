@@ -3698,6 +3698,20 @@ class Goods extends CI_Controller
 		$data["list"] = $list;
 		$this->display("goods/goods_list_caiduanzhuangxiang", $data);
 	}
+	public function goods_list_caiduanshutongji()
+	{
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPage($gname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNew($page, $gname);
+		$data["gname"] = $gname;
+		$data["list"] = $list;
+		$this->display("goods/goods_list_caiduanshutongji", $data);
+	}
 	public function goods_list1_cai()
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -3813,6 +3827,48 @@ class Goods extends CI_Controller
 		}
 		$data["list"] = $list;
 		$this->display("goods/goods_list1_caiduanzhuangxiang", $data);
+	}
+	public function goods_list1_caiduanshutongji()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPage1($gname,$id);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page,$allpage,$_GET);
+		$data["page"] = $page;
+		$data["id"] = $id;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNew1($page,$gname,$id);
+		$data["gname"] = $gname;
+		foreach ($list as $k => $v) {
+			$pinmings = $this->task->gettidlistpinming_cai($v['id']);
+			if (!empty($pinmings)) {
+				$list[$k]['openflg1'] = 1;
+			} else {
+				$list[$k]['openflg1'] = 0;
+			}
+			if (!empty($pinmings[0]['zhuangxiangxinxi'])) {
+				$list[$k]['openflg'] = 1;
+			} else {
+				$list[$k]['openflg'] = 0;
+			}
+			$nsum = 0;
+			$zsum = 0;
+			$list[$k]['openflg2'] = 0;
+			foreach ($pinmings as $kk=>$vv){
+				$nsum = $nsum + 1;
+				$zsum = $zsum + $vv['zhishishu'];
+				if (!empty($vv['caiduanshu'])){
+					$list[$k]['openflg2'] = 1;
+				}
+			}
+			$list[$k]['pinlei'] = $nsum;
+			$list[$k]['heji'] = $zsum;
+			$list[$k]['zhuangxiangshuliang'] = empty($pinmings[0]['zhuangxiangshuliang'])?0:$pinmings[0]['zhuangxiangshuliang'];
+		}
+		$data["list"] = $list;
+		$this->display("goods/goods_list1_caiduanshutongji", $data);
 	}
 	public function goods_add_new22_cai()
 	{
@@ -4417,6 +4473,219 @@ class Goods extends CI_Controller
 		}
 		$this->display("goods/goods_edit_new22_caij", $data);
 	}
+	public function goods_edit_new22_caitongji()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdkuanhao($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+		$data = array();
+		$data['id'] = $id;
+		$kuanhaos = $this->task->gettidlistpinming_cai($id);
+
+		$data['caiduanshu1'] = '';
+		$data['pinfan1'] = '';
+		$data['sehao1'] = '';
+		$data['zhishishu1'] = '';
+		$data['biaoji1'] = '';
+		$data['beizhu1'] = '';
+		$data['zhuangxiangxinxi1'] = '';
+		$data['zhuangxiangshuliang1'] = '';
+
+		$data['caiduanshu2'] = '';
+		$data['pinfan2'] = '';
+		$data['sehao2'] = '';
+		$data['zhishishu2'] = '';
+		$data['biaoji2'] = '';
+		$data['beizhu2'] = '';
+		$data['zhuangxiangxinxi2'] = '';
+		$data['zhuangxiangshuliang2'] = '';
+
+		$data['caiduanshu3'] = '';
+		$data['pinfan3'] = '';
+		$data['sehao3'] = '';
+		$data['zhishishu3'] = '';
+		$data['biaoji3'] = '';
+		$data['beizhu3'] = '';
+		$data['zhuangxiangxinxi3'] = '';
+		$data['zhuangxiangshuliang3'] = '';
+
+		$data['caiduanshu4'] = '';
+		$data['pinfan4'] = '';
+		$data['sehao4'] = '';
+		$data['zhishishu4'] = '';
+		$data['biaoji4'] = '';
+		$data['beizhu4'] = '';
+		$data['zhuangxiangxinxi4'] = '';
+		$data['zhuangxiangshuliang4'] = '';
+
+		$data['caiduanshu5'] = '';
+		$data['pinfan5'] = '';
+		$data['sehao5'] = '';
+		$data['zhishishu5'] = '';
+		$data['biaoji5'] = '';
+		$data['beizhu5'] = '';
+		$data['zhuangxiangxinxi5'] = '';
+		$data['zhuangxiangshuliang5'] = '';
+
+		$data['caiduanshu6'] = '';
+		$data['pinfan6'] = '';
+		$data['sehao6'] = '';
+		$data['zhishishu6'] = '';
+		$data['biaoji6'] = '';
+		$data['beizhu6'] = '';
+		$data['zhuangxiangxinxi6'] = '';
+		$data['zhuangxiangshuliang6'] = '';
+
+		$data['caiduanshu7'] = '';
+		$data['pinfan7'] = '';
+		$data['sehao7'] = '';
+		$data['zhishishu7'] = '';
+		$data['biaoji7'] = '';
+		$data['beizhu7'] = '';
+		$data['zhuangxiangxinxi7'] = '';
+		$data['zhuangxiangshuliang7'] = '';
+
+		$data['caiduanshu8'] = '';
+		$data['pinfan8'] = '';
+		$data['sehao8'] = '';
+		$data['zhishishu8'] = '';
+		$data['biaoji8'] = '';
+		$data['beizhu8'] = '';
+		$data['zhuangxiangxinxi8'] = '';
+		$data['zhuangxiangshuliang8'] = '';
+
+		$data['caiduanshu9'] = '';
+		$data['pinfan9'] = '';
+		$data['sehao9'] = '';
+		$data['zhishishu9'] = '';
+		$data['biaoji9'] = '';
+		$data['beizhu9'] = '';
+		$data['zhuangxiangxinxi9'] = '';
+		$data['zhuangxiangshuliang9'] = '';
+
+		$data['caiduanshu10'] = '';
+		$data['pinfan10'] = '';
+		$data['sehao10'] = '';
+		$data['zhishishu10'] = '';
+		$data['biaoji10'] = '';
+		$data['beizhu10'] = '';
+		$data['zhuangxiangxinxi10'] = '';
+		$data['zhuangxiangshuliang10'] = '';
+
+		if (!empty($kuanhaos[0]['sehao'])) {
+			$data['sehao1'] = $kuanhaos[0]['sehao'];
+			$data['pinfan1'] = $kuanhaos[0]['pinfan'];
+			$data['caiduanshu1'] = $kuanhaos[0]['caiduanshu'];
+			$data['zhishishu1'] = $kuanhaos[0]['zhishishu'];
+			$data['biaoji1'] = $kuanhaos[0]['biaoji'];
+			$data['beizhu1'] = $kuanhaos[0]['beizhu'];
+			$data['zhuangxiangxinxi1'] = $kuanhaos[0]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang1'] = $kuanhaos[0]['zhuangxiangshuliang'];
+		}
+
+		if (!empty($kuanhaos[1]['sehao'])) {
+			$data['sehao2'] = $kuanhaos[1]['sehao'];
+			$data['pinfan2'] = $kuanhaos[1]['pinfan'];
+			$data['caiduanshu2'] = $kuanhaos[1]['caiduanshu'];
+			$data['zhishishu2'] = $kuanhaos[1]['zhishishu'];
+			$data['biaoji2'] = $kuanhaos[1]['biaoji'];
+			$data['beizhu2'] = $kuanhaos[1]['beizhu'];
+			$data['zhuangxiangxinxi2'] = $kuanhaos[1]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang2'] = $kuanhaos[1]['zhuangxiangshuliang'];
+		}
+
+		if (!empty($kuanhaos[2]['sehao'])) {
+			$data['sehao3'] = $kuanhaos[2]['sehao'];
+			$data['pinfan3'] = $kuanhaos[2]['pinfan'];
+			$data['caiduanshu3'] = $kuanhaos[2]['caiduanshu'];
+			$data['zhishishu3'] = $kuanhaos[2]['zhishishu'];
+			$data['biaoji3'] = $kuanhaos[2]['biaoji'];
+			$data['beizhu3'] = $kuanhaos[2]['beizhu'];
+			$data['zhuangxiangxinxi3'] = $kuanhaos[2]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang3'] = $kuanhaos[2]['zhuangxiangshuliang'];
+		}
+
+		if (!empty($kuanhaos[3]['sehao'])) {
+			$data['sehao4'] = $kuanhaos[3]['sehao'];
+			$data['pinfan4'] = $kuanhaos[3]['pinfan'];
+			$data['caiduanshu4'] = $kuanhaos[3]['caiduanshu'];
+			$data['zhishishu4'] = $kuanhaos[3]['zhishishu'];
+			$data['biaoji4'] = $kuanhaos[3]['biaoji'];
+			$data['beizhu4'] = $kuanhaos[3]['beizhu'];
+			$data['zhuangxiangxinxi4'] = $kuanhaos[3]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang4'] = $kuanhaos[3]['zhuangxiangshuliang'];
+		}
+
+		if (!empty($kuanhaos[4]['sehao'])) {
+			$data['sehao5'] = $kuanhaos[4]['sehao'];
+			$data['pinfan5'] = $kuanhaos[4]['pinfan'];
+			$data['caiduanshu5'] = $kuanhaos[4]['caiduanshu'];
+			$data['zhishishu5'] = $kuanhaos[4]['zhishishu'];
+			$data['biaoji5'] = $kuanhaos[4]['biaoji'];
+			$data['beizhu5'] = $kuanhaos[4]['beizhu'];
+			$data['zhuangxiangxinxi5'] = $kuanhaos[4]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang5'] = $kuanhaos[4]['zhuangxiangshuliang'];
+		}
+
+		if (!empty($kuanhaos[5]['sehao'])) {
+			$data['sehao6'] = $kuanhaos[5]['sehao'];
+			$data['pinfan6'] = $kuanhaos[5]['pinfan'];
+			$data['caiduanshu6'] = $kuanhaos[5]['caiduanshu'];
+			$data['zhishishu6'] = $kuanhaos[5]['zhishishu'];
+			$data['biaoji6'] = $kuanhaos[5]['biaoji'];
+			$data['beizhu6'] = $kuanhaos[5]['beizhu'];
+			$data['zhuangxiangxinxi6'] = $kuanhaos[5]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang6'] = $kuanhaos[5]['zhuangxiangshuliang'];
+		}
+
+		if (!empty($kuanhaos[6]['sehao'])) {
+			$data['sehao7'] = $kuanhaos[6]['sehao'];
+			$data['pinfan7'] = $kuanhaos[6]['pinfan'];
+			$data['caiduanshu7'] = $kuanhaos[6]['caiduanshu'];
+			$data['zhishishu7'] = $kuanhaos[6]['zhishishu'];
+			$data['biaoji7'] = $kuanhaos[6]['biaoji'];
+			$data['beizhu7'] = $kuanhaos[6]['beizhu'];
+			$data['zhuangxiangxinxi7'] = $kuanhaos[6]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang7'] = $kuanhaos[6]['zhuangxiangshuliang'];
+		}
+
+		if (!empty($kuanhaos[7]['sehao'])) {
+			$data['sehao8'] = $kuanhaos[7]['sehao'];
+			$data['pinfan8'] = $kuanhaos[7]['pinfan'];
+			$data['caiduanshu8'] = $kuanhaos[7]['caiduanshu'];
+			$data['zhishishu8'] = $kuanhaos[7]['zhishishu'];
+			$data['biaoji8'] = $kuanhaos[7]['biaoji'];
+			$data['beizhu8'] = $kuanhaos[7]['beizhu'];
+			$data['zhuangxiangxinxi8'] = $kuanhaos[7]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang8'] = $kuanhaos[7]['zhuangxiangshuliang'];
+		}
+
+		if (!empty($kuanhaos[8]['sehao'])) {
+			$data['sehao9'] = $kuanhaos[8]['sehao'];
+			$data['pinfan9'] = $kuanhaos[8]['pinfan'];
+			$data['caiduanshu9'] = $kuanhaos[8]['caiduanshu'];
+			$data['zhishishu9'] = $kuanhaos[8]['zhishishu'];
+			$data['biaoji9'] = $kuanhaos[8]['biaoji'];
+			$data['beizhu9'] = $kuanhaos[8]['beizhu'];
+			$data['zhuangxiangxinxi9'] = $kuanhaos[8]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang9'] = $kuanhaos[8]['zhuangxiangshuliang'];
+		}
+
+		if (!empty($kuanhaos[9]['sehao'])) {
+			$data['sehao10'] = $kuanhaos[9]['sehao'];
+			$data['pinfan10'] = $kuanhaos[9]['pinfan'];
+			$data['caiduanshu10'] = $kuanhaos[9]['caiduanshu'];
+			$data['zhishishu10'] = $kuanhaos[9]['zhishishu'];
+			$data['biaoji10'] = $kuanhaos[9]['biaoji'];
+			$data['beizhu10'] = $kuanhaos[9]['beizhu'];
+			$data['zhuangxiangxinxi10'] = $kuanhaos[9]['zhuangxiangxinxi'];
+			$data['zhuangxiangshuliang10'] = $kuanhaos[9]['zhuangxiangshuliang'];
+		}
+		$this->display("goods/goods_edit_new22_caitongji", $data);
+	}
 	public function goods_save_edit2_caij()
 	{
 		if (empty($_SESSION['user_name'])) {
@@ -4456,6 +4725,70 @@ class Goods extends CI_Controller
 				continue;
 			}
 			$this->role->role_save123_caij($v,$pinfan[$k],$caiduanshu[$k],$zhishishu[$k],$id,time());
+		}
+
+		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+
+	}
+	public function goods_save_edit2_caitongji()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
+			return;
+		}
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		$goods_info = $this->role->getgoodsByIdkuanhao($id);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+
+		$sehaos = isset($_POST["sehao"]) ? $_POST["sehao"] : '';
+		if (empty($sehaos[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加色号!"));
+			return;
+		}
+		$pinfan = isset($_POST["pinfan"]) ? $_POST["pinfan"] : '';
+		if (empty($pinfan[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加品番!"));
+			return;
+		}
+		$caiduanshu = isset($_POST["caiduanshu"]) ? $_POST["caiduanshu"] : '';
+		if (empty($caiduanshu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加裁断数量!"));
+			return;
+		}
+		$zhishishu = isset($_POST["zhishishu"]) ? $_POST["zhishishu"] : '';
+		if (empty($zhishishu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加指示数量!"));
+			return;
+		}
+		$zhuangxiangxinxi = isset($_POST["zhuangxiangxinxi"]) ? $_POST["zhuangxiangxinxi"] : '';
+		if (empty($zhuangxiangxinxi[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加装箱信息!"));
+			return;
+		}
+		$zhuangxiangshuliang = isset($_POST["zhuangxiangshuliang"]) ? $_POST["zhuangxiangshuliang"] : '';
+		if (empty($zhuangxiangshuliang[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加装箱数量!"));
+			return;
+		}
+		$biaoji = isset($_POST["biaoji"]) ? $_POST["biaoji"] : '';
+		if (empty($biaoji[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加标记!"));
+			return;
+		}
+		$beizhu = isset($_POST["beizhu"]) ? $_POST["beizhu"] : '';
+		if (empty($beizhu[0])) {
+			echo json_encode(array('error' => true, 'msg' => "请添加备注!"));
+			return;
+		}
+		$this->role->goodsimg_delete4_cai($id);
+		foreach ($sehaos as $k => $v) {
+			if (empty($v) || empty($pinfan[$k]) || empty($caiduanshu[$k]) || empty($zhishishu[$k]) || empty($zhuangxiangxinxi[$k]) || empty($zhuangxiangshuliang[$k]) || empty($biaoji[$k]) || empty($beizhu[$k])) {
+				continue;
+			}
+			$this->role->role_save123_caitongji($v,$pinfan[$k],$caiduanshu[$k],$zhishishu[$k],$id,time(),$zhuangxiangxinxi[$k],$zhuangxiangshuliang[$k],$biaoji[$k],$beizhu[$k]);
 		}
 
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));

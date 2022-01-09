@@ -18,7 +18,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>预算裁断书管理</cite></a>
+              <cite>裁断书装箱管理</cite></a>
           </span>
 </div>
 <div class="layui-fluid">

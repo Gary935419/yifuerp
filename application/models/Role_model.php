@@ -248,6 +248,25 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
+
+	public function role_save123_caitongji($sehao,$pinfan,$caiduanshu,$zhishishu,$kid,$time,$zhuangxiangxinxi,$zhuangxiangshuliang,$biaoji,$beizhu)
+	{
+		$caiduanshu = $this->db->escape($caiduanshu);
+		$pinfan = $this->db->escape($pinfan);
+		$sehao = $this->db->escape($sehao);
+		$zhishishu = $this->db->escape($zhishishu);
+		$kid = $this->db->escape($kid);
+		$time = $this->db->escape($time);
+		$zhuangxiangxinxi = $this->db->escape($zhuangxiangxinxi);
+		$zhuangxiangshuliang = $this->db->escape($zhuangxiangshuliang);
+		$biaoji = $this->db->escape($biaoji);
+		$beizhu = $this->db->escape($beizhu);
+		$sql = "INSERT INTO `erp_caiduanbaogaoshu` (sehao,pinfan,caiduanshu,zhishishu,kid,addtime,zhuangxiangxinxi,zhuangxiangshuliang,biaoji,beizhu) VALUES ($sehao,$pinfan,$caiduanshu,$zhishishu,$kid,$time,$zhuangxiangxinxi,$zhuangxiangshuliang,$biaoji,$beizhu)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
+
 	public function role_save123_caij($sehao,$pinfan,$caiduanshu,$zhishishu,$kid,$time)
 	{
 		$caiduanshu = $this->db->escape($caiduanshu);
