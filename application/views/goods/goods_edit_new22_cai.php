@@ -28,7 +28,7 @@
                         <tr>
 							<th>操作</th>
 							<th>色号</th>
-							<th>品番</th>
+							<th>规格</th>
 							<th style="display: none">裁断数量</th>
 							<th>指示数量</th>
                         </thead>

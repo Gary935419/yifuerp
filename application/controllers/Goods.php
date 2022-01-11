@@ -5160,14 +5160,16 @@ class Goods extends CI_Controller
 	{
 
 		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$jihuariqi = isset($_GET['jihuariqi']) ? $_GET['jihuariqi'] : date('Y-m',time());
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-		$allpage = $this->role->getgoodsAllPageshengchan($gname);
+		$allpage = $this->role->getgoodsAllPageshengchan($gname,$jihuariqi);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->role->getgoodsAllNewshengchan($page, $gname);
+		$list = $this->role->getgoodsAllNewshengchan($page,$gname,$jihuariqi);
 		$data["gname"] = $gname;
+		$data["jihuariqi"] = $jihuariqi;
 		$data["list"] = $list;
 		$this->display("goods/goods_list_shengchan", $data);
 	}
@@ -6244,15 +6246,22 @@ class Goods extends CI_Controller
 		foreach ($SEHAO_ARR as $kk=>$vv){
 			$rowold = $rowold + 1;
 			$row = $rowold + 6;
-			if ($a != $vv){
-				$a = $vv;
-				$objPHPExcel->getActiveSheet()->setCellValue( 'D'.$row,$vv);
-			}
+//			if ($a != $vv){
+//				$a = $vv;
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'D'.$row,$vv);
+//			}
+			$objPHPExcel->getActiveSheet()->setCellValue( 'D'.$row,$vv);
 			$arr1[$kk]['lin'] = $row;
 			$arr1[$kk]['caiduanshuold'] = $SHUZHI_ARR[$kk];
 			$arr1[$kk]['idold'] = $ID_ARR[$kk];
 			$arr1[$kk]['pinfanold'] = $GUIGE_ARR[$kk];
 		}
+
+//		$ords = array();
+//		foreach($arr1 as $v1){
+//			$ords[] = $v1['idold'];
+//		}
+//        array_multisort($arr1, SORT_ASC, $ords);
 
 		$zimu = 'E';
 		$rowold1 = -1;
@@ -6260,6 +6269,7 @@ class Goods extends CI_Controller
 		$ANEW1 = 0;
 		$BNEW1 = 0;
 		$Vsum = 0;
+		$arrnew = array();
 		foreach ($GUIGE_ARR as $kkk=>$vvv){
 			$rowold1 = $rowold1 + 1;
 			if ($rowold1 == 0){
@@ -6307,20 +6317,30 @@ class Goods extends CI_Controller
 					if ($vall['caiduanshuold'] == $sumnumber){
 						$ANEW1 = $ANEW1 + 1;
 						$objPHPExcel->getActiveSheet()->setCellValue('A'.$vall['lin'],$ANEW1);
+						$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['caiduanshuold']);
 					}else{
-						$Vsum = $Vsum + $vall['caiduanshuold'];
-						if ($Vsum == $sumnumber){
-							$objPHPExcel->getActiveSheet()->setCellValue('A'.$vall['lin'],$BNEW1);
-							$BNEW1 = 0;
-						}else{
-							if (empty($BNEW1)){
-								$BNEW1 = $ANEW1 + 1;
-								$ANEW1 = $ANEW1 + 1;
-							}
-							$objPHPExcel->getActiveSheet()->setCellValue('A'.$vall['lin'],$BNEW1);
-						}
+						$arrnew[$keyy]['pinfannew'] = $vvv;
+						$arrnew[$keyy]['linnew'] = $vall['lin'];
+						$arrnew[$keyy]['caiduanshunew'] = $vall['caiduanshuold'];
 					}
-					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['caiduanshuold']);
+				}
+			}
+		}
+		foreach ($GUIGE_ARR as $kkk=>$vvv){
+			foreach ($arrnew as $kkyy=>$vvkk){
+				if ($vvkk['pinfannew'] == $vvv){
+					$Vsum = $Vsum + $vvkk['caiduanshunew'];
+					if ($Vsum == $sumnumber){
+						$objPHPExcel->getActiveSheet()->setCellValue('A'.$vvkk['linnew'],$BNEW1);
+						$BNEW1 = 0;
+					}else{
+						if (empty($BNEW1)){
+							$BNEW1 = $ANEW1 + 1;
+							$ANEW1 = $ANEW1 + 1;
+						}
+						$objPHPExcel->getActiveSheet()->setCellValue('A'.$vvkk['linnew'],$BNEW1);
+					}
+					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vvkk['linnew'],$vvkk['caiduanshunew']);
 				}
 			}
 		}

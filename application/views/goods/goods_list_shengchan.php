@@ -27,10 +27,14 @@
             <div class="layui-card">
                 <div class="layui-card-body ">
                     <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_shengchan' ?>">
-                        <div class="layui-inline layui-show-xs-block">
-                            <input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
-                                   placeholder="制品番号或者品名" autocomplete="off" class="layui-input">
-                        </div>
+<!--                        <div class="layui-inline layui-show-xs-block">-->
+<!--                            <input type="text" name="gname" id="gname" value="--><?php //echo $gname ?><!--"-->
+<!--                                   placeholder="制品番号或者品名" autocomplete="off" class="layui-input">-->
+<!--                        </div>-->
+						<div class="layui-inline layui-show-xs-block">
+							<input type="text" name="jihuariqi" id="jihuariqi" value="<?php echo $jihuariqi ?>"
+								   placeholder="计划日期" autocomplete="off" class="layui-input">
+						</div>
                         <div class="layui-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
                                         class="layui-icon">&#xe615;</i></button>
@@ -105,6 +109,16 @@
     </div>
 </div>
 </body>
+<script>layui.use(['laydate', 'form'],
+			function() {
+				var laydate = layui.laydate;
+				laydate.render({
+					elem: '#jihuariqi', //指定元素
+					format: 'yyyy-MM',
+					type: 'month',
+				});
+			});
+</script>
 <script>
     function goods_delete(id) {
         layer.confirm('您是否确认删除？', {

@@ -461,7 +461,7 @@ class Role_model extends CI_Model
 	public function gettidlistguige_caizhuangxiang($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_caiduanbaogaoshuzhuang` where kid = $id order by sehao";
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshuzhuang` where kid = $id";
 		return $this->db->query($sql)->result_array();
 	}
 	public function gettidlistguige_caij($id)
@@ -867,9 +867,10 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
-	public function getgoodsAllPageshengchan($gname)
+	public function getgoodsAllPageshengchan($gname,$jihuariqi)
 	{
-		$sqlw = " where 1=1 ";
+		$sqlw = " where 1=1 and jihuariqi= '$jihuariqi' ";
+
 		if (!empty($gname)) {
 			$sqlw .= " and ( zhipinfanhao like '%" . $gname . "%' ) or ( pinming like '%" . $gname . "%' ) ";
 		}
@@ -878,9 +879,9 @@ class Role_model extends CI_Model
 		$number = $this->db->query($sql)->row()->number;
 		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
 	}
-	public function getgoodsAllNewshengchan($pg,$gname)
+	public function getgoodsAllNewshengchan($pg,$gname,$jihuariqi)
 	{
-		$sqlw = " where 1=1 ";
+		$sqlw = " where 1=1 and jihuariqi= '$jihuariqi' ";
 		if (!empty($gname)) {
 			$sqlw .= " and ( zhipinfanhao like '%" . $gname . "%' ) or ( pinming like '%" . $gname . "%' ) ";
 		}
