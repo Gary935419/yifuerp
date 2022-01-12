@@ -309,6 +309,14 @@ class Role_model extends CI_Model
 		$sql = "INSERT INTO `erp_xiangmukuanhao` (xid,kuanhao,addtime) VALUES ($xid,$kuanhao,$add_time);";
 		return $this->db->query($sql);
 	}
+	public function getgoodsAllNewcount($xid)
+	{
+		$xid = $this->db->escape($xid);
+		$sqlw = " where xid=$xid ";
+		$sql = "SELECT count(1) as number FROM `erp_xiangmukuanhao`" . $sqlw;
+
+		return $this->db->query($sql)->row()->number;
+	}
 	public function getgoodsAllPage($gname)
 	{
 		$sqlw = " where 1=1 ";

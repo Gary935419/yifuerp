@@ -41,22 +41,30 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>序号</th>
-                            <th>合同编号</th>
-							<th>创建时间</th>
-                            <th>操作</th>
+							<th>序号</th>
+							<th>合同编号</th>
+							<th>甲方名称</th>
+							<th>签订时间</th>
+							<th>交货时间</th>
+							<th>合同款号</th>
+							<th>项目负责人</th>
+							<th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-                                    <td><?= $num + 1 ?></td>
-                                    <td><?= $once['bianhao'] ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
+									<td><?= $num + 1 ?></td>
+									<td><?= $once['bianhao'] ?></td>
+									<td><?= $once['mingcheng'] ?></td>
+									<td><?= date('Y-m-d', $once['qianding']) ?></td>
+									<td><?= date('Y-m-d', $once['jiaohuoqi']) ?></td>
+									<td><?= empty($once['kuanhaoshu'])?0:$once['kuanhaoshu'] ?>个</td>
+									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('查看详情','<?= RUN . '/goods/goods_list1_cai?id=' ?>'+'<?= $once['id'] ?>')">
-                                            <i class="layui-icon">&#xe642;</i>查看详情
+                                                onclick="xadmin.open('查看','<?= RUN . '/goods/goods_list1_cai?id=' ?>'+'<?= $once['id'] ?>')">
+                                            <i class="layui-icon">&#xe642;</i>查看
                                         </button>
                                     </td>
                                 </tr>

@@ -394,10 +394,20 @@ class Goods extends CI_Controller
 		$data["allpage"] = $allpage;
 		$list = $this->role->getgoodsAllNew($page, $gname);
 		$data["gname"] = $gname;
-//        foreach ($list as $k=>$v){
-//            $tidone = $this->taskclass->gettaskclassById($v['tid']);
-//            $list[$k]['tname'] = $tidone['tname'];
-//        }
+
+		foreach ($list as $k=>$v){
+			$list[$k]['kuanhaoshu'] = $this->role->getgoodsAllNewcount($v['id']);
+			$tname = "";
+			$tidARR = $this->taskclass->gettaskclassById($v['id']);
+			foreach ($tidARR as $kk=>$vv){
+				if ($kk < 1){
+					$tname = $vv['username'];
+				}else{
+					$tname = $tname.";".$vv['username'];
+				}
+			}
+			$list[$k]['newrennew'] = $tname;
+		}
 		$data["list"] = $list;
 		$this->display("goods/goods_list", $data);
 	}
@@ -1783,6 +1793,9 @@ class Goods extends CI_Controller
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
 		$list = $this->role->getgoodsAllNew($page, $gname);
+		foreach ($list as $k=>$v){
+			$list[$k]['kuanhaoshu'] = $this->role->getgoodsAllNewcount($v['id']);
+		}
 		$data["gname"] = $gname;
 		$data["list"] = $list;
 		$this->display("goods/goods_list_yuan", $data);
@@ -1799,6 +1812,9 @@ class Goods extends CI_Controller
 		$data["id"] = $id;
 		$data["allpage"] = $allpage;
 		$list = $this->role->getgoodsAllNew($page, $gname);
+		foreach ($list as $k=>$v){
+			$list[$k]['kuanhaoshu'] = $this->role->getgoodsAllNewcount($v['id']);
+		}
 		$data["gname"] = $gname;
 		$data["list"] = $list;
 		$this->display("goods/goods_list_bao", $data);
@@ -3666,6 +3682,9 @@ class Goods extends CI_Controller
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
 		$list = $this->role->getgoodsAllNew($page, $gname);
+		foreach ($list as $k=>$v){
+			$list[$k]['kuanhaoshu'] = $this->role->getgoodsAllNewcount($v['id']);
+		}
 		$data["gname"] = $gname;
 		$data["list"] = $list;
 		$this->display("goods/goods_list_cai", $data);
@@ -3680,6 +3699,9 @@ class Goods extends CI_Controller
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
 		$list = $this->role->getgoodsAllNew($page, $gname);
+		foreach ($list as $k=>$v){
+			$list[$k]['kuanhaoshu'] = $this->role->getgoodsAllNewcount($v['id']);
+		}
 		$data["gname"] = $gname;
 		$data["list"] = $list;
 		$this->display("goods/goods_list_caiduan", $data);
@@ -3694,6 +3716,9 @@ class Goods extends CI_Controller
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
 		$list = $this->role->getgoodsAllNew($page, $gname);
+		foreach ($list as $k=>$v){
+			$list[$k]['kuanhaoshu'] = $this->role->getgoodsAllNewcount($v['id']);
+		}
 		$data["gname"] = $gname;
 		$data["list"] = $list;
 		$this->display("goods/goods_list_caiduanzhuangxiang", $data);
@@ -3708,6 +3733,9 @@ class Goods extends CI_Controller
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
 		$list = $this->role->getgoodsAllNew($page, $gname);
+		foreach ($list as $k=>$v){
+			$list[$k]['kuanhaoshu'] = $this->role->getgoodsAllNewcount($v['id']);
+		}
 		$data["gname"] = $gname;
 		$data["list"] = $list;
 		$this->display("goods/goods_list_caiduanshutongji", $data);

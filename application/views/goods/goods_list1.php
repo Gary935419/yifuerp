@@ -25,6 +25,7 @@
 							<input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
 								   placeholder="合同款号" autocomplete="off" class="layui-input">
 						</div>
+						<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
 						<div class="layui-inline layui-show-xs-block">
 							<button class="layui-btn" lay-submit="" lay-filter="sreach"><i
 										class="layui-icon">&#xe615;</i></button>
@@ -35,9 +36,11 @@
 					<table class="layui-table layui-form">
 						<thead>
 						<tr>
-							<th>合同编号</th>
-							<th>合同款号</th>
-							<th>签订日期</th>
+							<th>合同号</th>
+							<th>款号</th>
+							<th>日期</th>
+							<th>负责人</th>
+							<th>表单状态</th>
 							<th>操作</th>
 						</thead>
 						<tbody>
@@ -47,6 +50,12 @@
 									<td><?= $once['bianhao'] ?></td>
 									<td><?= $once['kuanhao'] ?></td>
 									<td><?= date('Y-m-d', $once['qianding']) ?></td>
+									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
+									<?php if (empty($once['openflg']) || empty($once['openflg1'])){ ?>
+										<td style="color: red;">未添加</td>
+									<?php }else{ ?>
+										<td style="color: green;">已添加</td>
+									<?php } ?>
 									<td class="td-manage">
 										<?php if ($once['openflg']>=1){ ?>
 											<button class="layui-btn layui-btn-normal"
@@ -73,7 +82,7 @@
 										<?php if ($once['openflg1']>=1 && $once['openflg']>=1){ ?>
 											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv?id='.$once['id'] ?>">
 												<button class="layui-btn layui-btn-normal">
-													<i class="iconfont">&#xe74a;</i>  Excel导出
+													<i class="iconfont">&#xe74a;</i>  导出
 												</button>
 											</a>
 										<?php } ?>
@@ -82,7 +91,7 @@
 							<?php endforeach; ?>
 						<?php } else { ?>
 							<tr>
-								<td colspan="4" style="text-align: center;">暂无数据</td>
+								<td colspan="10" style="text-align: center;">暂无数据</td>
 							</tr>
 						<?php } ?>
 						</tbody>

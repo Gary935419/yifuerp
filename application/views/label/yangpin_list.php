@@ -44,12 +44,12 @@
                 </div>
 				<a href="<?= RUN. '/goods/goods_yangpin_csv?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&kuanhao=".(isset($kuanhao)?$kuanhao:"")."&zid=".(isset($id)?$id:"") ?>">
 					<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 120px;">
-						<i class="iconfont">&#xe74a;</i>  数据导出
+						<i class="iconfont">&#xe74a;</i>  导出
 					</button>
 				</a>
                 <button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
-                        onclick="xadmin.open('样品添加','<?= RUN . '/label/yangpin_add?zid='.$id ?>')"><i
-                            class="layui-icon"></i>样品添加
+                        onclick="xadmin.open('添加','<?= RUN . '/label/yangpin_add?zid='.$id ?>')"><i
+                            class="layui-icon"></i>添加
                 </button>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -57,6 +57,7 @@
                         <tr>
                             <th>客户名称</th>
                             <th>担当者</th>
+							<th>项目负责人</th>
 							<th>款号</th>
 							<th>款式</th>
 							<th>样品性质</th>
@@ -74,6 +75,7 @@
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
                                     <td><?= $once['kuhumingcheng'] ?></td>
 									<td><?= $once['dandangzhe'] ?></td>
+									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
 									<td><?= $once['kuanhao'] ?></td>
 									<td><?= $once['kuanshi'] ?></td>
 									<td><?= $once['yangpinxingzhi'] ?></td>
@@ -85,11 +87,11 @@
 									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('样品编辑','<?= RUN . '/label/yangpin_edit?id=' ?>'+<?= $once['id'] ?>)">
-                                            <i class="layui-icon">&#xe642;</i>样品编辑
+                                                onclick="xadmin.open('编辑','<?= RUN . '/label/yangpin_edit?id=' ?>'+<?= $once['id'] ?>)">
+                                            <i class="layui-icon">&#xe642;</i>编辑
                                         </button>
                                         <button class="layui-btn layui-btn-danger"
-                                                onclick="label_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>样品删除
+                                                onclick="label_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
                                         </button>
                                     </td>
                                 </tr>

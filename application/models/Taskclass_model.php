@@ -94,8 +94,8 @@ class Taskclass_model extends CI_Model
     public function gettaskclassById($id)
     {
         $id = $this->db->escape($id);
-        $sql = "SELECT * FROM `taskclass` where tid=$id ";
-        return $this->db->query($sql)->row_array();
+        $sql = "SELECT * FROM `erp_xiangmufuzeren` u left join `admin_user` uu  on uu.id = u.uid  where u.xid=$id ";
+		return $this->db->query($sql)->result_array();
     }
     //类型byname
     public function gettaskclassByname($tname)

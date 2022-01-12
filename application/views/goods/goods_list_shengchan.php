@@ -42,8 +42,8 @@
                     </form>
                 </div>
 				<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
-						onclick="xadmin.open('数据导出','<?= RUN . '/goods/shengchan_excel' ?>',900,500)">
-					<i class="iconfont">&#xe74a;</i> 数据导出
+						onclick="xadmin.open('导出','<?= RUN . '/goods/shengchan_excel' ?>',900,500)">
+					<i class="iconfont">&#xe74a;</i> 导出
 				</button>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -56,6 +56,7 @@
                             <th>企划数</th>
 							<th>纳期</th>
 							<th>计划时间</th>
+							<th>项目负责人</th>
 							<th>创建时间</th>
                             <th>操作</th>
                         </thead>
@@ -70,29 +71,30 @@
 									<td><?= $once['qihuashu'] ?></td>
 									<td><?= date('Y-m-d', $once['naqi']) ?></td>
 									<td><?= $once['jihuariqi'] ?></td>
+									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
 									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('生产编辑','<?= RUN . '/goods/goods_edit_new_shengchan?id=' ?>'+'<?= $once['id'] ?>')">
-                                            <i class="layui-icon">&#xe642;</i>生产编辑
+                                                onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new_shengchan?id=' ?>'+'<?= $once['id'] ?>')">
+                                            <i class="layui-icon">&#xe642;</i>编辑
                                         </button>
                                         <button class="layui-btn layui-btn-danger"
-                                                onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>生产删除
+                                                onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
                                         </button>
 										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('工作量设定','<?= RUN . '/goods/goods_edit_jichu_shengchan?id=' ?>'+'<?= $once['id'] ?>')">
-											<i class="layui-icon">&#xe642;</i>工作量设定
+												onclick="xadmin.open('设定','<?= RUN . '/goods/goods_edit_jichu_shengchan?id=' ?>'+'<?= $once['id'] ?>')">
+											<i class="layui-icon">&#xe642;</i>设定
 										</button>
 										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('工作量详情','<?= RUN . '/goods/goods_edit_jichu_shengchan_detail?id=' ?>'+'<?= $once['id'] ?>')">
-											<i class="layui-icon">&#xe642;</i>工作量详情
+												onclick="xadmin.open('详情','<?= RUN . '/goods/goods_edit_jichu_shengchan_detail?id=' ?>'+'<?= $once['id'] ?>')">
+											<i class="layui-icon">&#xe642;</i>详情
 										</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="7" style="text-align: center;">暂无数据</td>
+                                <td colspan="10" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>

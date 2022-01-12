@@ -47,7 +47,8 @@
 							<th>甲方名称</th>
 							<th>签订时间</th>
 							<th>交货时间</th>
-							<th>创建时间</th>
+							<th>合同款号</th>
+							<th>项目负责人</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
@@ -59,30 +60,31 @@
 									<td><?= $once['mingcheng'] ?></td>
 									<td><?= date('Y-m-d', $once['qianding']) ?></td>
 									<td><?= date('Y-m-d', $once['jiaohuoqi']) ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
+									<td><?= empty($once['kuanhaoshu'])?0:$once['kuanhaoshu'] ?>个</td>
+									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
                                     <td class="td-manage">
 										<?php if ($id==111){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('查看预算表','<?= RUN . '/goods/goods_list_yu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>查看预算表
+													onclick="xadmin.open('查看','<?= RUN . '/goods/goods_list_yu?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>查看
 											</button>
 										<?php } ?>
 										<?php if ($id==222){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('查看预算表','<?= RUN . '/goods/goods_list_shenhe?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>预算表审核
+													onclick="xadmin.open('审核','<?= RUN . '/goods/goods_list_shenhe?btype=1&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>审核
 											</button>
 										<?php } ?>
 										<?php if ($id==333){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('查看决算表','<?= RUN . '/goods/goods_list_yu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>查看决算表
+													onclick="xadmin.open('查看','<?= RUN . '/goods/goods_list_yu?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>查看
 											</button>
 										<?php } ?>
 										<?php if ($id==444){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('查看决算表','<?= RUN . '/goods/goods_list_shenhe?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>决算表审核
+													onclick="xadmin.open('审核','<?= RUN . '/goods/goods_list_shenhe?btype=2&id=' ?>'+'<?= $once['id'] ?>')">
+												<i class="layui-icon">&#xe642;</i>审核
 											</button>
 										<?php } ?>
                                     </td>
