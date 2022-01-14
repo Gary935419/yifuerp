@@ -98,7 +98,7 @@
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="11" style="text-align: center;">暂无数据</td>
+                                <td colspan="21" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>

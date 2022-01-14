@@ -116,7 +116,7 @@ class Role_model extends CI_Model
 		$qianding = $this->db->escape($qianding);
 		$jiaohuoqi = $this->db->escape($jiaohuoqi);
 		$add_time = $this->db->escape($add_time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_xiangmuhetong` (newren,bianhao,mingcheng,qianding,jiaohuoqi,addtime) VALUES ($user_name,$bianhao,$mingcheng,$qianding,$jiaohuoqi,$add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -154,7 +154,7 @@ class Role_model extends CI_Model
 		$qitadanjia = $this->db->escape($qitadanjia);
 		$qitayongliang = $this->db->escape($qitayongliang);
 		$add_time = $this->db->escape($add_time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_baojiadanfeiyong` (newren,name1,name2,name3,name4,name5,name6,name7,status,state,kid,kehuming,riqi,shengcanshuliang,sunhao,xiaoji,jiagongfeidanjia,jiagongfeiyongliang,ercijiagongfeidanjia,ercijiagongfeiyongliang,jianpinfeidanjia,jianpinfeiyongliang,tongguanfeidanjia,tongguanfeiyongliang,mianliaojiancedanjia,mianliaojianceyongliang,yunfeidanjia,yunfeiyongliang,qitadanjia,qitayongliang,addtime) VALUES ($user_name,$name1,$name2,$name3,$name4,$name5,$name6,$name7,$status,$state,$kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -192,7 +192,7 @@ class Role_model extends CI_Model
 		$qitadanjia = $this->db->escape($qitadanjia);
 		$qitayongliang = $this->db->escape($qitayongliang);
 		$add_time = $this->db->escape($add_time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_baojiadanfeiyongjue` (newren,name1,name2,name3,name4,name5,name6,name7,status,state,kid,kehuming,riqi,shengcanshuliang,sunhao,xiaoji,jiagongfeidanjia,jiagongfeiyongliang,ercijiagongfeidanjia,ercijiagongfeiyongliang,jianpinfeidanjia,jianpinfeiyongliang,tongguanfeidanjia,tongguanfeiyongliang,mianliaojiancedanjia,mianliaojianceyongliang,yunfeidanjia,yunfeiyongliang,qitadanjia,qitayongliang,addtime) VALUES ($user_name,$name1,$name2,$name3,$name4,$name5,$name6,$name7,$status,$state,$kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -205,7 +205,7 @@ class Role_model extends CI_Model
 		$shuzhi = $this->db->escape($shuzhi);
 		$kid = $this->db->escape($kid);
 		$time = $this->db->escape($time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_yuanfuliaoguige` (newren,guige,sehao,shuzhi,kid,addtime) VALUES ($user_name,$guige,$sehao,$shuzhi,$kid,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -231,7 +231,7 @@ class Role_model extends CI_Model
 		$daoliaori = $this->db->escape($daoliaori);
 		$kid = $this->db->escape($kid);
 		$time = $this->db->escape($time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_yuanfuliaopinghengbian` (newren,pinming,pinfan,sehao,guige,danwei,tidanshu,qingdianshu,yangzhishi,shiji,sunhao,jianshu,sunhaoyongliang,zhishiyongliang,shijiyongliang,shengyu,daoliaori,kid,addtime) VALUES ($user_name,$pinming,$pinfan,$sehao,$guige,$danwei,$tidanshu,$qingdianshu,$yangzhishi,$shiji,$sunhao,$jianshu,$sunhaoyongliang,$zhishiyongliang,$shijiyongliang,$shengyu,$daoliaori,$kid,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -245,7 +245,7 @@ class Role_model extends CI_Model
 		$zhishishu = $this->db->escape($zhishishu);
 		$kid = $this->db->escape($kid);
 		$time = $this->db->escape($time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_caiduanbaogaoshu` (newren,sehao,pinfan,caiduanshu,zhishishu,kid,addtime) VALUES ($user_name,$sehao,$pinfan,$caiduanshu,$zhishishu,$kid,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -264,7 +264,7 @@ class Role_model extends CI_Model
 		$zhuangxiangshuliang = $this->db->escape($zhuangxiangshuliang);
 		$biaoji = $this->db->escape($biaoji);
 		$beizhu = $this->db->escape($beizhu);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_caiduanbaogaoshu` (newren,sehao,pinfan,caiduanshu,zhishishu,kid,addtime,zhuangxiangxinxi,zhuangxiangshuliang,biaoji,beizhu) VALUES ($user_name,$sehao,$pinfan,$caiduanshu,$zhishishu,$kid,$time,$zhuangxiangxinxi,$zhuangxiangshuliang,$biaoji,$beizhu)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -279,7 +279,7 @@ class Role_model extends CI_Model
 		$zhishishu = $this->db->escape($zhishishu);
 		$kid = $this->db->escape($kid);
 		$time = $this->db->escape($time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_caiduanbaogaoshujue` (newren,sehao,pinfan,caiduanshu,zhishishu,kid,addtime) VALUES ($user_name,$sehao,$pinfan,$caiduanshu,$zhishishu,$kid,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -289,7 +289,7 @@ class Role_model extends CI_Model
 	{
 		$xid = $this->db->escape($xid);
 		$uid = $this->db->escape($uid);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_xiangmufuzeren` (newren,xid,uid) VALUES ($user_name,$xid,$uid);";
 		return $this->db->query($sql);
 	}
@@ -312,7 +312,7 @@ class Role_model extends CI_Model
 		$xid = $this->db->escape($xid);
 		$kuanhao = $this->db->escape($kuanhao);
 		$add_time = $this->db->escape($add_time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_xiangmukuanhao` (newren,xid,kuanhao,addtime) VALUES ($user_name,$xid,$kuanhao,$add_time);";
 		return $this->db->query($sql);
 	}
@@ -368,7 +368,7 @@ class Role_model extends CI_Model
 		$jiaohuoqi = $this->db->escape($jiaohuoqi);
 		$add_time = $this->db->escape($add_time);
 		$id = $this->db->escape($id);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_xiangmuhetong` SET newren=$user_name,bianhao=$bianhao,mingcheng=$mingcheng,qianding=$qianding,jiaohuoqi=$jiaohuoqi,addtime=$add_time WHERE id = $id";
 		return $this->db->query($sql);
 	}
@@ -525,7 +525,7 @@ class Role_model extends CI_Model
 		$qitadanjia = $this->db->escape($qitadanjia);
 		$qitayongliang = $this->db->escape($qitayongliang);
 		$kid = $this->db->escape($kid);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_baojiadanfeiyong` SET newren=$user_name,name1=$name1,name2=$name2,name3=$name3,name4=$name4,name5=$name5,name6=$name6,name7=$name7,infomation=$infomation,state=$state,status=$status,kehuming=$kehuming,riqi=$riqi,shengcanshuliang=$shengcanshuliang,sunhao=$sunhao,xiaoji=$xiaoji,jiagongfeidanjia=$jiagongfeidanjia,jiagongfeiyongliang=$jiagongfeiyongliang,ercijiagongfeidanjia=$ercijiagongfeidanjia,ercijiagongfeiyongliang=$ercijiagongfeiyongliang,jianpinfeidanjia=$jianpinfeidanjia,jianpinfeiyongliang=$jianpinfeiyongliang,tongguanfeidanjia=$tongguanfeidanjia,tongguanfeiyongliang=$tongguanfeiyongliang,mianliaojiancedanjia=$mianliaojiancedanjia,mianliaojianceyongliang=$mianliaojianceyongliang,yunfeidanjia=$yunfeidanjia,yunfeiyongliang=$yunfeiyongliang,qitadanjia=$qitadanjia,qitayongliang=$qitayongliang WHERE kid = $kid";
 		return $this->db->query($sql);
 	}
@@ -561,7 +561,7 @@ class Role_model extends CI_Model
 		$qitadanjia = $this->db->escape($qitadanjia);
 		$qitayongliang = $this->db->escape($qitayongliang);
 		$kid = $this->db->escape($kid);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_baojiadanfeiyongjue` SET newren=$user_name,name1=$name1,name2=$name2,name3=$name3,name4=$name4,name5=$name5,name6=$name6,name7=$name7,infomation=$infomation,state=$state,status=$status,kehuming=$kehuming,riqi=$riqi,shengcanshuliang=$shengcanshuliang,sunhao=$sunhao,xiaoji=$xiaoji,jiagongfeidanjia=$jiagongfeidanjia,jiagongfeiyongliang=$jiagongfeiyongliang,ercijiagongfeidanjia=$ercijiagongfeidanjia,ercijiagongfeiyongliang=$ercijiagongfeiyongliang,jianpinfeidanjia=$jianpinfeidanjia,jianpinfeiyongliang=$jianpinfeiyongliang,tongguanfeidanjia=$tongguanfeidanjia,tongguanfeiyongliang=$tongguanfeiyongliang,mianliaojiancedanjia=$mianliaojiancedanjia,mianliaojianceyongliang=$mianliaojianceyongliang,yunfeidanjia=$yunfeidanjia,yunfeiyongliang=$yunfeiyongliang,qitadanjia=$qitadanjia,qitayongliang=$qitayongliang WHERE kid = $kid";
 		return $this->db->query($sql);
 	}
@@ -596,7 +596,7 @@ class Role_model extends CI_Model
 		$beizhu = $this->db->escape($beizhu);
 		$kid = $this->db->escape($kid);
 		$time = $this->db->escape($time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_baojiaxiangmu` (newren,infomation,status,state,xiangmu,mingcheng,guige,danwei,danjia,danwei1,yongliang,danwei2,jine,danwei3,qidingliang,beizhu,kid,addtime) VALUES ($user_name,$infomation,$status,$state,$xiangmu,$mingcheng,$guige,$danwei,$danjia,$danwei1,$yongliang,$danwei2,$jine,$danwei3,$qidingliang,$beizhu,$kid,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -616,7 +616,7 @@ class Role_model extends CI_Model
 		$fachuriqi = $this->db->escape($fachuriqi);
 		$zhizuozhe = $this->db->escape($zhizuozhe);
 		$time = $this->db->escape($time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_yangmingmingxi` (newren,zid,dandangzhe,kuhumingcheng,kuanhao,kuanshi,yangpinxingzhi,shuliang,yangpindanjia,shoudaoriqi,fachuriqi,zhizuozhe,addtime) VALUES ($user_name,$zid,$dandangzhe,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -641,7 +641,7 @@ class Role_model extends CI_Model
 		$beizhu = $this->db->escape($beizhu);
 		$kid = $this->db->escape($kid);
 		$time = $this->db->escape($time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_baojiaxiangmujue` (newren,infomation,status,state,xiangmu,mingcheng,guige,danwei,danjia,danwei1,yongliang,danwei2,jine,danwei3,qidingliang,beizhu,kid,addtime) VALUES ($user_name,$infomation,$status,$state,$xiangmu,$mingcheng,$guige,$danwei,$danjia,$danwei1,$yongliang,$danwei2,$jine,$danwei3,$qidingliang,$beizhu,$kid,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -664,7 +664,7 @@ class Role_model extends CI_Model
 		$id = $this->db->escape($id);
 		$status = $this->db->escape($status);
 		$state = $this->db->escape($state);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_baojiaxiangmu` SET newren=$user_name,status=$status,state=$state WHERE kid = $id";
 		return $this->db->query($sql);
 	}
@@ -673,7 +673,7 @@ class Role_model extends CI_Model
 		$id = $this->db->escape($id);
 		$status = $this->db->escape($status);
 		$state = $this->db->escape($state);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_baojiadanfeiyong` SET newren=$user_name,status=$status,state=$state WHERE kid = $id";
 		return $this->db->query($sql);
 	}
@@ -682,7 +682,7 @@ class Role_model extends CI_Model
 		$id = $this->db->escape($id);
 		$status = $this->db->escape($status);
 		$state = $this->db->escape($state);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_baojiadanfeiyongjue` SET newren=$user_name,status=$status,state=$state WHERE kid = $id";
 		return $this->db->query($sql);
 	}
@@ -691,7 +691,7 @@ class Role_model extends CI_Model
 		$id = $this->db->escape($id);
 		$status = $this->db->escape($status);
 		$state = $this->db->escape($state);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_baojiaxiangmujue` SET newren=$user_name,status=$status,state=$state WHERE kid = $id";
 		return $this->db->query($sql);
 	}
@@ -798,7 +798,7 @@ class Role_model extends CI_Model
 		$shoudaoriqi = $this->db->escape($shoudaoriqi);
 		$fachuriqi = $this->db->escape($fachuriqi);
 		$zhizuozhe = $this->db->escape($zhizuozhe);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_yangmingmingxi` SET newren=$user_name,kuhumingcheng=$kuhumingcheng,dandangzhe=$dandangzhe,kuanhao=$kuanhao,kuanshi=$kuanshi,yangpinxingzhi=$yangpinxingzhi,shuliang=$shuliang,yangpindanjia=$yangpindanjia,shoudaoriqi=$shoudaoriqi,fachuriqi=$fachuriqi,zhizuozhe=$zhizuozhe WHERE id = $id";
 		return $this->db->query($sql);
 	}
@@ -887,7 +887,7 @@ class Role_model extends CI_Model
 		$naqi = $this->db->escape($naqi);
 		$jihuariqi = $this->db->escape($jihuariqi);
 		$add_time = $this->db->escape($add_time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_shengcanjihua` (newren,zuname, zhipinfanhao, pinming, qihuashu, naqi, jihuariqi, addtime) VALUES ($user_name,$zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -949,7 +949,7 @@ class Role_model extends CI_Model
 		$jihuariqi = $this->db->escape($jihuariqi);
 		$add_time = $this->db->escape($add_time);
 		$id = $this->db->escape($id);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_shengcanjihua` SET newren=$user_name,zuname=$zuname,zhipinfanhao=$zhipinfanhao,pinming=$pinming,qihuashu=$qihuashu,jihuariqi=$jihuariqi,naqi=$naqi,addtime=$add_time WHERE id = $id";
 		return $this->db->query($sql);
 	}
@@ -963,7 +963,7 @@ class Role_model extends CI_Model
 	{
 		$sid = $this->db->escape($sid);
 		$add_time = $this->db->escape($add_time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_shengcanjihuadate` (newren,sid,addtime) VALUES ($user_name,$sid,$add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -985,7 +985,7 @@ class Role_model extends CI_Model
 	{
 		$sid = $this->db->escape($sid);
 		$add_time = $this->db->escape($add_time);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_shengcanjihuadate` (newren,sid,addtime,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y16,y17,y18,y19,y20,y21,y22,y23,y24,y25,y26,y27,y28,y29,y30,y31,j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11,j12,j13,j14,j15,j16,j17,j18,j19,j20,j21,j22,j23,j24,j25,j26,j27,j28,j29,j30,j31) VALUES ($user_name,$sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31,$j1,$j2,$j3,$j4,$j5,$j6,$j7,$j8,$j9,$j10,$j11,$j12,$j13,$j14,$j15,$j16,$j17,$j18,$j19,$j20,$j21,$j22,$j23,$j24,$j25,$j26,$j27,$j28,$j29,$j30,$j31)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();

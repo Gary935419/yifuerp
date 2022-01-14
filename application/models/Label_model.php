@@ -41,7 +41,7 @@ class Label_model extends CI_Model
 		$lpname = $this->db->escape($lpname);
 		$ltel = $this->db->escape($ltel);
 		$addtime = $this->db->escape($addtime);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
         $sql = "INSERT INTO `erp_zigongsi` (newren,lname,lpname,ltel,addtime) VALUES ($user_name,$lname,$lpname,$ltel,$addtime)";
         return $this->db->query($sql);
     }
@@ -81,7 +81,7 @@ class Label_model extends CI_Model
         $lname = $this->db->escape($lname);
 		$lpname = $this->db->escape($lpname);
 		$ltel = $this->db->escape($ltel);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
         $sql = "UPDATE `erp_zigongsi` SET newren=$user_name,lname=$lname,lpname=$lpname,ltel=$ltel WHERE id = $id";
         return $this->db->query($sql);
     }
@@ -178,7 +178,7 @@ class Label_model extends CI_Model
 		$lpname = $this->db->escape($lpname);
 		$ltel = $this->db->escape($ltel);
 		$addtime = $this->db->escape($addtime);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_zubie` (newren,lname,lpname,ltel,addtime) VALUES ($user_name,$lname,$lpname,$ltel,$addtime)";
 		return $this->db->query($sql);
 	}
@@ -218,7 +218,7 @@ class Label_model extends CI_Model
 		$lname = $this->db->escape($lname);
 		$lpname = $this->db->escape($lpname);
 		$ltel = $this->db->escape($ltel);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_zubie` SET newren=$user_name,lname=$lname,lpname=$lpname,ltel=$ltel WHERE id = $id";
 		return $this->db->query($sql);
 	}

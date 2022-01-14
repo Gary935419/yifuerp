@@ -76,7 +76,7 @@
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="7" style="text-align: center;">暂无数据</td>
+                                <td colspan="10" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>

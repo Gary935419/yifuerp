@@ -683,7 +683,7 @@ class Task_model extends CI_Model
 		$id = $this->db->escape($id);
 		$msg = $this->db->escape($msg);
 		$xiangshu = $this->db->escape($xiangshu);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "UPDATE `erp_caiduanbaogaoshu` SET newren=$user_name,zhuangxiangxinxi=$msg,zhuangxiangshuliang=$xiangshu WHERE kid = $id";
 		return $this->db->query($sql);
 	}
@@ -724,7 +724,7 @@ class Task_model extends CI_Model
 		$caiduanshu = $this->db->escape($caiduanshu);
 		$addtime = $this->db->escape($addtime);
 		$shuliang = $this->db->escape($shuliang);
-		$user_name = $_SESSION['user_name'];
+		$user_name = $this->db->escape($_SESSION['user_name']);
 		$sql = "INSERT INTO `erp_caiduanbaogaoshuzhuang` (newren,kid,sehao,pinfan,caiduanshu,addtime,shuliang) VALUES ($user_name,$kid,$sehao,$pinfan,$caiduanshu,$addtime,$shuliang)";
 		return $this->db->query($sql);
 	}
