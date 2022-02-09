@@ -28,32 +28,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="layui-card-header">审核统计</div>
 				<div class="layui-card-body ">
 					<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
-						<li class="layui-col-md3 layui-col-xs4">
+						<li class="layui-col-md6">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>项目合同待审核量（单位：个）</h3>
+								<h3>预算报价单待审核数量（单位：个）</h3>
 								<p>
-									<cite><?php echo $ordercount1 ?></cite></p>
+									<cite><?php echo $ordercount11 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md3 layui-col-xs4">
+						<li class="layui-col-md6">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>预算表待审核量（单位：个）</h3>
+								<h3>决算报价单待审核数量（单位：个）</h3>
 								<p>
-									<cite><?php echo $ordercount2 ?></cite></p>
-							</a>
-						</li>
-						<li class="layui-col-md3 layui-col-xs4">
-							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>决算表待审核量（单位：个）</h3>
-								<p>
-									<cite><?php echo $ordercount3 ?></cite></p>
-							</a>
-						</li>
-						<li class="layui-col-md3 layui-col-xs4">
-							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>报价单待审核量（单位：个）</h3>
-								<p>
-									<cite><?php echo $ordercount4 ?></cite></p>
+									<cite><?php echo $ordercount22 ?></cite></p>
 							</a>
 						</li>
 					</ul>
@@ -66,46 +52,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="layui-card-header">数据统计</div>
 				<div class="layui-card-body ">
 					<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
-						<li class="layui-col-md2 layui-col-xs4">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>项目合同有效量（单位：个）</h3>
+								<h3>项目数量（单位：个）</h3>
 								<p>
-									<cite>23</cite></p>
+									<cite><?php echo $ordercount1 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md2 layui-col-xs4">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>预算表有效量（单位：个）</h3>
+								<h3>生产计划数量（单位：个）</h3>
 								<p>
-									<cite>78</cite></p>
+									<cite><?php echo $ordercount2 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md2 layui-col-xs4">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>决算表有效量（单位：个）</h3>
+								<h3>员工数量（单位：个）</h3>
 								<p>
-									<cite>26</cite></p>
+									<cite><?php echo $ordercount4 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md2 layui-col-xs4">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>报价单有效量（单位：个）</h3>
+								<h3>样品数量（单位：个）</h3>
 								<p>
-									<cite>7</cite></p>
+									<cite><?php echo $ordercount5 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md2 layui-col-xs4">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>预算裁断书量（单位：个）</h3>
+								<h3>子公司数量（单位：个）</h3>
 								<p>
-									<cite>67</cite></p>
+									<cite><?php echo $ordercount3 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md2 layui-col-xs4">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>生产计划总量（单位：个）</h3>
+								<h3>组数量（单位：个）</h3>
 								<p>
-									<cite>77</cite></p>
+									<cite><?php echo $ordercount6 ?></cite></p>
 							</a>
 						</li>
 					</ul>
@@ -121,7 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tbody>
 						<tr>
 							<th>开发者</th>
-							<td>Gary(zhaoyeu_gary@163.com)</td></tr>
+							<td>Gary(zhaoyue_gary@163.com)</td></tr>
 						</tbody>
 					</table>
 				</div>

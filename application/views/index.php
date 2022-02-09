@@ -72,21 +72,6 @@
                 </ul>
             </li>
 
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="用户管理">&#xe6b8;</i>
-                    <cite>用户管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i></a>
-                <ul class="sub-menu">
-                    <li>
-                        <a onclick="changeSrc('<?= RUN . '/member/member_list' ?>')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户列表</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
 			<li>
 				<a href="javascript:;">
 					<i class="iconfont left-nav-li" lay-tips="项目管理">&#xe6b5;</i>
