@@ -5162,6 +5162,7 @@ class Goods extends CI_Controller
 		$qihuashu = isset($_POST["qihuashu"]) ? $_POST["qihuashu"] : '';
 		$naqi = isset($_POST["naqi"]) ? $_POST["naqi"] : '';
 		$jihuariqi = isset($_POST["jihuariqi"]) ? $_POST["jihuariqi"] : '';
+		$shangyue = isset($_POST["shangyue"]) ? $_POST["shangyue"] : 0;
 		$add_time = time();
 		$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
 		if (!empty($role_info)) {
@@ -5176,9 +5177,9 @@ class Goods extends CI_Controller
 //		}
 
 		$naqi = strtotime($naqi);
-		$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time);
+		$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue);
 		if ($rid) {
-			$this->role->role_saveerp_shengcanjihuadate($rid,$add_time);
+			$this->role->role_saveerp_shengcanjihuadateold($rid,$add_time);
 			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		} else {
 			echo json_encode(array('error' => false, 'msg' => "操作失败"));
@@ -5217,6 +5218,7 @@ class Goods extends CI_Controller
 		$data['qihuashu'] = $goods_info['qihuashu'];
 		$data['naqi'] = $goods_info['naqi'];
 		$data['jihuariqi'] = $goods_info['jihuariqi'];
+		$data['shangyue'] = $goods_info['shangyue'];
 		$data['id'] = $id;
 		$data['tidlist'] = $tidlist;
 

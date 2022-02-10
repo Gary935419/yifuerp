@@ -71,6 +71,13 @@
 												</div>
 											</div>
 											<div class="layui-form-item">
+											    <label for="L_pass" class="layui-form-label" style="width: 10%;">
+													<span class="x-red">*</span>上月数
+												</label>
+												<div class="layui-input-inline" style="width: 100px;">
+													<input type="text" id="shangyue" name="shangyue" lay-verify="shangyue"
+														   autocomplete="off" class="layui-input">
+												</div>
 												<label for="L_pass" class="layui-form-label" style="width: 10%;">
 													<span class="x-red">*</span>纳期
 												</label>
