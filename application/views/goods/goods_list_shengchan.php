@@ -49,11 +49,11 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>序号</th>
                             <th>组名称</th>
                             <th>制品番号</th>
                             <th>品名</th>
                             <th>企划数</th>
+							<th>上月数</th>
 							<th>纳期</th>
 							<th>计划时间</th>
 							<th>项目负责人</th>
@@ -64,15 +64,15 @@
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-                                    <td><?= $num + 1 ?></td>
                                     <td><?= $once['zuname'] ?></td>
                                     <td><?= $once['zhipinfanhao'] ?></td>
 									<td><?= $once['pinming'] ?></td>
 									<td><?= $once['qihuashu'] ?></td>
+									<td><?= $once['shangyue'] ?></td>
 									<td><?= date('Y-m-d', $once['naqi']) ?></td>
 									<td><?= $once['jihuariqi'] ?></td>
 									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
+									<td><?= date('Y-m-d', $once['addtime']) ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
                                                 onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new_shengchan?id=' ?>'+'<?= $once['id'] ?>')">

@@ -6386,4 +6386,84 @@ class Goods extends CI_Controller
 		$PHPWriter->save("php://output");
 		exit;
 	}
+
+	public function goods_add_new_shengchan_excel()
+	{
+		$tidlist = $this->task->gettidlistjihua();
+		$data['tidlist'] = $tidlist;
+		$this->display("goods/goods_add_new_shengchan_excel", $data);
+	}
+	public function goods_save_jihua_excel()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$zuname = isset($_POST["zuname"]) ? $_POST["zuname"] : '';
+		$jihuariqi = isset($_POST["jihuariqi"]) ? $_POST["jihuariqi"] : '';
+
+		$inputFileName = "./static/uploads/".substr($_POST["excelwendang"], -17);
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcelReader = $objReader->load($inputFileName);
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		$reader = $objPHPExcelReader->getWorksheetIterator();
+		//循环读取sheet
+		foreach($reader as $sheet) {
+			//读取表内容
+			$content = $sheet->getRowIterator();
+			//逐行处理
+			$res_arr = array();
+			foreach($content as $key => $items) {
+				$rows = $items->getRowIndex();              //行
+				$columns = $items->getCellIterator();       //列
+				$row_arr = array();
+				//确定从哪一行开始读取
+				if($rows < 2){
+					continue;
+				}
+				//逐列读取
+				foreach($columns as $head => $cell) {
+					//获取cell中数据
+					$data = $cell->getValue();
+					$row_arr[] = $data;
+				}
+				$res_arr[] = $row_arr;
+			}
+		}
+		for ($i=1; $i<=20; $i++)
+		{
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if (empty($zhipinfanhao) || empty($pinming) || empty($qihuashu) || empty($naqi)){
+				continue;
+			}
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue);
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35],$res_arr[$i][36]
+			);
+		}
+		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
+	}
 }

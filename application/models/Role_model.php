@@ -878,7 +878,7 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_shengcanjihua` where jihuariqi=$jihuariqi ";
 		return $this->db->query($sql)->row_array();
 	}
-	public function role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time)
+	public function role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue)
 	{
 		$zuname = $this->db->escape($zuname);
 		$zhipinfanhao = $this->db->escape($zhipinfanhao);
@@ -887,8 +887,9 @@ class Role_model extends CI_Model
 		$naqi = $this->db->escape($naqi);
 		$jihuariqi = $this->db->escape($jihuariqi);
 		$add_time = $this->db->escape($add_time);
+		$shangyue = $this->db->escape($shangyue);
 		$user_name = $this->db->escape($_SESSION['user_name']);
-		$sql = "INSERT INTO `erp_shengcanjihua` (newren,zuname, zhipinfanhao, pinming, qihuashu, naqi, jihuariqi, addtime) VALUES ($user_name,$zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time)";
+		$sql = "INSERT INTO `erp_shengcanjihua` (shangyue,newren,zuname, zhipinfanhao, pinming, qihuashu, naqi, jihuariqi, addtime) VALUES ($shangyue,$user_name,$zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;
@@ -959,12 +960,43 @@ class Role_model extends CI_Model
 		$sql = "DELETE FROM erp_shengcanjihua WHERE id = $id";
 		return $this->db->query($sql);
 	}
-	public function role_saveerp_shengcanjihuadate($sid,$add_time)
+	public function role_saveerp_shengcanjihuadate($sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31)
 	{
 		$sid = $this->db->escape($sid);
 		$add_time = $this->db->escape($add_time);
 		$user_name = $this->db->escape($_SESSION['user_name']);
-		$sql = "INSERT INTO `erp_shengcanjihuadate` (newren,sid,addtime) VALUES ($user_name,$sid,$add_time)";
+		$y1 = $this->db->escape($y1);
+		$y2 = $this->db->escape($y2);
+		$y3 = $this->db->escape($y3);
+		$y4 = $this->db->escape($y4);
+		$y5 = $this->db->escape($y5);
+		$y6 = $this->db->escape($y6);
+		$y7 = $this->db->escape($y7);
+		$y8 = $this->db->escape($y8);
+		$y9 = $this->db->escape($y9);
+		$y10 = $this->db->escape($y10);
+		$y11 = $this->db->escape($y11);
+		$y12 = $this->db->escape($y12);
+		$y13 = $this->db->escape($y13);
+		$y14 = $this->db->escape($y14);
+		$y15 = $this->db->escape($y15);
+		$y16 = $this->db->escape($y16);
+		$y17 = $this->db->escape($y17);
+		$y18 = $this->db->escape($y18);
+		$y19 = $this->db->escape($y19);
+		$y20 = $this->db->escape($y20);
+		$y21 = $this->db->escape($y21);
+		$y22 = $this->db->escape($y22);
+		$y23 = $this->db->escape($y23);
+		$y24 = $this->db->escape($y24);
+		$y25 = $this->db->escape($y25);
+		$y26 = $this->db->escape($y26);
+		$y27 = $this->db->escape($y27);
+		$y28 = $this->db->escape($y28);
+		$y29 = $this->db->escape($y29);
+		$y30 = $this->db->escape($y30);
+		$y31 = $this->db->escape($y31);
+		$sql = "INSERT INTO `erp_shengcanjihuadate` (newren,sid,addtime,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y16,y17,y18,y19,y20,y21,y22,y23,y24,y25,y26,y27,y28,y29,y30,y31) VALUES ($user_name,$sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;
