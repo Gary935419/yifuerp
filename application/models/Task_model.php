@@ -678,6 +678,11 @@ class Task_model extends CI_Model
 		$sql = "SELECT * FROM `erp_zigongsi` order by id desc ";
 		return $this->db->query($sql)->result_array();
 	}
+	public function getzulist()
+	{
+		$sql = "SELECT * FROM `erp_zubie` order by id desc ";
+		return $this->db->query($sql)->result_array();
+	}
 	public function gettidlistpinming_cai_zhuangxiang($id,$msg,$xiangshu)
 	{
 		$id = $this->db->escape($id);

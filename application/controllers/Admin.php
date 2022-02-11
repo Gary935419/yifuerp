@@ -28,6 +28,9 @@ class Admin extends CI_Controller
 		$rid = $_SESSION['rid'];
 		$zigongsilist = $this->task->getzigongsilist();
 		$data['zigongsilist'] = $zigongsilist;
+
+		$zulist = $this->task->getzulist();
+		$data['zulist'] = $zulist;
         $this->display("index",$data);
     }
     /**

@@ -18,7 +18,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>生产计划列表</cite></a>
+              <cite>生产计划</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -26,39 +26,18 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_shengchan' ?>">
-<!--                        <div class="layui-inline layui-show-xs-block">-->
-<!--                            <input type="text" name="gname" id="gname" value="--><?php //echo $gname ?><!--"-->
-<!--                                   placeholder="制品番号或者品名" autocomplete="off" class="layui-input">-->
-<!--                        </div>-->
-						<div class="layui-inline layui-show-xs-block">
-							<input type="text" name="jihuariqi" id="jihuariqi" value="<?php echo $jihuariqi ?>"
-								   placeholder="计划日期" autocomplete="off" class="layui-input">
-						</div>
-						<input type="hidden" name="zuname" id="zuname" value="<?php echo $zuname ?>">
-                        <div class="layui-inline layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
-                                        class="layui-icon">&#xe615;</i></button>
-                        </div>
-                    </form>
+
                 </div>
-				<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
-						onclick="xadmin.open('导出','<?= RUN . '/goods/shengchan_excel' ?>',900,500)">
-					<i class="iconfont">&#xe74a;</i> 导出
-				</button>
+
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>组名称</th>
-                            <th>制品番号</th>
-                            <th>品名</th>
-                            <th>企划数</th>
-							<th>上月数</th>
-							<th>纳期</th>
-							<th>计划时间</th>
+                            <th>组名</th>
+                            <th>日期</th>
+                            <th>款号量</th>
+                            <th>产量值</th>
 							<th>项目负责人</th>
-							<th>创建时间</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
@@ -66,29 +45,14 @@
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
                                     <td><?= $once['zuname'] ?></td>
-                                    <td><?= $once['zhipinfanhao'] ?></td>
-									<td><?= $once['pinming'] ?></td>
-									<td><?= $once['qihuashu'] ?></td>
-									<td><?= $once['shangyue'] ?></td>
-									<td><?= date('Y-m-d', $once['naqi']) ?></td>
 									<td><?= $once['jihuariqi'] ?></td>
+                                    <td><?= $once['kuanhaoliang'] ?></td>
+									<td><?= $once['chanliangzhi'] ?></td>
 									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
-									<td><?= date('Y-m-d', $once['addtime']) ?></td>
                                     <td class="td-manage">
-                                        <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new_shengchan?id=' ?>'+'<?= $once['id'] ?>')">
-                                            <i class="layui-icon">&#xe642;</i>编辑
-                                        </button>
-                                        <button class="layui-btn layui-btn-danger"
-                                                onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
-                                        </button>
 										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('设定','<?= RUN . '/goods/goods_edit_jichu_shengchan?id=' ?>'+'<?= $once['id'] ?>')">
-											<i class="layui-icon">&#xe642;</i>设定
-										</button>
-										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('详情','<?= RUN . '/goods/goods_edit_jichu_shengchan_detail?id=' ?>'+'<?= $once['id'] ?>')">
-											<i class="layui-icon">&#xe642;</i>详情
+												onclick="xadmin.open('查看','<?= RUN . '/goods/goods_list_shengchannew?zuname=' ?>'+'<?= $once['zuname'] ?>'+'&jihuariqi='+'<?= $once['jihuariqi'] ?>')">
+											<i class="layui-icon">&#xe642;</i>查看
 										</button>
                                     </td>
                                 </tr>

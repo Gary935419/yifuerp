@@ -894,28 +894,39 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
-	public function getgoodsAllPageshengchan($gname,$jihuariqi)
+	public function getgoodsAllPageshengchannew1($zuname,$time)
 	{
-		$sqlw = " where 1=1 and jihuariqi= '$jihuariqi' ";
+		$sqlw = " where 1=1 and jihuariqi= '$time' and zuname= '$zuname' ";
 
-		if (!empty($gname)) {
-			$sqlw .= " and ( zhipinfanhao like '%" . $gname . "%' ) or ( pinming like '%" . $gname . "%' ) ";
-		}
 		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua`" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	public function getgoodsAllPageshengchannew12($zuname,$time)
+	{
+		$sqlw = " where 1=1 and htype=1 and jihuariqi= '$time' and zuname= '$zuname' ";
+
+		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw;
+		return $this->db->query($sql)->row_array();
+
+	}
+	public function getgoodsAllPageshengchan($zuname)
+	{
+		$sqlw = " where 1=1 and htype != 1 and zuname= '$zuname' ";
+
+		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua`" . $sqlw . " group by jihuariqi";
 
 		$number = $this->db->query($sql)->row()->number;
 		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
 	}
-	public function getgoodsAllNewshengchan($pg,$gname,$jihuariqi)
+	public function getgoodsAllNewshengchan($pg,$zuname)
 	{
-		$sqlw = " where 1=1 and jihuariqi= '$jihuariqi' ";
-		if (!empty($gname)) {
-			$sqlw .= " and ( zhipinfanhao like '%" . $gname . "%' ) or ( pinming like '%" . $gname . "%' ) ";
-		}
+		$sqlw = " where 1=1 and htype != 1 and  zuname= '$zuname' ";
 		$start = ($pg - 1) * 10;
 		$stop = 10;
 
-		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " LIMIT $start, $stop";
+		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " group by jihuariqi LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
 	public function getgoodsByIdshengchan($id)

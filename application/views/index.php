@@ -176,24 +176,16 @@
 					<cite>生产计划管理</cite>
 					<i class="iconfont nav_right">&#xe697;</i></a>
 				<ul class="sub-menu">
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_add_new_shengchan_excel' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>生产计划导入</cite>
-						</a>
-					</li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_add_new_shengchan' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>生产计划添加</cite>
-						</a>
-					</li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_shengchan' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>生产计划列表</cite>
-						</a>
-					</li>
+					<?php if (isset($zulist) && !empty($zulist)) { ?>
+						<?php foreach ($zulist as $k => $v) : ?>
+							<li>
+								<a onclick="changeSrc('<?= RUN . '/goods/goods_list_shengchannew?zuname=' ?>'+'<?= $v['lname'] ?>')">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite><?= $v['lname'] ?>生产计划</cite>
+								</a>
+							</li>
+						<?php endforeach; ?>
+					<?php } ?>
 				</ul>
 			</li>
 			<li>

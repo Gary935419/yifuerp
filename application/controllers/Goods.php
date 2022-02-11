@@ -5188,16 +5188,16 @@ class Goods extends CI_Controller
 	public function goods_list_shengchan()
 	{
 
-		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$zuname = isset($_GET['zuname']) ? $_GET['zuname'] : '';
 		$jihuariqi = isset($_GET['jihuariqi']) ? $_GET['jihuariqi'] : date('Y-m',time());
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-		$allpage = $this->role->getgoodsAllPageshengchan($gname,$jihuariqi);
+		$allpage = $this->role->getgoodsAllPageshengchan($zuname,$jihuariqi);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->role->getgoodsAllNewshengchan($page,$gname,$jihuariqi);
-		$data["gname"] = $gname;
+		$list = $this->role->getgoodsAllNewshengchan($page,$zuname,$jihuariqi);
+		$data["zuname"] = $zuname;
 		$data["jihuariqi"] = $jihuariqi;
 		$data["list"] = $list;
 		$this->display("goods/goods_list_shengchan", $data);
@@ -6467,5 +6467,28 @@ class Goods extends CI_Controller
 			);
 		}
 		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
+	}
+
+	public function goods_list_shengchannew()
+	{
+
+		$zuname = isset($_GET['zuname']) ? $_GET['zuname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->role->getgoodsAllPageshengchan($zuname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->role->getgoodsAllNewshengchan($page,$zuname);
+		$data["zuname"] = $zuname;
+		foreach ($list as $k=>$v){
+			$time = $v['jihuariqi'];
+			$nums = $this->role->getgoodsAllPageshengchannew1($zuname,$time);
+			$list[$k]['kuanhaoliang'] = $nums;
+			$nums1 = $this->role->getgoodsAllPageshengchannew12($zuname,$time);
+			$list[$k]['chanliangzhi'] = empty($nums1['chanliangzhi'])?0:$nums1['chanliangzhi'];
+		}
+		$data["list"] = $list;
+		$this->display("goods/goods_list_shengchannew", $data);
 	}
 }
