@@ -66,10 +66,8 @@
 															   class="layui-input">
 												</div>
 											</div>
-											<div class="layui-form-item">
-												<label for="L_pass" class="layui-form-label" style="width: 10%;">
-													<span class="x-red">*</span>温馨提示:导入时间会根据文件大小有区别，请耐心等候！当出现"处理完成"字样，就表示已经导入成功了。
-												</label>
+											<div class="layui-form-item" style="margin-left: 100px;font-size: 13px;font-weight: bold;color: red;">
+												温馨提示:导入时间会根据文件大小有区别，请耐心等候！当出现"处理完成"字样，就表示已经导入成功了。
 											</div>
 											<div class="layui-form-item">
 												<label for="L_repass" class="layui-form-label" style="width: 90%;">

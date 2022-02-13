@@ -30,7 +30,6 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
 			return;
 		}
-
 		$bianhao = isset($_POST["bianhao"]) ? $_POST["bianhao"] : '';
 		$mingcheng = isset($_POST["mingcheng"]) ? $_POST["mingcheng"] : '';
 		$qianding = isset($_POST["qianding"]) ? $_POST["qianding"] : '';
@@ -58,8 +57,8 @@ class Goods extends CI_Controller
 			}
 		}
 		$qianding = strtotime($qianding);
-		$jiaohuoqi = strtotime($jiaohuoqi);
-		$rid = $this->role->role_save1($bianhao, $mingcheng, $qianding, $jiaohuoqi, $add_time);
+
+		$rid = $this->role->role_save1($bianhao, $mingcheng, $qianding, $add_time);
 		if ($rid) {
 			foreach ($menu as $k => $v) {
 				$this->role->rtom_save1($rid, $v);
@@ -68,7 +67,7 @@ class Goods extends CI_Controller
 				if (empty($vv)) {
 					continue;
 				}
-				$this->role->rtom_save2($rid, $vv, $add_time);
+				$this->role->rtom_save2($rid, $vv, $add_time,strtotime($jiaohuoqi[$kk]));
 			}
 			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		} else {
@@ -147,8 +146,7 @@ class Goods extends CI_Controller
 			}
 		}
 		$qianding = strtotime($qianding);
-		$jiaohuoqi = strtotime($jiaohuoqi);
-		$result = $this->role->goods_save_edit($bianhao, $mingcheng, $qianding, $jiaohuoqi, $add_time, $id);
+		$result = $this->role->goods_save_edit($bianhao, $mingcheng, $qianding, $add_time, $id);
 		$this->role->goodsimg_delete1($id);
 		$this->role->goodsimg_delete2($id);
 		if ($result) {
@@ -159,7 +157,7 @@ class Goods extends CI_Controller
 				if (empty($vv)) {
 					continue;
 				}
-				$this->role->rtom_save2($id, $vv, $add_time);
+				$this->role->rtom_save2($id, $vv, $add_time,strtotime($jiaohuoqi[$kk]));
 			}
 			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		} else {
@@ -270,7 +268,7 @@ class Goods extends CI_Controller
 		}
 		$sunhaoyongliang = isset($_POST["sunhaoyongliang"]) ? $_POST["sunhaoyongliang"] : '';
 		if (empty($sunhaoyongliang[0])) {
-			echo json_encode(array('error' => true, 'msg' => "请添加损耗用量!"));
+			echo json_encode(array('error' => true, 'msg' => "请添加增减数量!"));
 			return;
 		}
 		$daoliaori = isset($_POST["daoliaori"]) ? $_POST["daoliaori"] : '';
@@ -360,7 +358,7 @@ class Goods extends CI_Controller
 		}
 		$sunhaoyongliang = isset($_POST["sunhaoyongliang"]) ? $_POST["sunhaoyongliang"] : '';
 		if (empty($sunhaoyongliang[0])) {
-			echo json_encode(array('error' => true, 'msg' => "请添加损耗用量!"));
+			echo json_encode(array('error' => true, 'msg' => "请添加增减数量!"));
 			return;
 		}
 		$daoliaori = isset($_POST["daoliaori"]) ? $_POST["daoliaori"] : '';
@@ -971,35 +969,55 @@ class Goods extends CI_Controller
 		$data['kuanhao8'] = '';
 		$data['kuanhao9'] = '';
 		$data['kuanhao10'] = '';
+		$data['jiaohuoqi1'] = '';
+		$data['jiaohuoqi2'] = '';
+		$data['jiaohuoqi3'] = '';
+		$data['jiaohuoqi4'] = '';
+		$data['jiaohuoqi5'] = '';
+		$data['jiaohuoqi6'] = '';
+		$data['jiaohuoqi7'] = '';
+		$data['jiaohuoqi8'] = '';
+		$data['jiaohuoqi9'] = '';
+		$data['jiaohuoqi10'] = '';
 		if (!empty($kuanhaos[0]['kuanhao'])) {
 			$data['kuanhao1'] = $kuanhaos[0]['kuanhao'];
+			$data['jiaohuoqi1'] = $kuanhaos[0]['jiaohuoqi'];
 		}
 		if (!empty($kuanhaos[1]['kuanhao'])) {
 			$data['kuanhao2'] = $kuanhaos[1]['kuanhao'];
+			$data['jiaohuoqi2'] = $kuanhaos[1]['jiaohuoqi'];
 		}
 		if (!empty($kuanhaos[2]['kuanhao'])) {
 			$data['kuanhao3'] = $kuanhaos[2]['kuanhao'];
+			$data['jiaohuoqi3'] = $kuanhaos[1]['jiaohuoqi'];
 		}
 		if (!empty($kuanhaos[3]['kuanhao'])) {
 			$data['kuanhao4'] = $kuanhaos[3]['kuanhao'];
+			$data['jiaohuoqi4'] = $kuanhaos[1]['jiaohuoqi'];
 		}
 		if (!empty($kuanhaos[4]['kuanhao'])) {
 			$data['kuanhao5'] = $kuanhaos[4]['kuanhao'];
+			$data['jiaohuoqi5'] = $kuanhaos[1]['jiaohuoqi'];
 		}
 		if (!empty($kuanhaos[5]['kuanhao'])) {
 			$data['kuanhao6'] = $kuanhaos[5]['kuanhao'];
+			$data['jiaohuoqi6'] = $kuanhaos[1]['jiaohuoqi'];
 		}
 		if (!empty($kuanhaos[6]['kuanhao'])) {
 			$data['kuanhao7'] = $kuanhaos[6]['kuanhao'];
+			$data['jiaohuoqi7'] = $kuanhaos[1]['jiaohuoqi'];
 		}
 		if (!empty($kuanhaos[7]['kuanhao'])) {
 			$data['kuanhao8'] = $kuanhaos[7]['kuanhao'];
+			$data['jiaohuoqi8'] = $kuanhaos[1]['jiaohuoqi'];
 		}
 		if (!empty($kuanhaos[8]['kuanhao'])) {
 			$data['kuanhao9'] = $kuanhaos[8]['kuanhao'];
+			$data['jiaohuoqi9'] = $kuanhaos[1]['jiaohuoqi'];
 		}
 		if (!empty($kuanhaos[9]['kuanhao'])) {
 			$data['kuanhao10'] = $kuanhaos[9]['kuanhao'];
+			$data['jiaohuoqi10'] = $kuanhaos[1]['jiaohuoqi'];
 		}
 		$this->display("goods/goods_edit_new", $data);
 	}
@@ -6519,7 +6537,6 @@ class Goods extends CI_Controller
 		}
 		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
 	}
-
 	public function goods_list_shengchannew()
 	{
 

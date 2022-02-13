@@ -45,7 +45,7 @@
 							<th>合同编号</th>
 							<th>甲方名称</th>
 							<th>签订时间</th>
-							<th>交货时间</th>
+<!--							<th>交货时间</th>-->
 							<th>合同款号</th>
 							<th>登录负责人</th>
 							<th>项目负责人</th>
@@ -59,7 +59,7 @@
 									<td><?= $once['bianhao'] ?></td>
 									<td><?= $once['mingcheng'] ?></td>
 									<td><?= date('Y-m-d', $once['qianding']) ?></td>
-									<td><?= date('Y-m-d', $once['jiaohuoqi']) ?></td>
+<!--									<td>--><?//= date('Y-m-d', $once['jiaohuoqi']) ?><!--</td>-->
 									<td><?= empty($once['kuanhaoshu'])?0:$once['kuanhaoshu'] ?>个</td>
 									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
 									<td><?= empty($once['newrennew'])?'admin':$once['newrennew'] ?></td>

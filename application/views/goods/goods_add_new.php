@@ -56,13 +56,13 @@
 													<input id="qianding" name="qianding" lay-verify="qianding"
 														   autocomplete="off" class="layui-input">
 												</div>
-												<label for="L_pass" class="layui-form-label" style="width: 10%;">
-													<span class="x-red">*</span>交货时间
-												</label>
-												<div class="layui-input-inline" style="width: 100px;">
-													<input id="jiaohuoqi" name="jiaohuoqi" lay-verify="jiaohuoqi"
-														   autocomplete="off" class="layui-input">
-												</div>
+<!--												<label for="L_pass" class="layui-form-label" style="width: 10%;">-->
+<!--													<span class="x-red">*</span>交货时间-->
+<!--												</label>-->
+<!--												<div class="layui-input-inline" style="width: 100px;">-->
+<!--													<input id="jiaohuoqi" name="jiaohuoqi" lay-verify="jiaohuoqi"-->
+<!--														   autocomplete="off" class="layui-input">-->
+<!--												</div>-->
 											</div>
 											<div class="layui-form-item">
 												<label for="L_pass" class="layui-form-label" style="width: 10%;">
@@ -87,6 +87,13 @@
 													<input name="kuanhao[]" lay-verify="kuanhao"
 														   autocomplete="off" class="layui-input">
 												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi1" lay-verify="jiaohuoqi"
+														   autocomplete="off" class="layui-input">
+												</div>
 											</div>
 											<div class="layui-form-item" id="div2" style="display: none;">
 												<label for="L_pass" class="layui-form-label" style="width: 10%;">
@@ -96,6 +103,13 @@
 												<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(2,1)">&#xe6fe;</i>
 												<div class="layui-input-inline" style="width: 150px;">
 													<input name="kuanhao[]" id="val2" lay-verify="kuanhao"
+														   autocomplete="off" class="layui-input">
+												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi2" lay-verify="jiaohuoqi"
 														   autocomplete="off" class="layui-input">
 												</div>
 											</div>
@@ -109,6 +123,13 @@
 													<input name="kuanhao[]" id="val3" lay-verify="kuanhao"
 														   autocomplete="off" class="layui-input">
 												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi3" lay-verify="jiaohuoqi"
+														   autocomplete="off" class="layui-input">
+												</div>
 											</div>
 											<div class="layui-form-item" id="div4" style="display: none;">
 												<label for="L_pass" class="layui-form-label" style="width: 10%;">
@@ -118,6 +139,13 @@
 												<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(4,3)">&#xe6fe;</i>
 												<div class="layui-input-inline" style="width: 150px;">
 													<input name="kuanhao[]" id="val4" lay-verify="kuanhao"
+														   autocomplete="off" class="layui-input">
+												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi4" lay-verify="jiaohuoqi"
 														   autocomplete="off" class="layui-input">
 												</div>
 											</div>
@@ -131,6 +159,13 @@
 													<input name="kuanhao[]" id="val5" lay-verify="kuanhao"
 														   autocomplete="off" class="layui-input">
 												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi5" lay-verify="jiaohuoqi"
+														   autocomplete="off" class="layui-input">
+												</div>
 											</div>
 											<div class="layui-form-item" id="div6" style="display: none;">
 												<label for="L_pass" class="layui-form-label" style="width: 10%;">
@@ -140,6 +175,13 @@
 												<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(6,5)">&#xe6fe;</i>
 												<div class="layui-input-inline" id="val6" style="width: 150px;">
 													<input name="kuanhao[]" id="val6" lay-verify="kuanhao"
+														   autocomplete="off" class="layui-input">
+												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi6" lay-verify="jiaohuoqi"
 														   autocomplete="off" class="layui-input">
 												</div>
 											</div>
@@ -153,6 +195,13 @@
 													<input name="kuanhao[]" id="val7" lay-verify="kuanhao"
 														   autocomplete="off" class="layui-input">
 												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi7" lay-verify="jiaohuoqi"
+														   autocomplete="off" class="layui-input">
+												</div>
 											</div>
 											<div class="layui-form-item" id="div8" style="display: none;">
 												<label for="L_pass" class="layui-form-label" style="width: 10%;">
@@ -162,6 +211,13 @@
 												<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(8,7)">&#xe6fe;</i>
 												<div class="layui-input-inline" style="width: 150px;">
 													<input name="kuanhao[]" id="val8" lay-verify="kuanhao"
+														   autocomplete="off" class="layui-input">
+												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi8" lay-verify="jiaohuoqi"
 														   autocomplete="off" class="layui-input">
 												</div>
 											</div>
@@ -175,6 +231,13 @@
 													<input name="kuanhao[]" id="val9" lay-verify="kuanhao"
 														   autocomplete="off" class="layui-input">
 												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi9" lay-verify="jiaohuoqi"
+														   autocomplete="off" class="layui-input">
+												</div>
 											</div>
 											<div class="layui-form-item" id="div10" style="display: none;">
 												<label for="L_pass" class="layui-form-label" style="width: 10%;">
@@ -184,6 +247,13 @@
 												<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(10,9)">&#xe6fe;</i>
 												<div class="layui-input-inline" style="width: 150px;">
 													<input name="kuanhao[]" id="val10" lay-verify="kuanhao"
+														   autocomplete="off" class="layui-input">
+												</div>
+												<label for="L_pass" class="layui-form-label" style="width: 10%;margin-left: -80px;">
+													<span class="x-red">*</span>交货时间
+												</label>
+												<div class="layui-input-inline" style="width: 150px;">
+													<input name="jiaohuoqi[]" id="jiaohuoqi10" lay-verify="jiaohuoqi"
 														   autocomplete="off" class="layui-input">
 												</div>
 											</div>
@@ -224,7 +294,34 @@
 					elem: '#qianding' //指定元素
 				});
 				laydate.render({
-					elem: '#jiaohuoqi' //指定元素
+					elem: '#jiaohuoqi1' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi2' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi3' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi4' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi5' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi6' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi7' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi8' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi9' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi10' //指定元素
 				});
 			});
 </script>
@@ -265,11 +362,11 @@
 							return '请输入签订时间。';
 						}
 					},
-					jiaohuoqi: function (value) {
-						if ($('#jiaohuoqi').val() == "") {
-							return '请输入交货时间。';
-						}
-					},
+					// jiaohuoqi: function (value) {
+					// 	if ($('#jiaohuoqi').val() == "") {
+					// 		return '请输入交货时间。';
+					// 	}
+					// },
 					check: function () {
 						var checked = $("input[type='checkbox']:checked").length;
 						if (checked < 1) {

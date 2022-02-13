@@ -109,15 +109,15 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_xiangmuhetong` where bianhao=$bianhao ";
 		return $this->db->query($sql)->row_array();
 	}
-	public function role_save1($bianhao,$mingcheng,$qianding,$jiaohuoqi,$add_time)
+	public function role_save1($bianhao,$mingcheng,$qianding,$add_time)
 	{
 		$bianhao = $this->db->escape($bianhao);
 		$mingcheng = $this->db->escape($mingcheng);
 		$qianding = $this->db->escape($qianding);
-		$jiaohuoqi = $this->db->escape($jiaohuoqi);
+//		$jiaohuoqi = $this->db->escape($jiaohuoqi);
 		$add_time = $this->db->escape($add_time);
 		$user_name = $this->db->escape($_SESSION['user_name']);
-		$sql = "INSERT INTO `erp_xiangmuhetong` (newren,bianhao,mingcheng,qianding,jiaohuoqi,addtime) VALUES ($user_name,$bianhao,$mingcheng,$qianding,$jiaohuoqi,$add_time)";
+		$sql = "INSERT INTO `erp_xiangmuhetong` (newren,bianhao,mingcheng,qianding,addtime) VALUES ($user_name,$bianhao,$mingcheng,$qianding,$add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;
@@ -307,13 +307,14 @@ class Role_model extends CI_Model
 		$sql = "INSERT INTO `erp_baojiafuzerenjue` (bid,uid) VALUES ($bid,$uid);";
 		return $this->db->query($sql);
 	}
-	public function rtom_save2($xid,$kuanhao,$add_time)
+	public function rtom_save2($xid,$kuanhao,$add_time,$jiaohuoqi)
 	{
 		$xid = $this->db->escape($xid);
 		$kuanhao = $this->db->escape($kuanhao);
 		$add_time = $this->db->escape($add_time);
+		$jiaohuoqi = $this->db->escape($jiaohuoqi);
 		$user_name = $this->db->escape($_SESSION['user_name']);
-		$sql = "INSERT INTO `erp_xiangmukuanhao` (newren,xid,kuanhao,addtime) VALUES ($user_name,$xid,$kuanhao,$add_time);";
+		$sql = "INSERT INTO `erp_xiangmukuanhao` (newren,xid,kuanhao,addtime,jiaohuoqi) VALUES ($user_name,$xid,$kuanhao,$add_time,$jiaohuoqi);";
 		return $this->db->query($sql);
 	}
 	public function getgoodsAllNewcount($xid)
@@ -360,16 +361,16 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_xiangmuhetong` where bianhao=$bianhao and id!=$id ";
 		return $this->db->query($sql)->row_array();
 	}
-	public function goods_save_edit($bianhao,$mingcheng,$qianding,$jiaohuoqi,$add_time,$id)
+	public function goods_save_edit($bianhao,$mingcheng,$qianding,$add_time,$id)
 	{
 		$bianhao = $this->db->escape($bianhao);
 		$mingcheng = $this->db->escape($mingcheng);
 		$qianding = $this->db->escape($qianding);
-		$jiaohuoqi = $this->db->escape($jiaohuoqi);
+//		$jiaohuoqi = $this->db->escape($jiaohuoqi);
 		$add_time = $this->db->escape($add_time);
 		$id = $this->db->escape($id);
 		$user_name = $this->db->escape($_SESSION['user_name']);
-		$sql = "UPDATE `erp_xiangmuhetong` SET newren=$user_name,bianhao=$bianhao,mingcheng=$mingcheng,qianding=$qianding,jiaohuoqi=$jiaohuoqi,addtime=$add_time WHERE id = $id";
+		$sql = "UPDATE `erp_xiangmuhetong` SET newren=$user_name,bianhao=$bianhao,mingcheng=$mingcheng,qianding=$qianding,addtime=$add_time WHERE id = $id";
 		return $this->db->query($sql);
 	}
 	public function goodsimg_delete1($id)

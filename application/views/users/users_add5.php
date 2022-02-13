@@ -147,7 +147,7 @@
 			</div>
 			<div class="layui-form-item">
 				<label for="L_pass" class="layui-form-label" style="width: 30%;">
-					<span class="x-red">*</span>3%损耗用量
+					<span class="x-red">*</span>3%增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 300px;">
 					<input type="text" id="user_name" name="user_name" lay-verify="user_name"

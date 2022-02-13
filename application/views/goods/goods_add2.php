@@ -104,7 +104,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" lay-verify="sunhaoyongliang"
@@ -209,7 +209,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" id="val222222222222" lay-verify="sunhaoyongliang"
@@ -316,7 +316,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" id="val333333333333" lay-verify="sunhaoyongliang"
@@ -424,7 +424,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" id="val444444444444" lay-verify="sunhaoyongliang"
@@ -532,7 +532,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" id="val555555555555" lay-verify="sunhaoyongliang"
@@ -642,7 +642,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" id="val666666666666" lay-verify="sunhaoyongliang"
@@ -751,7 +751,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" id="val777777777777" lay-verify="sunhaoyongliang"
@@ -859,7 +859,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" id="val888888888888" lay-verify="sunhaoyongliang"
@@ -967,7 +967,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" id="val999999999999" lay-verify="sunhaoyongliang"
@@ -1075,7 +1075,7 @@
 						   autocomplete="off" class="layui-input">
 				</div>
 				<label for="L_pass" class="layui-form-label" style="width: 8%;">
-					<span class="x-red">*</span>损耗用量
+					<span class="x-red">*</span>增减数量
 				</label>
 				<div class="layui-input-inline" style="width: 188px;">
 					<input name="sunhaoyongliang[]" id="val101010101010101010101010" lay-verify="sunhaoyongliang"

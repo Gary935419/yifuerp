@@ -118,7 +118,7 @@
 													   autocomplete="off" class="layui-input">
 											</div>
 											<label for="L_pass" class="layui-form-label" style="width: 5%;">
-												<span class="x-red">*</span>损耗用量
+												<span class="x-red">*</span>增减数量
 											</label>
 											<div class="layui-input-inline" style="width: 56px;">
 												<input name="sunhaoyongliang[]" lay-verify="sunhaoyongliang"
@@ -251,7 +251,7 @@
 													</div>
 													<label for="L_pass" class="layui-form-label"
 														   style="width: 5%;">
-														<span class="x-red">*</span>损耗用量
+														<span class="x-red">*</span>增减数量
 													</label>
 													<div class="layui-input-inline" style="width: 56px;">
 														<input name="sunhaoyongliang[]" id="val222222222222"
@@ -437,7 +437,7 @@
 															<label for="L_pass"
 																   class="layui-form-label"
 																   style="width: 5%;">
-																<span class="x-red">*</span>损耗用量
+																<span class="x-red">*</span>增减数量
 															</label>
 															<div class="layui-input-inline"
 																 style="width: 56px;">
@@ -654,7 +654,7 @@
 																	<label for="L_pass"
 																		   class="layui-form-label"
 																		   style="width: 5%;">
-																		<span class="x-red">*</span>损耗用量
+																		<span class="x-red">*</span>增减数量
 																	</label>
 																	<div class="layui-input-inline"
 																		 style="width: 56px;">
@@ -872,7 +872,7 @@
 																			<label for="L_pass"
 																				   class="layui-form-label"
 																				   style="width: 5%;">
-																				<span class="x-red">*</span>损耗用量
+																				<span class="x-red">*</span>增减数量
 																			</label>
 																			<div class="layui-input-inline"
 																				 style="width: 56px;">
@@ -1089,7 +1089,7 @@
 																					<label for="L_pass"
 																						   class="layui-form-label"
 																						   style="width: 5%;">
-																						<span class="x-red">*</span>损耗用量
+																						<span class="x-red">*</span>增减数量
 																					</label>
 																					<div class="layui-input-inline"
 																						 style="width: 56px;">
@@ -1307,7 +1307,7 @@
 																							<label for="L_pass"
 																								   class="layui-form-label"
 																								   style="width: 5%;">
-																								<span class="x-red">*</span>损耗用量
+																								<span class="x-red">*</span>增减数量
 																							</label>
 																							<div class="layui-input-inline"
 																								 style="width: 56px;">
@@ -1525,7 +1525,7 @@
 																									<label for="L_pass"
 																										   class="layui-form-label"
 																										   style="width: 5%;">
-																										<span class="x-red">*</span>损耗用量
+																										<span class="x-red">*</span>增减数量
 																									</label>
 																									<div class="layui-input-inline"
 																										 style="width: 56px;">
@@ -1743,7 +1743,7 @@
 																											<label for="L_pass"
 																												   class="layui-form-label"
 																												   style="width: 5%;">
-																												<span class="x-red">*</span>损耗用量
+																												<span class="x-red">*</span>增减数量
 																											</label>
 																											<div class="layui-input-inline"
 																												 style="width: 56px;">
@@ -1961,7 +1961,7 @@
 																													<label for="L_pass"
 																														   class="layui-form-label"
 																														   style="width: 5%;">
-																														<span class="x-red">*</span>损耗用量
+																														<span class="x-red">*</span>增减数量
 																													</label>
 																													<div class="layui-input-inline"
 																														 style="width: 56px;">
