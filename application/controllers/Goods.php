@@ -5191,14 +5191,54 @@ class Goods extends CI_Controller
 		$zuname = isset($_GET['zuname']) ? $_GET['zuname'] : '';
 		$jihuariqi = isset($_GET['jihuariqi']) ? $_GET['jihuariqi'] : date('Y-m',time());
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-		$allpage = $this->role->getgoodsAllPageshengchan($zuname,$jihuariqi);
+		$allpage = $this->role->getgoodsAllPageshengchandetails($zuname,$jihuariqi);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->role->getgoodsAllNewshengchan($page,$zuname,$jihuariqi);
+		$list = $this->role->getgoodsAllNewshengchandetails($page,$zuname,$jihuariqi);
 		$data["zuname"] = $zuname;
 		$data["jihuariqi"] = $jihuariqi;
+		$data["excelwendang"] = $list[0]['excelwendang'];
+
+		foreach ($list as $k=>$v){
+			$sid = $v['id'];
+			$rowdata = $this->role->geterp_shengcanjihuadate($sid);
+			$list[$k]['y1'] = $rowdata['y1'];
+			$list[$k]['y2'] = $rowdata['y2'];
+			$list[$k]['y3'] = $rowdata['y3'];
+			$list[$k]['y4'] = $rowdata['y4'];
+			$list[$k]['y5'] = $rowdata['y5'];
+			$list[$k]['y6'] = $rowdata['y6'];
+			$list[$k]['y7'] = $rowdata['y7'];
+			$list[$k]['y8'] = $rowdata['y8'];
+			$list[$k]['y9'] = $rowdata['y9'];
+			$list[$k]['y10'] = $rowdata['y10'];
+			$list[$k]['y11'] = $rowdata['y11'];
+			$list[$k]['y12'] = $rowdata['y12'];
+			$list[$k]['y13'] = $rowdata['y13'];
+			$list[$k]['y14'] = $rowdata['y14'];
+			$list[$k]['y15'] = $rowdata['y15'];
+			$list[$k]['y16'] = $rowdata['y16'];
+			$list[$k]['y17'] = $rowdata['y17'];
+			$list[$k]['y18'] = $rowdata['y18'];
+			$list[$k]['y19'] = $rowdata['y19'];
+			$list[$k]['y20'] = $rowdata['y20'];
+			$list[$k]['y21'] = $rowdata['y21'];
+			$list[$k]['y22'] = $rowdata['y22'];
+			$list[$k]['y23'] = $rowdata['y23'];
+			$list[$k]['y24'] = $rowdata['y24'];
+			$list[$k]['y25'] = $rowdata['y25'];
+			$list[$k]['y26'] = $rowdata['y26'];
+			$list[$k]['y27'] = $rowdata['y27'];
+			$list[$k]['y28'] = $rowdata['y28'];
+			$list[$k]['y29'] = $rowdata['y29'];
+			$list[$k]['y30'] = $rowdata['y30'];
+			$list[$k]['y31'] = $rowdata['y31'];
+			$list[$k]['heji'] = $rowdata['heji'];
+			$list[$k]['zengjian'] = $rowdata['zengjian'];
+			$list[$k]['danjia'] = $rowdata['danjia'];
+		}
 		$data["list"] = $list;
 		$this->display("goods/goods_list_shengchan", $data);
 	}
@@ -6392,7 +6432,9 @@ class Goods extends CI_Controller
 	public function goods_add_new_shengchan_excel()
 	{
 		$tidlist = $this->task->gettidlistjihua();
+		$zuname = isset($_GET['zuname']) ? $_GET['zuname'] : '';
 		$data['tidlist'] = $tidlist;
+		$data['zuname'] = $zuname;
 		$this->display("goods/goods_add_new_shengchan_excel", $data);
 	}
 	public function goods_save_jihua_excel()
@@ -6403,7 +6445,7 @@ class Goods extends CI_Controller
 		}
 		$zuname = isset($_POST["zuname"]) ? $_POST["zuname"] : '';
 		$jihuariqi = isset($_POST["jihuariqi"]) ? $_POST["jihuariqi"] : '';
-
+		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
 		$inputFileName = "./static/uploads/".substr($_POST["excelwendang"], -17);
 		date_default_timezone_set('PRC');
 		// 读取excel文件
@@ -6440,15 +6482,23 @@ class Goods extends CI_Controller
 				$res_arr[] = $row_arr;
 			}
 		}
-		for ($i=1; $i<=20; $i++)
+		for ($i=1; $i<=21; $i++)
 		{
 			$zhipinfanhao = $res_arr[$i][1];
 			$pinming = $res_arr[$i][2];
 			$qihuashu = $res_arr[$i][3];
 			$naqi = $res_arr[$i][4];
-			if (empty($zhipinfanhao) || empty($pinming) || empty($qihuashu) || empty($naqi)){
-				continue;
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = $res_arr[$i][39];
+			}else{
+				if (empty($zhipinfanhao) || empty($pinming) || empty($qihuashu) || empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
 			}
+
 			$shangyue = $res_arr[$i][5];
 
 			$add_time = time();
@@ -6457,13 +6507,14 @@ class Goods extends CI_Controller
 				continue;
 			}
 			$naqi = strtotime($naqi);
-			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
 			$this->role->role_saveerp_shengcanjihuadate(
 				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
 				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
 				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
 				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
-				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35],$res_arr[$i][36]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$res_arr[$i][37],$res_arr[$i][38],$res_arr[$i][39]
 			);
 		}
 		echo json_encode(array('success' => true, 'msg' => "处理完成。"));

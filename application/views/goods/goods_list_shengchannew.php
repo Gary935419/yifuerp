@@ -26,7 +26,13 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-
+					<input type="hidden" name="zuname" id="zuname" value="<?php echo $zuname ?>">
+					<div class="layui-inline layui-show-xs-block">
+						<button class="layui-btn layui-card-header" style="float: right;"
+								onclick="xadmin.open('生产计划导入','<?= RUN . '/goods/goods_add_new_shengchan_excel?zuname=' ?>'+'<?php echo $zuname ?>',900,500)">
+							<i class="iconfont">&#xe74a;</i> 导入
+						</button>
+					</div>
                 </div>
 
                 <div class="layui-card-body ">
@@ -51,7 +57,7 @@
 									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
                                     <td class="td-manage">
 										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('查看','<?= RUN . '/goods/goods_list_shengchannew?zuname=' ?>'+'<?= $once['zuname'] ?>'+'&jihuariqi='+'<?= $once['jihuariqi'] ?>')">
+												onclick="xadmin.open('查看','<?= RUN . '/goods/goods_list_shengchan?zuname=' ?>'+'<?= $once['zuname'] ?>'+'&jihuariqi='+'<?= $once['jihuariqi'] ?>')">
 											<i class="layui-icon">&#xe642;</i>查看
 										</button>
                                     </td>

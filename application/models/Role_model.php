@@ -878,7 +878,7 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_shengcanjihua` where jihuariqi=$jihuariqi ";
 		return $this->db->query($sql)->row_array();
 	}
-	public function role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue)
+	public function role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang)
 	{
 		$zuname = $this->db->escape($zuname);
 		$zhipinfanhao = $this->db->escape($zhipinfanhao);
@@ -888,15 +888,18 @@ class Role_model extends CI_Model
 		$jihuariqi = $this->db->escape($jihuariqi);
 		$add_time = $this->db->escape($add_time);
 		$shangyue = $this->db->escape($shangyue);
+		$htype = $this->db->escape($htype);
+		$chanliangzhi = $this->db->escape($chanliangzhi);
+		$excelwendang = $this->db->escape($excelwendang);
 		$user_name = $this->db->escape($_SESSION['user_name']);
-		$sql = "INSERT INTO `erp_shengcanjihua` (shangyue,newren,zuname, zhipinfanhao, pinming, qihuashu, naqi, jihuariqi, addtime) VALUES ($shangyue,$user_name,$zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time)";
+		$sql = "INSERT INTO `erp_shengcanjihua` (excelwendang,htype,chanliangzhi,shangyue,newren,zuname, zhipinfanhao, pinming, qihuashu, naqi, jihuariqi, addtime) VALUES ($excelwendang,$htype,$chanliangzhi,$shangyue,$user_name,$zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
 	public function getgoodsAllPageshengchannew1($zuname,$time)
 	{
-		$sqlw = " where 1=1 and jihuariqi= '$time' and zuname= '$zuname' ";
+		$sqlw = " where 1=1 and htype!=1 and jihuariqi= '$time' and zuname= '$zuname' ";
 
 		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua`" . $sqlw;
 
@@ -915,10 +918,12 @@ class Role_model extends CI_Model
 	{
 		$sqlw = " where 1=1 and htype != 1 and zuname= '$zuname' ";
 
-		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua`" . $sqlw . " group by jihuariqi";
-
-		$number = $this->db->query($sql)->row()->number;
-		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+		$sql = "SELECT distinct jihuariqi FROM `erp_shengcanjihua`" . $sqlw;
+// print_r($sql);
+// 		$number = $this->db->query($sql)->row()->number;
+		$number = $this->db->query($sql)->result_array();
+// 		print_r();die;
+		return ceil(count($number) / 10) == 0 ? 1 : ceil(count($number) / 10);
 	}
 	public function getgoodsAllNewshengchan($pg,$zuname)
 	{
@@ -929,6 +934,28 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " group by jihuariqi LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
+	
+	
+	public function getgoodsAllPageshengchandetails($zuname,$jihuariqi)
+	{
+		$sqlw = " where 1=1 and zuname= '$zuname' and jihuariqi= '$jihuariqi' ";
+
+		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua`" . $sqlw;
+		$number = $this->db->query($sql)->row()->number;
+		
+		return ceil($number / 30) == 0 ? 1 : ceil($number / 30);
+	}
+	public function getgoodsAllNewshengchandetails($pg,$zuname,$jihuariqi)
+	{
+		$sqlw = " where 1=1 and zuname= '$zuname' and jihuariqi= '$jihuariqi' ";
+		$start = ($pg - 1) * 30;
+		$stop = 30;
+
+		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+	
+	
 	public function getgoodsByIdshengchan($id)
 	{
 		$id = $this->db->escape($id);
@@ -982,7 +1009,7 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
-	public function role_saveerp_shengcanjihuadate($sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31)
+	public function role_saveerp_shengcanjihuadate($sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31,$heji,$zengjian,$danjia)
 	{
 		$sid = $this->db->escape($sid);
 		$add_time = $this->db->escape($add_time);
@@ -1018,7 +1045,10 @@ class Role_model extends CI_Model
 		$y29 = $this->db->escape($y29);
 		$y30 = $this->db->escape($y30);
 		$y31 = $this->db->escape($y31);
-		$sql = "INSERT INTO `erp_shengcanjihuadate` (newren,sid,addtime,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y16,y17,y18,y19,y20,y21,y22,y23,y24,y25,y26,y27,y28,y29,y30,y31) VALUES ($user_name,$sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31)";
+		$heji = $this->db->escape($heji);
+		$zengjian = $this->db->escape($zengjian);
+		$danjia = $this->db->escape($danjia);
+		$sql = "INSERT INTO `erp_shengcanjihuadate` (heji,zengjian,danjia,newren,sid,addtime,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y16,y17,y18,y19,y20,y21,y22,y23,y24,y25,y26,y27,y28,y29,y30,y31) VALUES ($heji,$zengjian,$danjia,$user_name,$sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;
@@ -1055,6 +1085,13 @@ class Role_model extends CI_Model
 	{
 		$id = $this->db->escape($id);
 		$sql = "SELECT * FROM `erp_shengcanjihuadate` where sid=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+
+	public function geterp_shengcanjihuadate($sid)
+	{
+		$sid = $this->db->escape($sid);
+		$sql = "SELECT * FROM `erp_shengcanjihuadate` where sid=$sid ";
 		return $this->db->query($sql)->row_array();
 	}
 }

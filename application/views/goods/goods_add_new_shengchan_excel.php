@@ -17,12 +17,12 @@
 	<script type="text/javascript" src="<?= STA ?>/js/upload/jquery_form.js"></script>
 </head>
 <body>
-<div class="x-nav">
-          <span class="layui-breadcrumb">
-            <a>
-              <cite>生产计划导入</cite></a>
-          </span>
-</div>
+<!--<div class="x-nav">-->
+<!--          <span class="layui-breadcrumb">-->
+<!--            <a>-->
+<!--              <cite>生产计划导入</cite></a>-->
+<!--          </span>-->
+<!--</div>-->
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -35,19 +35,19 @@
 									<div class="layui-row">
 										<form method="post" enctype="multipart/form-data" class="layui-form" style="margin-top: 15px" action="" name="basic_validate" id="tab">
 											<div class="layui-form-item">
-												<label for="L_pass" class="layui-form-label" style="width: 10%;">
-													<span class="x-red">*</span>组别信息
-												</label>
-												<div class="layui-input-inline" style="width: 100px;">
-													<select name="zuname" id="zuname" lay-verify="zuname">
-														<?php if (isset($tidlist) && !empty($tidlist)) { ?>
-															<option value="">请选择</option>
-															<?php foreach ($tidlist as $k => $v) : ?>
-																<option value="<?= $v['lname'] ?>"><?= $v['lname'] ?></option>
-															<?php endforeach; ?>
-														<?php } ?>
-													</select>
-												</div>
+<!--												<label for="L_pass" class="layui-form-label" style="width: 10%;">-->
+<!--													<span class="x-red">*</span>组别信息-->
+<!--												</label>-->
+<!--												<div class="layui-input-inline" style="width: 100px;">-->
+<!--													<select name="zuname" id="zuname" lay-verify="zuname">-->
+<!--														--><?php //if (isset($tidlist) && !empty($tidlist)) { ?>
+<!--															<option value="">请选择</option>-->
+<!--															--><?php //foreach ($tidlist as $k => $v) : ?>
+<!--																<option value="--><?//= $v['lname'] ?><!--">--><?//= $v['lname'] ?><!--</option>-->
+<!--															--><?php //endforeach; ?>
+<!--														--><?php //} ?>
+<!--													</select>-->
+<!--												</div>-->
 												<label for="L_pass" class="layui-form-label" style="width: 10%;">
 													<span class="x-red">*</span>计划时间
 												</label>
@@ -55,18 +55,21 @@
 													<input id="jihuariqi" name="jihuariqi" lay-verify="jihuariqi"
 														   autocomplete="off" class="layui-input">
 												</div>
-												<label for="L_pass" class="layui-form-label" style="width: 10%;">
-													<span class="x-red">*</span>计划文档
+												<input type="hidden" id="zuname" name="zuname" lay-verify="zuname" value="<?php echo $zuname ?>">
+												<label for="L_pass" class="layui-form-label" style="width: 10%;padding: 0px 15px;">
+													<button type="button" class="layui-btn" id="upload1">导入文档</button>
 												</label>
 												<div class="layui-input-inline" style="width: 400px;">
-													<button type="button" class="layui-btn" id="upload1">上传文档</button>
-													<div class="layui-upload-list">
 														<input type="hidden" name="excelwendang" id="excelwendang" lay-verify="excelwendang" autocomplete="off"
 															   class="layui-input">
 														<input type="text" name="excelwendang1" id="excelwendang1" readonly lay-verify="excelwendang1" autocomplete="off"
 															   class="layui-input">
-													</div>
 												</div>
+											</div>
+											<div class="layui-form-item">
+												<label for="L_pass" class="layui-form-label" style="width: 10%;">
+													<span class="x-red">*</span>温馨提示:导入时间会根据文件大小有区别，请耐心等候！当出现"处理完成"字样，就表示已经导入成功了。
+												</label>
 											</div>
 											<div class="layui-form-item">
 												<label for="L_repass" class="layui-form-label" style="width: 90%;">
@@ -134,8 +137,11 @@
 				//自定义验证规则
 				form.verify({
 					zuname: function (value) {
-						if ($("#zuname option:selected").val() == "") {
-							return '请选择选择组别信息。';
+						// if ($("#zuname option:selected").val() == "") {
+						// 	return '请选择选择组别信息。';
+						// }
+						if ($('#zuname').val() == "") {
+							return '请录入组别信息。';
 						}
 					},
 					excelwendang: function (value) {
