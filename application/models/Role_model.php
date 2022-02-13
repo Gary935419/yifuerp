@@ -494,6 +494,13 @@ class Role_model extends CI_Model
 		return $this->db->query($sql)->result_array();
 	}
 
+	public function gettidlistpinmingkuanhao($kuanhao)
+	{
+		$kuanhao = $this->db->escape($kuanhao);
+		$sql = "SELECT * FROM `erp_yuanfuliaopinghengbian` where kuanhao = $kuanhao ";
+		return $this->db->query($sql)->result_array();
+	}
+
 	public function goods_save_edit_yusuan($name1,$name2,$name3,$name4,$name5,$name6,$name7,$infomation,$status,$state,$kid,$kehuming,$riqi,$shengcanshuliang,$sunhao,$xiaoji,$jiagongfeidanjia,$jiagongfeiyongliang,$ercijiagongfeidanjia,$ercijiagongfeiyongliang,$jianpinfeidanjia,$jianpinfeiyongliang,$tongguanfeidanjia,$tongguanfeiyongliang,$mianliaojiancedanjia,$mianliaojianceyongliang,$yunfeidanjia,$yunfeiyongliang,$qitadanjia,$qitayongliang,$add_time)
 	{
 		$name1 = $this->db->escape($name1);
@@ -873,6 +880,14 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_shengcanjihua` where zhipinfanhao=$zhipinfanhao and zuname=$zuname and jihuariqi=$jihuariqi ";
 		return $this->db->query($sql)->row_array();
 	}
+	public function getroleByname1_zhipinfanhaonew($hetonghao,$kuanhao,$riqi)
+	{
+		$hetonghao = $this->db->escape($hetonghao);
+		$kuanhao = $this->db->escape($kuanhao);
+		$riqi = $this->db->escape($riqi);
+		$sql = "SELECT * FROM `erp_yuanfuliaopinghengbian` where hetonghao=$hetonghao and kuanhao=$kuanhao and riqi=$riqi ";
+		return $this->db->query($sql)->row_array();
+	}
 	public function getroleByname1_jihuariqi($jihuariqi)
 	{
 		$jihuariqi = $this->db->escape($jihuariqi);
@@ -1010,7 +1025,7 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
-	public function role_saveerp_shengcanjihuadate($sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31,$heji,$zengjian,$danjia)
+	public function role_saveerp_shengcanjihuadate($sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31,$heji,$zengjian,$shuoming,$danjia)
 	{
 		$sid = $this->db->escape($sid);
 		$add_time = $this->db->escape($add_time);
@@ -1048,8 +1063,44 @@ class Role_model extends CI_Model
 		$y31 = $this->db->escape($y31);
 		$heji = $this->db->escape($heji);
 		$zengjian = $this->db->escape($zengjian);
+		$shuoming = $this->db->escape($shuoming);
 		$danjia = $this->db->escape($danjia);
-		$sql = "INSERT INTO `erp_shengcanjihuadate` (heji,zengjian,danjia,newren,sid,addtime,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y16,y17,y18,y19,y20,y21,y22,y23,y24,y25,y26,y27,y28,y29,y30,y31) VALUES ($heji,$zengjian,$danjia,$user_name,$sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31)";
+		$sql = "INSERT INTO `erp_shengcanjihuadate` (shuoming,heji,zengjian,danjia,newren,sid,addtime,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y16,y17,y18,y19,y20,y21,y22,y23,y24,y25,y26,y27,y28,y29,y30,y31) VALUES ($shuoming,$heji,$zengjian,$danjia,$user_name,$sid,$add_time,$y1,$y2,$y3,$y4,$y5,$y6,$y7,$y8,$y9,$y10,$y11,$y12,$y13,$y14,$y15,$y16,$y17,$y18,$y19,$y20,$y21,$y22,$y23,$y24,$y25,$y26,$y27,$y28,$y29,$y30,$y31)";
+		$this->db->query($sql);
+		$rid=$this->db->insert_id();
+		return $rid;
+	}
+	public function role_saveerp_yuanfuliaopinggheng($xianghao,$pinming,$pinfan,$sehao,$guige,$danwei,$tidanshu,$qingdianshu,$yangzhishi,$shiji,$sunhao,$jianshu,$sunhaoyongliang,$zhishiyongliang,$shijiyongliang,$shengyu,$daoliaori,$beizhu,$buzu,$hetonghao,$kuanhao,$riqi,$excelwendang,$add_time)
+	{
+		$xianghao = $this->db->escape($xianghao);
+		$pinming = $this->db->escape($pinming);
+		$pinfan = $this->db->escape($pinfan);
+		$sehao = $this->db->escape($sehao);
+		$guige = $this->db->escape($guige);
+		$danwei = $this->db->escape($danwei);
+		$tidanshu = $this->db->escape($tidanshu);
+		$qingdianshu = $this->db->escape($qingdianshu);
+		$yangzhishi = $this->db->escape($yangzhishi);
+		$shiji = $this->db->escape($shiji);
+
+		$sunhao = $this->db->escape($sunhao);
+		$jianshu = $this->db->escape($jianshu);
+		$sunhaoyongliang = $this->db->escape($sunhaoyongliang);
+		$zhishiyongliang = $this->db->escape($zhishiyongliang);
+		$shijiyongliang = $this->db->escape($shijiyongliang);
+		$shengyu = $this->db->escape($shengyu);
+		$daoliaori = $this->db->escape($daoliaori);
+		$beizhu = $this->db->escape($beizhu);
+
+		$buzu = $this->db->escape($buzu);
+		$hetonghao = $this->db->escape($hetonghao);
+		$kuanhao = $this->db->escape($kuanhao);
+		$riqi = $this->db->escape($riqi);
+		$excelwendang = $this->db->escape($excelwendang);
+		$add_time = $this->db->escape($add_time);
+		$user_name = $this->db->escape($_SESSION['user_name']);
+
+		$sql = "INSERT INTO `erp_yuanfuliaopinghengbian` (newren,addtime,xianghao,pinming,pinfan,sehao,guige,danwei,tidanshu,qingdianshu,yangzhishi,shiji,sunhao,jianshu,sunhaoyongliang,zhishiyongliang,shijiyongliang,shengyu,daoliaori,beizhu,buzu,hetonghao,kuanhao,riqi,excelwendang) VALUES ($user_name,$add_time,$xianghao,$pinming,$pinfan,$sehao,$guige,$danwei,$tidanshu,$qingdianshu,$yangzhishi,$shiji,$sunhao,$jianshu,$sunhaoyongliang,$zhishiyongliang,$shijiyongliang,$shengyu,$daoliaori,$beizhu,$buzu,$hetonghao,$kuanhao,$riqi,$excelwendang)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;
@@ -1094,5 +1145,26 @@ class Role_model extends CI_Model
 		$sid = $this->db->escape($sid);
 		$sql = "SELECT * FROM `erp_shengcanjihuadate` where sid=$sid ";
 		return $this->db->query($sql)->row_array();
+	}
+
+	public function getjihuariqizuname($zuname,$jihuariqi)
+	{
+		$zuname = $this->db->escape($zuname);
+		$jihuariqi = $this->db->escape($jihuariqi);
+		$sql = "SELECT * FROM `erp_shengcanjihua` where zuname=$zuname and jihuariqi=$jihuariqi ";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getjihuariqizunamedelete($sid)
+	{
+		$sid = $this->db->escape($sid);
+		$sql = "DELETE FROM erp_shengcanjihuadate WHERE sid = $sid";
+		return $this->db->query($sql);
+	}
+	public function getjihuariqizunamedelete1($zuname,$jihuariqi)
+	{
+		$zuname = $this->db->escape($zuname);
+		$jihuariqi = $this->db->escape($jihuariqi);
+		$sql = "DELETE FROM erp_shengcanjihua where zuname=$zuname and jihuariqi=$jihuariqi ";
+		return $this->db->query($sql);
 	}
 }

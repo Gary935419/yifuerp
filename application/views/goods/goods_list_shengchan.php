@@ -92,6 +92,7 @@
 							<th>31</th>
 							<th>合计</th>
 							<th>增减</th>
+							<th>说明</th>
 							<th>单价</th>
                         </thead>
                         <tbody>
@@ -147,6 +148,7 @@
 									<td><?= $once['y31'] ?></td>
 									<td><?= $once['heji'] ?></td>
 									<td><?= $once['zengjian'] ?></td>
+									<td><?= $once['shuoming'] ?></td>
 									<td><?= $once['danjia'] ?></td>
           <!--                          <td class="td-manage">-->
           <!--                              <button class="layui-btn layui-btn-normal"-->

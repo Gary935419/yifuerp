@@ -524,6 +524,10 @@ class Goods extends CI_Controller
 			} else {
 				$list[$k]['openflg1'] = 0;
 			}
+
+			$kuanhaoallone = $this->role->gettidlistpinmingkuanhao($v['kuanhao']);
+			$list[$k]['excelwendang'] = empty($kuanhaoallone[0]['excelwendang'])?'#':$kuanhaoallone[0]['excelwendang'];
+
 		}
 		$data["list"] = $list;
 		$this->display("goods/goods_list1", $data);
@@ -5255,6 +5259,7 @@ class Goods extends CI_Controller
 			$list[$k]['y31'] = $rowdata['y31'];
 			$list[$k]['heji'] = $rowdata['heji'];
 			$list[$k]['zengjian'] = $rowdata['zengjian'];
+			$list[$k]['shuoming'] = $rowdata['shuoming'];
 			$list[$k]['danjia'] = $rowdata['danjia'];
 		}
 		$data["list"] = $list;
@@ -6463,6 +6468,15 @@ class Goods extends CI_Controller
 		}
 		$zuname = isset($_POST["zuname"]) ? $_POST["zuname"] : '';
 		$jihuariqi = isset($_POST["jihuariqi"]) ? $_POST["jihuariqi"] : '';
+
+		$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+		if (!empty($getjihuariqizuname)){
+			foreach ($getjihuariqizuname as $k=>$v){
+				$sid = $v['id'];
+				$this->role->getjihuariqizunamedelete($sid);
+			}
+			$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+		}
 		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
 		$inputFileName = "./static/uploads/".substr($_POST["excelwendang"], -17);
 		date_default_timezone_set('PRC');
@@ -6508,13 +6522,26 @@ class Goods extends CI_Controller
 			$naqi = $res_arr[$i][4];
 			if ($zhipinfanhao == "产值"){
 				$htype = 1;
-				$chanliangzhi = $res_arr[$i][39];
+				$chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
 			}else{
 				if (empty($zhipinfanhao) || empty($pinming) || empty($qihuashu) || empty($naqi)){
 					continue;
 				}
 				$htype = 0;
 				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
 			}
 
 			$shangyue = $res_arr[$i][5];
@@ -6526,13 +6553,14 @@ class Goods extends CI_Controller
 			}
 			$naqi = strtotime($naqi);
 			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
 			$this->role->role_saveerp_shengcanjihuadate(
 				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
 				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
 				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
 				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
 				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
-				,$res_arr[$i][36],$res_arr[$i][37],$res_arr[$i][38],$res_arr[$i][39]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
 			);
 		}
 		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
@@ -6558,5 +6586,97 @@ class Goods extends CI_Controller
 		}
 		$data["list"] = $list;
 		$this->display("goods/goods_list_shengchannew", $data);
+	}
+
+	public function goods_add_new_yuanfuliao_excel()
+	{
+		$kuanhao = isset($_GET['kuanhao']) ? $_GET['kuanhao'] : '';
+		$data['kuanhao'] = $kuanhao;
+		$this->display("goods/goods_add_new_yuanfuliao_excel", $data);
+	}
+	public function goods_save_yuanfuliao_excel()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$kuanhao = isset($_POST["kuanhao"]) ? $_POST["kuanhao"] : '';
+
+
+//		$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+//		if (!empty($getjihuariqizuname)){
+//			foreach ($getjihuariqizuname as $k=>$v){
+//				$sid = $v['id'];
+//				$this->role->getjihuariqizunamedelete($sid);
+//			}
+//			$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+//		}
+		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
+		$inputFileName = "./static/uploads/".substr($_POST["excelwendang"], -16);
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcelReader = $objReader->load($inputFileName);
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		$reader = $objPHPExcelReader->getWorksheetIterator();
+		//循环读取sheet
+		foreach($reader as $sheet) {
+			//读取表内容
+			$content = $sheet->getRowIterator();
+			//逐行处理
+			$res_arr = array();
+			foreach($content as $key => $items) {
+				$rows = $items->getRowIndex();              //行
+				$columns = $items->getCellIterator();       //列
+				$row_arr = array();
+				//确定从哪一行开始读取
+				if($rows < 13){
+					continue;
+				}
+				//逐列读取
+				foreach($columns as $head => $cell) {
+					//获取cell中数据
+					$data = $cell->getValue();
+					$row_arr[] = $data;
+				}
+				$res_arr[] = $row_arr;
+			}
+		}
+		for ($i=0; $i<=66; $i++)
+		{
+			$add_time = time();
+			if ($i >= 3){
+				if (empty($res_arr[$i][0]) || empty($res_arr[$i][1]) || empty($res_arr[$i][2]) || empty($res_arr[$i][3])){
+					continue;
+				}
+				$hetonghao = $res_arr[0][2];
+				$kuanhao = $res_arr[0][6];
+				$riqi = strtotime($res_arr[0][10]);
+				$zhishiyongliang = floatval($res_arr[$i][8]) * floatval($res_arr[$i][11]);
+				$shijiyongliang = floatval($res_arr[$i][8]) * floatval($res_arr[$i][12]);
+				$shengyu = floatval($res_arr[$i][6]) - floatval($shijiyongliang);
+				$this->role->role_saveerp_yuanfuliaopinggheng(
+					$res_arr[$i][0],$res_arr[$i][1],$res_arr[$i][2],$res_arr[$i][3],$res_arr[$i][4],$res_arr[$i][5]
+					,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+					,$res_arr[$i][12],$zhishiyongliang,$shijiyongliang,$shengyu,$res_arr[$i][15],$res_arr[$i][17]
+					,$res_arr[$i][18],$hetonghao,$kuanhao,$riqi,$excelwendang,$add_time
+				);
+			}else{
+				$hetonghao = $res_arr[$i][2];
+				$kuanhao = $res_arr[$i][6];
+				$riqi = strtotime($res_arr[$i][10]);
+				$role_info = $this->role->getroleByname1_zhipinfanhaonew($hetonghao,$kuanhao,$riqi);
+				if (!empty($role_info)) {
+					continue;
+				}
+			}
+		}
+		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
 	}
 }

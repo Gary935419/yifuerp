@@ -40,7 +40,7 @@
 							<th>款号</th>
 							<th>日期</th>
 							<th>负责人</th>
-							<th>表单状态</th>
+<!--							<th>表单状态</th>-->
 							<th>操作</th>
 						</thead>
 						<tbody>
@@ -51,41 +51,35 @@
 									<td><?= $once['kuanhao'] ?></td>
 									<td><?= date('Y-m-d', $once['qianding']) ?></td>
 									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
-									<?php if (empty($once['openflg']) || empty($once['openflg1'])){ ?>
-										<td style="color: red;">未添加</td>
-									<?php }else{ ?>
-										<td style="color: green;">已添加</td>
-									<?php } ?>
+<!--									--><?php //if (empty($once['openflg']) || empty($once['openflg1'])){ ?>
+<!--										<td style="color: red;">未添加</td>-->
+<!--									--><?php //}else{ ?>
+<!--										<td style="color: green;">已添加</td>-->
+<!--									--><?php //} ?>
 									<td class="td-manage">
-										<?php if ($once['openflg']>=1){ ?>
+										<?php if ($once['excelwendang'] == "#"){ ?>
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('规格编辑','<?= RUN . '/goods/goods_edit_new1?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="iconfont">&#xe69e;</i>  规格编辑
+													onclick="xadmin.open('原辅料导入','<?= RUN . '/goods/goods_add_new_yuanfuliao_excel?kuanhao=' ?>'+'<?= $once['kuanhao'] ?>',900,500)">
+												<i class="iconfont">&#xe74a;</i> 导入
 											</button>
+
+											<a style="margin-left: 10px;" href="#">
+												<button class="layui-btn layui-btn-normal" style="background-color: #c9c9c9;">
+													<i class="iconfont">&#xe74a;</i>  下载
+												</button>
+											</a>
 										<?php }else{ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('规格添加','<?= RUN . '/goods/goods_add_new1?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="iconfont">&#xe69e;</i>  规格添加
+											<button class="layui-btn layui-btn-normal" style="background-color: #c9c9c9;">
+												<i class="iconfont">&#xe74a;</i> 导入
 											</button>
-										<?php } ?>
-										<?php if ($once['openflg1']>=1){ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('平衡表编辑','<?= RUN . '/goods/goods_edit_new22?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>平衡表编辑
-											</button>
-										<?php }else{ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('平衡表添加','<?= RUN . '/goods/goods_add_new22?id=' ?>'+'<?= $once['id'] ?>')">
-												<i class="layui-icon">&#xe642;</i>平衡表添加
-											</button>
-										<?php } ?>
-										<?php if ($once['openflg1']>=1 && $once['openflg']>=1){ ?>
-											<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv?id='.$once['id'] ?>">
+
+											<a style="margin-left: 10px;" href="<?= empty($once['excelwendang'])?'#':$once['excelwendang'] ?>">
 												<button class="layui-btn layui-btn-normal">
-													<i class="iconfont">&#xe74a;</i>  导出
+													<i class="iconfont">&#xe74a;</i>  下载
 												</button>
 											</a>
 										<?php } ?>
+
 									</td>
 								</tr>
 							<?php endforeach; ?>
