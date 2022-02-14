@@ -53,11 +53,11 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th style="min-width: 100px">时间</th>
-                            <th style="min-width: 200px">款号</th>
-                            <th style="min-width: 200px">客户</th>
-                            <th style="min-width: 100px">数量</th>
-							<th style="min-width: 200px">交期</th>
+                            <th style="min-width: 50px">时间</th>
+                            <th style="min-width: 100px">款号</th>
+                            <th style="min-width: 100px">客户</th>
+                            <th style="min-width: 50px">数量</th>
+							<th style="min-width: 80px">交期</th>
 							<th>上月</th>
 							<th>1</th>
 							<th>2</th>
@@ -100,18 +100,18 @@
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
 									<?php if ($once['zhipinfanhao'] == "产值"){ ?>
+										<td style="min-width: 50px"></td>
+										<td style="min-width: 100px"><?= $once['zhipinfanhao'] ?></td>
 										<td style="min-width: 100px"></td>
-										<td style="min-width: 200px"><?= $once['zhipinfanhao'] ?></td>
-										<td style="min-width: 200px"></td>
-										<td style="min-width: 100px"></td>
-										<td style="min-width: 200px"></td>
+										<td style="min-width: 50px"></td>
+										<td style="min-width: 80px"></td>
 										<td></td>
 									<?php }else{ ?>
-										<td style="min-width: 100px"><?= $once['jihuariqi'] ?></td>
-										<td style="min-width: 200px"><?= $once['zhipinfanhao'] ?></td>
-										<td style="min-width: 200px"><?= $once['pinming'] ?></td>
-										<td style="min-width: 100px"><?= $once['qihuashu'] ?></td>
-										<td style="min-width: 200px"><?= date('Y-m-d', $once['naqi']) ?></td>
+										<td style="min-width: 50px"><?= $once['jihuariqi'] ?></td>
+										<td style="min-width: 100px"><?= $once['zhipinfanhao'] ?></td>
+										<td style="min-width: 100px"><?= $once['pinming'] ?></td>
+										<td style="min-width: 50px"><?= $once['qihuashu'] ?></td>
+										<td style="min-width: 80px"><?= date('Y-m-d', $once['naqi']) ?></td>
 										<td><?= $once['shangyue'] ?></td>
 									<?php } ?>
 

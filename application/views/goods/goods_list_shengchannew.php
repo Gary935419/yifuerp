@@ -25,16 +25,23 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-body ">
-					<input type="hidden" name="zuname" id="zuname" value="<?php echo $zuname ?>">
-					<div class="layui-inline layui-show-xs-block">
-						<button class="layui-btn layui-card-header" style="float: right;"
-								onclick="xadmin.open('生产计划导入','<?= RUN . '/goods/goods_add_new_shengchan_excel?zuname=' ?>'+'<?php echo $zuname ?>',900,500)">
-							<i class="iconfont">&#xe74a;</i> 导入
-						</button>
-					</div>
-                </div>
-
+				<div class="layui-card-body ">
+					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list_shengchannew' ?>">
+						<div class="layui-inline layui-show-xs-block">
+							<input type="text" name="jihuariqi" id="jihuariqi" value="<?php echo $jihuariqi ?>"
+								   placeholder="计划日期" autocomplete="off" class="layui-input">
+						</div>
+						<input type="hidden" name="zuname" id="zuname" value="<?php echo $zuname ?>">
+						<div class="layui-inline layui-show-xs-block">
+							<button class="layui-btn" lay-submit="" lay-filter="sreach"><i
+										class="layui-icon">&#xe615;</i></button>
+						</div>
+					</form>
+				</div>
+				<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
+						onclick="xadmin.open('生产计划导入','<?= RUN . '/goods/goods_add_new_shengchan_excel?zuname=' ?>'+'<?php echo $zuname ?>',900,500)">
+					<i class="iconfont">&#xe74a;</i> 导入
+				</button>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>

@@ -930,10 +930,13 @@ class Role_model extends CI_Model
 		return $this->db->query($sql)->row_array();
 
 	}
-	public function getgoodsAllPageshengchan($zuname)
+	public function getgoodsAllPageshengchan($zuname,$jihuariqi)
 	{
 		$sqlw = " where 1=1 and htype != 1 and zuname= '$zuname' ";
 
+		if (!empty($jihuariqi)) {
+			$sqlw .= " and jihuariqi = '$jihuariqi'";
+		}
 		$sql = "SELECT distinct jihuariqi FROM `erp_shengcanjihua`" . $sqlw;
 // print_r($sql);
 // 		$number = $this->db->query($sql)->row()->number;
@@ -941,9 +944,12 @@ class Role_model extends CI_Model
 // 		print_r();die;
 		return ceil(count($number) / 10) == 0 ? 1 : ceil(count($number) / 10);
 	}
-	public function getgoodsAllNewshengchan($pg,$zuname)
+	public function getgoodsAllNewshengchan($pg,$zuname,$jihuariqi)
 	{
 		$sqlw = " where 1=1 and htype != 1 and  zuname= '$zuname' ";
+		if (!empty($jihuariqi)) {
+			$sqlw .= " and jihuariqi = '$jihuariqi'";
+		}
 		$start = ($pg - 1) * 10;
 		$stop = 10;
 

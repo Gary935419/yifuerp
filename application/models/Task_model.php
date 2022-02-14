@@ -680,7 +680,7 @@ class Task_model extends CI_Model
 	}
 	public function getzulist()
 	{
-		$sql = "SELECT * FROM `erp_zubie` order by id desc ";
+		$sql = "SELECT * FROM `erp_zubie` order by id ";
 		return $this->db->query($sql)->result_array();
 	}
 	public function gettidlistpinming_cai_zhuangxiang($id,$msg,$xiangshu)

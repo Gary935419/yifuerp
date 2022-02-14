@@ -6567,16 +6567,17 @@ class Goods extends CI_Controller
 	}
 	public function goods_list_shengchannew()
 	{
-
+		$jihuariqi = isset($_GET['jihuariqi']) ? $_GET['jihuariqi'] : '';
 		$zuname = isset($_GET['zuname']) ? $_GET['zuname'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-		$allpage = $this->role->getgoodsAllPageshengchan($zuname);
+		$allpage = $this->role->getgoodsAllPageshengchan($zuname,$jihuariqi);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->role->getgoodsAllNewshengchan($page,$zuname);
+		$list = $this->role->getgoodsAllNewshengchan($page,$zuname,$jihuariqi);
 		$data["zuname"] = $zuname;
+		$data["jihuariqi"] = $jihuariqi;
 		foreach ($list as $k=>$v){
 			$time = $v['jihuariqi'];
 			$nums = $this->role->getgoodsAllPageshengchannew1($zuname,$time);
