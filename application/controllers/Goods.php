@@ -4825,9 +4825,19 @@ class Goods extends CI_Controller
 			$list[$k]['shuoming'] = $rowdata['shuoming'];
 			$list[$k]['danjia'] = $rowdata['danjia'];
 		}
+		
 		$data["list"] = $list;
 		$this->display("goods/goods_list_shengchan", $data);
 	}
+	function getchanzhi($id,$list){
+        $onces=0;
+        foreach ($list as $num => $once){
+            if($once[$id]>0){
+               $onces=$onces+$once[$id]*$once['danjia']; 
+            }
+        }
+        return $onces;
+    }
 	public function goods_edit_new_shengchan()
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
@@ -6085,11 +6095,12 @@ class Goods extends CI_Controller
 			$naqi = $res_arr[$i][4];
 			if ($zhipinfanhao == "产值"){
 				$htype = 1;
-				$chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
-					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
-					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
-					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
-					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
 
 				$heji = 0;
 				$zengjian = $chanliangzhi;
@@ -6145,8 +6156,55 @@ class Goods extends CI_Controller
 			$time = $v['jihuariqi'];
 			$nums = $this->role->getgoodsAllPageshengchannew1($zuname,$time);
 			$list[$k]['kuanhaoliang'] = $nums;
-			$nums1 = $this->role->getgoodsAllPageshengchannew12($zuname,$time);
-			$list[$k]['chanliangzhi'] = empty($nums1['chanliangzhi'])?0:$nums1['chanliangzhi'];
+			
+    		$zunamenew = $v['zuname'];
+    		$jihuariqinew = $v['jihuariqi'];
+    		$listnew = $this->role->getgoodsAllNewshengchandetails(1,$zunamenew,$jihuariqinew);
+    		foreach ($listnew as $kk=>$vv){
+    			$sid = $vv['id'];
+    			$rowdata = $this->role->geterp_shengcanjihuadate($sid);
+    			$listnew[$kk]['y1'] = $rowdata['y1'];
+    			$listnew[$kk]['y2'] = $rowdata['y2'];
+    			$listnew[$kk]['y3'] = $rowdata['y3'];
+    			$listnew[$kk]['y4'] = $rowdata['y4'];
+    			$listnew[$kk]['y5'] = $rowdata['y5'];
+    			$listnew[$kk]['y6'] = $rowdata['y6'];
+    			$listnew[$kk]['y7'] = $rowdata['y7'];
+    			$listnew[$kk]['y8'] = $rowdata['y8'];
+    			$listnew[$kk]['y9'] = $rowdata['y9'];
+    			$listnew[$kk]['y10'] = $rowdata['y10'];
+    			$listnew[$kk]['y11'] = $rowdata['y11'];
+    			$listnew[$kk]['y12'] = $rowdata['y12'];
+    			$listnew[$kk]['y13'] = $rowdata['y13'];
+    			$listnew[$kk]['y14'] = $rowdata['y14'];
+    			$listnew[$kk]['y15'] = $rowdata['y15'];
+    			$listnew[$kk]['y16'] = $rowdata['y16'];
+    			$listnew[$kk]['y17'] = $rowdata['y17'];
+    			$listnew[$kk]['y18'] = $rowdata['y18'];
+    			$listnew[$kk]['y19'] = $rowdata['y19'];
+    			$listnew[$kk]['y20'] = $rowdata['y20'];
+    			$listnew[$kk]['y21'] = $rowdata['y21'];
+    			$listnew[$kk]['y22'] = $rowdata['y22'];
+    			$listnew[$kk]['y23'] = $rowdata['y23'];
+    			$listnew[$kk]['y24'] = $rowdata['y24'];
+    			$listnew[$kk]['y25'] = $rowdata['y25'];
+    			$listnew[$kk]['y26'] = $rowdata['y26'];
+    			$listnew[$kk]['y27'] = $rowdata['y27'];
+    			$listnew[$kk]['y28'] = $rowdata['y28'];
+    			$listnew[$kk]['y29'] = $rowdata['y29'];
+    			$listnew[$kk]['y30'] = $rowdata['y30'];
+    			$listnew[$kk]['y31'] = $rowdata['y31'];
+    			$listnew[$kk]['heji'] = $rowdata['heji'];
+    			$listnew[$kk]['zengjian'] = $rowdata['zengjian'];
+    			$listnew[$kk]['shuoming'] = $rowdata['shuoming'];
+    			$listnew[$kk]['danjia'] = $rowdata['danjia'];
+    		}
+    		$chazhis=0;
+	        for ($ii=1;$ii<32;$ii++) {
+	             $chazhi=$this->getchanzhi('y'.$ii,$listnew);
+            	 $chazhis=$chazhis+$chazhi;
+	        }
+			$list[$k]['chanliangzhi'] = $chazhis;
 		}
 		$data["list"] = $list;
 		$this->display("goods/goods_list_shengchannew", $data);
@@ -6166,15 +6224,9 @@ class Goods extends CI_Controller
 		}
 		$kuanhao = isset($_POST["kuanhao"]) ? $_POST["kuanhao"] : '';
 
-
-//		$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
-//		if (!empty($getjihuariqizuname)){
-//			foreach ($getjihuariqizuname as $k=>$v){
-//				$sid = $v['id'];
-//				$this->role->getjihuariqizunamedelete($sid);
-//			}
-//			$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
-//		}
+		$this->role->getjihuariqizunamedelete1guige($kuanhao);
+		$this->role->getjihuariqizunamedelete1pinghengbiao($kuanhao);
+		
 		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
 		$inputFileName = "./static/uploads/".substr($_POST["excelwendang"], -16);
 		date_default_timezone_set('PRC');
@@ -6331,12 +6383,12 @@ class Goods extends CI_Controller
 				$res_arr[] = $row_arr;
 			}
 		}
-
+		
 		for ($i=0; $i<=66; $i++)
 		{
 			$add_time = time();
 			if ($i >= 3){
-				if (empty($res_arr[$i][0]) || empty($res_arr[$i][1]) || empty($res_arr[$i][2]) || empty($res_arr[$i][3])){
+				if (empty($res_arr[$i][0]) && empty($res_arr[$i][1]) && empty($res_arr[$i][2]) && empty($res_arr[$i][3])){
 					continue;
 				}
 				$hetonghao = $res_arr[0][2];
@@ -6344,7 +6396,7 @@ class Goods extends CI_Controller
 				$riqi = strtotime($res_arr[0][10]);
 				$zhishiyongliang = floatval($res_arr[$i][8]) * floatval($res_arr[$i][11]);
 				$shijiyongliang = floatval($res_arr[$i][9]) * floatval($res_arr[$i][12]);
-				$shengyu = floatval($res_arr[$i][6]) - floatval($shijiyongliang);
+				$shengyu = floatval($res_arr[$i][6]) - floatval($zhishiyongliang);
 				$this->role->role_saveerp_yuanfuliaopinggheng(
 					$res_arr[$i][0],$res_arr[$i][1],$res_arr[$i][2],$res_arr[$i][3],$res_arr[$i][4],$res_arr[$i][5]
 					,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]

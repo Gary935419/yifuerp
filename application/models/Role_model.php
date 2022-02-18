@@ -965,13 +965,13 @@ class Role_model extends CI_Model
 		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua`" . $sqlw;
 		$number = $this->db->query($sql)->row()->number;
 		
-		return ceil($number / 30) == 0 ? 1 : ceil($number / 30);
+		return ceil($number / 50) == 0 ? 1 : ceil($number / 50);
 	}
 	public function getgoodsAllNewshengchandetails($pg,$zuname,$jihuariqi)
 	{
 		$sqlw = " where 1=1 and zuname= '$zuname' and jihuariqi= '$jihuariqi' ";
-		$start = ($pg - 1) * 30;
-		$stop = 30;
+		$start = ($pg - 1) * 50;
+		$stop = 50;
 
 		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
@@ -1171,6 +1171,20 @@ class Role_model extends CI_Model
 		$zuname = $this->db->escape($zuname);
 		$jihuariqi = $this->db->escape($jihuariqi);
 		$sql = "DELETE FROM erp_shengcanjihua where zuname=$zuname and jihuariqi=$jihuariqi ";
+		return $this->db->query($sql);
+	}
+	
+	public function getjihuariqizunamedelete1guige($kuanhao)
+	{
+		$kuanhao = $this->db->escape($kuanhao);
+		
+		$sql = "DELETE FROM erp_yuanfuliaoguige where kuanhao=$kuanhao ";
+		return $this->db->query($sql);
+	}
+	public function getjihuariqizunamedelete1pinghengbiao($kuanhao)
+	{
+		$kuanhao = $this->db->escape($kuanhao);
+		$sql = "DELETE FROM erp_yuanfuliaopinghengbian where kuanhao=$kuanhao ";
 		return $this->db->query($sql);
 	}
 }

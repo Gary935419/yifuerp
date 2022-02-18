@@ -21,7 +21,7 @@ class Order_model extends CI_Model
 
 	public function getOrder2Count()
 	{
-		$sqlw = " where 1=1 ";
+		$sqlw = " where 1=1 and htype!=1";
 		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua` " . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;

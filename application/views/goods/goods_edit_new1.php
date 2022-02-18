@@ -34,21 +34,21 @@
 													<span class="x-red">*</span>规格
 												</label>
 												<div class="layui-input-inline" style="width: 188px;">
-													<input name="guige[]" lay-verify="guige" value="<?= $v['guige'] ?>"
+													<input readonly="readonly" name="guige[]" lay-verify="guige" value="<?= $v['guige'] ?>"
 														   autocomplete="off" class="layui-input">
 												</div>
 												<label for="L_pass" class="layui-form-label" style="width: 8%;">
 													<span class="x-red">*</span>色号
 												</label>
 												<div class="layui-input-inline" style="width: 188px;">
-													<input name="sehao[]" lay-verify="sehao" value="<?= $v['sehao'] ?>"
+													<input readonly="readonly" name="sehao[]" lay-verify="sehao" value="<?= $v['sehao'] ?>"
 														   autocomplete="off" class="layui-input">
 												</div>
 												<label for="L_pass" class="layui-form-label" style="width: 8%;">
 													<span class="x-red">*</span>数值
 												</label>
 												<div class="layui-input-inline" style="width: 188px;">
-													<input name="shuzhi[]" lay-verify="shuzhi"
+													<input readonly="readonly" name="shuzhi[]" lay-verify="shuzhi"
 														   value="<?= $v['shuzhi'] ?>"
 														   autocomplete="off" class="layui-input">
 												</div>

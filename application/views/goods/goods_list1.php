@@ -69,7 +69,8 @@
 												</button>
 											</a>
 										<?php }else{ ?>
-											<button class="layui-btn layui-btn-normal" style="background-color: #c9c9c9;">
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('原辅料导入','<?= RUN . '/goods/goods_add_new_yuanfuliao_excel?kuanhao=' ?>'+'<?= $once['kuanhao'] ?>',900,500)">
 												<i class="iconfont">&#xe74a;</i> 导入
 											</button>
 

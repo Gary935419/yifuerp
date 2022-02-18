@@ -108,7 +108,7 @@
 												<span class="x-red">*</span>交货时间
 											</label>
 											<div class="layui-input-inline" style="width: 150px;">
-												<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi1) ?>" id="jiaohuoqi1" lay-verify="jiaohuoqi"
+												<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi1)?'':date('Y-m-d', $jiaohuoqi1) ?>" id="jiaohuoqi1" lay-verify="jiaohuoqi"
 													   autocomplete="off" class="layui-input">
 											</div>
 										</div>
@@ -142,7 +142,7 @@
 													<span class="x-red">*</span>交货时间
 												</label>
 												<div class="layui-input-inline" style="width: 150px;">
-													<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi2) ?>" id="jiaohuoqi2" lay-verify="jiaohuoqi"
+													<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi2)?'':date('Y-m-d', $jiaohuoqi2) ?>" id="jiaohuoqi2" lay-verify="jiaohuoqi"
 														   autocomplete="off" class="layui-input">
 												</div>
 											</div>
@@ -176,7 +176,7 @@
 														<span class="x-red">*</span>交货时间
 													</label>
 													<div class="layui-input-inline" style="width: 150px;">
-														<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi3) ?>" id="jiaohuoqi3" lay-verify="jiaohuoqi"
+														<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi3)?'':date('Y-m-d', $jiaohuoqi3) ?>" id="jiaohuoqi3" lay-verify="jiaohuoqi"
 															   autocomplete="off" class="layui-input">
 													</div>
 												</div>
@@ -211,7 +211,7 @@
 															<span class="x-red">*</span>交货时间
 														</label>
 														<div class="layui-input-inline" style="width: 150px;">
-															<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi4) ?>" id="jiaohuoqi4" lay-verify="jiaohuoqi"
+															<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi4)?'':date('Y-m-d', $jiaohuoqi4) ?>" id="jiaohuoqi4" lay-verify="jiaohuoqi"
 																   autocomplete="off" class="layui-input">
 														</div>
 													</div>
@@ -246,7 +246,7 @@
 																<span class="x-red">*</span>交货时间
 															</label>
 															<div class="layui-input-inline" style="width: 150px;">
-																<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi5) ?>" id="jiaohuoqi5" lay-verify="jiaohuoqi"
+																<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi5)?'':date('Y-m-d', $jiaohuoqi5) ?>" id="jiaohuoqi5" lay-verify="jiaohuoqi"
 																	   autocomplete="off" class="layui-input">
 															</div>
 														</div>
@@ -284,7 +284,7 @@
 																	<span class="x-red">*</span>交货时间
 																</label>
 																<div class="layui-input-inline" style="width: 150px;">
-																	<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi6) ?>" id="jiaohuoqi6" lay-verify="jiaohuoqi"
+																	<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi6)?'':date('Y-m-d', $jiaohuoqi6) ?>" id="jiaohuoqi6" lay-verify="jiaohuoqi"
 																		   autocomplete="off" class="layui-input">
 																</div>
 															</div>
@@ -323,7 +323,7 @@
 																		<span class="x-red">*</span>交货时间
 																	</label>
 																	<div class="layui-input-inline" style="width: 150px;">
-																		<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi7) ?>" id="jiaohuoqi7" lay-verify="jiaohuoqi"
+																		<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi7)?'':date('Y-m-d', $jiaohuoqi7) ?>" id="jiaohuoqi7" lay-verify="jiaohuoqi"
 																			   autocomplete="off" class="layui-input">
 																	</div>
 																</div>
@@ -363,7 +363,7 @@
 																			<span class="x-red">*</span>交货时间
 																		</label>
 																		<div class="layui-input-inline" style="width: 150px;">
-																			<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi8) ?>" id="jiaohuoqi8" lay-verify="jiaohuoqi"
+																			<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi8)?'':date('Y-m-d', $jiaohuoqi8) ?>" id="jiaohuoqi8" lay-verify="jiaohuoqi"
 																				   autocomplete="off" class="layui-input">
 																		</div>
 																	</div>
@@ -403,7 +403,7 @@
 																				<span class="x-red">*</span>交货时间
 																			</label>
 																			<div class="layui-input-inline" style="width: 150px;">
-																				<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi9) ?>" id="jiaohuoqi9" lay-verify="jiaohuoqi"
+																				<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi9)?'':date('Y-m-d', $jiaohuoqi9) ?>" id="jiaohuoqi9" lay-verify="jiaohuoqi"
 																					   autocomplete="off" class="layui-input">
 																			</div>
 																		</div>
@@ -444,7 +444,7 @@
 																					<span class="x-red">*</span>交货时间
 																				</label>
 																				<div class="layui-input-inline" style="width: 150px;">
-																					<input name="jiaohuoqi[]" value="<?php echo date('Y-m-d', $jiaohuoqi10) ?>" id="jiaohuoqi10" lay-verify="jiaohuoqi"
+																					<input name="jiaohuoqi[]" value="<?php echo empty($jiaohuoqi10)?'':date('Y-m-d', $jiaohuoqi10) ?>" id="jiaohuoqi10" lay-verify="jiaohuoqi"
 																						   autocomplete="off" class="layui-input">
 																				</div>
 																			</div>

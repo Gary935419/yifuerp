@@ -21,7 +21,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-body ">
+                <div class="layui-card-body" style="overflow-x: auto; overflow-y: auto; width:95%;">
 					<form method="post" class="layui-form" style="margin-top: 15px" action="" name="basic_validate" id="tab">
                     <table class="layui-table layui-form">
                         <thead>
@@ -49,25 +49,82 @@
                         <tbody>
 						<?php foreach ($list as $k=>$v){ ?>
 							<tr id="div1">
-								<td><input name="xianghao[]" id="val" value="<?= $v['xianghao'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="pinming[]" id="val1" value="<?= $v['pinming'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="pinfan[]" id="val11" value="<?= $v['pinfan'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="sehao[]" id="val111" value="<?= $v['sehao'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="guige[]" id="val1111" value="<?= $v['guige'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="danwei[]" id="val11111" value="<?= $v['danwei'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="tidanshu[]" id="val111111" value="<?= $v['tidanshu'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="qingdianshu[]" id="val1111111" value="<?= $v['qingdianshu'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangzhishi[]" id="val11111111" value="<?= $v['yangzhishi'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="shiji[]" id="val111111111" value="<?= $v['shiji'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="sunhao[]" id="val1111111111" value="<?= $v['sunhao'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="jianshu[]" id="val11111111111" value="<?= $v['jianshu'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="sunhaoyongliang[]" id="val111111111111" value="<?= $v['sunhaoyongliang'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhishiyongliang[]" value="<?= $v['zhishiyongliang'] ?>" id="val11111111111111" readonly autocomplete="off" class="layui-input"></td>
-								<td><input name="shijiyongliang[]" value="<?= $v['shijiyongliang'] ?>" id="val111111111111111" readonly autocomplete="off"  class="layui-input"></td>
-								<td><input name="buzu[]" id="val1111111111" value="<?= $v['buzu'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="shengyu[]" value="<?= $v['shengyu'] ?>" id="val1111111111111111" readonly autocomplete="off"  class="layui-input"></td>
-								<td><input name="beizhu[]" id="val1111111111" value="<?= $v['beizhu'] ?>" autocomplete="off" class="layui-input"></td>
-								<td><input name="daoliaori[]" id="val1111111111111" value="<?= $v['daoliaori'] ?>" autocomplete="off" class="layui-input"></td>
+								<td>
+								    <!--<input readonly="readonly" name="xianghao[]" id="val" value="<?= $k + 1 ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $k + 1 ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="pinming[]" id="val1" value="<?= $v['pinming'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['pinming'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="pinfan[]" id="val11" value="<?= $v['pinfan'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['pinfan'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="sehao[]" id="val111" value="<?= $v['sehao'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['sehao'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="guige[]" id="val1111" value="<?= $v['guige'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['guige'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="danwei[]" id="val11111" value="<?= $v['danwei'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['danwei'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="tidanshu[]" id="val111111" value="<?= $v['tidanshu'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['tidanshu'] ?></span>
+								</td>
+								<td>
+								<!--<input readonly="readonly" name="qingdianshu[]" id="val1111111" value="<?= $v['qingdianshu'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['qingdianshu'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="yangzhishi[]" id="val11111111" value="<?= $v['yangzhishi'] ?>" autocomplete="off" class="layui-input">-->
+								<span><?= $v['yangzhishi'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="shiji[]" id="val111111111" value="<?= $v['shiji'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['shiji'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="sunhao[]" id="val1111111111" value="<?= $v['sunhao'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['sunhao'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="jianshu[]" id="val11111111111" value="<?= $v['jianshu'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['jianshu'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="sunhaoyongliang[]" id="val111111111111" value="<?= $v['sunhaoyongliang'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['sunhaoyongliang'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="zhishiyongliang[]" value="<?= $v['zhishiyongliang'] ?>" id="val11111111111111" readonly autocomplete="off" class="layui-input">-->
+								    <span><?= $v['zhishiyongliang'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="shijiyongliang[]" value="<?= $v['shijiyongliang'] ?>" id="val111111111111111" readonly autocomplete="off"  class="layui-input">-->
+								<span><?= $v['shijiyongliang'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="buzu[]" id="val1111111111" value="<?= $v['buzu'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['buzu'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="shengyu[]" value="<?= $v['shengyu'] ?>" id="val1111111111111111" readonly autocomplete="off"  class="layui-input">-->
+								    <span><?= $v['shengyu'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="beizhu[]" id="val1111111111" value="<?= $v['beizhu'] ?>" autocomplete="off" class="layui-input">-->
+								<span><?= $v['beizhu'] ?></span>
+								</td>
+								<td>
+								    <!--<input readonly="readonly" name="daoliaori[]" id="val1111111111111" value="<?= $v['daoliaori'] ?>" autocomplete="off" class="layui-input">-->
+								    <span><?= $v['daoliaori'] ?></span>
+								</td>
 							</tr>
 						<?php } ?>
                         </tbody>

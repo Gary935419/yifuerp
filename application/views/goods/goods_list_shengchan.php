@@ -50,10 +50,10 @@
 				<!--	<i class="iconfont">&#xe74a;</i> 导出-->
 				<!--</button>-->
                 <div class="layui-card-body" style="overflow-x: auto; overflow-y: auto; width:93%;">
-                    <table class="layui-table layui-form">
-                        <thead>
+                    <table class="layui-table layui-form" style="text-align:center">
+                        <thead style="text-align:center">
                         <tr>
-                            <th style="min-width: 50px">时间</th>
+                            <th style="min-width: 50px;text-align:center">时间</th>
                             <th style="min-width: 100px">款号</th>
                             <th style="min-width: 100px">客户</th>
                             <th style="min-width: 50px">数量</th>
@@ -90,15 +90,20 @@
 							<th>29</th>
 							<th>30</th>
 							<th>31</th>
-							<th>合计</th>
-							<th>增减</th>
-							<th>说明</th>
-							<th>单价</th>
+							<th style="min-width: 50px">合计</th>
+							<th style="min-width: 50px">增减</th>
+							<th style="min-width: 50px">说明</th>
+							<th style="min-width: 50px">单价</th>
                         </thead>
                         <tbody>
+                            
                         <?php if (isset($list) && !empty($list)) { ?>
-                            <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+                            <?php 
+                            
+                            //print_r($list);
+                            //exit();
+                            foreach ($list as $num => $once): ?>
+                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>" >
 									<?php if ($once['zhipinfanhao'] == "产值"){ ?>
 										<td style="min-width: 50px"></td>
 										<td style="min-width: 100px"><?= $once['zhipinfanhao'] ?></td>
@@ -106,6 +111,19 @@
 										<td style="min-width: 50px"></td>
 										<td style="min-width: 80px"></td>
 										<td></td>
+										<?php $chazhis=0;for($ii=1;$ii<32;$ii++){ ?>
+								             <td>
+        								        <?php 
+        								        $chazhi=getchanzhi('y'.$ii,$list);
+            								    $chazhis=$chazhis+$chazhi;
+            								    echo $chazhi;
+        								        ?>
+    								        </td> 
+								        <?php }?>
+    									<td><?php echo $chazhis; ?></td>
+    									<td></td>
+    									<td></td>
+    									<td></td>
 									<?php }else{ ?>
 										<td style="min-width: 50px"><?= $once['jihuariqi'] ?></td>
 										<td style="min-width: 100px"><?= $once['zhipinfanhao'] ?></td>
@@ -113,9 +131,7 @@
 										<td style="min-width: 50px"><?= $once['qihuashu'] ?></td>
 										<td style="min-width: 80px"><?= date('Y-m-d', $once['naqi']) ?></td>
 										<td><?= $once['shangyue'] ?></td>
-									<?php } ?>
-
-									<td><?= $once['y1'] ?></td>
+										<td><?= $once['y1'] ?></td>
 									<td><?= $once['y2'] ?></td>
 									<td><?= $once['y3'] ?></td>
 									<td><?= $once['y4'] ?></td>
@@ -150,6 +166,9 @@
 									<td><?= $once['zengjian'] ?></td>
 									<td><?= $once['shuoming'] ?></td>
 									<td><?= $once['danjia'] ?></td>
+									<?php } ?>
+
+									
           <!--                          <td class="td-manage">-->
           <!--                              <button class="layui-btn layui-btn-normal"-->
           <!--                                      onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new_shengchan?id=' ?>'+'<?= $once['id'] ?>')">-->
@@ -234,3 +253,14 @@
     }
 </script>
 </html>
+<?php 
+function getchanzhi($id,$list){
+    $onces=0;
+    foreach ($list as $num => $once){
+        if($once[$id]>0){
+           $onces=$onces+$once[$id]*$once['danjia']; 
+        }
+    }
+    return $onces;
+}
+?>
