@@ -198,15 +198,15 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
-	public function role_save12($guige,$sehao,$shuzhi,$kid,$time)
+	public function role_save12($guige,$sehao,$shuzhi,$kuanhao,$time)
 	{
 		$guige = $this->db->escape($guige);
 		$sehao = $this->db->escape($sehao);
 		$shuzhi = $this->db->escape($shuzhi);
-		$kid = $this->db->escape($kid);
+		$kuanhao = $this->db->escape($kuanhao);
 		$time = $this->db->escape($time);
 		$user_name = $this->db->escape($_SESSION['user_name']);
-		$sql = "INSERT INTO `erp_yuanfuliaoguige` (newren,guige,sehao,shuzhi,kid,addtime) VALUES ($user_name,$guige,$sehao,$shuzhi,$kid,$time)";
+		$sql = "INSERT INTO `erp_yuanfuliaoguige` (newren,guige,sehao,shuzhi,kuanhao,addtime) VALUES ($user_name,$guige,$sehao,$shuzhi,$kuanhao,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;

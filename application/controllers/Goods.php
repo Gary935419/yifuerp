@@ -1033,96 +1033,12 @@ class Goods extends CI_Controller
 	}
 	public function goods_edit_new1()
 	{
-		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		$goods_info = $this->role->getgoodsByIdkuanhao($id);
-		if (empty($goods_info)) {
-			echo json_encode(array('error' => true, 'msg' => "数据错误"));
-			return;
-		}
-		$data = array();
-		$data['id'] = $id;
-		$kuanhaos = $this->task->gettidlistguige($id);
+		$kuanhao = isset($_GET['kuanhao']) ? $_GET['kuanhao'] : "";
 
-		$data['guige1'] = '';
-		$data['sehao1'] = '';
-		$data['shuzhi1'] = '';
-		$data['guige2'] = '';
-		$data['sehao2'] = '';
-		$data['shuzhi2'] = '';
-		$data['guige3'] = '';
-		$data['sehao3'] = '';
-		$data['shuzhi3'] = '';
-		$data['guige4'] = '';
-		$data['sehao4'] = '';
-		$data['shuzhi4'] = '';
-		$data['guige5'] = '';
-		$data['sehao5'] = '';
-		$data['shuzhi5'] = '';
-		$data['guige6'] = '';
-		$data['sehao6'] = '';
-		$data['shuzhi6'] = '';
-		$data['guige7'] = '';
-		$data['sehao7'] = '';
-		$data['shuzhi7'] = '';
-		$data['guige8'] = '';
-		$data['sehao8'] = '';
-		$data['shuzhi8'] = '';
-		$data['guige9'] = '';
-		$data['sehao9'] = '';
-		$data['shuzhi9'] = '';
-		$data['guige10'] = '';
-		$data['sehao10'] = '';
-		$data['shuzhi10'] = '';
-		if (!empty($kuanhaos[0]['guige'])) {
-			$data['guige1'] = $kuanhaos[0]['guige'];
-			$data['sehao1'] = $kuanhaos[0]['sehao'];
-			$data['shuzhi1'] = $kuanhaos[0]['shuzhi'];
-		}
-		if (!empty($kuanhaos[1]['guige'])) {
-			$data['guige2'] = $kuanhaos[1]['guige'];
-			$data['sehao2'] = $kuanhaos[1]['sehao'];
-			$data['shuzhi2'] = $kuanhaos[1]['shuzhi'];
-		}
-		if (!empty($kuanhaos[2]['guige'])) {
-			$data['guige3'] = $kuanhaos[2]['guige'];
-			$data['sehao3'] = $kuanhaos[2]['sehao'];
-			$data['shuzhi3'] = $kuanhaos[2]['shuzhi'];
-		}
-		if (!empty($kuanhaos[3]['guige'])) {
-			$data['guige4'] = $kuanhaos[3]['guige'];
-			$data['sehao4'] = $kuanhaos[3]['sehao'];
-			$data['shuzhi4'] = $kuanhaos[3]['shuzhi'];
-		}
-		if (!empty($kuanhaos[4]['guige'])) {
-			$data['guige5'] = $kuanhaos[4]['guige'];
-			$data['sehao5'] = $kuanhaos[4]['sehao'];
-			$data['shuzhi5'] = $kuanhaos[4]['shuzhi'];
-		}
-		if (!empty($kuanhaos[5]['guige'])) {
-			$data['guige6'] = $kuanhaos[5]['guige'];
-			$data['sehao6'] = $kuanhaos[5]['sehao'];
-			$data['shuzhi6'] = $kuanhaos[5]['shuzhi'];
-		}
-		if (!empty($kuanhaos[6]['guige'])) {
-			$data['guige7'] = $kuanhaos[6]['guige'];
-			$data['sehao7'] = $kuanhaos[6]['sehao'];
-			$data['shuzhi7'] = $kuanhaos[6]['shuzhi'];
-		}
-		if (!empty($kuanhaos[7]['guige'])) {
-			$data['guige8'] = $kuanhaos[7]['guige'];
-			$data['sehao8'] = $kuanhaos[7]['sehao'];
-			$data['shuzhi8'] = $kuanhaos[7]['shuzhi'];
-		}
-		if (!empty($kuanhaos[8]['guige'])) {
-			$data['guige9'] = $kuanhaos[8]['guige'];
-			$data['sehao9'] = $kuanhaos[8]['sehao'];
-			$data['shuzhi9'] = $kuanhaos[8]['shuzhi'];
-		}
-		if (!empty($kuanhaos[9]['guige'])) {
-			$data['guige10'] = $kuanhaos[9]['guige'];
-			$data['sehao10'] = $kuanhaos[9]['sehao'];
-			$data['shuzhi10'] = $kuanhaos[9]['shuzhi'];
-		}
+		$data = array();
+		$data['kuanhao'] = $kuanhao;
+		$kuanhaos = $this->task->gettidlistguige($kuanhao);
+		$data['list'] = $kuanhaos;
 		$this->display("goods/goods_edit_new1", $data);
 	}
 	public function goods_add_new2()
@@ -1443,366 +1359,13 @@ class Goods extends CI_Controller
 	}
 	public function goods_edit_new22()
 	{
-		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		$goods_info = $this->role->getgoodsByIdkuanhao($id);
-		if (empty($goods_info)) {
-			echo json_encode(array('error' => true, 'msg' => "数据错误"));
-			return;
-		}
+		$kuanhao = isset($_GET['kuanhao']) ? $_GET['kuanhao'] : "";
+
 		$data = array();
-		$data['id'] = $id;
-		$kuanhaos = $this->task->gettidlistpinming($id);
+		$data['kuanhao'] = $kuanhao;
+		$kuanhaos = $this->task->gettidlistpinming($kuanhao);
 
-		$data['pinming1'] = '';
-		$data['pinfan1'] = '';
-		$data['sehao1'] = '';
-		$data['guige1'] = '';
-		$data['danwei1'] = '';
-		$data['tidanshu1'] = '';
-		$data['qingdianshu1'] = '';
-		$data['yangzhishi1'] = '';
-		$data['shiji1'] = '';
-		$data['sunhao1'] = '';
-		$data['jianshu1'] = '';
-		$data['sunhaoyongliang1'] = '';
-		$data['daoliaori1'] = '';
-		$data['zhishiyongliang1'] = '';
-		$data['shijiyongliang1'] = '';
-		$data['shengyu1'] = '';
-
-		$data['pinming2'] = '';
-		$data['pinfan2'] = '';
-		$data['sehao2'] = '';
-		$data['guige2'] = '';
-		$data['danwei2'] = '';
-		$data['tidanshu2'] = '';
-		$data['qingdianshu2'] = '';
-		$data['yangzhishi2'] = '';
-		$data['shiji2'] = '';
-		$data['sunhao2'] = '';
-		$data['jianshu2'] = '';
-		$data['sunhaoyongliang2'] = '';
-		$data['daoliaori2'] = '';
-		$data['zhishiyongliang2'] = '';
-		$data['shijiyongliang2'] = '';
-		$data['shengyu2'] = '';
-
-		$data['pinming3'] = '';
-		$data['pinfan3'] = '';
-		$data['sehao3'] = '';
-		$data['guige3'] = '';
-		$data['danwei3'] = '';
-		$data['tidanshu3'] = '';
-		$data['qingdianshu3'] = '';
-		$data['yangzhishi3'] = '';
-		$data['shiji3'] = '';
-		$data['sunhao3'] = '';
-		$data['jianshu3'] = '';
-		$data['sunhaoyongliang3'] = '';
-		$data['daoliaori3'] = '';
-		$data['zhishiyongliang3'] = '';
-		$data['shijiyongliang3'] = '';
-		$data['shengyu3'] = '';
-
-		$data['pinming4'] = '';
-		$data['pinfan4'] = '';
-		$data['sehao4'] = '';
-		$data['guige4'] = '';
-		$data['danwei4'] = '';
-		$data['tidanshu4'] = '';
-		$data['qingdianshu4'] = '';
-		$data['yangzhishi4'] = '';
-		$data['shiji4'] = '';
-		$data['sunhao4'] = '';
-		$data['jianshu4'] = '';
-		$data['sunhaoyongliang4'] = '';
-		$data['daoliaori4'] = '';
-		$data['zhishiyongliang4'] = '';
-		$data['shijiyongliang4'] = '';
-		$data['shengyu4'] = '';
-
-		$data['pinming5'] = '';
-		$data['pinfan5'] = '';
-		$data['sehao5'] = '';
-		$data['guige5'] = '';
-		$data['danwei5'] = '';
-		$data['tidanshu5'] = '';
-		$data['qingdianshu5'] = '';
-		$data['yangzhishi5'] = '';
-		$data['shiji5'] = '';
-		$data['sunhao5'] = '';
-		$data['jianshu5'] = '';
-		$data['sunhaoyongliang5'] = '';
-		$data['daoliaori5'] = '';
-		$data['zhishiyongliang5'] = '';
-		$data['shijiyongliang5'] = '';
-		$data['shengyu5'] = '';
-
-		$data['pinming6'] = '';
-		$data['pinfan6'] = '';
-		$data['sehao6'] = '';
-		$data['guige6'] = '';
-		$data['danwei6'] = '';
-		$data['tidanshu6'] = '';
-		$data['qingdianshu6'] = '';
-		$data['yangzhishi6'] = '';
-		$data['shiji6'] = '';
-		$data['sunhao6'] = '';
-		$data['jianshu6'] = '';
-		$data['sunhaoyongliang6'] = '';
-		$data['daoliaori6'] = '';
-		$data['zhishiyongliang6'] = '';
-		$data['shijiyongliang6'] = '';
-		$data['shengyu6'] = '';
-
-		$data['pinming7'] = '';
-		$data['pinfan7'] = '';
-		$data['sehao7'] = '';
-		$data['guige7'] = '';
-		$data['danwei7'] = '';
-		$data['tidanshu7'] = '';
-		$data['qingdianshu7'] = '';
-		$data['yangzhishi7'] = '';
-		$data['shiji7'] = '';
-		$data['sunhao7'] = '';
-		$data['jianshu7'] = '';
-		$data['sunhaoyongliang7'] = '';
-		$data['daoliaori7'] = '';
-		$data['zhishiyongliang7'] = '';
-		$data['shijiyongliang7'] = '';
-		$data['shengyu7'] = '';
-
-		$data['pinming8'] = '';
-		$data['pinfan8'] = '';
-		$data['sehao8'] = '';
-		$data['guige8'] = '';
-		$data['danwei8'] = '';
-		$data['tidanshu8'] = '';
-		$data['qingdianshu8'] = '';
-		$data['yangzhishi8'] = '';
-		$data['shiji8'] = '';
-		$data['sunhao8'] = '';
-		$data['jianshu8'] = '';
-		$data['sunhaoyongliang8'] = '';
-		$data['daoliaori8'] = '';
-		$data['zhishiyongliang8'] = '';
-		$data['shijiyongliang8'] = '';
-		$data['shengyu8'] = '';
-
-		$data['pinming9'] = '';
-		$data['pinfan9'] = '';
-		$data['sehao9'] = '';
-		$data['guige9'] = '';
-		$data['danwei9'] = '';
-		$data['tidanshu9'] = '';
-		$data['qingdianshu9'] = '';
-		$data['yangzhishi9'] = '';
-		$data['shiji9'] = '';
-		$data['sunhao9'] = '';
-		$data['jianshu9'] = '';
-		$data['sunhaoyongliang9'] = '';
-		$data['daoliaori9'] = '';
-		$data['zhishiyongliang9'] = '';
-		$data['shijiyongliang9'] = '';
-		$data['shengyu9'] = '';
-
-		$data['pinming10'] = '';
-		$data['pinfan10'] = '';
-		$data['sehao10'] = '';
-		$data['guige10'] = '';
-		$data['danwei10'] = '';
-		$data['tidanshu10'] = '';
-		$data['qingdianshu10'] = '';
-		$data['yangzhishi10'] = '';
-		$data['shiji10'] = '';
-		$data['sunhao10'] = '';
-		$data['jianshu10'] = '';
-		$data['sunhaoyongliang10'] = '';
-		$data['daoliaori10'] = '';
-		$data['zhishiyongliang10'] = '';
-		$data['shijiyongliang10'] = '';
-		$data['shengyu10'] = '';
-
-		if (!empty($kuanhaos[0]['pinming'])) {
-			$data['pinming1'] = $kuanhaos[0]['pinming'];
-			$data['pinfan1'] = $kuanhaos[0]['pinfan'];
-			$data['sehao1'] = $kuanhaos[0]['sehao'];
-			$data['guige1'] = $kuanhaos[0]['guige'];
-			$data['danwei1'] = $kuanhaos[0]['danwei'];
-			$data['tidanshu1'] = $kuanhaos[0]['tidanshu'];
-			$data['qingdianshu1'] = $kuanhaos[0]['qingdianshu'];
-			$data['yangzhishi1'] = $kuanhaos[0]['yangzhishi'];
-			$data['shiji1'] = $kuanhaos[0]['shiji'];
-			$data['sunhao1'] = $kuanhaos[0]['sunhao'];
-			$data['jianshu1'] = $kuanhaos[0]['jianshu'];
-			$data['sunhaoyongliang1'] = $kuanhaos[0]['sunhaoyongliang'];
-			$data['daoliaori1'] = $kuanhaos[0]['daoliaori'];
-			$data['zhishiyongliang1'] = $kuanhaos[0]['zhishiyongliang'];
-			$data['shijiyongliang1'] = $kuanhaos[0]['shijiyongliang'];
-			$data['shengyu1'] = $kuanhaos[0]['shengyu'];
-		}
-		if (!empty($kuanhaos[1]['pinming'])) {
-			$data['pinming2'] = $kuanhaos[1]['pinming'];
-			$data['pinfan2'] = $kuanhaos[1]['pinfan'];
-			$data['sehao2'] = $kuanhaos[1]['sehao'];
-			$data['guige2'] = $kuanhaos[1]['guige'];
-			$data['danwei2'] = $kuanhaos[1]['danwei'];
-			$data['tidanshu2'] = $kuanhaos[1]['tidanshu'];
-			$data['qingdianshu2'] = $kuanhaos[1]['qingdianshu'];
-			$data['yangzhishi2'] = $kuanhaos[1]['yangzhishi'];
-			$data['shiji2'] = $kuanhaos[1]['shiji'];
-			$data['sunhao2'] = $kuanhaos[1]['sunhao'];
-			$data['jianshu2'] = $kuanhaos[1]['jianshu'];
-			$data['sunhaoyongliang2'] = $kuanhaos[1]['sunhaoyongliang'];
-			$data['daoliaori2'] = $kuanhaos[1]['daoliaori'];
-			$data['zhishiyongliang2'] = $kuanhaos[1]['zhishiyongliang'];
-			$data['shijiyongliang2'] = $kuanhaos[1]['shijiyongliang'];
-			$data['shengyu2'] = $kuanhaos[1]['shengyu'];
-		}
-		if (!empty($kuanhaos[2]['pinming'])) {
-			$data['pinming3'] = $kuanhaos[2]['pinming'];
-			$data['pinfan3'] = $kuanhaos[2]['pinfan'];
-			$data['sehao3'] = $kuanhaos[2]['sehao'];
-			$data['guige3'] = $kuanhaos[2]['guige'];
-			$data['danwei3'] = $kuanhaos[2]['danwei'];
-			$data['tidanshu3'] = $kuanhaos[2]['tidanshu'];
-			$data['qingdianshu3'] = $kuanhaos[2]['qingdianshu'];
-			$data['yangzhishi3'] = $kuanhaos[2]['yangzhishi'];
-			$data['shiji3'] = $kuanhaos[2]['shiji'];
-			$data['sunhao3'] = $kuanhaos[2]['sunhao'];
-			$data['jianshu3'] = $kuanhaos[2]['jianshu'];
-			$data['sunhaoyongliang3'] = $kuanhaos[2]['sunhaoyongliang'];
-			$data['daoliaori3'] = $kuanhaos[2]['daoliaori'];
-			$data['zhishiyongliang3'] = $kuanhaos[2]['zhishiyongliang'];
-			$data['shijiyongliang3'] = $kuanhaos[2]['shijiyongliang'];
-			$data['shengyu3'] = $kuanhaos[2]['shengyu'];
-		}
-		if (!empty($kuanhaos[3]['pinming'])) {
-			$data['pinming4'] = $kuanhaos[3]['pinming'];
-			$data['pinfan4'] = $kuanhaos[3]['pinfan'];
-			$data['sehao4'] = $kuanhaos[3]['sehao'];
-			$data['guige4'] = $kuanhaos[3]['guige'];
-			$data['danwei4'] = $kuanhaos[3]['danwei'];
-			$data['tidanshu4'] = $kuanhaos[3]['tidanshu'];
-			$data['qingdianshu4'] = $kuanhaos[3]['qingdianshu'];
-			$data['yangzhishi4'] = $kuanhaos[3]['yangzhishi'];
-			$data['shiji4'] = $kuanhaos[3]['shiji'];
-			$data['sunhao4'] = $kuanhaos[3]['sunhao'];
-			$data['jianshu4'] = $kuanhaos[3]['jianshu'];
-			$data['sunhaoyongliang4'] = $kuanhaos[3]['sunhaoyongliang'];
-			$data['daoliaori4'] = $kuanhaos[3]['daoliaori'];
-			$data['zhishiyongliang4'] = $kuanhaos[3]['zhishiyongliang'];
-			$data['shijiyongliang4'] = $kuanhaos[3]['shijiyongliang'];
-			$data['shengyu4'] = $kuanhaos[3]['shengyu'];
-		}
-		if (!empty($kuanhaos[4]['pinming'])) {
-			$data['pinming5'] = $kuanhaos[4]['pinming'];
-			$data['pinfan5'] = $kuanhaos[4]['pinfan'];
-			$data['sehao5'] = $kuanhaos[4]['sehao'];
-			$data['guige5'] = $kuanhaos[4]['guige'];
-			$data['danwei5'] = $kuanhaos[4]['danwei'];
-			$data['tidanshu5'] = $kuanhaos[4]['tidanshu'];
-			$data['qingdianshu5'] = $kuanhaos[4]['qingdianshu'];
-			$data['yangzhishi5'] = $kuanhaos[4]['yangzhishi'];
-			$data['shiji5'] = $kuanhaos[4]['shiji'];
-			$data['sunhao5'] = $kuanhaos[4]['sunhao'];
-			$data['jianshu5'] = $kuanhaos[4]['jianshu'];
-			$data['sunhaoyongliang5'] = $kuanhaos[4]['sunhaoyongliang'];
-			$data['daoliaori5'] = $kuanhaos[4]['daoliaori'];
-			$data['zhishiyongliang5'] = $kuanhaos[4]['zhishiyongliang'];
-			$data['shijiyongliang5'] = $kuanhaos[4]['shijiyongliang'];
-			$data['shengyu5'] = $kuanhaos[4]['shengyu'];
-		}
-		if (!empty($kuanhaos[5]['pinming'])) {
-			$data['pinming6'] = $kuanhaos[5]['pinming'];
-			$data['pinfan6'] = $kuanhaos[5]['pinfan'];
-			$data['sehao6'] = $kuanhaos[5]['sehao'];
-			$data['guige6'] = $kuanhaos[5]['guige'];
-			$data['danwei6'] = $kuanhaos[5]['danwei'];
-			$data['tidanshu6'] = $kuanhaos[5]['tidanshu'];
-			$data['qingdianshu6'] = $kuanhaos[5]['qingdianshu'];
-			$data['yangzhishi6'] = $kuanhaos[5]['yangzhishi'];
-			$data['shiji6'] = $kuanhaos[5]['shiji'];
-			$data['sunhao6'] = $kuanhaos[5]['sunhao'];
-			$data['jianshu6'] = $kuanhaos[5]['jianshu'];
-			$data['sunhaoyongliang6'] = $kuanhaos[5]['sunhaoyongliang'];
-			$data['daoliaori6'] = $kuanhaos[5]['daoliaori'];
-			$data['zhishiyongliang6'] = $kuanhaos[5]['zhishiyongliang'];
-			$data['shijiyongliang6'] = $kuanhaos[5]['shijiyongliang'];
-			$data['shengyu6'] = $kuanhaos[5]['shengyu'];
-		}
-		if (!empty($kuanhaos[6]['pinming'])) {
-			$data['pinming7'] = $kuanhaos[6]['pinming'];
-			$data['pinfan7'] = $kuanhaos[6]['pinfan'];
-			$data['sehao7'] = $kuanhaos[6]['sehao'];
-			$data['guige7'] = $kuanhaos[6]['guige'];
-			$data['danwei7'] = $kuanhaos[6]['danwei'];
-			$data['tidanshu7'] = $kuanhaos[6]['tidanshu'];
-			$data['qingdianshu7'] = $kuanhaos[6]['qingdianshu'];
-			$data['yangzhishi7'] = $kuanhaos[6]['yangzhishi'];
-			$data['shiji7'] = $kuanhaos[6]['shiji'];
-			$data['sunhao7'] = $kuanhaos[6]['sunhao'];
-			$data['jianshu7'] = $kuanhaos[6]['jianshu'];
-			$data['sunhaoyongliang7'] = $kuanhaos[6]['sunhaoyongliang'];
-			$data['daoliaori7'] = $kuanhaos[6]['daoliaori'];
-			$data['zhishiyongliang7'] = $kuanhaos[6]['zhishiyongliang'];
-			$data['shijiyongliang7'] = $kuanhaos[6]['shijiyongliang'];
-			$data['shengyu7'] = $kuanhaos[6]['shengyu'];
-		}
-		if (!empty($kuanhaos[7]['pinming'])) {
-			$data['pinming8'] = $kuanhaos[7]['pinming'];
-			$data['pinfan8'] = $kuanhaos[7]['pinfan'];
-			$data['sehao8'] = $kuanhaos[7]['sehao'];
-			$data['guige8'] = $kuanhaos[7]['guige'];
-			$data['danwei8'] = $kuanhaos[7]['danwei'];
-			$data['tidanshu8'] = $kuanhaos[7]['tidanshu'];
-			$data['qingdianshu8'] = $kuanhaos[7]['qingdianshu'];
-			$data['yangzhishi8'] = $kuanhaos[7]['yangzhishi'];
-			$data['shiji8'] = $kuanhaos[7]['shiji'];
-			$data['sunhao8'] = $kuanhaos[7]['sunhao'];
-			$data['jianshu8'] = $kuanhaos[7]['jianshu'];
-			$data['sunhaoyongliang8'] = $kuanhaos[7]['sunhaoyongliang'];
-			$data['daoliaori8'] = $kuanhaos[7]['daoliaori'];
-			$data['zhishiyongliang8'] = $kuanhaos[7]['zhishiyongliang'];
-			$data['shijiyongliang8'] = $kuanhaos[7]['shijiyongliang'];
-			$data['shengyu8'] = $kuanhaos[7]['shengyu'];
-		}
-		if (!empty($kuanhaos[8]['pinming'])) {
-			$data['pinming9'] = $kuanhaos[8]['pinming'];
-			$data['pinfan9'] = $kuanhaos[8]['pinfan'];
-			$data['sehao9'] = $kuanhaos[8]['sehao'];
-			$data['guige9'] = $kuanhaos[8]['guige'];
-			$data['danwei9'] = $kuanhaos[8]['danwei'];
-			$data['tidanshu9'] = $kuanhaos[8]['tidanshu'];
-			$data['qingdianshu9'] = $kuanhaos[8]['qingdianshu'];
-			$data['yangzhishi9'] = $kuanhaos[8]['yangzhishi'];
-			$data['shiji9'] = $kuanhaos[8]['shiji'];
-			$data['sunhao9'] = $kuanhaos[8]['sunhao'];
-			$data['jianshu9'] = $kuanhaos[8]['jianshu'];
-			$data['sunhaoyongliang9'] = $kuanhaos[8]['sunhaoyongliang'];
-			$data['daoliaori9'] = $kuanhaos[8]['daoliaori'];
-			$data['zhishiyongliang9'] = $kuanhaos[8]['zhishiyongliang'];
-			$data['shijiyongliang9'] = $kuanhaos[8]['shijiyongliang'];
-			$data['shengyu9'] = $kuanhaos[8]['shengyu'];
-		}
-		if (!empty($kuanhaos[9]['pinming'])) {
-			$data['pinming10'] = $kuanhaos[9]['pinming'];
-			$data['pinfan10'] = $kuanhaos[9]['pinfan'];
-			$data['sehao10'] = $kuanhaos[9]['sehao'];
-			$data['guige10'] = $kuanhaos[9]['guige'];
-			$data['danwei10'] = $kuanhaos[9]['danwei'];
-			$data['tidanshu10'] = $kuanhaos[9]['tidanshu'];
-			$data['qingdianshu10'] = $kuanhaos[9]['qingdianshu'];
-			$data['yangzhishi10'] = $kuanhaos[9]['yangzhishi'];
-			$data['shiji10'] = $kuanhaos[9]['shiji'];
-			$data['sunhao10'] = $kuanhaos[9]['sunhao'];
-			$data['jianshu10'] = $kuanhaos[9]['jianshu'];
-			$data['sunhaoyongliang10'] = $kuanhaos[9]['sunhaoyongliang'];
-			$data['daoliaori10'] = $kuanhaos[9]['daoliaori'];
-			$data['zhishiyongliang10'] = $kuanhaos[9]['zhishiyongliang'];
-			$data['shijiyongliang10'] = $kuanhaos[9]['shijiyongliang'];
-			$data['shengyu10'] = $kuanhaos[9]['shengyu'];
-		}
+		$data['list'] = $kuanhaos;
 		$this->display("goods/goods_edit_new22", $data);
 	}
 	public function goods_list_yuan()
@@ -6626,6 +6189,125 @@ class Goods extends CI_Controller
 		}
 
 		$reader = $objPHPExcelReader->getWorksheetIterator();
+
+		//循环读取sheet
+		foreach($reader as $sheet1) {
+			//读取表内容
+			$content1 = $sheet1->getRowIterator();
+			//逐行处理
+			$res_arr1 = array();
+			foreach($content1 as $key => $items) {
+				$rows1 = $items->getRowIndex();              //行
+				$columns1 = $items->getCellIterator();       //列
+				$row_arr1 = array();
+				//确定从哪一行开始读取
+				if($rows1 > 13){
+					break;
+				}
+				//逐列读取
+				foreach($columns1 as $head1 => $cell1) {
+					//获取cell中数据
+					$data1 = $cell1->getValue();
+					$row_arr1[] = $data1;
+				}
+				$res_arr1[] = $row_arr1;
+			}
+		}
+		$arrnew = array();
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13;
+			if (!empty($res_arr1[2][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[2][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[2][$i];
+			}
+		}
+
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13 + 10;
+			if (!empty($res_arr1[3][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[3][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[3][$i];
+			}
+		}
+
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13 + 20;
+			if (!empty($res_arr1[4][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[4][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[4][$i];
+			}
+		}
+
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13 + 30;
+			if (!empty($res_arr1[5][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[5][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[5][$i];
+			}
+		}
+
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13 + 40;
+			if (!empty($res_arr1[6][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[6][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[6][$i];
+			}
+		}
+
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13 + 50;
+			if (!empty($res_arr1[7][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[7][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[7][$i];
+			}
+		}
+
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13 + 60;
+			if (!empty($res_arr1[8][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[8][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[8][$i];
+			}
+		}
+
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13 + 70;
+			if (!empty($res_arr1[9][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[9][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[9][$i];
+			}
+		}
+
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13 + 80;
+			if (!empty($res_arr1[10][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[10][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[10][$i];
+			}
+		}
+
+		for ($i=13; $i<23; $i++){
+			$numk = $i - 13 + 90;
+			if (!empty($res_arr1[11][$i])){
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[11][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[11][$i];
+			}
+		}
+
+		foreach ($arrnew as $kkk => $vvv) {
+			$this->role->role_save12($vvv['guige'], $vvv['sehao'], $vvv['shuzhi'], $kuanhao, time());
+		}
+
 		//循环读取sheet
 		foreach($reader as $sheet) {
 			//读取表内容
@@ -6649,6 +6331,7 @@ class Goods extends CI_Controller
 				$res_arr[] = $row_arr;
 			}
 		}
+
 		for ($i=0; $i<=66; $i++)
 		{
 			$add_time = time();
@@ -6657,10 +6340,10 @@ class Goods extends CI_Controller
 					continue;
 				}
 				$hetonghao = $res_arr[0][2];
-				$kuanhao = $res_arr[0][6];
+//				$kuanhao = $res_arr[0][6];
 				$riqi = strtotime($res_arr[0][10]);
 				$zhishiyongliang = floatval($res_arr[$i][8]) * floatval($res_arr[$i][11]);
-				$shijiyongliang = floatval($res_arr[$i][8]) * floatval($res_arr[$i][12]);
+				$shijiyongliang = floatval($res_arr[$i][9]) * floatval($res_arr[$i][12]);
 				$shengyu = floatval($res_arr[$i][6]) - floatval($shijiyongliang);
 				$this->role->role_saveerp_yuanfuliaopinggheng(
 					$res_arr[$i][0],$res_arr[$i][1],$res_arr[$i][2],$res_arr[$i][3],$res_arr[$i][4],$res_arr[$i][5]
@@ -6670,7 +6353,7 @@ class Goods extends CI_Controller
 				);
 			}else{
 				$hetonghao = $res_arr[$i][2];
-				$kuanhao = $res_arr[$i][6];
+//				$kuanhao = $res_arr[$i][6];
 				$riqi = strtotime($res_arr[$i][10]);
 				$role_info = $this->role->getroleByname1_zhipinfanhaonew($hetonghao,$kuanhao,$riqi);
 				if (!empty($role_info)) {

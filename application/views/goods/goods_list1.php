@@ -73,13 +73,23 @@
 												<i class="iconfont">&#xe74a;</i> 导入
 											</button>
 
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('规格详细','<?= RUN . '/goods/goods_edit_new1?kuanhao=' ?>'+'<?= $once['kuanhao'] ?>')">
+												<i class="iconfont">&#xe69e;</i>  规格详细
+											</button>
+
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('平衡表详细','<?= RUN . '/goods/goods_edit_new22?kuanhao=' ?>'+'<?= $once['kuanhao'] ?>')">
+												<i class="layui-icon">&#xe642;</i>平衡表详细
+											</button>
+
 											<a style="margin-left: 10px;" href="<?= empty($once['excelwendang'])?'#':$once['excelwendang'] ?>">
 												<button class="layui-btn layui-btn-normal">
 													<i class="iconfont">&#xe74a;</i>  下载
 												</button>
 											</a>
-										<?php } ?>
 
+										<?php } ?>
 									</td>
 								</tr>
 							<?php endforeach; ?>
